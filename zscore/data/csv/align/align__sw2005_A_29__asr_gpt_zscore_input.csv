@@ -1,0 +1,16 @@
+w_d,w_t,w_g,gt_mask,pred_mask,tp_mask,tn_mask,fp_mask,fn_mask
+i,PRN,i,1,0,0,0,0,1
+mean,PRN,mean,1,0,0,0,0,1
+she,EDITED,,1,1,1,0,0,0
+tr-,EDITED,,1,1,1,0,0,0
+she,EDITED,,1,1,1,0,0,0
+had,EDITED,,1,1,1,0,0,0
+she,NONE,she,0,0,0,1,0,0
+had,NONE,,0,1,0,0,1,0
+,,has,*,*,*,*,*,*
+children,NONE,children,0,0,0,1,0,0
+all,NONE,all,0,0,0,1,0,0
+across,NONE,across,0,0,0,1,0,0
+the,NONE,the,0,0,0,1,0,0
+united,NONE,united,0,0,0,1,0,0
+states,NONE,states,0,0,0,1,0,0
