@@ -209,3 +209,295 @@ def get_text_dual_from_file(tree_file):
 def get_text_dual_from_string(tree_string):
     trees = tb.string_trees(tree_string)
     return get_text_dual(trees)
+
+
+def parse_speaker_turn_symbol(symbol):
+    """
+    Parse a Speaker symbol like 'SpeakerA53' -> ('A', 53).
+    Returns None if the symbol does not match this format.
+    """
+    m = re.match(r"^Speaker([A-Z])(\d+)$", str(symbol))
+    if not m:
+        return None
+    speaker, turn = m.groups()
+    return speaker, int(turn)
+
+
+def unwrap_tree_root(tree):
+    """
+    Treebank reader may return wrapped trees like ['', actual_tree].
+    Return the inner tree when present.
+    """
+    if (
+        isinstance(tree, list)
+        and len(tree) == 2
+        and isinstance(tree[0], str)
+        and tree[0] == ""
+        and isinstance(tree[1], list)
+    ):
+        return tree[1]
+    return tree
+
+
+def get_speaker_turn_from_code_tree(tree):
+    """
+    Extract (speaker, turn) from a CODE tree:
+    ['CODE', ['SYM', 'SpeakerA53'], ['.', '.']]
+    Returns None if this is not a speaker CODE tree.
+    """
+    tree = unwrap_tree_root(tree)
+    if not isinstance(tree, list) or not tree or tree[0] != "CODE":
+        return None
+
+    for child in tree[1:]:
+        if isinstance(child, list) and len(child) == 2 and child[0] == "SYM":
+            return parse_speaker_turn_symbol(child[1])
+
+    return None
+
+
+def normalize_tree_label(label):
+    """
+    Normalize PTB labels by removing functional suffixes.
+    Example: 'NP-SBJ-1' -> 'NP'
+    """
+    if not isinstance(label, str):
+        return ""
+    # Preserve Penn Treebank special tags like -DFL- and -NONE-.
+    if label.startswith("-"):
+        return label
+    return label.split("-")[0].split("=")[0]
+
+
+def count_target_nodes_in_tree(tree, target_labels=("EDITED", "INTJ", "PRN")):
+    """
+    Count node labels in one parsed tree.
+    Returns dict with keys from target_labels.
+    """
+    counts = {lbl: 0 for lbl in target_labels}
+
+    def walk(node):
+        node = unwrap_tree_root(node)
+        if not isinstance(node, list) or not node:
+            return
+
+        label = normalize_tree_label(node[0])
+        if label in counts:
+            counts[label] += 1
+
+        for child in node[1:]:
+            if isinstance(child, list):
+                walk(child)
+
+    walk(tree)
+    return counts
+
+
+def group_trees_by_speaker_turn(trees):
+    """
+    Group parsed trees by (speaker, turn) based on CODE markers.
+    Returns:
+      {
+        ('A', 1): [tree1, tree2, ...],
+        ...
+      }
+    """
+    grouped = {}
+    current_key = None
+
+    for tree in trees:
+        speaker_turn = get_speaker_turn_from_code_tree(tree)
+        if speaker_turn is not None:
+            current_key = speaker_turn
+            grouped.setdefault(current_key, [])
+            continue
+
+        if current_key is not None:
+            grouped[current_key].append(tree)
+
+    return grouped
+
+
+def get_turn_disfluency_node_counts_from_trees(trees):
+    """
+    Compute per-turn node counts for EDITED, INTJ, PRN.
+    Returns:
+      {
+        ('A', 1): {'EDITED': n, 'INTJ': n, 'PRN': n},
+        ...
+      }
+    """
+    grouped = group_trees_by_speaker_turn(trees)
+    out = {}
+
+    for key, turn_trees in grouped.items():
+        turn_counts = {"EDITED": 0, "INTJ": 0, "PRN": 0}
+        for t in turn_trees:
+            c = count_target_nodes_in_tree(t, target_labels=("EDITED", "INTJ", "PRN"))
+            turn_counts["EDITED"] += c["EDITED"]
+            turn_counts["INTJ"] += c["INTJ"]
+            turn_counts["PRN"] += c["PRN"]
+        out[key] = turn_counts
+
+    return out
+
+
+def get_turn_disfluency_node_counts_from_file(tree_file):
+    """
+    Convenience wrapper around get_turn_disfluency_node_counts_from_trees()
+    for a .mrg file path.
+    """
+    trees = tb.read_file(tree_file)
+    return get_turn_disfluency_node_counts_from_trees(trees)
+
+
+def collect_tokens_for_label_set(tree, include_labels=("EDITED", "INTJ", "PRN")):
+    """
+    Collect terminal tokens that appear under any node whose normalized label
+    is in include_labels.
+    """
+    include = set(include_labels)
+    tokens = []
+
+    def walk(node, active=False):
+        node = unwrap_tree_root(node)
+        if not isinstance(node, list) or not node:
+            return
+
+        label = normalize_tree_label(node[0])
+        is_active = active or (label in include)
+
+        if len(node) == 2 and isinstance(node[1], str):
+            token = node[1]
+            # Keep lexical material only.
+            if (
+                is_active
+                and label not in ("-NONE-", "-DFL-", "SYM")
+                and token != "MUMBLEx"
+            ):
+                tokens.append(token)
+            return
+
+        for child in node[1:]:
+            if isinstance(child, list):
+                walk(child, is_active)
+
+    walk(tree)
+    return tokens
+
+
+def tokens_to_sentence(tokens):
+    """
+    Convert token list into normalized text string.
+    """
+    if not tokens:
+        return ""
+    sent = postprocess_sentence(tokens)
+    sent = correct_final_punctuation(sent)
+    return sent
+
+
+def get_turn_text_for_label_set_from_trees(trees, include_labels=("EDITED", "INTJ", "PRN")):
+    """
+    Build per-turn text that includes only tokens under include_labels.
+    Returns:
+      {
+        ('A', 1): "text ...",
+        ...
+      }
+    """
+    grouped = group_trees_by_speaker_turn(trees)
+    out = {}
+
+    for key, turn_trees in grouped.items():
+        tokens = []
+        for t in turn_trees:
+            tokens.extend(collect_tokens_for_label_set(t, include_labels=include_labels))
+        out[key] = tokens_to_sentence(tokens)
+
+    return out
+
+
+def get_turn_text_for_label_set_from_file(tree_file, include_labels=("EDITED", "INTJ", "PRN")):
+    """
+    Convenience wrapper around get_turn_text_for_label_set_from_trees()
+    for a .mrg file path.
+    """
+    trees = tb.read_file(tree_file)
+    return get_turn_text_for_label_set_from_trees(trees, include_labels=include_labels)
+
+
+def collect_tokens_excluding_disfluency_labels(
+    tree,
+    excluded_labels=("EDITED", "INTJ", "PRN")
+):
+    """
+    Collect terminal tokens while excluding tokens inside the selected
+    disfluency node labels.
+    """
+    excluded = set(excluded_labels)
+    tokens = []
+
+    def walk(node, blocked=False):
+        node = unwrap_tree_root(node)
+        if not isinstance(node, list) or not node:
+            return
+
+        label = normalize_tree_label(node[0])
+        next_blocked = blocked or (label in excluded)
+
+        if len(node) == 2 and isinstance(node[1], str):
+            token = node[1]
+            if (
+                not next_blocked
+                and label not in ("-NONE-", "-DFL-", "SYM")
+                and token != "MUMBLEx"
+            ):
+                tokens.append(token)
+            return
+
+        for child in node[1:]:
+            if isinstance(child, list):
+                walk(child, next_blocked)
+
+    walk(tree)
+    return tokens
+
+
+def get_turn_text_excluding_disfluency_labels_from_trees(
+    trees,
+    excluded_labels=("EDITED", "INTJ", "PRN")
+):
+    """
+    Build per-turn text while removing only selected disfluency node classes.
+    """
+    grouped = group_trees_by_speaker_turn(trees)
+    out = {}
+
+    for key, turn_trees in grouped.items():
+        tokens = []
+        for t in turn_trees:
+            tokens.extend(
+                collect_tokens_excluding_disfluency_labels(
+                    t,
+                    excluded_labels=excluded_labels
+                )
+            )
+        out[key] = tokens_to_sentence(tokens)
+
+    return out
+
+
+def get_turn_text_excluding_disfluency_labels_from_file(
+    tree_file,
+    excluded_labels=("EDITED", "INTJ", "PRN")
+):
+    """
+    Convenience wrapper around get_turn_text_excluding_disfluency_labels_from_trees()
+    for a .mrg file path.
+    """
+    trees = tb.read_file(tree_file)
+    return get_turn_text_excluding_disfluency_labels_from_trees(
+        trees,
+        excluded_labels=excluded_labels
+    )
