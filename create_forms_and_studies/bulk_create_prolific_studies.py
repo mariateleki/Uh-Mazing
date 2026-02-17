@@ -19,17 +19,16 @@ BASE_URL = "https://api.prolific.com/api/v1"
 # ---------------------------------------------------------
 
 LANGUAGE_FILTER_IDS = {
-    # "EN": "19", # English (source)
-    "ZH": "81", # Mandarin
-    "ES": "60", # Spanish
-    "HI": "31", # Hindi
-    "FR": "25", # French
-    "DE": "28", # German
-    "IT": "36", # Italian
-    # "SW": "Swahili", # handled by collaborators :) 
-    "CS": "12", # Czech
-    "AR": "04", # Arabic
-    # "LG": "Luganda", # handled by collaborators :) 
+    # # "EN": "19", # English (source)
+    # "ZH": "81", # Mandarin
+    # "ES": "60", # Spanish
+    # "HI": "31", # Hindi
+    # "FR": "25", # French
+    # "DE": "28", # German
+    # "IT": "36", # Italian
+    "SW": "62", # 
+    # "CS": "12", # Czech
+    # "AR": "04", # Arabic
 }
 
 # ---------------------------------------------------------
@@ -107,6 +106,7 @@ def create_draft_study(payload):
 # ---------------------------------------------------------
 results = []
 
+sw_entries = [e for e in form_entries if e.get("language_code") == "SW"]
 for i, entry in enumerate(form_entries, start=1):
     lang_code = entry["language_code"]
 
