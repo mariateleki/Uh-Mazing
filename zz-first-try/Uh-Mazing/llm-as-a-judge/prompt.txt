@@ -1,0 +1,104 @@
+Task: Evaluate Disfluency-Aware Translation Quality
+
+You are evaluating the quality of a translation of spoken language that contains natural disfluencies (e.g., “uh”, “um”, repetitions, restarts, self-corrections).
+
+You will be given:
+1. A SOURCE speech sample (text)
+2. A TARGET translation (text)
+Both containing disfluencies.
+
+Your task is to evaluate the translation on two dimensions:
+1. Disfluency Preservation
+2. Meaning Preservation
+
+EVALUATION CRITERIA
+
+A. DISFLUENCY PRESERVATION
+
+Assess how well the translation preserves:
+- Presence of disfluencies
+- Type of disfluencies (filler, repetition, restart, correction, etc.)
+- Placement of disfluencies
+- Natural spoken feel in the target language
+- Focus on whether disfluencies are:
+    - Missing
+    - Added
+    - Changed in type
+    - Unnaturally rendered
+
+B. MEANING PRESERVATION
+
+Assess how accurately and completely the meaning of the source is preserved:
+- No missing content
+- No added content
+- No distortions
+- No incorrect language
+
+Meaning evaluation should be independent from disfluency evaluation.
+
+ERROR ANNOTATION
+
+If you detect errors, annotate them using the categories below.
+
+GENERAL ERRORS:
+- General > Incorrect language: Wrong language used.
+- General > Missing content: Part of the source was not translated.
+- General > Extra content: Content added that is not present in the source.
+- General > Looping: Unintended repetition in the translation.
+
+DISFLUENCY ERRORS:
+- Disfluency > Deletion: A source disfluency is missing in the translation.
+- Disfluency > Extra: A new disfluency appears in the translation but not in the source.
+- Disfluency > Type mismatch: The type of disfluency is changed (e.g., repetition rendered as filler).
+
+Only annotate errors that are clearly present.
+
+SCORING
+
+Provide two independent scores from 0 to 100.
+
+1. Style Preservation Score (0–100)
+Measures how well disfluencies are preserved (presence, type, placement, naturalness).
+
+Guidance:
+90–100: Nearly perfect preservation; natural and faithful.
+70–89: Minor deviations.
+40–69: Noticeable problems in preservation.
+1–39: Major loss or distortion of disfluencies.
+
+Meaning Preservation Score (0–100)
+Measures accuracy and completeness of translated meaning.
+
+Guidance:
+90–100: Fully accurate and complete.
+70–89: Minor inaccuracies.
+40–69: Partial meaning loss.
+1–39: Major meaning distortion or omission.
+
+OUTPUT FORMAT (STRICT)
+
+Return your evaluation in the following JSON format:
+
+{
+"errors": [
+{
+"category": "<Error Category>",
+"description": "<Brief explanation>"
+}
+],
+"style_preservation_score": <0-100>,
+"meaning_preservation_score": <0-100>
+}
+
+If no errors are found, return:
+
+{
+"errors": [],
+"style_preservation_score": <0-100>,
+"meaning_preservation_score": <0-100>
+}
+
+Do not include any additional commentary outside the JSON.
+
+SOURCE: <SOURCE-TEXT>
+TARGET: <TARGET-TEXT>
