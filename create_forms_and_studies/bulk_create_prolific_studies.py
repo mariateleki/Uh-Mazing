@@ -14,22 +14,26 @@ BASE_URL = "https://api.prolific.com/api/v1"
 
 # ---------------------------------------------------------
 # 1. LANGUAGE → PROLIFIC FILTER MAPPING
-# (IDs come from Prolific "Fluent Languages" filter)
+# (IDs come from Prolific language filter lists)
 # see check_prolific_filters.py
 # ---------------------------------------------------------
 
-LANGUAGE_FILTER_IDS = {
-    # # "EN": "19", # English (source)
-    # "ZH": "81", # Mandarin
-    # "ES": "60", # Spanish
-    # "HI": "31", # Hindi
-    # "FR": "25", # French
-    # "DE": "28", # German
-    # "IT": "36", # Italian
-    "SW": "62", # 
-    # "CS": "12", # Czech
-    # "AR": "04", # Arabic
+# Filter IDs for first-language (target language X)
+FIRST_LANGUAGE_FILTER_ID = "first-language"
+FIRST_LANGUAGE_CHOICE_IDS = {
+    "zh": "80",  # Mandarin
+    "es": "59",  # Spanish
+    "hi": "30",  # Hindi
+    "fr": "24",  # French
+    "de": "27",  # German
+    "it": "35",  # Italian
+    "cs": "11",  # Czech
+    "ar": "3",   # Arabic
 }
+
+# Filter IDs for fluent-languages (English)
+FLUENT_LANGUAGES_FILTER_ID = "fluent-languages"
+ENGLISH_CHOICE_ID = "19"
 
 # ---------------------------------------------------------
 # 2. LOAD FORM URL + INTRO + LANGUAGE
@@ -110,15 +114,20 @@ sw_entries = [e for e in form_entries if e.get("language_code") == "SW"]
 for i, entry in enumerate(form_entries, start=1):
     lang_code = entry["language_code"]
 
-    if lang_code not in LANGUAGE_FILTER_IDS:
-        raise ValueError(f"No fluent-language filter defined for {lang_code}")
+    if lang_code.lower() not in FIRST_LANGUAGE_CHOICE_IDS:
+        raise ValueError(f"No first-language filter defined for {lang_code}")
 
-    fluent_language_filter = {
-        "filter_id": "fluent-languages",
-        "selected_values": ["19", LANGUAGE_FILTER_IDS[lang_code]] # "19" is for English
+    first_language_filter = {
+        "filter_id": FIRST_LANGUAGE_FILTER_ID,
+        "selected_values": [FIRST_LANGUAGE_CHOICE_IDS[lang_code.lower()]]
     }
 
-    filters = BASE_FILTERS + [fluent_language_filter]
+    fluent_language_filter = {
+        "filter_id": FLUENT_LANGUAGES_FILTER_ID,
+        "selected_values": [ENGLISH_CHOICE_ID]  # English
+    }
+
+    filters = BASE_FILTERS + [first_language_filter, fluent_language_filter]
 
     study_payload = {
         "name": "Translation Task (Disfluent Text)",

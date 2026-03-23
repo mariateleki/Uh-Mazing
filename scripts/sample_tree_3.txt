@@ -1,0 +1,42 @@
+( (S 
+    (INTJ (UH Uh) )
+    (, ,) 
+    (EDITED 
+      (S 
+        (NP-SBJ (PRP we) )
+        (VP-UNF (VBP 've) ))
+      (, ,) 
+      )
+    (NP-SBJ (PRP we) )
+    (VP 
+      (VP (VBP 've) 
+        (, ,)
+        (INTJ (UH uh) )
+        (, ,) 
+        (VP (VBN taken) 
+          (SBAR-NOM 
+            (WHNP-2 
+              (WHADJP (WRB how) (JJ much) ))
+            (S 
+              (NP-SBJ (PRP we) )
+              (VP (VBP have) 
+              )))))
+      (PRN 
+        (, ,)
+        (S 
+          (NP-SBJ (PRP you) )
+          (VP (VBP know) ))
+        (, ,) )
+      (VP (VBP write) 
+        (PRT (RP down) )
+        (SBAR-NOM 
+          (WHNP-1 
+            (WHADJP (WRB how) (RB much) ))
+          (S 
+            (NP-SBJ (PRP we) )
+            (VP (VBP have) 
+              (S 
+                (VP (VBG coming) 
+                  (PRT (RB in) )
+                  (NP-TMP (DT each) (NN month) ))))))))
+ ))

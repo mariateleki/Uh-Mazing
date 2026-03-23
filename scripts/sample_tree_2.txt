@@ -1,0 +1,24 @@
+( (S 
+    (NP-SBJ (PRP She) )
+    (VP (VBD had) 
+      (NP (DT a) 
+        (ADJP (RB rather) (JJ massive) )
+        (NN stroke) )
+      (EDITED 
+        (ADVP-TMP-UNF (RB about) )
+        (, ,) 
+      )
+      (INTJ (UH uh) )
+      (, ,) 
+      (ADVP-TMP 
+        (NP 
+          (QP (RB about) 
+            (INTJ (UH uh) )
+            (, ,) (CD eight) )
+          (NNS months) )
+        (RB ago) 
+        (PRN 
+          (S 
+            (NP-SBJ (PRP I) )
+            (VP (VBP guess) )))))
+    (. .)))

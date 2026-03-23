@@ -119,10 +119,8 @@ LANGUAGES = {
     "FR": "French",
     "DE": "German",
     "IT": "Italian",
-    "SW": "Swahili",
     "CS": "Czech",
-    "AR": "Arabic",
-    "LG": "Luganda",
+    "AR": "Arabic"
 }
 
 

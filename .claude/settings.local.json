@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/save_tree_image.py my_tree.txt output.svg --all-black --italicize-red --x-scale 1.3)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree.txt output.svg --all-black --italicize-red --x-scale 1.3)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt output3.svg --all-black --italicize-red --x-scale 1.3)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg --all-black --italicize-red --x-scale 1.3)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg --x-scale 1.1)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg --x-scale 0.9)",
+      "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg --x-scale 1.0)",
+      "Bash(python ./create_forms_and_studies/bulk_create_google_forms.py)",
+      "Bash(pip install:*)",
+      "Bash(python ./create_forms_and_studies/bulk_create_prolific_studies.py)"
+    ]
+  }
+}
