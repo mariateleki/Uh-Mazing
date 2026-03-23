@@ -11,7 +11,10 @@
       "Bash(python scripts/save_tree_image.py scripts/sample_tree_3.txt scripts/output3.svg --x-scale 1.0)",
       "Bash(python ./create_forms_and_studies/bulk_create_google_forms.py)",
       "Bash(pip install:*)",
-      "Bash(python ./create_forms_and_studies/bulk_create_prolific_studies.py)"
+      "Bash(python ./create_forms_and_studies/bulk_create_prolific_studies.py)",
+      "Bash(python3 -c \":*)",
+      "Bash(find /Users/mariateleki/Desktop/Uh-Mazing -name *.sh -type f)",
+      "Bash(ls /Users/mariateleki/Desktop/Uh-Mazing/experiments/run_gemini*.py)"
     ]
   }
 }
