@@ -93,13 +93,16 @@ def init_gemini():
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise RuntimeError("Missing GEMINI_API_KEY (or GOOGLE_API_KEY)")
+    print(f"  [DEBUG init_gemini] API key loaded (first 8 chars): {api_key[:8]}...")
     genai.configure(api_key=api_key)
     model_name = MODEL_CONFIGS["gemini"]["model_name"]
+    print(f"  [DEBUG init_gemini] Using model: {model_name}")
     return genai.GenerativeModel(model_name)
 
 
 def gemini_text(client, prompt: str) -> str:
     response = client.generate_content(prompt)
+    print(f"  [DEBUG gemini_text] type={type(response).__name__}, text repr={response.text!r}")
     return response.text
 
 
@@ -109,6 +112,7 @@ def gemini_audio(client, wav_path: Path, prompt: str) -> str:
         [prompt, {"mime_type": "audio/wav", "data": audio_bytes}],
         generation_config={"temperature": 0.0},
     )
+    print(f"  [DEBUG gemini_audio] type={type(response).__name__}, text repr={response.text!r}")
     return (response.text or "").strip()
 
 
@@ -116,10 +120,21 @@ def gemini_audio(client, wav_path: Path, prompt: str) -> str:
 
 def init_gpt():
     from openai import OpenAI
+    api_key = os.getenv("OPENAI_API_KEY")
+    org_key = os.getenv("OPENAI_ORG_KEY")
+    project_key = os.getenv("OPENAI_PROJECT_KEY")
+    if not api_key:
+        print("  [WARNING init_gpt] OPENAI_API_KEY is missing!")
+    else:
+        print(f"  [DEBUG init_gpt] API key loaded (first 8 chars): {api_key[:8]}...")
+    if not org_key:
+        print("  [WARNING init_gpt] OPENAI_ORG_KEY is missing (may be optional)")
+    if not project_key:
+        print("  [WARNING init_gpt] OPENAI_PROJECT_KEY is missing (may be optional)")
     return OpenAI(
-        api_key=os.getenv("OPENAI_API_KEY"),
-        organization=os.getenv("OPENAI_ORG_KEY"),
-        project=os.getenv("OPENAI_PROJECT_KEY"),
+        api_key=api_key,
+        organization=org_key,
+        project=project_key,
     )
 
 
@@ -131,6 +146,10 @@ def gpt_text(client, prompt: str) -> str:
         reasoning={"effort": "none"},
         input=prompt,
     )
+    print(f"  [DEBUG gpt_text] type={type(response).__name__}, attrs={[a for a in dir(response) if not a.startswith('_')]}")
+    print(f"  [DEBUG gpt_text] output_text repr={response.output_text!r}")
+    if hasattr(response, 'output'):
+        print(f"  [DEBUG gpt_text] output={response.output}")
     return response.output_text.strip()
 
 
@@ -142,6 +161,7 @@ def gpt_audio(client, wav_path: Path, prompt: str) -> str:
             model=asr_model,
             prompt=prompt,
         )
+    print(f"  [DEBUG gpt_audio] type={type(response).__name__}, text repr={response.text!r}")
     return (response.text or "").strip()
 
 
