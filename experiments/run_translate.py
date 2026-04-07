@@ -46,10 +46,8 @@ LANGUAGES = {
     "FR": "French",
     "DE": "German",
     "IT": "Italian",
-    "SW": "Swahili",
     "CZ": "Czech",
     "AR": "Arabic",
-    "LG": "Luganda",
 }
 
 NOEXTRA_SUFFIX = " Only return the answer requested. Do not include any explanation or introductions."

@@ -14,7 +14,19 @@
       "Bash(python ./create_forms_and_studies/bulk_create_prolific_studies.py)",
       "Bash(python3 -c \":*)",
       "Bash(find /Users/mariateleki/Desktop/Uh-Mazing -name *.sh -type f)",
-      "Bash(ls /Users/mariateleki/Desktop/Uh-Mazing/experiments/run_gemini*.py)"
+      "Bash(ls /Users/mariateleki/Desktop/Uh-Mazing/experiments/run_gemini*.py)",
+      "Bash(find /Users/mariateleki/Desktop/Uh-Mazing -name *bulk*merge* -o -name *merge*forms* -o -name *google*forms*)",
+      "Bash(cut -d'|' -f1 /Users/mariateleki/Desktop/Uh-Mazing/data/google_forms.txt)",
+      "Bash(python ./create_forms_and_studies/merge_filtered_annotators.py)",
+      "Bash(python3 ./create_forms_and_studies/merge_filtered_annotators.py)",
+      "Bash(pip3 install:*)",
+      "Bash(unzip -l /Users/mariateleki/Desktop/SpeechSpectrum.zip)",
+      "Read(//Users/mariateleki/Desktop/**)",
+      "Read(//Users/mariateleki/Downloads/**)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(open /Users/mariateleki/Desktop/Uh-Mazing/round2/index.html)",
+      "Bash(screencapture -x /tmp/preview.png)",
+      "Bash(grep -n \"function tokenize\\\\|function renderTokens\\\\|\\\\.slot-label\\\\|slot-label\\\\|$slot\" /Users/mariateleki/Desktop/Uh-Mazing/round2/index.html)"
     ]
   }
 }
