@@ -1503,17 +1503,12 @@ function buildAllDumpPayloads() {
 // One-shot final dump: POST every item once at the end, no verify/retry
 // loop. Each row carries the DUMP-ALL80-{utt_id} marker so it's clearly
 // distinguishable from per-Save&Next rows (which have an empty dump_tag).
+// Runs in both real and test mode — test rows are still identifiable
+// because their prolific_id contains "TEST".
 async function runFinalDump() {
-  // Test-mode bypass: don't dump partial test sessions.
-  if (isTestMode()) {
-    setFinalStatus(undefined, '(Test mode — skipping final dump.)');
-    post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
-    showCompletionCode();
-    return;
-  }
-
   const payloads = buildAllDumpPayloads();
   if (payloads.length === 0) {
+    setFinalStatus(undefined, 'No items to submit — proceeding.');
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
     showCompletionCode();
     return;
