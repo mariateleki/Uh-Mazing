@@ -683,6 +683,13 @@ function progressStats() {
   return { current: currentIdx, total: ITEMS.length, completed };
 }
 
+// Test-mode bypass: if the worker's Prolific ID contains "TEST" (case
+// insensitive), skip the "all items completed" gate at Submit & Finish so
+// QA testers can run through end-to-end without filling in 80 items.
+function isTestMode() {
+  return /TEST/i.test(annotatorInfo?.prolific_id || '');
+}
+
 // ── SCREEN ROUTER ─────────────────────────────────────────────────────────────
 let currentScreen = 'consent';
 function goTo(screen) {
@@ -1125,8 +1132,14 @@ function screenAnnotate() {
     return `<option value="${idx}"${sel}>Item ${idx + 1}${done}</option>`;
   }).join('');
 
+  const testBanner = isTestMode()
+    ? `<div style="background:#fff8e1;border:1px solid #ffd54f;border-radius:6px;padding:6px 12px;font-size:.82rem;color:#7e5800;margin-bottom:12px">
+         🧪 <strong>Test mode</strong> (Prolific ID contains "TEST") — completion gate is disabled. Click Submit & Finish at any time.
+       </div>` : '';
+
   return `
   <div class="screen">
+    ${testBanner}
     <div class="progress-wrap">
       <div class="progress-label">
         Item <strong>${currentIdx + 1}</strong> of ${ITEMS.length}
@@ -1165,7 +1178,7 @@ function screenAnnotate() {
       ${(() => {
         const isLast    = currentIdx + 1 >= ITEMS.length;
         const remaining = stats.total - stats.completed;
-        if (isLast && remaining > 0) {
+        if (isLast && remaining > 0 && !isTestMode()) {
           return `<button class="btn btn-primary" id="save-next-btn" disabled
                     title="Complete every item before submitting"
                     style="margin-left:auto;opacity:.5;cursor:not-allowed">
@@ -1261,10 +1274,11 @@ async function saveAndNext() {
 
   // If this would advance past the last item, only allow it when EVERY
   // item is completed (worker either marked "no changes" or made edits).
-  // Otherwise jump to the first incomplete item instead.
+  // Otherwise jump to the first incomplete item instead. TEST-mode
+  // Prolific IDs (containing "TEST") bypass this gate.
   if (currentIdx + 1 >= ITEMS.length) {
     const stats = progressStats();
-    if (stats.completed < stats.total) {
+    if (stats.completed < stats.total && !isTestMode()) {
       const firstIncomplete = ITEMS.findIndex(it => !isItemCompleted(it.utt_id));
       currentIdx = firstIncomplete >= 0 ? firstIncomplete : 0;
       saveToLocal();
