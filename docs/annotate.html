@@ -1026,9 +1026,13 @@ function resetSlot(uttId, slot) {
 
 // ── SCREEN: ANNOTATE ──────────────────────────────────────────────────────────
 function screenAnnotate() {
+  // Safety net for resume / direct navigation: if the saved currentIdx is
+  // already past the last item, queue the completion route on a microtask
+  // so the outer render() can finish first (otherwise its assignment of
+  // SCREENS.annotate()'s return value would overwrite the complete screen).
   if (currentIdx >= ITEMS.length) {
-    goTo('complete');
-    return '';
+    setTimeout(() => goTo('complete'), 0);
+    return '<div class="screen" style="text-align:center;padding:40px;color:#888">Loading…</div>';
   }
 
   const item    = ITEMS[currentIdx];
@@ -1142,7 +1146,11 @@ async function saveAndNext() {
 
   saveToLocal();
   currentIdx++;
-  render();
+  if (currentIdx >= ITEMS.length) {
+    goTo('complete');
+  } else {
+    render();
+  }
 }
 
 // ── SCREEN: COMPLETE ──────────────────────────────────────────────────────────
