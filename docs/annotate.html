@@ -1271,7 +1271,7 @@ function fetchSavedRows() {
   return new Promise((resolve, reject) => {
     const cbName = '_verify_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
     const script = document.createElement('script');
-    const timer  = setTimeout(() => { cleanup(); reject(new Error('verify timeout')); }, 15000);
+    const timer  = setTimeout(() => { cleanup(); reject(new Error('verify timeout')); }, 10000);
     function cleanup() { clearTimeout(timer); delete window[cbName]; script.remove(); }
     window[cbName] = (data) => {
       cleanup();
@@ -1375,15 +1375,15 @@ async function runFinalVerification() {
     return;
   }
 
-  const MAX_ATTEMPTS = 5;
+  const MAX_ATTEMPTS = 3;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     setFinalStatus(undefined, `Checking server (attempt ${attempt}/${MAX_ATTEMPTS})…`);
     let saved;
     try {
       saved = await fetchSavedRows();
     } catch (err) {
-      // verify call failed — wait briefly and retry
-      await new Promise(r => setTimeout(r, 1500 * attempt));
+      // verify call failed — short backoff and retry
+      await new Promise(r => setTimeout(r, 600));
       continue;
     }
 
@@ -1391,10 +1391,8 @@ async function runFinalVerification() {
     setFinalStatus(undefined, `Saved ${total - missing.length}/${total} so far…`);
 
     if (missing.length === 0) {
-      // Everything landed — fire completed intake and reveal completion code.
+      // Everything landed — fire completed intake and reveal the code now.
       post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
-      // Give the intake POST a beat to land before exposing the code.
-      await new Promise(r => setTimeout(r, 600));
       showCompletionCode();
       return;
     }
@@ -1408,9 +1406,8 @@ async function runFinalVerification() {
     }).filter(Boolean);
     await Promise.all(reposts);
 
-    // Wait for Apps Script to finish appending before re-verifying.
-    // Backoff: 2s, 3s, 4s, 5s, 6s.
-    await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+    // Brief wait for Apps Script appendRow to settle before re-verifying.
+    await new Promise(r => setTimeout(r, 800));
   }
 
   // Out of attempts — show a soft error so the worker doesn't return blind.
