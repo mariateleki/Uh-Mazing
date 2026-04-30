@@ -218,6 +218,30 @@
     /* QC panel */
     /* QC review panel removed — workers now save & advance with no AI gate. */
 
+    /* Bouncy spinner for the "Finalizing your submission" / save state.
+       Class added in screenComplete + setFinalSpinnerSaving(); removed
+       once showCompletionCode runs so the emoji can settle on 🎉. */
+    @keyframes bouncy {
+      0%, 100% { transform: translateY(0)    scale(1); }
+      30%      { transform: translateY(-14px) scale(1.05); }
+      55%      { transform: translateY(0)    scale(0.95); }
+      75%      { transform: translateY(-5px) scale(1.02); }
+    }
+    .bouncing {
+      display: inline-block;
+      animation: bouncy 0.95s ease-in-out infinite;
+    }
+    @keyframes save-pulse {
+      0%, 100% { transform: scale(1);   opacity: .9; }
+      50%      { transform: scale(1.18); opacity: 1;  }
+    }
+    .save-status.saving::before {
+      content: "💾";
+      display: inline-block;
+      margin-right: 5px;
+      animation: save-pulse 0.8s ease-in-out infinite;
+    }
+
     /* Report button */
     .report-btn {
       position: fixed;
@@ -1252,7 +1276,7 @@ async function saveAndNext() {
   const saveBtn  = document.getElementById('save-next-btn');
 
   if (saveBtn)  saveBtn.disabled = true;
-  if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'save-status'; }
+  if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'save-status saving'; }
 
   const payloads = buildPayloads(item);
   try {
@@ -1349,7 +1373,7 @@ function screenComplete() {
 
   return `
   <div class="screen" style="text-align:center;padding:56px 48px" id="completeScreen">
-    <div id="finalize-spinner" style="font-size:2.5rem;margin-bottom:16px">⏳</div>
+    <div id="finalize-spinner" class="bouncing" style="font-size:2.5rem;margin-bottom:16px">⏳</div>
     <h1 id="finalize-title">Finalizing your submission…</h1>
     <p id="finalize-status" style="margin-top:12px;color:#666">
       Just a moment — making sure all your work has reached us.
@@ -1438,7 +1462,9 @@ function setFinalStatus(text, sub) {
 function showCompletionCode(extraNote) {
   const screen = document.getElementById('completeScreen');
   if (!screen) return;
-  document.getElementById('finalize-spinner').textContent = '🎉';
+  const spinner = document.getElementById('finalize-spinner');
+  spinner.textContent = '🎉';
+  spinner.classList.remove('bouncing');   // freeze the bounce now that we're done
   document.getElementById('finalize-title').textContent   = "You're done!";
   setFinalStatus(
     extraNote || 'Thank you for completing the annotation. Your responses have been recorded.',
