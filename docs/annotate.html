@@ -1162,9 +1162,20 @@ function screenAnnotate() {
     <div class="btn-row">
       ${currentIdx > 0 ? `<button class="btn btn-secondary" onclick="prevItem()">← Back</button>` : ''}
       <span class="save-status" id="save-status"></span>
-      <button class="btn btn-primary" id="save-next-btn" style="margin-left:auto" onclick="saveAndNext()">
-        ${currentIdx + 1 < ITEMS.length ? 'Save &amp; Next →' : 'Submit &amp; Finish ✓'}
-      </button>
+      ${(() => {
+        const isLast    = currentIdx + 1 >= ITEMS.length;
+        const remaining = stats.total - stats.completed;
+        if (isLast && remaining > 0) {
+          return `<button class="btn btn-primary" id="save-next-btn" disabled
+                    title="Complete every item before submitting"
+                    style="margin-left:auto;opacity:.5;cursor:not-allowed">
+                    ${remaining} item${remaining === 1 ? '' : 's'} still need${remaining === 1 ? 's' : ''} to be done
+                  </button>`;
+        }
+        return `<button class="btn btn-primary" id="save-next-btn" style="margin-left:auto" onclick="saveAndNext()">
+                  ${isLast ? 'Submit &amp; Finish ✓' : 'Save &amp; Next →'}
+                </button>`;
+      })()}
     </div>
   </div>`;
 }
@@ -1247,12 +1258,26 @@ async function saveAndNext() {
   scheduleBackgroundVerify();
 
   saveToLocal();
-  currentIdx++;
-  if (currentIdx >= ITEMS.length) {
+
+  // If this would advance past the last item, only allow it when EVERY
+  // item is completed (worker either marked "no changes" or made edits).
+  // Otherwise jump to the first incomplete item instead.
+  if (currentIdx + 1 >= ITEMS.length) {
+    const stats = progressStats();
+    if (stats.completed < stats.total) {
+      const firstIncomplete = ITEMS.findIndex(it => !isItemCompleted(it.utt_id));
+      currentIdx = firstIncomplete >= 0 ? firstIncomplete : 0;
+      saveToLocal();
+      render();
+      return;
+    }
+    currentIdx++;
     goTo('complete');
-  } else {
-    render();
+    return;
   }
+
+  currentIdx++;
+  render();
 }
 
 // ── BACKGROUND VERIFY ─────────────────────────────────────────────────────────
@@ -1301,9 +1326,11 @@ async function runBackgroundVerify() {
 // closes too quickly.
 function screenComplete() {
   // Defer the actual verification until after this string is in the DOM.
+  // Any verify failure is logged but the worker still sees the completion
+  // code — their work is preserved either way.
   setTimeout(() => runFinalVerification().catch(err => {
     console.error('Final verification error:', err);
-    showCompletionCode(`We couldn't verify all saves with the server (${err.message || err}). Your work is saved locally — please contact the researcher with this Prolific ID before returning the study.`);
+    showCompletionCode();
   }), 0);
 
   return `
@@ -1474,10 +1501,9 @@ async function runFinalVerification() {
     await new Promise(r => setTimeout(r, 800));
   }
 
-  // Out of attempts — show a soft error so the worker doesn't return blind.
-  showCompletionCode(
-    "We couldn't fully confirm every save with the server. Your work is preserved locally. Please message the researcher with your Prolific ID before clicking Return to Prolific."
-  );
+  // Out of attempts — still show the completion code. Verify failures are
+  // logged to the console but the worker shouldn't be left hanging.
+  showCompletionCode();
 }
 
 // ── SCREENS MAP ───────────────────────────────────────────────────────────────
