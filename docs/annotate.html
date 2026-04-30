@@ -1500,11 +1500,12 @@ function buildAllDumpPayloads() {
   return all;
 }
 
-// One-shot final dump: POST every item once at the end, no verify/retry
-// loop. Each row carries the DUMP-ALL80-{utt_id} marker so it's clearly
-// distinguishable from per-Save&Next rows (which have an empty dump_tag).
-// Runs in both real and test mode — test rows are still identifiable
-// because their prolific_id contains "TEST".
+// One-shot final dump: send EVERY (item, slot) row in a single batched
+// POST. Apps Script writes them all with one setValues() call, avoiding
+// the browser's per-host concurrency cap and Apps Script's per-request
+// throttling that made the previous 80-parallel-posts approach lose
+// rows partway through. Each row carries DUMP-ALL80-{utt_id} so it's
+// distinguishable from per-Save&Next rows.
 async function runFinalDump() {
   const payloads = buildAllDumpPayloads();
   if (payloads.length === 0) {
@@ -1515,9 +1516,28 @@ async function runFinalDump() {
   }
 
   setFinalStatus(undefined, `Submitting all ${payloads.length} of your annotations…`);
-  await Promise.all(payloads.map(p => post(p)));
 
-  // Brief settle time so Apps Script's appendRow calls finish before the
+  // Strip the redundant per-row identifying fields — they live at the
+  // batch envelope level. Keeps the POST body smaller.
+  const rows = payloads.map(p => ({
+    utt_id:         p.utt_id,
+    slot:           p.slot,
+    removed:        p.removed,
+    added:          p.added,
+    text_edit:      p.text_edit,
+    text_annotated: p.text_annotated,
+    no_changes:     p.no_changes,
+    dump_tag:       p.dump_tag,
+  }));
+
+  await post({
+    type: 'annotation_batch',
+    lang: LANG,
+    ...annotatorInfo,
+    rows,
+  });
+
+  // Brief settle time so Apps Script's batched write finishes before the
   // worker can navigate away from the tab.
   await new Promise(r => setTimeout(r, 1800));
 

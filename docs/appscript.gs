@@ -77,6 +77,51 @@ function doPost(e) {
       sheet.appendRow(row);
     }
 
+    if (type === 'annotation_batch') {
+      // One POST carrying many rows — written with a single setValues()
+      // call so we don't hit per-request concurrency or throttling.
+      const sheet = getOrCreateSheet('Responses', [
+        'timestamp', 'prolific_id', 'lang',
+        'native_language', 'fluency', 'age_range',
+        'utt_id', 'slot', 'removed', 'added',
+        'text_edit', 'text_annotated', 'no_changes', 'dump_tag'
+      ]);
+      const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn())
+                          .getValues()[0].map(String);
+      const colOf = {};
+      for (let i = 0; i < headers.length; i++) colOf[headers[i]] = i;
+
+      const ts        = new Date().toISOString();
+      const incoming  = data.rows || [];
+      const matrix    = [];
+
+      for (const r of incoming) {
+        const row = new Array(headers.length).fill('');
+        const set = (h, v) => { if (colOf[h] !== undefined) row[colOf[h]] = v; };
+        set('timestamp',       ts);
+        set('prolific_id',     data.prolific_id);
+        set('lang',            data.lang);
+        set('native_language', data.native_language);
+        set('fluency',         data.fluency);
+        set('age_range',       data.age_range);
+        set('utt_id',          r.utt_id);
+        set('slot',            r.slot);
+        set('removed',         JSON.stringify(r.removed || []));
+        set('added',           JSON.stringify(r.added || []));
+        set('text_edit',       r.text_edit      || '');
+        set('text_annotated',  r.text_annotated || '');
+        set('no_changes',      r.no_changes ? 'TRUE' : 'FALSE');
+        set('dump_tag',        r.dump_tag       || '');
+        matrix.push(row);
+      }
+
+      if (matrix.length > 0) {
+        const startRow = sheet.getLastRow() + 1;
+        sheet.getRange(startRow, 1, matrix.length, headers.length)
+             .setValues(matrix);
+      }
+    }
+
     if (type === 'report') {
       const sheet = getOrCreateSheet('Reports', [
         'timestamp', 'prolific_id', 'lang',
