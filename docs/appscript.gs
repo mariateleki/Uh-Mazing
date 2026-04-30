@@ -177,7 +177,7 @@ function doGet(e) {
       const apiKey  = props.getProperty('OPENAI_API_KEY');
       const org     = props.getProperty('OPENAI_ORG')     || '';
       const project = props.getProperty('OPENAI_PROJECT') || '';
-      const model   = e.parameter.model || 'gpt-4.5-preview';
+      const model   = e.parameter.model || 'gpt-5.4';
       const lang    = e.parameter.lang  || '';
       const en      = e.parameter.en    || '';
 
