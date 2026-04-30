@@ -1,6 +1,7 @@
 # Custom
 .env
 token.json
+notes.txt
 create_forms_and_studies/credentials.json
 data_swb/swb1_*
 data/swb1_*

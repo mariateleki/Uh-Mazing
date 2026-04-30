@@ -235,21 +235,3 @@ Different scripts request different scopes:
 If you switch between scripts and hit a 403 "insufficient scopes" error,
 delete `token.json` and re-authorize — the next run will request the fuller
 scope set.
-
----
-
-## Apps Script deployment URLs
-
-The annotate / admin pages talk to a Google Apps Script web app
-(`docs/appscript.gs`). Each *deployment* of that script gets its own URL.
-The URL currently wired into `docs/annotate.html` as `APPS_SCRIPT_URL`
-(line ~352) is the one in active use; old/unused deployments are kept
-here so they can be restored if needed.
-
-| Status   | Deployment URL                                                                                                                  | Notes                                          |
-|----------|---------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
-| previous | `https://script.google.com/macros/s/AKfycbwBp1d_eI8Z_nbJfeLoUc4LE9IgLCJOOFs3y9tb2n-RDwZHa82_TFhes-O-ALtSPSgk/exec`              | Pre-`part`-split version                       |
-| current  | `https://script.google.com/macros/s/AKfycbyiFMAOxtNeaS0rf8KXsN0rO7PblieOBfVWe6ediM9pHMCLNTBX8TkwsRHDH0m0avGO/exec`              | After adding `part` field + sheet migration    |
-
-When you change `APPS_SCRIPT_URL` in `annotate.html`, also update the
-"current" row above so future-you can find it.
