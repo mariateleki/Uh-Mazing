@@ -1389,24 +1389,182 @@ async function doSave(qcFeedback, qcNote) {
 }
 
 // ── SCREEN: COMPLETE ──────────────────────────────────────────────────────────
+// Renders a "Finalizing your submission…" placeholder, then runs an async
+// verify-and-flush pass against the server. We only fire the "completed"
+// intake event AND show the completion code once the server confirms every
+// expected (utt_id, slot) row is present. This eliminates the "phantom
+// completer" pattern (status=completed but Responses sheet short by 1–4
+// rows) caused by Apps Script's appendRow being interrupted when the tab
+// closes too quickly.
 function screenComplete() {
-  // Log completion to Sheets
-  post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
+  // Defer the actual verification until after this string is in the DOM.
+  setTimeout(() => runFinalVerification().catch(err => {
+    console.error('Final verification error:', err);
+    showCompletionCode(`We couldn't verify all saves with the server (${err.message || err}). Your work is saved locally — please contact the researcher with this Prolific ID before returning the study.`);
+  }), 0);
 
   return `
-  <div class="screen" style="text-align:center;padding:56px 48px">
-    <div style="font-size:2.5rem;margin-bottom:16px">🎉</div>
-    <h1>You're done!</h1>
-    <p style="margin-top:12px">Thank you for completing the annotation.
-       Your responses have been recorded.</p>
-    <p style="margin-top:6px">Please return to Prolific using your completion code:</p>
-    <div class="completion-code">${COMPLETION_CODE}</div>
-    <div style="margin-top:24px">
-      <a href="${PROLIFIC_RETURN_URL}" class="btn btn-primary" style="text-decoration:none">
-        Return to Prolific →
-      </a>
-    </div>
+  <div class="screen" style="text-align:center;padding:56px 48px" id="completeScreen">
+    <div id="finalize-spinner" style="font-size:2.5rem;margin-bottom:16px">⏳</div>
+    <h1 id="finalize-title">Finalizing your submission…</h1>
+    <p id="finalize-status" style="margin-top:12px;color:#666">
+      Verifying your annotations have been saved. Please don't close this tab.
+    </p>
+    <div id="finalize-progress" style="margin-top:18px;font-size:.9rem;color:#999;min-height:1.4em"></div>
+    <div id="finalize-actions" style="margin-top:24px"></div>
   </div>`;
+}
+
+// ── FINAL VERIFICATION ─────────────────────────────────────────────────────────
+// JSONP GET against Apps Script ?type=verify_saves — returns {saved: [{utt_id, slot}, ...]}
+function fetchSavedRows() {
+  return new Promise((resolve, reject) => {
+    const cbName = '_verify_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+    const script = document.createElement('script');
+    const timer  = setTimeout(() => { cleanup(); reject(new Error('verify timeout')); }, 15000);
+    function cleanup() { clearTimeout(timer); delete window[cbName]; script.remove(); }
+    window[cbName] = (data) => {
+      cleanup();
+      if (data && data.status === 'ok') resolve(new Set((data.saved || []).map(r => `${r.utt_id}::${r.slot}`)));
+      else reject(new Error(data?.message || 'verify error'));
+    };
+    script.onerror = () => { cleanup(); reject(new Error('verify network error')); };
+    const params = new URLSearchParams({
+      callback: cbName,
+      type: 'verify_saves',
+      prolific_id: annotatorInfo?.prolific_id || '',
+      lang: LANG,
+      part: PART === null ? '' : String(PART),
+    });
+    script.src = APPS_SCRIPT_URL + '?' + params.toString();
+    document.head.appendChild(script);
+  });
+}
+
+// Build the set of (utt_id, slot) keys that SHOULD exist on the server.
+// One row is expected per (item, slot) the worker actually saw — i.e. every
+// translation slot in ITEMS that has a non-null translation.
+function expectedSaveKeys() {
+  const keys = [];
+  for (const item of ITEMS) {
+    for (const slot of SLOTS) {
+      const raw = (item.translations || {})[slot];
+      if (raw === undefined) continue;
+      keys.push(`${item.utt_id}::${slot}`);
+    }
+  }
+  return keys;
+}
+
+// Reconstruct an annotation payload from current `edits` state, mirroring
+// buildPayloads() but for a single (item, slot).
+function payloadForKey(uttId, slot) {
+  const item = ITEMS.find(i => i.utt_id === uttId);
+  if (!item) return null;
+  const e = edits[uttId]?.[slot];
+  if (!e) return null;
+  const raw       = (item.translations || {})[slot];
+  if (raw === undefined) return null;
+  const origToks  = tokenize(e.text !== undefined ? e.text : raw);
+  const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
+  return {
+    type: 'annotation',
+    lang: LANG,
+    part: PART,
+    ...annotatorInfo,
+    utt_id:    uttId,
+    slot,
+    removed:   [...origSpans].filter(i => !e.highlights.has(i)),
+    added:     [...e.highlights].filter(i => !origSpans.has(i)),
+    text_edit: e.text !== undefined ? e.text : '',
+    qc_feedback: '(reflushed-on-complete)',
+    qc_note:     '(reflushed-on-complete)',
+  };
+}
+
+function setFinalStatus(text, sub) {
+  const t = document.getElementById('finalize-status');
+  const p = document.getElementById('finalize-progress');
+  if (t && text !== undefined) t.textContent = text;
+  if (p && sub  !== undefined) p.textContent = sub;
+}
+
+function showCompletionCode(extraNote) {
+  const screen = document.getElementById('completeScreen');
+  if (!screen) return;
+  document.getElementById('finalize-spinner').textContent = '🎉';
+  document.getElementById('finalize-title').textContent   = "You're done!";
+  setFinalStatus(
+    extraNote || 'Thank you for completing the annotation. Your responses have been recorded.',
+    ''
+  );
+  const actions = document.getElementById('finalize-actions');
+  if (actions) {
+    actions.innerHTML = `
+      <p style="margin:0 0 8px;color:#555">Please return to Prolific using your completion code:</p>
+      <div class="completion-code">${COMPLETION_CODE}</div>
+      <div style="margin-top:18px">
+        <a href="${PROLIFIC_RETURN_URL}" class="btn btn-primary" style="text-decoration:none">
+          Return to Prolific →
+        </a>
+      </div>`;
+  }
+}
+
+// Main retry loop: verify, re-POST any missing rows, repeat until all
+// expected keys are confirmed (or attempts exhausted). Then fire the
+// completed-intake event and reveal the completion code.
+async function runFinalVerification() {
+  const expected = expectedSaveKeys();
+  const total    = expected.length;
+  if (total === 0) {
+    showCompletionCode();
+    post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
+    return;
+  }
+
+  const MAX_ATTEMPTS = 5;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    setFinalStatus(undefined, `Checking server (attempt ${attempt}/${MAX_ATTEMPTS})…`);
+    let saved;
+    try {
+      saved = await fetchSavedRows();
+    } catch (err) {
+      // verify call failed — wait briefly and retry
+      await new Promise(r => setTimeout(r, 1500 * attempt));
+      continue;
+    }
+
+    const missing = expected.filter(k => !saved.has(k));
+    setFinalStatus(undefined, `Saved ${total - missing.length}/${total} so far…`);
+
+    if (missing.length === 0) {
+      // Everything landed — fire completed intake and reveal completion code.
+      post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
+      // Give the intake POST a beat to land before exposing the code.
+      await new Promise(r => setTimeout(r, 600));
+      showCompletionCode();
+      return;
+    }
+
+    // Re-POST the missing payloads from local state.
+    setFinalStatus(undefined, `Re-saving ${missing.length} item${missing.length === 1 ? '' : 's'}…`);
+    const reposts = missing.map(k => {
+      const [uttId, slot] = k.split('::');
+      const payload = payloadForKey(uttId, slot);
+      return payload ? post(payload) : null;
+    }).filter(Boolean);
+    await Promise.all(reposts);
+
+    // Wait for Apps Script to finish appending before re-verifying.
+    // Backoff: 2s, 3s, 4s, 5s, 6s.
+    await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+  }
+
+  // Out of attempts — show a soft error so the worker doesn't return blind.
+  showCompletionCode(
+    "We couldn't fully confirm every save with the server. Your work is preserved locally. Please message the researcher with your Prolific ID before clicking Return to Prolific."
+  );
 }
 
 // ── SCREENS MAP ───────────────────────────────────────────────────────────────

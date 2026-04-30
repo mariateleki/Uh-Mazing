@@ -214,6 +214,48 @@ function doGet(e) {
     }
   }
 
+  // ── Verify which (utt_id, slot) pairs are already saved for a worker ──────
+  // Used by annotate.html's screenComplete: after the final saveAndNext, the
+  // browser asks "what do you actually have?" and re-POSTs anything missing
+  // before showing the completion code. Catches races where the tab closes
+  // before Apps Script finishes appendRow.
+  if (type === 'verify_saves') {
+    try {
+      const pid  = (e.parameter.prolific_id || '').toString();
+      const lang = (e.parameter.lang        || '').toString();
+      const part = (e.parameter.part        || '').toString();  // '', '1', or '2'
+      if (!pid || !lang) return respond({ status: 'error', message: 'pid and lang required' });
+
+      const ss = SpreadsheetApp.openById(SHEET_ID);
+      const sheet = ss.getSheetByName('Responses');
+      if (!sheet) return respond({ status: 'ok', saved: [] });
+
+      const cPid    = colIdx(sheet, 'prolific_id');
+      const cLang   = colIdx(sheet, 'lang');
+      const cPart   = colIdx(sheet, 'part');
+      const cUtt    = colIdx(sheet, 'utt_id');
+      const cSlot   = colIdx(sheet, 'slot');
+      if (!cPid || !cLang || !cUtt || !cSlot) {
+        return respond({ status: 'error', message: 'Responses sheet missing required columns' });
+      }
+
+      const rows  = sheet.getDataRange().getValues();
+      const saved = [];
+      for (let i = 1; i < rows.length; i++) {
+        if (String(rows[i][cPid - 1])  !== pid)  continue;
+        if (String(rows[i][cLang - 1]) !== lang) continue;
+        if (cPart) {
+          const rowPart = String(rows[i][cPart - 1] || '');
+          if (rowPart !== part) continue;
+        }
+        saved.push({ utt_id: String(rows[i][cUtt - 1]), slot: String(rows[i][cSlot - 1]) });
+      }
+      return respond({ status: 'ok', saved });
+    } catch (err) {
+      return respond({ status: 'error', message: err.toString() });
+    }
+  }
+
   // ── Default: return annotator progress summary ────────────────────────────
   try {
     const ss = SpreadsheetApp.openById(SHEET_ID);
