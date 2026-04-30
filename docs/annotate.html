@@ -480,7 +480,15 @@ function updateTutCheck(exIdx) {
 function tokenize(raw) {
   const tokens = [];
   let i = 0, idx = 0;
-  const s = String(raw || '').replace(/_ *, *_/g, '_,_');
+  // 1. Collapse "_ , _" / "_ . _" separators to a single _,_ / _._ token.
+  // 2. If a separator opening `_` is glued directly to a preceding letter
+  //    (e.g. Italian "Cioè_ , _ uh"), insert a space so canStartSpan() can
+  //    recognize the `_` as a real span start. Without this, the rest of
+  //    the utterance gets misparsed and clicks attach to the wrong text.
+  const s = String(raw || '')
+    .replace(/_ *, *_/g, '_,_')
+    .replace(/_ *\. *_/g, '_._')
+    .replace(/(\p{L})(_[,.]_)/gu, '$1 $2');
 
   function canStartSpan(pos) {
     if (pos === 0) return true;
