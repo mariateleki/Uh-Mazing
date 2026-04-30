@@ -1,21 +1,20 @@
 # Run: python prolific_round2/bulk_create_studies.py
 #
-# Creates one Prolific study per (language × part) for the disfluency
-# annotation site at docs/annotate.html. By default that's 16 studies:
-# 8 languages × 2 halves of 40 utterances each.
+# Creates one Prolific study per language for the disfluency annotation
+# site at docs/annotate.html. By default that's 8 studies — one per
+# language, each covering all 80 utterances for that language.
 #
 # Each study:
 #   - filters native speakers of the target language (fluent in English too)
 #   - points at https://mariateleki.github.io/Uh-Mazing/annotate.html
-#     with ?lang=XX&part=N&cc=<unique completion code>
+#     with ?lang=XX&cc=<unique completion code>
 #   - registers that same completion code with Prolific so the participant
 #     can return successfully
-#   - allocates TOTAL_PLACES_PER_STUDY slots (default 3) so multiple workers
-#     can pick up the same part independently
+#   - allocates TOTAL_PLACES_PER_STUDY slots (default 1)
 #
 # Output: prolific_round2/results.csv  (study IDs + dashboard URLs)
 # Required env vars (set in .env at repo root):
-#   PROLIFIC_TOKEN, PROLIFIC_PROJECT_ID
+#   PROLIFIC_TOKEN
 
 import csv
 import os
@@ -30,9 +29,10 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------
 load_dotenv()
 API_TOKEN = os.getenv("PROLIFIC_TOKEN")
-# Dedicated Prolific project for the round-2 (lang × part) disfluency studies.
-# Override with PROLIFIC_PROJECT_ID env var if you want to publish elsewhere.
-PROJECT   = os.getenv("PROLIFIC_PROJECT_ID") or "69f2e9293c71ad8d3978a8f6"
+# Hard-pinned to the dedicated round-2 disfluency-annotation project.
+# Intentionally ignores PROLIFIC_PROJECT_ID env var so this script always
+# publishes to the right place even if .env points elsewhere.
+PROJECT   = "69f2eaa7c3cb0d7c7a476d8b"
 BASE_URL  = "https://api.prolific.com/api/v1"
 
 ANNOTATE_BASE = "https://mariateleki.github.io/Uh-Mazing/annotate.html"
@@ -66,18 +66,18 @@ FIRST_LANGUAGE_FILTER_ID   = "first-language"
 FLUENT_LANGUAGES_FILTER_ID = "fluent-languages"
 ENGLISH_CHOICE_ID          = "19"
 
-PARTS = [1, 2]               # 40 items each
-TOTAL_PLACES_PER_STUDY = 3   # how many distinct workers per (lang × part)
+TOTAL_PLACES_PER_STUDY = 1   # how many distinct workers per language
 
-# Reward / time. annotate.html quotes "15–20 minutes" for half a language;
-# we budget 25 min on Prolific so workers don't feel rushed and the per-hour
-# rate stays at $12/hr ($5 for 25 min).
-ESTIMATED_TIME_MIN  = 25
-REWARD_USD_CENTS    = 500    # $5.00 per submission
-MIN_COMPLETION_TIME = 8      # auto-reject submissions faster than 8 min
+# Reward / time. Bumped to $20 for 60 min (~$20/hr) to attract more
+# qualified annotators given the niche language requirements.
+ESTIMATED_TIME_MIN  = 60
+REWARD_USD_CENTS    = 2000   # $20.00 per submission
+MIN_COMPLETION_TIME = 15     # auto-reject submissions faster than 15 min
 
 DEVICE_COMPATIBILITY = ["desktop"]
-PROLIFIC_ID_OPTION   = "url_parameters"  # Prolific appends ?PROLIFIC_PID=…
+# annotate.html collects the Prolific ID via the intake form, so use
+# "question" mode (no PROLIFIC_PID placeholder needed in the URL).
+PROLIFIC_ID_OPTION   = "question"
 PRIVACY_NOTICE_URL   = (
     # The privacy policy text now lives inside annotate.html itself as the
     # consent screen. Keeping a short fallback URL here for Prolific's UI.
@@ -95,28 +95,25 @@ HEADERS = {
     "Content-Type":  "application/json",
 }
 
-STUDY_TITLE_TEMPLATE = "Disfluency Annotation — {lang_name} (part {part} of 2)"
+STUDY_TITLE_TEMPLATE = "Disfluency Annotation — {lang_name}"
 STUDY_DESCRIPTION_TEMPLATE = """You will look at short English utterances paired with their {lang_name} translations and highlight which words in the translation correspond to the disfluencies (filler words, repetitions, false starts) marked in the English. If a translation is missing words or contains errors, you can edit it.
 
-This is **part {part} of 2** for {lang_name} (40 utterances). The other half is in a separate Prolific study.
-
-This study should take approximately {time_min} minutes.
+You'll annotate 80 utterances total. This study should take approximately {time_min} minutes.
 
 Native {lang_name} speakers only. The site asks you to read and accept a short privacy policy before you start."""
 
 
-def completion_code(lang_code, part):
-    """Stable per-(lang × part) code, used both in the URL and registered
-    with Prolific as the COMPLETED code."""
-    return f"UM-{lang_code}-P{part}"
+def completion_code(lang_code):
+    """Stable per-language code, used both in the URL and registered with
+    Prolific as the COMPLETED code."""
+    return f"UM-{lang_code}"
 
 
-def study_url(lang_code, part):
-    cc = completion_code(lang_code, part)
-    qs = urlencode({"lang": lang_code, "part": part, "cc": cc})
-    # Prolific appends &PROLIFIC_PID=… so the &pid=… on annotate.html isn't
-    # used here — annotate.html reads the Prolific PID from the URL
-    # automatically when prolific_id_option is "url_parameters".
+def study_url(lang_code):
+    cc = completion_code(lang_code)
+    qs = urlencode({"lang": lang_code, "cc": cc})
+    # No PROLIFIC_PID placeholder needed — the worker enters their ID via
+    # the intake form on annotate.html (PROLIFIC_ID_OPTION = "question").
     return f"{ANNOTATE_BASE}?{qs}"
 
 
@@ -135,14 +132,14 @@ def build_filters(lang_code):
     ]
 
 
-def build_payload(lang_code, lang_name, part):
-    cc = completion_code(lang_code, part)
+def build_payload(lang_code, lang_name):
+    cc = completion_code(lang_code)
     return {
-        "name":           STUDY_TITLE_TEMPLATE.format(lang_name=lang_name, part=part),
-        "internal_name":  f"uh-mazing_round2_disfluency_{lang_code.lower()}_p{part}",
+        "name":           STUDY_TITLE_TEMPLATE.format(lang_name=lang_name),
+        "internal_name":  f"uh-mazing_round2_disfluency_{lang_code.lower()}",
         "description":    STUDY_DESCRIPTION_TEMPLATE.format(
-                              lang_name=lang_name, part=part, time_min=ESTIMATED_TIME_MIN),
-        "external_study_url":        study_url(lang_code, part),
+                              lang_name=lang_name, time_min=ESTIMATED_TIME_MIN),
+        "external_study_url":        study_url(lang_code),
         "project":                   PROJECT,
         "prolific_id_option":        PROLIFIC_ID_OPTION,
         "total_available_places":    TOTAL_PLACES_PER_STUDY,
@@ -191,42 +188,39 @@ def main():
         )
     print(f"Using Prolific project {PROJECT}")
 
-    pairs = [(lc, ln, p) for lc, ln in LANGUAGES.items() for p in PARTS]
+    pairs = list(LANGUAGES.items())
     if TEST_MODE:
         pairs = pairs[:1]
         print("TEST MODE: creating only the first study")
-
-    print(f"Creating {len(pairs)} studies "
-          f"({len(LANGUAGES)} langs × {len(PARTS)} parts)" if not TEST_MODE else "")
+    else:
+        print(f"Creating {len(pairs)} studies (1 per language)")
 
     results = []
-    for i, (lang_code, lang_name, part) in enumerate(pairs, start=1):
-        cc  = completion_code(lang_code, part)
-        url = study_url(lang_code, part)
+    for i, (lang_code, lang_name) in enumerate(pairs, start=1):
+        cc  = completion_code(lang_code)
+        url = study_url(lang_code)
         try:
-            draft    = create_draft_study(build_payload(lang_code, lang_name, part))
+            draft    = create_draft_study(build_payload(lang_code, lang_name))
             study_id = draft["id"]
             publish_study(study_id)
             dashboard = f"https://app.prolific.com/researcher/studies/{study_id}/overview"
             results.append({
                 "lang":            lang_code,
-                "part":            part,
                 "completion_code": cc,
                 "study_url":       url,
                 "study_id":        study_id,
                 "dashboard_url":   dashboard,
                 "status":          "published",
             })
-            print(f"[{i}/{len(pairs)}] ✓ {lang_code} part {part}  → {study_id}")
+            print(f"[{i}/{len(pairs)}] ✓ {lang_code}  → {study_id}")
             print(f"    {dashboard}")
         except requests.exceptions.HTTPError as e:
             body = e.response.text if e.response is not None else ""
-            print(f"[{i}/{len(pairs)}] ✗ {lang_code} part {part}: {e}")
+            print(f"[{i}/{len(pairs)}] ✗ {lang_code}: {e}")
             if body:
                 print(f"    Response: {body}")
             results.append({
                 "lang":            lang_code,
-                "part":            part,
                 "completion_code": cc,
                 "study_url":       url,
                 "study_id":        "",
@@ -238,7 +232,7 @@ def main():
 
     # Write results
     fieldnames = [
-        "lang", "part", "completion_code", "study_url",
+        "lang", "completion_code", "study_url",
         "study_id", "dashboard_url", "status",
     ]
     os.makedirs(os.path.dirname(RESULTS_CSV), exist_ok=True)

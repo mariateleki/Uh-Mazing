@@ -216,66 +216,7 @@
     hr { border: none; border-top: 1px solid #ece7f5; margin: 24px 0; }
 
     /* QC panel */
-    .qc-panel {
-      margin-top: 20px;
-      border: 1px solid #e0d9ec;
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      background: #f9f8fb;
-    }
-    .qc-header {
-      font-size: .78rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .07em; color: var(--accent); margin-bottom: 12px;
-    }
-    .qc-feedback {
-      font-size: .95rem; line-height: 1.65;
-      padding: 12px 16px; border-radius: 6px; margin-bottom: 16px;
-      white-space: pre-wrap;
-    }
-    .qc-ok   { background: #e8f5e9; border-left: 3px solid #2e7d32; }
-    .qc-warn { background: #fff8e1; border-left: 3px solid #e65100; }
-    .qc-checklist {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 6px 20px; margin-bottom: 16px;
-    }
-    .qc-checklist label {
-      display: flex; align-items: center; gap: 8px;
-      font-size: .9rem; font-weight: 400; cursor: pointer;
-    }
-    .qc-checklist input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
-    @keyframes blink-red {
-      0%,100% { background: var(--accent); }
-      25%,75%  { background: #c62828; transform: scale(1.04); }
-    }
-    .btn-blink { animation: blink-red .5s ease 2; }
-    .checklist-warn { font-size: .85rem; color: #c62828; font-weight: 600; margin-left: 8px; }
-
-    /* QC loading dots */
-    .qc-thinking {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 0; color: #888; font-size: .95rem;
-    }
-    .qc-dots { display: flex; gap: 5px; }
-    .qc-dots span {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); opacity: .3;
-      animation: qc-bounce .9s ease-in-out infinite;
-    }
-    .qc-dots span:nth-child(2) { animation-delay: .2s; }
-    .qc-dots span:nth-child(3) { animation-delay: .4s; }
-    @keyframes qc-bounce {
-      0%,80%,100% { opacity: .3; transform: translateY(0); }
-      40%          { opacity: 1;  transform: translateY(-5px); }
-    }
-    .qc-panel > label { font-size: .85rem; font-weight: 600; display: block; margin-bottom: 6px; }
-    .qc-panel textarea {
-      width: 100%; min-height: 72px;
-      border: 1px solid #ccc; border-radius: 6px;
-      padding: 8px 12px; font-size: .9rem;
-      font-family: inherit; resize: vertical;
-    }
-    .qc-panel textarea:focus { outline: none; border-color: var(--accent); }
-    .qc-btn-row { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
+    /* QC review panel removed — workers now save & advance with no AI gate. */
 
     /* Report button */
     .report-btn {
@@ -356,8 +297,6 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwruA1U6Lffa-db
 const _CC_FROM_URL    = (new URLSearchParams(location.search).get('cc') || '').trim();
 const COMPLETION_CODE = _CC_FROM_URL || 'CXXXXXXX'; // TODO: keep fallback up to date
 
-// OpenAI QC — key lives in Apps Script Script Properties, not here
-const QC_MODEL = 'gpt-5.4';
 const PROLIFIC_RETURN_URL = `https://app.prolific.com/submissions/complete?cc=${COMPLETION_CODE}`;
 
 const LANG_NAMES = {
@@ -633,28 +572,7 @@ function renderTokens(tokens, uttId, slot, side, highlights) {
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const params   = new URLSearchParams(location.search);
 const LANG     = (params.get('lang') || '').toUpperCase();
-// Split each language's 80 items into two 40-item halves so a single
-// annotator only does 40. URLs:
-//   ?lang=ZH          → all 80 items (back-compat / preview)
-//   ?lang=ZH&part=1   → first 40 items
-//   ?lang=ZH&part=2   → second 40 items
-// Selection is deterministic (sorted by utt_id then sliced) so the same
-// part assignment is stable across loads and across annotators.
-const PART_RAW = params.get('part') || '';
-const PART     = ['1', '2'].includes(PART_RAW) ? Number(PART_RAW) : null;
-const PART_SIZE = 40;
-
-function _sliceForPart(allItems, part) {
-  if (part === null) return allItems;
-  // Stable sort by utt_id so part 1/2 always covers the same 40 items.
-  const sorted = [...allItems].sort((a, b) =>
-    String(a.utt_id).localeCompare(String(b.utt_id))
-  );
-  const start = (part - 1) * PART_SIZE;
-  return sorted.slice(start, start + PART_SIZE);
-}
-
-const ITEMS    = _sliceForPart(INLINE_DATA[LANG] || [], PART);
+const ITEMS    = INLINE_DATA[LANG] || [];
 const PID_PREFILL = params.get('pid') || '';
 // COMPLETION_CODE is parsed near the top of the script (see _CC_FROM_URL)
 // because it's used by const expressions before the STATE section runs.
@@ -680,10 +598,7 @@ function initEdits() {
 
 // ── LOCAL STORAGE ─────────────────────────────────────────────────────────────
 function lsKey() {
-  // Namespace per part so a single browser doing both halves of the same
-  // language won't have part-1 progress shadow part-2.
-  const partTag = PART === null ? 'all' : `p${PART}`;
-  return `uh-mazing:${annotatorInfo?.prolific_id}:${LANG}:${partTag}`;
+  return `uh-mazing:${annotatorInfo?.prolific_id}:${LANG}`;
 }
 function saveToLocal() {
   const serialised = {};
@@ -837,7 +752,7 @@ function screenConsent() {
 function acceptConsent() {
   // Fire-and-forget: log a consent event. Captures only timestamp and lang —
   // no personal data (intake fields are still empty at this point).
-  post({ type: 'consent', lang: LANG, part: PART, accepted_at: new Date().toISOString() });
+  post({ type: 'consent', lang: LANG, accepted_at: new Date().toISOString() });
   goTo('intake');
 }
 
@@ -851,9 +766,9 @@ function screenIntake() {
   return `
   <div class="screen">
     <h1>Disfluency Annotation</h1>
-    <p>You have been assigned to annotate <strong>${langName}</strong> translations${PART !== null ? ` — <strong>part ${PART} of 2</strong>` : ''}.
+    <p>You have been assigned to annotate <strong>${langName}</strong> translations.
        You will see <strong>${ITEMS.length}</strong> utterances. This should take approximately
-       <strong>${PART !== null ? '15–20' : '20–30'} minutes</strong>.</p>
+       <strong>20–30 minutes</strong>.</p>
     <hr>
     <h2>About you</h2>
 
@@ -918,7 +833,7 @@ function submitIntake() {
   const resumed = loadFromLocal();
 
   // Log intake to Sheets (fire-and-forget)
-  post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'started' });
+  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'started' });
 
   if (resumed && currentIdx > 0) {
     // Skip straight to annotation
@@ -1169,15 +1084,9 @@ function screenAnnotate() {
       </div>
     </div>
 
-    <div class="qc-checklist" style="margin-top:20px;grid-template-columns:1fr">
-      <label><input type="checkbox" id="chk0"> All highlighted English words have an equivalent highlighted in the translation</label>
-      <label><input type="checkbox" id="chk1"> No words are missing from the translation</label>
-    </div>
-
     <div class="btn-row">
       ${currentIdx > 0 ? `<button class="btn btn-secondary" onclick="prevItem()">← Back</button>` : ''}
       <span class="save-status" id="save-status"></span>
-      <span class="checklist-warn" id="checklist-warn"></span>
       <button class="btn btn-primary" id="save-next-btn" style="margin-left:auto" onclick="saveAndNext()">
         ${currentIdx + 1 < ITEMS.length ? 'Save &amp; Next →' : 'Submit &amp; Finish ✓'}
       </button>
@@ -1190,9 +1099,8 @@ function prevItem() {
 }
 
 
-// ── QC (AI QUALITY CHECK) ─────────────────────────────────────────────────────
-let _pendingPayloads = null;
-let _pendingFeedback = null;
+// ── SAVE & ADVANCE ────────────────────────────────────────────────────────────
+// AI quality-check has been removed — workers now save and advance directly.
 
 function buildPayloads(item) {
   const uttEdits = edits[item.utt_id] || {};
@@ -1205,7 +1113,7 @@ function buildPayloads(item) {
     const origToks  = tokenize(e.text !== undefined ? e.text : raw);
     const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
     payloads.push({
-      type: 'annotation', lang: LANG, part: PART, ...annotatorInfo,
+      type: 'annotation', lang: LANG, ...annotatorInfo,
       utt_id:    item.utt_id,
       slot,
       removed:   [...origSpans].filter(i => !e.highlights.has(i)),
@@ -1216,173 +1124,22 @@ function buildPayloads(item) {
   return payloads;
 }
 
-function buildQCPrompt(item) {
-  const langName  = LANG_NAMES[LANG] || LANG;
-  const uttEdits  = edits[item.utt_id] || {};
-
-  const slotLines = SLOTS
-    .filter(s => (item.translations || {})[s])
-    .map(s => {
-      const e   = uttEdits[s];
-      const raw = e?.text !== undefined ? e.text : (item.translations || {})[s] || '';
-      const toks = tokenize(raw);
-      const rendered = toks
-        .filter(t => !t.isSpace)
-        .map(t => (e && e.highlights.has(t.index)) ? `_${t.text}_` : t.text)
-        .join(' ');
-      return `  ${s}: ${rendered}`;
-    }).join('\n');
-
-  return `You are quality-checking a disfluency annotation task.
-
-The annotator saw an English utterance with disfluent words marked in underscores (e.g. _I_ _mean_ _,_ _uh_), and had to find the equivalent disfluent words in the ${langName} translation and mark them the same way.
-
-English (disfluencies in underscores):
-  ${item.en}
-
-${langName} translation(s) — annotator's highlighted words shown in underscores:
-${slotLines}
-
-Check:
-1. Do the highlighted translation words correspond to the English disfluencies (same count and type — fillers, repetitions, false starts, separating commas)?
-2. Are there obvious missing or extra highlights?
-3. Does the translation text seem complete?
-
-Reply in 1–3 sentences. Start with "Looks correct." if everything is fine. If there are issues, be specific.`;
-}
-
-function callQCApi(item) {
-  // Proxy through Apps Script (JSONP GET) so the OpenAI key stays server-side
-  return new Promise((resolve, reject) => {
-    const cbName = '_qc_' + Date.now();
-    const script = document.createElement('script');
-    const timer  = setTimeout(() => { cleanup(); reject(new Error('QC timeout')); }, 25000);
-
-    function cleanup() {
-      clearTimeout(timer);
-      delete window[cbName];
-      script.remove();
-    }
-
-    window[cbName] = (data) => {
-      cleanup();
-      if (data.status === 'ok') resolve(data.feedback);
-      else reject(new Error(data.message || 'QC error'));
-    };
-    script.onerror = () => { cleanup(); reject(new Error('network error')); };
-
-    // Serialize translation slots with current highlights as _word_ marks
-    const uttEdits = edits[item.utt_id] || {};
-    const params   = new URLSearchParams({ callback: cbName, type: 'qc_check', lang: LANG, part: PART ?? '', model: QC_MODEL, en: item.en });
-    for (const s of SLOTS) {
-      if (!(item.translations || {})[s]) continue;
-      const e   = uttEdits[s];
-      const raw = e?.text !== undefined ? e.text : item.translations[s] || '';
-      const toks = tokenize(raw);
-      const rendered = toks.filter(t => !t.isSpace)
-        .map(t => (e && e.highlights.has(t.index)) ? `_${t.text}_` : t.text)
-        .join(' ');
-      params.set(s.toLowerCase(), rendered);
-    }
-
-    script.src = APPS_SCRIPT_URL + '?' + params.toString();
-    document.head.appendChild(script);
-  });
-}
-
 async function saveAndNext() {
-  // Gate: all checkboxes must be ticked
-  if (![0,1].every(i => document.getElementById('chk'+i)?.checked)) {
-    const btn = document.getElementById('save-next-btn');
-    const warn = document.getElementById('checklist-warn');
-    btn.classList.remove('btn-blink');
-    void btn.offsetWidth; // force reflow to restart animation
-    btn.classList.add('btn-blink');
-    if (warn) { warn.textContent = 'Please check all boxes above first.'; }
-    btn.addEventListener('animationend', () => btn.classList.remove('btn-blink'), { once: true });
-    return;
-  }
-
   const item     = ITEMS[currentIdx];
   const statusEl = document.getElementById('save-status');
   const saveBtn  = document.getElementById('save-next-btn');
 
-  if (saveBtn) saveBtn.disabled = true;
-  statusEl.textContent = '';
-
-  _pendingPayloads = buildPayloads(item);
-
-  // Show loading panel immediately
-  const panel = document.createElement('div');
-  panel.id        = 'qc-panel';
-  panel.className = 'qc-panel';
-  panel.innerHTML = `
-    <div class="qc-header">🤖 AI Review</div>
-    <div class="qc-thinking">
-      <div class="qc-dots"><span></span><span></span><span></span></div>
-      Reviewing your annotation…
-    </div>`;
-  const btnRow = document.querySelector('#app .btn-row');
-  if (btnRow) { btnRow.style.display = 'none'; btnRow.insertAdjacentElement('afterend', panel); }
-
-  try {
-    _pendingFeedback = await callQCApi(item);
-  } catch (err) {
-    console.warn('QC error:', err);
-    _pendingFeedback = '(AI review unavailable — ' + err.message + ')';
-  }
-
-  // Swap loading content for real feedback
-  const isOK = /^looks correct/i.test(_pendingFeedback);
-  panel.innerHTML = `
-    <div class="qc-header">🤖 AI Review</div>
-    <div class="qc-feedback ${isOK ? 'qc-ok' : 'qc-warn'}">${escHtml(_pendingFeedback)}</div>
-    <label for="qc-note">We encourage you to disagree with the AI feedback if it is wrong. If you disagree and choose to disregard the feedback, you <strong>MUST</strong> explain the decision here so we can understand it:</label>
-    <textarea id="qc-note" placeholder="Leave blank if you agree with the AI, or explain your reasoning here…"></textarea>
-    <div class="qc-btn-row">
-      <button class="btn btn-secondary" onclick="dismissQCPanel()">← Edit annotation</button>
-      <button class="btn btn-primary" style="margin-left:auto" onclick="proceedFromQC()">
-        ${currentIdx + 1 < ITEMS.length ? 'Proceed →' : 'Submit ✓'}
-      </button>
-    </div>`;
-}
-
-function dismissQCPanel() {
-  document.getElementById('qc-panel')?.remove();
-  const btnRow = document.querySelector('#app .btn-row');
-  if (btnRow) btnRow.style.display = '';
-  const saveBtn = document.getElementById('save-next-btn');
-  if (saveBtn) saveBtn.disabled = false;
-  const statusEl = document.getElementById('save-status');
-  if (statusEl) statusEl.textContent = '';
-}
-
-async function proceedFromQC() {
-  const note    = document.getElementById('qc-note')?.value.trim() || '';
-  const checked = [0,1].filter(i => document.getElementById('chk'+i)?.checked);
-  const checkInfo = `checklist:${checked.join(',') || 'none'}`;
-  await doSave(_pendingFeedback, note ? note + ' | ' + checkInfo : checkInfo);
-}
-
-async function doSave(qcFeedback, qcNote) {
-  const statusEl = document.getElementById('save-status');
+  if (saveBtn)  saveBtn.disabled = true;
   if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'save-status'; }
 
-  const enriched = (_pendingPayloads || []).map(p => ({
-    ...p,
-    qc_feedback: qcFeedback || '',
-    qc_note:     qcNote     || '',
-  }));
-
+  const payloads = buildPayloads(item);
   try {
-    await Promise.all(enriched.map(p => post(p)));
+    await Promise.all(payloads.map(p => post(p)));
     if (statusEl) { statusEl.textContent = 'Saved ✓'; statusEl.className = 'save-status ok'; }
   } catch {
     if (statusEl) { statusEl.textContent = 'Save failed — continuing locally'; statusEl.className = 'save-status err'; }
   }
 
-  _pendingPayloads = null;
-  _pendingFeedback = null;
   saveToLocal();
   currentIdx++;
   render();
@@ -1434,7 +1191,6 @@ function fetchSavedRows() {
       type: 'verify_saves',
       prolific_id: annotatorInfo?.prolific_id || '',
       lang: LANG,
-      part: PART === null ? '' : String(PART),
     });
     script.src = APPS_SCRIPT_URL + '?' + params.toString();
     document.head.appendChild(script);
@@ -1470,15 +1226,12 @@ function payloadForKey(uttId, slot) {
   return {
     type: 'annotation',
     lang: LANG,
-    part: PART,
     ...annotatorInfo,
     utt_id:    uttId,
     slot,
     removed:   [...origSpans].filter(i => !e.highlights.has(i)),
     added:     [...e.highlights].filter(i => !origSpans.has(i)),
     text_edit: e.text !== undefined ? e.text : '',
-    qc_feedback: '(reflushed-on-complete)',
-    qc_note:     '(reflushed-on-complete)',
   };
 }
 
@@ -1519,7 +1272,7 @@ async function runFinalVerification() {
   const total    = expected.length;
   if (total === 0) {
     showCompletionCode();
-    post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
+    post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
     return;
   }
 
@@ -1540,7 +1293,7 @@ async function runFinalVerification() {
 
     if (missing.length === 0) {
       // Everything landed — fire completed intake and reveal completion code.
-      post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
+      post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
       // Give the intake POST a beat to land before exposing the code.
       await new Promise(r => setTimeout(r, 600));
       showCompletionCode();
@@ -1611,7 +1364,6 @@ async function submitReport() {
   await post({
     type:            'report',
     lang:            LANG,
-    part:            PART,
     prolific_id:     info.prolific_id     || '',
     native_language: info.native_language || '',
     fluency:         info.fluency         || '',

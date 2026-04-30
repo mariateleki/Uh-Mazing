@@ -1,0 +1,17 @@
+lang,part,completion_code,study_url,study_id,dashboard_url,status
+AR,1,UM-AR-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=AR&part=1&cc=UM-AR-P1,69f2eaf69c1697ab31037465,https://app.prolific.com/researcher/studies/69f2eaf69c1697ab31037465/overview,published
+AR,2,UM-AR-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=AR&part=2&cc=UM-AR-P2,69f2eaf832313d07e7f31d07,https://app.prolific.com/researcher/studies/69f2eaf832313d07e7f31d07/overview,published
+CS,1,UM-CS-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=CS&part=1&cc=UM-CS-P1,69f2eafbe91a72091bea2f45,https://app.prolific.com/researcher/studies/69f2eafbe91a72091bea2f45/overview,published
+CS,2,UM-CS-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=CS&part=2&cc=UM-CS-P2,69f2eafd920a17e27056e9d9,https://app.prolific.com/researcher/studies/69f2eafd920a17e27056e9d9/overview,published
+DE,1,UM-DE-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=DE&part=1&cc=UM-DE-P1,69f2eaff5447fbaeede6b008,https://app.prolific.com/researcher/studies/69f2eaff5447fbaeede6b008/overview,published
+DE,2,UM-DE-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=DE&part=2&cc=UM-DE-P2,69f2eb01eca6cef255b6e202,https://app.prolific.com/researcher/studies/69f2eb01eca6cef255b6e202/overview,published
+ES,1,UM-ES-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=ES&part=1&cc=UM-ES-P1,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb0493a27ca0fbd50039/transition/
+ES,2,UM-ES-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=ES&part=2&cc=UM-ES-P2,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb06cb3622fe0de6b01a/transition/
+FR,1,UM-FR-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=FR&part=1&cc=UM-FR-P1,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb084b619ebacbf96990/transition/
+FR,2,UM-FR-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=FR&part=2&cc=UM-FR-P2,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb0a537e59eb514135f8/transition/
+HI,1,UM-HI-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=HI&part=1&cc=UM-HI-P1,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb0c220e8f3e4e480f5e/transition/
+HI,2,UM-HI-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=HI&part=2&cc=UM-HI-P2,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb0e265dfe7e384e8cae/transition/
+IT,1,UM-IT-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=IT&part=1&cc=UM-IT-P1,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb10b81bc894925cbb2f/transition/
+IT,2,UM-IT-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=IT&part=2&cc=UM-IT-P2,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb12c08ab6adbfb788bc/transition/
+ZH,1,UM-ZH-P1,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=ZH&part=1&cc=UM-ZH-P1,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb158d8a95ab6cbc2743/transition/
+ZH,2,UM-ZH-P2,https://mariateleki.github.io/Uh-Mazing/annotate.html?lang=ZH&part=2&cc=UM-ZH-P2,,,error: 400 Client Error: Bad Request for url: https://api.prolific.com/api/v1/studies/69f2eb171e59b35787beeb6c/transition/

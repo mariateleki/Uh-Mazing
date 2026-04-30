@@ -47,78 +47,68 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     const type = data.type;
 
-    // Normalize the part field: '1', 1, or 'p1' all become 1; null/undefined/'' stay ''.
-    const partVal = (data.part === 1 || data.part === '1' || data.part === 'p1') ? 1
-                  : (data.part === 2 || data.part === '2' || data.part === 'p2') ? 2
-                  : '';
-
+    // The 'part' column is preserved in existing sheets but always written
+    // empty going forward — we removed the part split from annotate.html.
     if (type === 'annotation') {
       const sheet = getOrCreateSheet('Responses', [
-        'timestamp', 'prolific_id', 'lang', 'part',
+        'timestamp', 'prolific_id', 'lang',
         'native_language', 'fluency', 'age_range',
-        'utt_id', 'slot', 'removed', 'added', 'text_edit',
-        'qc_feedback', 'qc_note'
+        'utt_id', 'slot', 'removed', 'added', 'text_edit'
       ]);
-      sheet.appendRow([
-        new Date().toISOString(),
-        data.prolific_id,
-        data.lang,
-        partVal,
-        data.native_language,
-        data.fluency,
-        data.age_range,
-        data.utt_id,
-        data.slot,
-        JSON.stringify(data.removed || []),
-        JSON.stringify(data.added || []),
-        data.text_edit   || '',
-        data.qc_feedback || '',
-        data.qc_note     || '',
-      ]);
+      // Append by header lookup so we don't disturb legacy 'part'/'qc_*' cols
+      // in older sheets — those just stay blank for new rows.
+      const row = new Array(sheet.getLastColumn()).fill('');
+      const set = (h, v) => { const c = colIdx(sheet, h); if (c) row[c - 1] = v; };
+      set('timestamp',       new Date().toISOString());
+      set('prolific_id',     data.prolific_id);
+      set('lang',            data.lang);
+      set('native_language', data.native_language);
+      set('fluency',         data.fluency);
+      set('age_range',       data.age_range);
+      set('utt_id',          data.utt_id);
+      set('slot',            data.slot);
+      set('removed',         JSON.stringify(data.removed || []));
+      set('added',           JSON.stringify(data.added || []));
+      set('text_edit',       data.text_edit || '');
+      sheet.appendRow(row);
     }
 
     if (type === 'report') {
       const sheet = getOrCreateSheet('Reports', [
-        'timestamp', 'prolific_id', 'lang', 'part',
+        'timestamp', 'prolific_id', 'lang',
         'native_language', 'fluency', 'age_range',
         'screen', 'utt_id', 'item_index', 'message'
       ]);
-      sheet.appendRow([
-        new Date().toISOString(),
-        data.prolific_id     || '',
-        data.lang            || '',
-        partVal,
-        data.native_language || '',
-        data.fluency         || '',
-        data.age_range       || '',
-        data.screen          || '',
-        data.utt_id          || '',
-        data.item_index      || '',
-        data.message         || ''
-      ]);
+      const row = new Array(sheet.getLastColumn()).fill('');
+      const set = (h, v) => { const c = colIdx(sheet, h); if (c) row[c - 1] = v; };
+      set('timestamp',       new Date().toISOString());
+      set('prolific_id',     data.prolific_id     || '');
+      set('lang',            data.lang            || '');
+      set('native_language', data.native_language || '');
+      set('fluency',         data.fluency         || '');
+      set('age_range',       data.age_range       || '');
+      set('screen',          data.screen          || '');
+      set('utt_id',          data.utt_id          || '');
+      set('item_index',      data.item_index      || '');
+      set('message',         data.message         || '');
+      sheet.appendRow(row);
     }
 
     if (type === 'intake') {
       const sheet = getOrCreateSheet('Annotators', [
-        'timestamp', 'prolific_id', 'lang', 'part',
+        'timestamp', 'prolific_id', 'lang',
         'native_language', 'fluency', 'age_range', 'status'
       ]);
-      // Resolve actual column positions in case the existing sheet has a
-      // different ordering (migration safety).
       const cPid    = colIdx(sheet, 'prolific_id');
       const cLang   = colIdx(sheet, 'lang');
-      const cPart   = colIdx(sheet, 'part');
       const cStatus = colIdx(sheet, 'status');
-      // Update existing row or add new — match on (prolific_id, lang, part) so
-      // a worker doing both halves of the same language has separate rows.
+      // Upsert by (prolific_id, lang) — no longer split by part.
       const data_values = sheet.getDataRange().getValues();
       let found = false;
       for (let i = 1; i < data_values.length; i++) {
-        const rowPart = cPart ? data_values[i][cPart - 1] : '';
         if (
           data_values[i][cPid - 1]  === data.prolific_id &&
-          data_values[i][cLang - 1] === data.lang        &&
-          (rowPart === partVal || (rowPart === '' && partVal === ''))
+          data_values[i][cLang - 1] === data.lang
         ) {
           sheet.getRange(i + 1, cStatus).setValue(data.status || 'started');
           found = true;
@@ -126,16 +116,16 @@ function doPost(e) {
         }
       }
       if (!found) {
-        sheet.appendRow([
-          new Date().toISOString(),
-          data.prolific_id,
-          data.lang,
-          partVal,
-          data.native_language,
-          data.fluency,
-          data.age_range,
-          data.status || 'started'
-        ]);
+        const row = new Array(sheet.getLastColumn()).fill('');
+        const set = (h, v) => { const c = colIdx(sheet, h); if (c) row[c - 1] = v; };
+        set('timestamp',       new Date().toISOString());
+        set('prolific_id',     data.prolific_id);
+        set('lang',            data.lang);
+        set('native_language', data.native_language);
+        set('fluency',         data.fluency);
+        set('age_range',       data.age_range);
+        set('status',          data.status || 'started');
+        sheet.appendRow(row);
       }
     }
 
@@ -170,50 +160,6 @@ function doGet(e) {
 
   const type = (e.parameter || {}).type || '';
 
-  // ── QC check: call OpenAI and return feedback via JSONP ───────────────────
-  if (type === 'qc_check') {
-    try {
-      const props   = PropertiesService.getScriptProperties();
-      const apiKey  = props.getProperty('OPENAI_API_KEY');
-      const org     = props.getProperty('OPENAI_ORG')     || '';
-      const project = props.getProperty('OPENAI_PROJECT') || '';
-      const model   = e.parameter.model || 'gpt-5.4';
-      const lang    = e.parameter.lang  || '';
-      const en      = e.parameter.en    || '';
-
-      // Rebuild slot lines from URL params (t1, t2, t3, t4)
-      const slotLines = ['t1','t2','t3','t4']
-        .filter(s => e.parameter[s])
-        .map(s => `  ${s.toUpperCase()}: ${e.parameter[s]}`)
-        .join('\n');
-
-      const langNames = {ZH:'Mandarin',ES:'Spanish',HI:'Hindi',FR:'French',DE:'German',IT:'Italian',CS:'Czech',AR:'Arabic'};
-      const langName  = langNames[lang] || lang;
-
-      const prompt = `English:\n  ${en}\n\n${langName} translation:\n${slotLines}\n\n` +
-        `Each underscored word in the English should have a corresponding underscored word in the ${langName} translation. ` +
-        `Check whether this is the case. Are any English underscored words missing a ${langName} equivalent? Are there any extra underscored words in the translation with no English counterpart?\n\n` +
-        `Reply in 1–3 sentences. Start with "Looks correct." if everything matches. If there are issues, be specific about which words are missing or extra.`;
-
-      const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey };
-      if (org)     headers['OpenAI-Organization'] = org;
-      if (project) headers['OpenAI-Project']      = project;
-
-      const aiResp = UrlFetchApp.fetch('https://api.openai.com/v1/chat/completions', {
-        method:  'post',
-        headers: headers,
-        payload: JSON.stringify({ model, messages: [{ role: 'user', content: prompt }], temperature: 0 }),
-        muteHttpExceptions: true,
-      });
-
-      const aiData   = JSON.parse(aiResp.getContentText());
-      const feedback = aiData.choices ? aiData.choices[0].message.content.trim() : ('Error: ' + (aiData.error?.message || 'unknown'));
-      return respond({ status: 'ok', feedback });
-    } catch (err) {
-      return respond({ status: 'error', message: err.toString() });
-    }
-  }
-
   // ── Verify which (utt_id, slot) pairs are already saved for a worker ──────
   // Used by annotate.html's screenComplete: after the final saveAndNext, the
   // browser asks "what do you actually have?" and re-POSTs anything missing
@@ -223,18 +169,16 @@ function doGet(e) {
     try {
       const pid  = (e.parameter.prolific_id || '').toString();
       const lang = (e.parameter.lang        || '').toString();
-      const part = (e.parameter.part        || '').toString();  // '', '1', or '2'
       if (!pid || !lang) return respond({ status: 'error', message: 'pid and lang required' });
 
       const ss = SpreadsheetApp.openById(SHEET_ID);
       const sheet = ss.getSheetByName('Responses');
       if (!sheet) return respond({ status: 'ok', saved: [] });
 
-      const cPid    = colIdx(sheet, 'prolific_id');
-      const cLang   = colIdx(sheet, 'lang');
-      const cPart   = colIdx(sheet, 'part');
-      const cUtt    = colIdx(sheet, 'utt_id');
-      const cSlot   = colIdx(sheet, 'slot');
+      const cPid  = colIdx(sheet, 'prolific_id');
+      const cLang = colIdx(sheet, 'lang');
+      const cUtt  = colIdx(sheet, 'utt_id');
+      const cSlot = colIdx(sheet, 'slot');
       if (!cPid || !cLang || !cUtt || !cSlot) {
         return respond({ status: 'error', message: 'Responses sheet missing required columns' });
       }
@@ -244,10 +188,6 @@ function doGet(e) {
       for (let i = 1; i < rows.length; i++) {
         if (String(rows[i][cPid - 1])  !== pid)  continue;
         if (String(rows[i][cLang - 1]) !== lang) continue;
-        if (cPart) {
-          const rowPart = String(rows[i][cPart - 1] || '');
-          if (rowPart !== part) continue;
-        }
         saved.push({ utt_id: String(rows[i][cUtt - 1]), slot: String(rows[i][cSlot - 1]) });
       }
       return respond({ status: 'ok', saved });
@@ -260,8 +200,8 @@ function doGet(e) {
   try {
     const ss = SpreadsheetApp.openById(SHEET_ID);
 
-    // Annotators sheet summary — read by header so column reordering or new
-    // columns (like 'part') don't break existing rows.
+    // Annotators sheet summary — read by header so column ordering changes
+    // (or legacy 'part' columns) don't break existing rows.
     const annotSheet = ss.getSheetByName('Annotators');
     const annotators = [];
     if (annotSheet) {
@@ -271,14 +211,13 @@ function doGet(e) {
         return c ? c - 1 : -1;
       };
       const cTime = h('timestamp'),       cPid = h('prolific_id'), cLang = h('lang');
-      const cPart = h('part'),             cNat = h('native_language'), cFlu = h('fluency');
+      const cNat  = h('native_language'), cFlu = h('fluency');
       const cAge  = h('age_range'),       cStatus = h('status');
       for (let i = 1; i < rows.length; i++) {
         annotators.push({
           timestamp:       cTime   >= 0 ? rows[i][cTime]   : '',
           prolific_id:     cPid    >= 0 ? rows[i][cPid]    : '',
           lang:            cLang   >= 0 ? rows[i][cLang]   : '',
-          part:            cPart   >= 0 ? (rows[i][cPart] === '' ? null : rows[i][cPart]) : null,
           native_language: cNat    >= 0 ? rows[i][cNat]    : '',
           fluency:         cFlu    >= 0 ? rows[i][cFlu]    : '',
           age_range:       cAge    >= 0 ? rows[i][cAge]    : '',
@@ -287,28 +226,23 @@ function doGet(e) {
       }
     }
 
-    // Responses sheet — count per (prolific_id, lang, part)
+    // Responses sheet — count per (prolific_id, lang)
     const respSheet = ss.getSheetByName('Responses');
     const counts = {};
     if (respSheet) {
       const rows = respSheet.getDataRange().getValues();
       const cPid  = colIdx(respSheet, 'prolific_id');
       const cLang = colIdx(respSheet, 'lang');
-      const cPart = colIdx(respSheet, 'part');
       for (let i = 1; i < rows.length; i++) {
         const pid  = cPid  ? rows[i][cPid  - 1] : '';
         const lang = cLang ? rows[i][cLang - 1] : '';
-        const part = cPart ? rows[i][cPart - 1] : '';
-        const key  = pid + '|' + lang + '|' + (part === '' ? '' : part);
-        counts[key] = (counts[key] || 0) + 1;
+        counts[pid + '|' + lang] = (counts[pid + '|' + lang] || 0) + 1;
       }
     }
 
     // Attach counts to annotators
     for (const a of annotators) {
-      const partKey = a.part === null || a.part === '' ? '' : a.part;
-      const key = a.prolific_id + '|' + a.lang + '|' + partKey;
-      a.annotations_submitted = counts[key] || 0;
+      a.annotations_submitted = counts[a.prolific_id + '|' + a.lang] || 0;
     }
 
     return respond({ status: 'ok', annotators });
