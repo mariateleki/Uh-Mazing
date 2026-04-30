@@ -571,7 +571,33 @@ function tokenize(raw) {
     }
     i = j;
   }
-  return tokens;
+
+  // Post-pass: split CJK runs (Chinese / Japanese / CJK punctuation) into one
+  // token per character so workers can highlight individual characters.
+  // Without this, "_我觉得_" tokenizes to a single 3-char token — once you
+  // unhighlight it, clicking only re-highlights the whole 3-char chunk.
+  // Western tokens (Latin / Cyrillic / etc.) are left untouched.
+  const CJK_RE = /[　-〿぀-ゟ゠-ヿ㐀-䶿一-鿿豈-﫿＀-￯]/;
+  const CJK_SPLIT_RE = /[　-〿぀-ゟ゠-ヿ㐀-䶿一-鿿豈-﫿＀-￯]|[^　-〿぀-ゟ゠-ヿ㐀-䶿一-鿿豈-﫿＀-￯]+/g;
+  const expanded = [];
+  let nextIdx = 0;
+  for (const tok of tokens) {
+    if (tok.isSpace) {
+      expanded.push(tok);
+      continue;
+    }
+    if (!CJK_RE.test(tok.text)) {
+      expanded.push({ ...tok, index: nextIdx++ });
+      continue;
+    }
+    const parts = tok.text.match(CJK_SPLIT_RE) || [tok.text];
+    for (const part of parts) {
+      const sub = { text: part, isSpan: tok.isSpan, index: nextIdx++ };
+      if (tok.isDouble) sub.isDouble = true;
+      expanded.push(sub);
+    }
+  }
+  return expanded;
 }
 
 function escHtml(s) {
@@ -669,7 +695,7 @@ function loadFromLocal() {
 }
 
 // ── SCREEN ROUTER ─────────────────────────────────────────────────────────────
-let currentScreen = 'intake';
+let currentScreen = 'consent';
 function goTo(screen) {
   currentScreen = screen;
   render();
@@ -681,6 +707,110 @@ function render() {
 
 // ── SCREEN: INTAKE ────────────────────────────────────────────────────────────
 const IS_PREVIEW = !!PID_PREFILL;
+
+// ── SCREEN: CONSENT (PRIVACY POLICY) ──────────────────────────────────────────
+// Shown first. Clicking "I understand and consent — Continue" routes to the
+// intake screen; that click is the consent action (matching the "by moving
+// forward" language in section 8 of the policy).
+function screenConsent() {
+  return `
+  <div class="screen">
+    <h1>Privacy Policy</h1>
+    <p style="color:#666;margin:0 0 4px"><strong>Last Updated:</strong> January 4, 2025</p>
+    <p style="color:#666;margin:0 0 18px"><strong>Platform:</strong> Prolific (<a href="https://www.prolific.com" target="_blank" rel="noopener">https://www.prolific.com</a>)</p>
+    <p>If you have questions about this study, you may contact the research team at
+       <a href="mailto:mariateleki@tamu.edu">mariateleki@tamu.edu</a>.</p>
+
+    <h2>1. Purpose of the Task</h2>
+    <p>You are being asked to participate as a translation annotator in a research study examining how
+       disfluencies (filler words, repetitions, false starts, and other non-standard language features)
+       appear across languages.</p>
+    <p>Your task involves looking at short English utterances paired with their existing translations and
+       highlighting the words in each translation that correspond to disfluencies marked in the English.
+       You may also edit a translation if you notice that it is missing words, mistranslated, or otherwise
+       contains errors. The study focuses on annotation strategies and outcomes, not on evaluating you
+       personally or assessing professional translation ability.</p>
+    <p>This task contributes to a broader academic project studying how disfluency affects translation and
+       language understanding.</p>
+
+    <h2>2. Data We Collect</h2>
+    <p>During your participation, we collect the following categories of data:</p>
+    <ul>
+      <li><strong>Prolific ID and Prolific-provided Demographic Data:</strong> This data is provided by the
+          Prolific platform to us. Your Prolific ID will be used only for compensation and quality control,
+          and will be removed as part of the anonymization process before dataset release.</li>
+      <li><strong>Timing Metadata:</strong> The start and completion time for your task submission, which helps
+          assess annotation duration and data quality.</li>
+      <li><strong>Annotation data:</strong> The disfluency highlights you mark on each translation, plus any
+          text corrections you make when a translation appears wrong or incomplete.</li>
+      <li><strong>Automated AI quality-check data:</strong> When you click <em>Save &amp; Next</em>, the English
+          source and your current annotated translation are sent to an automated AI review system (OpenAI's API,
+          accessed via our Apps Script proxy). The AI's feedback and any optional explanation you write in
+          response are recorded with your annotation.</li>
+      <li><strong>Issue reports (optional):</strong> If you use the <em>Report an issue</em> button, the
+          message you type along with the screen and item you were on are recorded so we can investigate.</li>
+    </ul>
+    <p>We do not collect personal browsing history, IP addresses, or device-level information. Any such data
+       remains with Prolific and is governed by their Privacy Policy.</p>
+
+    <h2>3. How Your Data Is Used</h2>
+    <p>Your annotations will be:</p>
+    <ul>
+      <li>De-identified so they cannot be linked back to you.</li>
+      <li>Analyzed for academic research purposes.</li>
+      <li>Used in publications such as peer-reviewed journal articles or conference presentations.</li>
+      <li>De-identified datasets may be shared publicly with other researchers under ethical data-sharing
+          practices consistent with open science standards.</li>
+    </ul>
+
+    <h2>4. Data Storage and Security</h2>
+    <p>All collected data is stored securely using encrypted cloud storage (e.g., Google Cloud) and is
+       accessible only to the research team. Annotation excerpts are also processed by OpenAI's API as part
+       of the automated AI quality-check feature described in Section 2; OpenAI does not retain this content
+       for training under our API terms, but their handling is governed by their own data policies.</p>
+    <p>Data will be retained for up to three years after the study concludes and will then be deleted or
+       permanently anonymized.</p>
+    <p>Your data will not be sold or shared with commercial organizations.</p>
+
+    <h2>5. Voluntary Participation and Withdrawal</h2>
+    <p>Your participation is entirely voluntary. You may withdraw from the task at any time prior to submission
+       on Prolific. If you withdraw before completing the task, no partial data will be used.</p>
+
+    <h2>6. Risks and Benefits</h2>
+    <p>This study involves minimal risk. You may experience minor fatigue or frustration when working with
+       disfluent or unclear text.</p>
+    <p>There are no direct personal benefits. Your participation supports research on translation, language
+       processing, and multilingual communication.</p>
+
+    <h2>7. Confidentiality</h2>
+    <p>Your responses will never be linked to your name or contact information. Any publications or
+       presentations resulting from this research will contain only anonymous findings.</p>
+
+    <h2>8. Consent</h2>
+    <p>By completing the task on Prolific, you confirm that you:</p>
+    <ul>
+      <li>Are 18 years of age or older.</li>
+      <li>Understand the purpose and procedures of this study.</li>
+      <li>Consent to your anonymized responses being used for research and publication purposes.</li>
+    </ul>
+
+    <hr>
+    <p style="color:#555;font-size:.9rem">
+      Clicking <strong>“I understand and consent — Continue”</strong> below indicates your consent to the
+      terms above. If you do not agree, please return the study on Prolific instead of proceeding.
+    </p>
+    <div class="btn-row right">
+      <button class="btn btn-primary" onclick="acceptConsent()">I understand and consent — Continue →</button>
+    </div>
+  </div>`;
+}
+
+function acceptConsent() {
+  // Fire-and-forget: log a consent event. Captures only timestamp and lang —
+  // no personal data (intake fields are still empty at this point).
+  post({ type: 'consent', lang: LANG, accepted_at: new Date().toISOString() });
+  goTo('intake');
+}
 
 function screenIntake() {
   const langName = LANG_NAMES[LANG] || LANG || '(unknown)';
@@ -1251,6 +1381,7 @@ function screenComplete() {
 
 // ── SCREENS MAP ───────────────────────────────────────────────────────────────
 const SCREENS = {
+  consent:      screenConsent,
   intake:       screenIntake,
   instructions: screenInstructions,
   tutorial:     screenTutorial,
