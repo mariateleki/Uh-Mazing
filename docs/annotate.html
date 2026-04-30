@@ -480,20 +480,21 @@ function updateTutCheck(exIdx) {
 function tokenize(raw) {
   const tokens = [];
   let i = 0, idx = 0;
-  // 1. Collapse "_ , _" / "_ . _" separators to a single _,_ / _._ token.
-  // 2. If a separator opening `_` is glued directly to a preceding letter
-  //    (e.g. Italian "Cioè_ , _ uh"), insert a space so canStartSpan() can
-  //    recognize the `_` as a real span start. Without this, the rest of
-  //    the utterance gets misparsed and clicks attach to the wrong text.
+  // Collapse "_ , _" / "_ . _" separators to single _,_ / _._ tokens
+  // (also normalize Chinese fullwidth comma/period for the same reason).
   const s = String(raw || '')
     .replace(/_ *, *_/g, '_,_')
     .replace(/_ *\. *_/g, '_._')
-    .replace(/(\p{L})(_[,.]_)/gu, '$1 $2');
+    .replace(/_ *， *_/g, '_，_')
+    .replace(/_ *。 *_/g, '_。_');
 
-  function canStartSpan(pos) {
-    if (pos === 0) return true;
-    return !/\p{L}/u.test(s[pos - 1]);
-  }
+  // Any `_` is a valid span start. We previously required the previous
+  // char to NOT be a letter, but real source data routinely has `_`
+  // glued directly to letters — both as the closing of a span (which is
+  // fine) and as the opening of a separator/span (which broke the parse:
+  // Italian "Cioè_,_" or Czech "Celá_třída_" or Chinese "得_，_"). Allowing
+  // any `_` to start a span recovers all those cases at once.
+  function canStartSpan(_pos) { return true; }
 
   while (i < s.length) {
     // Double-underscore span __token__
