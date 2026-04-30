@@ -1352,7 +1352,7 @@ function screenComplete() {
     <div id="finalize-spinner" style="font-size:2.5rem;margin-bottom:16px">⏳</div>
     <h1 id="finalize-title">Finalizing your submission…</h1>
     <p id="finalize-status" style="margin-top:12px;color:#666">
-      Verifying your annotations have been saved. Please don't close this tab.
+      Just a moment — making sure all your work has reached us.
     </p>
     <div id="finalize-progress" style="margin-top:18px;font-size:.9rem;color:#999;min-height:1.4em"></div>
     <div id="finalize-actions" style="margin-top:24px"></div>
@@ -1463,6 +1463,15 @@ function showCompletionCode(extraNote) {
 async function runFinalVerification() {
   const expected = expectedSaveKeys();
   const total    = expected.length;
+
+  // Test-mode bypass: don't try to re-verify a partial test session.
+  if (isTestMode()) {
+    setFinalStatus(undefined, '(Test mode — skipping verification.)');
+    post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
+    showCompletionCode();
+    return;
+  }
+
   if (total === 0) {
     showCompletionCode();
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
@@ -1474,7 +1483,7 @@ async function runFinalVerification() {
   // completion code.
   const cachedMissing = expected.filter(k => !serverSavedKeys.has(k));
   if (cachedMissing.length === 0 && serverSavedKeys.size > 0) {
-    setFinalStatus(undefined, `All ${total} saves confirmed.`);
+    setFinalStatus(undefined, `All ${total} of your annotations have been saved.`);
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
     showCompletionCode();
     return;
@@ -1482,28 +1491,30 @@ async function runFinalVerification() {
 
   const MAX_ATTEMPTS = 3;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    setFinalStatus(undefined, `Checking server (attempt ${attempt}/${MAX_ATTEMPTS})…`);
+    setFinalStatus(undefined,
+      attempt === 1
+        ? 'Confirming your saves with the server…'
+        : `Confirming your saves (try ${attempt} of ${MAX_ATTEMPTS})…`
+    );
     let saved;
     try {
       saved = await fetchSavedRows();
     } catch (err) {
-      // verify call failed — short backoff and retry
       await new Promise(r => setTimeout(r, 600));
       continue;
     }
 
     const missing = expected.filter(k => !saved.has(k));
-    setFinalStatus(undefined, `Saved ${total - missing.length}/${total} so far…`);
+    setFinalStatus(undefined, `Confirmed ${total - missing.length} of ${total} saves.`);
 
     if (missing.length === 0) {
-      // Everything landed — fire completed intake and reveal the code now.
       post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
       showCompletionCode();
       return;
     }
 
-    // Re-POST the missing payloads from local state.
-    setFinalStatus(undefined, `Re-saving ${missing.length} item${missing.length === 1 ? '' : 's'}…`);
+    // A few items didn't land yet — quietly re-send them.
+    setFinalStatus(undefined, `Catching up on ${missing.length} save${missing.length === 1 ? '' : 's'}…`);
     const reposts = missing.map(k => {
       const [uttId, slot] = k.split('::');
       const payload = payloadForKey(uttId, slot);
@@ -1511,12 +1522,11 @@ async function runFinalVerification() {
     }).filter(Boolean);
     await Promise.all(reposts);
 
-    // Brief wait for Apps Script appendRow to settle before re-verifying.
     await new Promise(r => setTimeout(r, 800));
   }
 
-  // Out of attempts — still show the completion code. Verify failures are
-  // logged to the console but the worker shouldn't be left hanging.
+  // Even after retries we couldn't confirm everything — show the code
+  // anyway. Verify failures are logged to the console for debugging.
   showCompletionCode();
 }
 
