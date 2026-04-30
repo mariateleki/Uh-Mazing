@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uh-Mazing — Translation Viewer</title>
+  <style>
+    :root {
+      --accent: #6C5B7B;
+      --accent-light: #ede8f1;
+      --highlight: #ffe066;
+      --highlight-border: #e6b800;
+      --removed: #ffcccc;
+      --added: #ccffdd;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #ddd;
+      --card-bg: #fff;
+      --bg: #f7f6f9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 24px;
+      height: 52px;
+      gap: 8px;
+    }
+    nav .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .slot-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 3px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .trans-row {
+      padding: 6px 0;
+      border-top: 1px dashed var(--border);
+    }
+    .trans-row:first-child { border-top: none; padding-top: 0; }
+    .btn-edit-text {
+      padding: 1px 8px;
+      font-size: 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .btn-edit-text:hover, .btn-edit-text.active {
+      border-color: var(--accent); color: var(--accent);
+    }
+    .btn-edit-text.active { background: var(--accent-light); font-weight: 600; }
+    .text-edit-area {
+      display: none;
+      margin-top: 6px;
+    }
+    .text-edit-area.open { display: block; }
+    .text-edit-area textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 8px;
+      border: 1.5px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      line-height: 1.6;
+      resize: vertical;
+    }
+    .text-edit-area textarea.rtl { direction: rtl; }
+    .text-edit-actions {
+      display: flex; gap: 6px; margin-top: 5px;
+    }
+    .btn-save {
+      padding: 3px 12px; font-size: 0.8rem;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .btn-cancel {
+      padding: 3px 10px; font-size: 0.8rem;
+      background: #fff; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 5px; cursor: pointer;
+    }
+    .text-edited-badge {
+      font-size: 0.65rem; font-weight: 600;
+      background: #e8f5e9; color: #2e7d32;
+      border-radius: 3px; padding: 1px 5px;
+      display: none;
+    }
+    .text-edited-badge.visible { display: inline; }
+
+    /* ── MAIN ── */
+    main {
+      margin-top: 52px;
+      padding: 20px 24px;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lang-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .lang-header h2 { margin: 0; font-size: 1.2rem; color: var(--accent); }
+    .count-badge {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ── TABLE HEADER ── */
+    .pair-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 6px;
+      padding: 0 4px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    /* ── PAIR CARD ── */
+    .pair-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .pair-card .utt-id {
+      grid-column: 1 / -1;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: monospace;
+      margin-bottom: 6px;
+    }
+    .text-col { line-height: 1.7; font-size: 0.95rem; }
+    .text-col.rtl { direction: rtl; text-align: right; }
+
+    /* ── HIGHLIGHTS ── */
+    .hl {
+      background: var(--highlight);
+      border-bottom: 2px solid var(--highlight-border);
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .hl:hover { background: #ffd700; }
+    /* non-highlighted words are always clickable on RHS */
+    .word {
+      cursor: pointer;
+      border-radius: 3px;
+      padding: 0 1px;
+    }
+    .word:hover { background: var(--accent-light); }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .toolbar label { font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .toolbar input[type=checkbox] { accent-color: var(--accent); }
+    .btn-sm {
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .btn-accent:hover { background: #594869; }
+    .export-msg { font-size: 0.8rem; color: green; display: none; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex; gap: 16px; font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .legend span { display: flex; align-items: center; gap: 4px; }
+    .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1); }
+
+    /* ── EMPTY STATE ── */
+    .empty { text-align: center; padding: 60px; color: var(--muted); }
+    .empty .big { font-size: 2rem; margin-bottom: 8px; }
+
+    /* ── SEARCH ── */
+    .search-box {
+      padding: 6px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.88rem;
+      outline: none;
+      width: 220px;
+    }
+    .search-box:focus { border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Uh-Mazing</span>
+  <button class="lang-btn" data-lang="ZH">ZH — Mandarin</button>
+  <button class="lang-btn" data-lang="ES">ES — Spanish</button>
+  <button class="lang-btn" data-lang="HI">HI — Hindi</button>
+  <button class="lang-btn" data-lang="FR">FR — French</button>
+  <button class="lang-btn" data-lang="DE">DE — German</button>
+  <button class="lang-btn" data-lang="IT">IT — Italian</button>
+  <button class="lang-btn" data-lang="CS">CS — Czech</button>
+  <button class="lang-btn" data-lang="AR">AR — Arabic</button>
+</nav>
+
+<main>
+  <div id="emptyState" class="empty">
+    <div class="big">👆</div>
+    <div>Select a language above to view translation pairs</div>
+  </div>
+
+  <div id="viewer" style="display:none">
+    <div class="lang-header">
+      <h2 id="langTitle"></h2>
+      <span class="count-badge" id="countBadge"></span>
+    </div>
+
+    <div class="toolbar">
+      <label>
+        <input type="checkbox" id="showEnHL" checked> Show EN highlights
+      </label>
+      <input type="text" class="search-box" id="searchBox" placeholder="Search utterance ID…">
+      <button class="btn-sm btn-accent" id="exportBtn">Export edits (JSON)</button>
+      <span class="export-msg" id="exportMsg">Copied to clipboard!</span>
+    </div>
+
+    <div class="pair-header">
+      <div>English (source)</div>
+      <div id="transHeader">Translations (all annotators)</div>
+    </div>
+
+    <div id="pairList"></div>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const DATA_URL = null;
+
+const LANG_NAMES = {
+  ZH: 'Mandarin', ES: 'Spanish', HI: 'Hindi', FR: 'French',
+  DE: 'German', IT: 'Italian', CS: 'Czech', AR: 'Arabic'
+};
+const RTL_LANGS = new Set(['AR']);
+
+// State
+let allData = null;
+let currentLang = null;
+let showEnHL = true;
+/// edits[lang][uttId][slot] = { highlights: Set<tokenIndex>, text?: string }
+// highlights = ALL currently highlighted indices (spans start highlighted, plain words start not)
+let edits = {};
+
+// ── PARSE _token_ MARKUP → HTML ───────────────────────────────────────────────
+// Returns array of token objects: {text, isSpan, index}
+function tokenize(raw) {
+  const tokens = [];
+  let i = 0;
+  let idx = 0;
+  // Normalize _, _ → _,_ so comma spans have no internal spaces
+  const s = String(raw || '').replace(/_ *, *_/g, '_,_');
+
+  // '_' can start a span only if NOT immediately preceded by a Unicode letter
+  // (prevents mid-word trailing _ like "d'etre_" from opening a span)
+  function canStartSpan(pos) {
+    if (pos === 0) return true;
+    return !/\p{L}/u.test(s[pos - 1]);
+  }
+
+  while (i < s.length) {
+    // Double-underscore span: __content__
+    if (s[i] === '_' && s[i+1] === '_' && canStartSpan(i)) {
+      const end = s.indexOf('__', i + 2);
+      if (end !== -1) {
+        tokens.push({ text: s.slice(i+2, end), isSpan: true, index: idx++ });
+        i = end + 2;
+        continue;
+      }
+    }
+    // Single-underscore span: _content_
+    // Multi-word spans (trimmed content contains a space) are split word-by-word
+    // so each word is independently clickable. Single-token spans (punctuation,
+    // single words) are kept as one unit for a larger click target.
+    if (s[i] === '_' && canStartSpan(i)) {
+      const end = s.indexOf('_', i + 1);
+      if (end !== -1) {
+        const content = s.slice(i+1, end);
+        if (content.trim().includes(' ')) {
+          for (const part of content.split(/(\s+)/)) {
+            if (part === '') continue;
+            if (/^\s+$/.test(part)) tokens.push({ text: part, isSpan: false, isSpace: true });
+            else tokens.push({ text: part, isSpan: true, index: idx++ });
+          }
+        } else {
+          tokens.push({ text: content, isSpan: true, index: idx++ });
+        }
+        i = end + 1;
+        continue;
+      }
+    }
+    // Plain text: collect until next span-starting '_'
+    let j = i + 1;
+    while (j < s.length) {
+      if (s[j] === '_' && canStartSpan(j)) break;
+      j++;
+    }
+    const chunk = s.slice(i, j);
+    for (const part of chunk.split(/(\s+)/)) {
+      if (part === '') continue;
+      if (/^\s+$/.test(part)) {
+        tokens.push({ text: part, isSpan: false, isSpace: true });
+      } else {
+        // Split trailing/leading punctuation off words so e.g. "uh," → "uh" + ","
+        for (const sub of part.split(/([,!?;:.]+)/)) {
+          if (sub === '') continue;
+          tokens.push({ text: sub, isSpan: false, isSpace: false, index: idx++ });
+        }
+      }
+    }
+    i = j;
+  }
+  return tokens;
+}
+
+
+function renderTokens(tokens, uttId, slot, side, slotEdits) {
+  // highlights: if initialized, the set of currently-highlighted indices.
+  // if null/undefined (no edits yet), original spans are highlighted by default.
+  const highlights = slotEdits?.highlights ?? null;
+
+  return tokens.map(tok => {
+    if (tok.isSpace) return escHtml(tok.text);
+
+    // Is this token currently highlighted?
+    const lit = highlights
+      ? highlights.has(tok.index)       // user has edited: use stored state
+      : tok.isSpan;                     // no edits yet: spans on, plain words off
+
+    if (lit) {
+      const action = side === 'trans'
+        ? `onclick="toggleHL('${uttId}','${slot}','${tok.index}')"` : '';
+      return `<span class="hl" ${action}>${escHtml(tok.text)}</span>`;
+    } else {
+      if (side === 'trans') {
+        return `<span class="word" onclick="toggleHL('${uttId}','${slot}','${tok.index}')">${escHtml(tok.text)}</span>`;
+      }
+      return escHtml(tok.text);
+    }
+  }).join('');
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── RENDER PAIRS ──────────────────────────────────────────────────────────────
+const SLOTS = ['T1', 'T2', 'T3', 'T4'];
+
+function renderPairs(lang) {
+  const items = allData[lang] || [];
+  const filter = document.getElementById('searchBox').value.toLowerCase();
+  const list = document.getElementById('pairList');
+  const isRTL = RTL_LANGS.has(lang);
+  const langEditsMap = edits[lang] || {};
+
+  const filtered = items.filter(item =>
+    !filter || item.utt_id.toLowerCase().includes(filter)
+  );
+
+  list.innerHTML = filtered.map(item => {
+    const enTokens = tokenize(item.en);
+    const enHtml   = showEnHL
+      ? renderTokens(enTokens, item.utt_id, null, 'en', null)
+      : escHtml(item.en);
+
+    const transClass = `text-col${isRTL ? ' rtl' : ''}`;
+    const availableSlots = SLOTS.filter(s => (item.translations || {})[s]);
+
+    const transRows = availableSlots.map(slot => {
+      const slotEdits   = (langEditsMap[item.utt_id] || {})[slot];
+      const editedText  = slotEdits?.text;
+      const transRaw    = editedText !== undefined ? editedText : item.translations[slot];
+      const transTokens = tokenize(transRaw);
+      const transHtml   = renderTokens(transTokens, item.utt_id, slot, 'trans', slotEdits);
+      const isRTLta     = isRTL ? ' rtl' : '';
+      const editedBadge = editedText !== undefined
+        ? `<span class="text-edited-badge visible">edited</span>` : `<span class="text-edited-badge"></span>`;
+      return `<div class="trans-row" id="row-${item.utt_id}-${slot}">
+        <div class="slot-label">
+          ${editedBadge}
+          <button class="btn-edit-text" onclick="toggleTextEdit('${item.utt_id}','${slot}')">Edit text</button>
+          <button class="btn-edit-text" onclick="resetSlot('${item.utt_id}','${slot}')">Reset</button>
+        </div>
+        <div class="${transClass}" id="trans-${item.utt_id}-${slot}">${transHtml}</div>
+        <div class="text-edit-area" id="edit-area-${item.utt_id}-${slot}">
+          <textarea id="edit-ta-${item.utt_id}-${slot}" class="${isRTLta}">${escHtml(transRaw)}</textarea>
+          <div class="text-edit-actions">
+            <button class="btn-save" onclick="saveTextEdit('${item.utt_id}','${slot}')">Save</button>
+            <button class="btn-cancel" onclick="cancelTextEdit('${item.utt_id}','${slot}')">Cancel</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    return `
+    <div class="pair-card" id="pair-${item.utt_id}">
+      <div class="utt-id">${escHtml(item.utt_id)}</div>
+      <div class="text-col">${enHtml}</div>
+      <div>${transRows || '<em style="color:#aaa">No translations</em>'}</div>
+    </div>`;
+  }).join('');
+
+}
+
+// ── TOGGLE HIGHLIGHT ──────────────────────────────────────────────────────────
+function toggleHL(uttId, slot, idxArg) {
+  const e = edits[currentLang][uttId][slot];
+  const idx = Number(idxArg);
+  if (e.highlights.has(idx)) e.highlights.delete(idx);
+  else                        e.highlights.add(idx);
+
+  const items = allData[currentLang] || [];
+  const item  = items.find(i => i.utt_id === uttId);
+  if (!item) return;
+  const transRaw    = e.text !== undefined ? e.text : (item.translations || {})[slot] || '';
+  const transTokens = tokenize(transRaw);
+  const transHtml   = renderTokens(transTokens, uttId, slot, 'trans', e);
+  const el = document.getElementById(`trans-${uttId}-${slot}`);
+  if (el) el.innerHTML = transHtml;
+}
+
+// ── TEXT EDITING ──────────────────────────────────────────────────────────────
+function toggleTextEdit(uttId, slot) {
+  const area = document.getElementById(`edit-area-${uttId}-${slot}`);
+  const btn  = document.querySelector(`#row-${uttId}-${slot} .btn-edit-text`);
+  const isOpen = area.classList.contains('open');
+  if (isOpen) {
+    area.classList.remove('open');
+    btn.classList.remove('active');
+  } else {
+    // Populate textarea with current text (edited or original)
+    const items = allData[currentLang] || [];
+    const item  = items.find(i => i.utt_id === uttId);
+    const slotEdits = (edits[currentLang]?.[uttId] || {})[slot];
+    const current = slotEdits?.text !== undefined
+      ? slotEdits.text : (item?.translations?.[slot] || '');
+    const ta = document.getElementById(`edit-ta-${uttId}-${slot}`);
+    ta.value = current;
+    area.classList.add('open');
+    btn.classList.add('active');
+    ta.focus();
+  }
+}
+
+function saveTextEdit(uttId, slot) {
+  const ta   = document.getElementById(`edit-ta-${uttId}-${slot}`);
+  const text = ta.value;
+
+  if (!edits[currentLang]) edits[currentLang] = {};
+  if (!edits[currentLang][uttId]) edits[currentLang][uttId] = {};
+  if (!edits[currentLang][uttId][slot]) edits[currentLang][uttId][slot] = { highlights: new Set() };
+  edits[currentLang][uttId][slot].text = text;
+  // Re-init highlights from new text since token indices are now different
+  const newToks = tokenize(text);
+  edits[currentLang][uttId][slot].highlights = new Set(newToks.filter(t => t.isSpan).map(t => t.index));
+
+  // Re-render this slot's display
+  const items = allData[currentLang] || [];
+  const item  = items.find(i => i.utt_id === uttId);
+  const isRTL = RTL_LANGS.has(currentLang);
+  const transTokens = tokenize(text);
+  const transHtml   = renderTokens(transTokens, uttId, slot, 'trans', edits[currentLang][uttId][slot]);
+  const transClass  = `text-col${isRTL ? ' rtl' : ''}`;
+  document.getElementById(`trans-${uttId}-${slot}`).innerHTML = transHtml;
+  // Show "edited" badge
+  const badge = document.querySelector(`#row-${uttId}-${slot} .text-edited-badge`);
+  if (badge) badge.classList.add('visible');
+  // Close textarea
+  cancelTextEdit(uttId, slot);
+}
+
+function cancelTextEdit(uttId, slot) {
+  const area = document.getElementById(`edit-area-${uttId}-${slot}`);
+  const btn  = document.querySelector(`#row-${uttId}-${slot} .btn-edit-text`);
+  area.classList.remove('open');
+  if (btn) btn.classList.remove('active');
+}
+
+// ── RESET SLOT ────────────────────────────────────────────────────────────────
+function resetSlot(uttId, slot) {
+  const items = allData[currentLang] || [];
+  const item = items.find(i => i.utt_id === uttId);
+  if (!item) return;
+  const transRaw = (item.translations || {})[slot] || '';
+  const toks = tokenize(transRaw);
+  // Re-init to original span highlights, clear any text override
+  edits[currentLang][uttId][slot] = {
+    highlights: new Set(toks.filter(t => t.isSpan).map(t => t.index))
+  };
+  const e = edits[currentLang][uttId][slot];
+  const transHtml = renderTokens(toks, uttId, slot, 'trans', e);
+  const el = document.getElementById(`trans-${uttId}-${slot}`);
+  if (el) el.innerHTML = transHtml;
+  // Hide edited badge
+  const badge = document.querySelector(`#row-${uttId}-${slot} .text-edited-badge`);
+  if (badge) badge.classList.remove('visible');
+  // Reset textarea value
+  const ta = document.getElementById(`edit-ta-${uttId}-${slot}`);
+  if (ta) ta.value = transRaw;
+}
+
+// ── SWITCH LANGUAGE ───────────────────────────────────────────────────────────
+function switchLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang));
+
+  const items = allData[lang] || [];
+  document.getElementById('langTitle').textContent =
+    `${lang} — ${LANG_NAMES[lang] || ''}`;
+  document.getElementById('countBadge').textContent =
+    `${items.length} utterances`;
+  document.getElementById('transHeader').textContent =
+    `${LANG_NAMES[lang] || lang} translations (all annotators)`;
+
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('viewer').style.display = 'block';
+  renderPairs(lang);
+}
+
+// ── EXPORT EDITS ──────────────────────────────────────────────────────────────
+function exportEdits() {
+  const out = {};
+  for (const [lang, uttMap] of Object.entries(edits)) {
+    for (const [uttId, slotMap] of Object.entries(uttMap)) {
+      for (const [slot, e] of Object.entries(slotMap)) {
+        if (!e.highlights) continue;
+        // Compute original span indices to diff against
+        const items = allData[lang] || [];
+        const item  = items.find(i => i.utt_id === uttId);
+        const raw   = e.text ?? (item?.translations || {})[slot] ?? '';
+        const toks  = tokenize(raw);
+        const origSpans = new Set(toks.filter(t => t.isSpan).map(t => t.index));
+        const removed = [...origSpans].filter(i => !e.highlights.has(i));
+        const added   = [...e.highlights].filter(i => !origSpans.has(i));
+        if (removed.length === 0 && added.length === 0 && e.text === undefined) continue;
+        if (!out[lang]) out[lang] = {};
+        if (!out[lang][uttId]) out[lang][uttId] = {};
+        const entry = { removed, added };
+        if (e.text !== undefined) entry.text = e.text;
+        out[lang][uttId][slot] = entry;
+      }
+    }
+  }
+  const json = JSON.stringify(out, null, 2);
+  navigator.clipboard.writeText(json).then(() => {
+    const msg = document.getElementById('exportMsg');
+    msg.style.display = 'inline';
+    setTimeout(() => msg.style.display = 'none', 2000);
+  });
+}
+
+// ── INIT EDITS ────────────────────────────────────────────────────────────────
+// Pre-populate edits for every lang/utt/slot from original span tokens.
+// This means toggleHL never needs to lazily initialize — state is always ready.
+function initEdits() {
+  for (const [lang, items] of Object.entries(allData)) {
+    edits[lang] = {};
+    for (const item of items) {
+      edits[lang][item.utt_id] = {};
+      for (const slot of SLOTS) {
+        const raw = (item.translations || {})[slot];
+        if (raw === undefined) continue;
+        const toks = tokenize(raw);
+        edits[lang][item.utt_id][slot] = {
+          highlights: new Set(toks.filter(t => t.isSpan).map(t => t.index))
+        };
+      }
+    }
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+async function init() {
+  allData = INLINE_DATA;
+  initEdits();
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+  });
+  document.getElementById('showEnHL').addEventListener('change', e => {
+    showEnHL = e.target.checked;
+    if (currentLang) renderPairs(currentLang);
+  });
+  document.getElementById('searchBox').addEventListener('input', () => {
+    if (currentLang) renderPairs(currentLang);
+  });
+  document.getElementById('exportBtn').addEventListener('click', exportEdits);
+}
+
+init();
+</script>
+</body>
+</html>

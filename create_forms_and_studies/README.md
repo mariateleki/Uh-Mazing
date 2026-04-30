@@ -64,49 +64,62 @@ ASR / IRR.
 
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│ 4. PUBLICATION — produce dataset + website                              │
+│ 4. PUBLICATION — produce website                                        │
 └─────────────────────────────────────────────────────────────────────────┘
 
-  data/prolific_responses_filtered.csv         data/prolific_responses_raw.csv
-              │                                              │
-              ▼                                              ▼
-  generate_docs_data.py                         finalize_dataset.py
-              │                                  (uses BAD_PROLIFIC_IDS list)
-   ┌──────────┴──────────┐                                   │
-   ▼                     ▼                                   ▼
-  docs/data.js     round2/data.json                  data/uh-mazing.csv
+  data/prolific_responses_filtered.csv
+              │
+              ▼
+  generate_docs_data.py
+              │
+   ┌──────────┴──────────────┐
+   ▼                         ▼
+  docs/data.js     docs/round2/data.json
 
-  (loaded by docs/index.html, docs/admin.html, docs/annotate.html,
-   and round2/index.html)
+  Everything served by GitHub Pages lives under docs/.
+  Loaded by:
+    docs/index.html         (read-only translation viewer)
+    docs/admin.html         (curator view)
+    docs/annotate.html      (annotator UI)
+    docs/round2/index.html  (round2 combined viewer)
 
 
 ┌─────────────────────────────────────────────────────────────────────────┐
 │ 5. DOWNSTREAM — analysis, experiments, ASR, IRR                         │
 └─────────────────────────────────────────────────────────────────────────┘
 
-  data/uh-mazing.csv
+  Switchboard-derived English source — used by anything that doesn't need
+  the per-language translations:
+
+  data/translation-dataset-with-timestamps.csv
+        │  (file/speaker/turn → ID synthesized at load time;
+        │   text_fluent/text_disfluent → renamed inline)
         │
         ├─► process_swb/add_node_combos_to_uh_mazing.py
-        │                              ─► data/uh-mazing-with-node-combos.csv
+        │                              ─► data/translation-source-with-node-combos.csv
         │
-        ├─► experiments/run_translate.py  (LLM translation conditions)
+        ├─► experiments/run_translate.py  (text + audio modes)
         │                              ─► outputs/uh-mazing_<model>_<cond>.csv
         │   experiments/infer_single_missing_arabic_gemini_audio_…ipynb
         │
-        ├─► asr/run_asr_gpt.py            ─► asr/asr_transcripts_gpt_*.csv
-        │   asr/run_asr_gemini.py         ─► asr/asr_transcripts_gemini_*.csv
-        │   asr/calculate_wer.py
-        │       (compares ASR vs uh-mazing as ground truth)
-        │                              ─► asr/*_with_wer.csv, *_wer_summary.csv
+        └─► asr/calculate_wer.py
+                (compares ASR vs English ground truth)
+                                       ─► asr/*_with_wer.csv, *_wer_summary.csv
+
+  Translation pipeline — used by anything that needs the actual annotator
+  translations:
+
+  data/prolific_responses_filtered.csv
         │
-        ├─► analysis/IRR/irr.ipynb        (uses uh-mazing.csv + uh-mazing-gold-irr.csv)
-        │
-        ├─► llm-as-a-judge/score_outputs_gpt.py  (scores experiments/ outputs)
-        │                              ─► llm-as-a-judge/scores/
-        │   llm-as-a-judge/plot_category_distribution.ipynb
+        ├─► analysis/IRR/irr.ipynb
+        │     (pivots filtered.csv → wide LANG_disfluent layout inline,
+        │      compares against data/uh-mazing-gold-irr.csv)
         │
         └─► round2/eda_underscore_patterns.ipynb
-                (reads prolific_responses_filtered.csv directly)
+
+  Output of run_translate.py → llm-as-a-judge:
+        llm-as-a-judge/score_outputs_gpt.py  → llm-as-a-judge/scores/
+        llm-as-a-judge/plot_category_distribution.ipynb
 
   Separate human-eval branches (independent of uh-mazing.csv):
         analyze_style/visualize_annotations.ipynb     (uses analyze_style/annotations.json)
@@ -133,19 +146,20 @@ The first command fetches forms fresh from Google Drive and writes
 website's expected shape and writes both `docs/data.js` and
 `round2/data.json`.
 
-To also refresh the raw dump and `data/uh-mazing.csv` (used by analysis):
+To also refresh the raw dump (used for ad-hoc analysis of all submissions):
 
 ```bash
 python ./create_forms_and_studies/bulk_merge_google_forms.py
-python ./create_forms_and_studies/finalize_dataset.py
 ```
 
-To refresh downstream artifacts (after `uh-mazing.csv` changes):
+To refresh downstream artifacts (no `uh-mazing.csv` middleman anymore — these
+read directly from the Switchboard source or from `prolific_responses_filtered.csv`):
 
 ```bash
 python ./process_swb/add_node_combos_to_uh_mazing.py
 python ./experiments/run_translate.py     # rerun LLM translation experiments
 python ./asr/calculate_wer.py             # recompute WER vs new ground truth
+# IRR notebook: open analysis/IRR/irr.ipynb (pivots filtered.csv inline)
 ```
 
 ---
@@ -166,21 +180,28 @@ python ./asr/calculate_wer.py             # recompute WER vs new ground truth
 
 Three pages live in `docs/`:
 
-| Page                   | Role                                       |
-|------------------------|--------------------------------------------|
-| `docs/index.html`      | Read-only translation viewer               |
-| `docs/admin.html`      | Curator view (needs `?script=…` URL)       |
-| `docs/annotate.html`   | Annotator UI                               |
+| Page                       | Role                                       |
+|----------------------------|--------------------------------------------|
+| `docs/index.html`          | Read-only translation viewer               |
+| `docs/admin.html`          | Curator view (needs `?script=…` URL)       |
+| `docs/annotate.html`       | Annotator UI                               |
+| `docs/round2/index.html`   | Round2 combined viewer                     |
 
-Serve locally:
+Live URLs (deployed by GitHub Pages from the `docs/` folder):
+
+- https://mariateleki.github.io/Uh-Mazing/
+- https://mariateleki.github.io/Uh-Mazing/admin.html
+- https://mariateleki.github.io/Uh-Mazing/annotate.html
+- https://mariateleki.github.io/Uh-Mazing/round2/
+
+Serve locally (mirrors the same URL paths):
 
 ```bash
 cd docs && python3 -m http.server 8765
-# then open http://localhost:8765/  (or admin.html, annotate.html)
+# or:
+python3 round2/serve.py
+# then open http://localhost:8765/  (or /round2/, /admin.html, /annotate.html)
 ```
-
-`round2/index.html` is a separate self-contained viewer served by
-`round2/serve.py` on port 8765 — combined view, no role split.
 
 ---
 
@@ -195,7 +216,6 @@ cd docs && python3 -m http.server 8765
 | `bulk_merge_google_forms.py`                  | Pull every submission from every form (raw)          |
 | `merge_filtered_annotators.py`                | Pick one submission per form via `annotator_keep.csv`|
 | `generate_docs_data.py`                       | Build `docs/data.js` + `round2/data.json`            |
-| `finalize_dataset.py`                         | Build `data/uh-mazing.csv` for downstream analysis   |
 | `annotator_keep.csv`                          | Curator's per-form chosen submission                 |
 | `base_form.json`                              | Template used by `bulk_create_google_forms.py`       |
 | `credentials.json`                            | OAuth client secrets (gitignored)                    |

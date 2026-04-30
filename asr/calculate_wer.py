@@ -8,11 +8,13 @@ from jiwer import process_words
 # ======================= CONFIG =======================
 
 ASR_CSV = "./asr_transcripts_gpt_gpt-4o-transcribe.csv"
-GT_CSV = "../data/uh-mazing.csv"
+# Read the canonical Switchboard-derived English source directly (no longer
+# routed through data/uh-mazing.csv, which has been removed).
+GT_CSV = "../data/translation-dataset-with-timestamps.csv"
 GT_NAME_COL = "ID"
 GT_REF_COLS = {
-    "fluent": "EN_fluent",
-    "disfluent": "EN_disfluent",
+    "fluent": "text_fluent",
+    "disfluent": "text_disfluent",
 }
 
 FILE_COL = "file"
@@ -28,6 +30,17 @@ REMOVE_PUNCTUATION = True
 
 def load_gt_csv(csv_path: str) -> pd.DataFrame:
     df_gt_raw = pd.read_csv(csv_path)
+
+    # Synthesize the `ID` column from file/speaker/turn when the source CSV
+    # uses the Switchboard layout (translation-dataset-with-timestamps.csv).
+    if GT_NAME_COL not in df_gt_raw.columns and {"file", "speaker", "turn"}.issubset(df_gt_raw.columns):
+        df_gt_raw[GT_NAME_COL] = (
+            df_gt_raw["file"].astype(str).str.strip()
+            + "_"
+            + df_gt_raw["speaker"].astype(str).str.strip()
+            + "_"
+            + df_gt_raw["turn"].astype(str).str.strip()
+        )
 
     required_cols = {GT_NAME_COL, *GT_REF_COLS.values()}
     missing = required_cols.difference(df_gt_raw.columns)

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<!-- Run instructions: open directly in browser, or serve via python3 -m http.server 8765 in docs/ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disfluency Annotation</title>
+  <style>
+    :root {
+      --accent: #6C5B7B;
+      --accent-light: #ede8f1;
+      --hl: #ffe066;
+      --hl-border: #e6c200;
+      --radius: 8px;
+      --max: 760px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f4f7;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px 80px;
+    }
+    .screen {
+      width: 100%;
+      max-width: var(--max);
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      padding: 40px 48px;
+    }
+    @media (max-width: 600px) { .screen { padding: 28px 20px; } }
+
+    h1 { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; }
+    h2 { font-size: 1.15rem; color: var(--accent); margin-bottom: 16px; }
+    p  { line-height: 1.6; margin-bottom: 14px; color: #444; }
+
+    /* Progress bar */
+    .progress-wrap { margin-bottom: 28px; }
+    .progress-label { font-size: .85rem; color: #888; margin-bottom: 6px; }
+    .progress-bar { height: 6px; background: #e9e5f0; border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .3s; }
+
+    /* Form */
+    .field { margin-bottom: 20px; }
+    label { display: block; font-size: .9rem; font-weight: 600; margin-bottom: 6px; color: #333; }
+    input[type=text], select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    input[type=text]:focus, select:focus { border-color: var(--accent); }
+    .radio-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .radio-group label {
+      font-weight: 400;
+      display: flex; align-items: center; gap: 5px;
+      cursor: pointer;
+      padding: 6px 14px;
+      border: 1px solid #ccc;
+      border-radius: 99px;
+      font-size: .9rem;
+      transition: border-color .15s, background .15s;
+    }
+    .radio-group input[type=radio] { display: none; }
+    .radio-group input[type=radio]:checked + span,
+    .radio-group label:has(input:checked) {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 11px 28px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s, transform .1s;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { opacity: .88; }
+    .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-secondary { background: #f0edf5; color: var(--accent); }
+    .btn-secondary:hover { background: #e4deef; }
+    .btn-row { display: flex; gap: 12px; margin-top: 28px; align-items: center; }
+    .btn-row.right { justify-content: flex-end; }
+
+    /* Instructions */
+    .instr-section { margin-bottom: 24px; }
+    .instr-section h3 { font-size: 1rem; margin-bottom: 8px; color: #333; }
+    .instr-section ul { padding-left: 22px; line-height: 1.7; color: #444; }
+
+    /* Tutorial examples */
+    .example-card {
+      background: #f9f8fb;
+      border: 1px solid #e0d9ec;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .example-card .ex-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .ex-row { display: grid; grid-template-columns: 90px 1fr; gap: 8px 16px; align-items: start; margin-bottom: 6px; }
+    .ex-lang { font-size: .8rem; font-weight: 700; color: #888; padding-top: 3px; }
+    .ex-text { font-size: 1rem; line-height: 1.7; }
+    .ex-note { font-size: .85rem; color: #666; margin-top: 10px; border-top: 1px solid #ece7f5; padding-top: 10px; line-height: 1.6; }
+
+    /* Highlights */
+    .hl {
+      background: var(--hl);
+      border-bottom: 2px solid var(--hl-border);
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+    }
+    .hl:hover { background: #ffd633; }
+    .word { cursor: pointer; border-radius: 3px; padding: 0 1px; }
+    .word:hover { background: var(--accent-light); }
+
+    /* Annotation card */
+    .utt-card {
+      border: 1px solid #e0d9ec;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .utt-card-header {
+      background: #f4f0f9;
+      padding: 10px 18px;
+      font-size: .8rem;
+      color: #888;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .utt-card-body { padding: 18px 20px; }
+    .side-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+    .en-text { font-size: .95rem; line-height: 1.7; color: #444; margin-bottom: 18px; }
+    .trans-label-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 4px;
+    }
+    .slot-tag {
+      font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: #aaa;
+    }
+    .trans-text { font-size: 1rem; line-height: 1.8; }
+    .rtl { direction: rtl; text-align: right; font-size: 1.05rem; }
+
+    /* Text edit */
+    .text-edit-toggle {
+      font-size: .75rem; color: var(--accent);
+      background: none; border: none; cursor: pointer;
+      text-decoration: underline; padding: 0;
+    }
+    .text-edit-area { display: none; margin-top: 10px; }
+    .text-edit-area.open { display: block; }
+    .text-edit-area textarea {
+      width: 100%; min-height: 80px;
+      border: 1px solid #ccc; border-radius: 6px;
+      padding: 8px 12px; font-size: .95rem;
+      font-family: inherit; resize: vertical;
+    }
+    .text-edit-area textarea:focus { outline: none; border-color: var(--accent); }
+    .text-edit-actions { display: flex; gap: 8px; margin-top: 6px; }
+    .btn-sm {
+      padding: 5px 14px; font-size: .82rem;
+      border: none; border-radius: 5px; cursor: pointer; font-weight: 600;
+    }
+    .btn-save-sm { background: var(--accent); color: #fff; }
+    .btn-cancel-sm { background: #f0edf5; color: var(--accent); }
+    .btn-reset-sm { background: #f5f5f5; color: #888; }
+
+    /* Saving indicator */
+    .save-status { font-size: .85rem; color: #888; }
+    .save-status.ok { color: #2e7d32; }
+    .save-status.err { color: #c62828; }
+
+    /* Completion */
+    .completion-code {
+      font-size: 2rem; font-weight: 700; letter-spacing: .15em;
+      color: var(--accent); background: var(--accent-light);
+      border-radius: var(--radius); padding: 18px 32px;
+      display: inline-block; margin: 16px 0;
+    }
+    .error-msg { color: #c62828; font-size: .88rem; margin-top: 6px; display: none; }
+    .error-msg.visible { display: block; }
+
+    /* Divider */
+    hr { border: none; border-top: 1px solid #ece7f5; margin: 24px 0; }
+
+    /* QC panel */
+    .qc-panel {
+      margin-top: 20px;
+      border: 1px solid #e0d9ec;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      background: #f9f8fb;
+    }
+    .qc-header {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--accent); margin-bottom: 12px;
+    }
+    .qc-feedback {
+      font-size: .95rem; line-height: 1.65;
+      padding: 12px 16px; border-radius: 6px; margin-bottom: 16px;
+      white-space: pre-wrap;
+    }
+    .qc-ok   { background: #e8f5e9; border-left: 3px solid #2e7d32; }
+    .qc-warn { background: #fff8e1; border-left: 3px solid #e65100; }
+    .qc-checklist {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6px 20px; margin-bottom: 16px;
+    }
+    .qc-checklist label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .9rem; font-weight: 400; cursor: pointer;
+    }
+    .qc-checklist input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
+    @keyframes blink-red {
+      0%,100% { background: var(--accent); }
+      25%,75%  { background: #c62828; transform: scale(1.04); }
+    }
+    .btn-blink { animation: blink-red .5s ease 2; }
+    .checklist-warn { font-size: .85rem; color: #c62828; font-weight: 600; margin-left: 8px; }
+
+    /* QC loading dots */
+    .qc-thinking {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 0; color: #888; font-size: .95rem;
+    }
+    .qc-dots { display: flex; gap: 5px; }
+    .qc-dots span {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); opacity: .3;
+      animation: qc-bounce .9s ease-in-out infinite;
+    }
+    .qc-dots span:nth-child(2) { animation-delay: .2s; }
+    .qc-dots span:nth-child(3) { animation-delay: .4s; }
+    @keyframes qc-bounce {
+      0%,80%,100% { opacity: .3; transform: translateY(0); }
+      40%          { opacity: 1;  transform: translateY(-5px); }
+    }
+    .qc-panel > label { font-size: .85rem; font-weight: 600; display: block; margin-bottom: 6px; }
+    .qc-panel textarea {
+      width: 100%; min-height: 72px;
+      border: 1px solid #ccc; border-radius: 6px;
+      padding: 8px 12px; font-size: .9rem;
+      font-family: inherit; resize: vertical;
+    }
+    .qc-panel textarea:focus { outline: none; border-color: var(--accent); }
+    .qc-btn-row { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
+
+    /* Report button */
+    .report-btn {
+      position: fixed;
+      bottom: 18px;
+      right: 20px;
+      background: none;
+      border: 1px solid #e57373;
+      border-radius: 99px;
+      font-size: .92rem;
+      font-weight: 600;
+      color: #c62828;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background .15s;
+      z-index: 100;
+    }
+    .report-btn:hover { background: #fdecea; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.35);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    }
+    .modal-box h2 { margin-bottom: 8px; }
+    .modal-box p  { font-size: .9rem; color: #666; margin-bottom: 14px; }
+    .modal-box textarea {
+      width: 100%; min-height: 100px;
+      border: 1px solid #ccc; border-radius: 6px;
+      padding: 10px 12px; font-size: .95rem;
+      font-family: inherit; resize: vertical;
+    }
+    .modal-box textarea:focus { outline: none; border-color: var(--accent); }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- Persistent report button + modal (outside #app so it survives renders) -->
+<button class="report-btn" onclick="openReportModal()">⚑ Report an issue</button>
+
+<div class="modal-overlay" id="report-modal" onclick="closeReportModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <h2>Report an issue</h2>
+    <p>Describe what went wrong and we'll look into it.</p>
+    <textarea id="report-msg" placeholder="e.g. The translation looks wrong, I can't click a word, the page seems broken…"></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-sm" onclick="closeReportModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="submitReport()">Send report</button>
+    </div>
+    <div id="report-status" style="margin-top:10px;font-size:.85rem;color:#888;text-align:right"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+// Run instructions: deploy appscript.gs as a Google Apps Script web app, then
+// paste the deployment URL below.
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBp1d_eI8Z_nbJfeLoUc4LE9IgLCJOOFs3y9tb2n-RDwZHa82_TFhes-O-ALtSPSgk/exec';
+const COMPLETION_CODE = 'CXXXXXXX'; // TODO: replace with your Prolific completion code
+
+// OpenAI QC — key lives in Apps Script Script Properties, not here
+const QC_MODEL = 'gpt-5.4';
+const PROLIFIC_RETURN_URL = `https://app.prolific.com/submissions/complete?cc=${COMPLETION_CODE}`;
+
+const LANG_NAMES = {
+  ZH: 'Mandarin', ES: 'Spanish', HI: 'Hindi', FR: 'French',
+  DE: 'German',   IT: 'Italian', CS: 'Czech',  AR: 'Arabic'
+};
+const RTL_LANGS = new Set(['AR']);
+const SLOTS = ['T1', 'T2', 'T3', 'T4'];
+
+// ── TUTORIAL DATA ─────────────────────────────────────────────────────────────
+// Example 1: highlights wrong (tenían wrongly highlighted, comma missing)
+// Example 2: mmm is wrong filler — must edit to uh and highlight it
+// NOTE: indices below assume punctuation-splitting tokenizer.
+// "de," → de(9),,(10) so um shifts to 11 vs old index 10.
+const TUTORIAL = [
+  {
+    en: "I think that _they_ _, _ they had a great deal of, _um_, all the brothers and sisters got together and they actually had a conference.",
+    es: "Creo que _ellos_ _, _ ellos tenían un gran acuerdo de, _um_, todos los hermanos y hermanas se juntaron y tuvieron una reunión.",
+    // Wrong: ellos(2)✓  ,(3) MISSING  tenían(5) WRONGLY added  um(11)✓
+    // "de," splits → de(9),,(10), so _um_ span is index 11
+    wrongHL:   new Set([2, 5, 11]),
+    correctHL: new Set([2, 3, 11]),   // index-based, text is fixed
+    needsTextEdit: false,
+  },
+  {
+    en: "_I_ _mean_ _, _ _uh_, it's, money seems to be too big of an issue. _With_ _, _ _with_ _, _ _with_ _, _ with what's going on today",
+    // "uh" is present but as wrong word "mmm" (unhighlighted) — annotator must correct it and highlight
+    // "mmm ," has a space before the comma so after correction "uh" is its own token
+    es: "_Me_ _refiero_ _, _ mmm , es, el dinero parece ser un gran problema. _Con_ _, _ _con_ _, _ _con_ _, _ con lo que está pasando hoy en día",
+    // "es," splits → es(5),,(6) and "problema." splits → problema(13),.(14)
+    // so _Con_ and following spans shift from 13–18 → 15–20
+    wrongHL: new Set([0,1,2,15,16,17,18,19,20]),
+    needsTextEdit: true,
+    hint: 'The filler word is wrong here — it says <strong>mmm</strong> but should be <strong>uh</strong>. Click <em>Edit text</em>, change <code>mmm</code> to <code>uh</code>, click Save, then highlight it.',
+    checkFn(toks, h) {
+      const hl = toks.filter(t => !t.isSpace && h.has(t.index)).map(t => t.text.toLowerCase());
+      return hl.some(t => t.startsWith('uh'))
+          && hl.includes('me')
+          && hl.includes('refiero')
+          && hl.filter(t => t === ',').length >= 4
+          && hl.filter(t => t === 'con').length >= 2;
+    }
+  }
+];
+
+// Mutable tutorial state
+let tutorialHighlights = null;
+let tutorialTexts      = null;
+
+function initTutorialHighlights() {
+  if (tutorialHighlights) return;
+  tutorialHighlights = TUTORIAL.map(ex => new Set(ex.wrongHL));
+  tutorialTexts      = TUTORIAL.map(ex => ex.es);
+}
+
+function renderTutToks(tokens, exIdx, highlights) {
+  return tokens.map(tok => {
+    if (tok.isSpace) return escHtml(tok.text);
+    const lit = highlights.has(tok.index);
+    if (lit) {
+      return `<span class="hl" onclick="toggleTutorialHL(${exIdx},${tok.index})">${escHtml(tok.text)}</span>`;
+    }
+    return `<span class="word" onclick="toggleTutorialHL(${exIdx},${tok.index})">${escHtml(tok.text)}</span>`;
+  }).join('');
+}
+
+function toggleTutorialHL(exIdx, tokIdx) {
+  const h      = tutorialHighlights[exIdx];
+  const idx    = Number(tokIdx);
+  const adding = !h.has(idx);
+  if (adding) h.add(idx); else h.delete(idx);
+
+  const toks = tokenize(tutorialTexts[exIdx]);
+  const el   = document.getElementById(`tut-es-${exIdx}`);
+  if (el) el.innerHTML = renderTutToks(toks, exIdx, h);
+
+  // Wrong-move feedback
+  const ex = TUTORIAL[exIdx];
+  let isWrong = false;
+  if (ex.correctHL) {
+    isWrong = adding ? !ex.correctHL.has(idx) : ex.correctHL.has(idx);
+  } else if (ex.checkFn) {
+    // A move is wrong if it doesn't bring us closer: simulate the reverse and compare
+    const tok = toks.find(t => t.index === idx);
+    if (tok) {
+      const t = tok.text.toLowerCase();
+      // Expected to be highlighted: tokens starting with 'uh', or 'me','refiero',',','con'
+      const shouldHL = t.startsWith('uh') || ['me','refiero',',','con'].includes(t);
+      isWrong = adding ? !shouldHL : shouldHL;
+    }
+  }
+  showTutFeedback(exIdx, isWrong);
+  updateTutCheck(exIdx);
+}
+
+// ── TUTORIAL TEXT EDITING ─────────────────────────────────────────────────────
+function openTutTextEdit(exIdx) {
+  document.getElementById(`tut-edit-area-${exIdx}`).classList.add('open');
+}
+function closeTutTextEdit(exIdx) {
+  document.getElementById(`tut-edit-area-${exIdx}`).classList.remove('open');
+}
+function saveTutTextEdit(exIdx) {
+  const ta  = document.getElementById(`tut-edit-ta-${exIdx}`);
+  const txt = ta.value;
+  tutorialTexts[exIdx] = txt;
+  // Re-init highlights from new spans in the edited text
+  const toks = tokenize(txt);
+  tutorialHighlights[exIdx] = new Set(toks.filter(t => t.isSpan).map(t => t.index));
+  const el = document.getElementById(`tut-es-${exIdx}`);
+  if (el) el.innerHTML = renderTutToks(toks, exIdx, tutorialHighlights[exIdx]);
+  closeTutTextEdit(exIdx);
+  updateTutCheck(exIdx);
+}
+
+let _feedbackTimer = null;
+function showTutFeedback(exIdx, isWrong) {
+  const el = document.getElementById(`tut-feedback-${exIdx}`);
+  if (!el) return;
+  clearTimeout(_feedbackTimer);
+  if (isWrong) {
+    el.textContent = "Hmm, that's not right — try again!";
+    el.style.color = '#b71c1c';
+    el.style.opacity = '1';
+    _feedbackTimer = setTimeout(() => { el.style.opacity = '0'; }, 1800);
+  } else {
+    el.textContent = '';
+    el.style.opacity = '0';
+  }
+}
+
+function isTutCorrect(exIdx) {
+  const ex = TUTORIAL[exIdx];
+  const h  = tutorialHighlights[exIdx];
+  if (ex.checkFn) {
+    return ex.checkFn(tokenize(tutorialTexts[exIdx]), h);
+  }
+  // Index-based (example 1 — fixed text)
+  return [...ex.correctHL].every(i => h.has(i)) &&
+         [...h].every(i => ex.correctHL.has(i));
+}
+
+function updateTutCheck(exIdx) {
+  const el = document.getElementById(`tut-check-${exIdx}`);
+  if (el) {
+    const ok = isTutCorrect(exIdx);
+    el.textContent = ok ? '✓ Correct!' : '';
+    el.style.color = '#2e7d32';
+  }
+  const allDone = TUTORIAL.every((_, i) => isTutCorrect(i));
+  const btn  = document.getElementById('tut-proceed-btn');
+  const hint = document.getElementById('tut-proceed-hint');
+  if (btn)  btn.disabled = !allDone;
+  if (hint) hint.style.display = allDone ? 'none' : 'inline';
+}
+
+// ── TOKENIZER ─────────────────────────────────────────────────────────────────
+function tokenize(raw) {
+  const tokens = [];
+  let i = 0, idx = 0;
+  const s = String(raw || '').replace(/_ *, *_/g, '_,_');
+
+  function canStartSpan(pos) {
+    if (pos === 0) return true;
+    return !/\p{L}/u.test(s[pos - 1]);
+  }
+
+  while (i < s.length) {
+    // Double-underscore span __token__
+    if (s[i] === '_' && s[i+1] === '_' && canStartSpan(i)) {
+      const end = s.indexOf('__', i + 2);
+      if (end !== -1) {
+        const content = s.slice(i+2, end);
+        tokens.push({ text: content, isSpan: true, isDouble: true, index: idx++ });
+        i = end + 2;
+        continue;
+      }
+    }
+    // Single-underscore span _token_
+    if (s[i] === '_' && canStartSpan(i)) {
+      const end = s.indexOf('_', i + 1);
+      if (end !== -1) {
+        const content = s.slice(i+1, end);
+        if (content.trim().includes(' ')) {
+          for (const part of content.split(/(\s+)/)) {
+            if (part === '') continue;
+            if (/^\s+$/.test(part)) tokens.push({ text: part, isSpan: false, isSpace: true });
+            else tokens.push({ text: part, isSpan: true, index: idx++ });
+          }
+        } else {
+          tokens.push({ text: content, isSpan: true, index: idx++ });
+        }
+        i = end + 1;
+        continue;
+      }
+    }
+    // Plain text
+    let j = i + 1;
+    while (j < s.length) {
+      if (s[j] === '_' && canStartSpan(j)) break;
+      j++;
+    }
+    const chunk = s.slice(i, j);
+    for (const part of chunk.split(/(\s+)/)) {
+      if (part === '') continue;
+      if (/^\s+$/.test(part)) {
+        tokens.push({ text: part, isSpan: false, isSpace: true });
+      } else {
+        // Split trailing/leading punctuation off words so e.g. "uh," → "uh" + ","
+        for (const sub of part.split(/([,!?;:.]+)/)) {
+          if (sub === '') continue;
+          tokens.push({ text: sub, isSpan: false, isSpace: false, index: idx++ });
+        }
+      }
+    }
+    i = j;
+  }
+  return tokens;
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Render tokens with interactive highlights for trans side,
+// or read-only for en side. highlights = Set<number> | null (null = use isSpan default)
+function renderTokens(tokens, uttId, slot, side, highlights) {
+  return tokens.map(tok => {
+    if (tok.isSpace) return escHtml(tok.text);
+    const lit = highlights !== null ? highlights.has(tok.index) : tok.isSpan;
+    if (lit) {
+      if (side === 'trans') {
+        return `<span class="hl" onclick="toggleHL('${uttId}','${slot}','${tok.index}')">${escHtml(tok.text)}</span>`;
+      }
+      return `<span class="hl">${escHtml(tok.text)}</span>`;
+    } else {
+      if (side === 'trans') {
+        return `<span class="word" onclick="toggleHL('${uttId}','${slot}','${tok.index}')">${escHtml(tok.text)}</span>`;
+      }
+      return escHtml(tok.text);
+    }
+  }).join('');
+}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const params   = new URLSearchParams(location.search);
+const LANG     = (params.get('lang') || '').toUpperCase();
+const ITEMS    = (INLINE_DATA[LANG] || []);
+const PID_PREFILL = params.get('pid') || '';
+
+let annotatorInfo = null;   // { prolific_id, native_language, fluency, age_range }
+let currentIdx    = 0;      // which item we're annotating
+let edits         = {};     // { uttId: { slot: { highlights: Set, text? } } }
+let saveStatus    = '';     // 'saving' | 'ok' | 'error' | ''
+
+function initEdits() {
+  for (const item of ITEMS) {
+    edits[item.utt_id] = {};
+    for (const slot of SLOTS) {
+      const raw = (item.translations || {})[slot];
+      if (raw === undefined) continue;
+      const toks = tokenize(raw);
+      edits[item.utt_id][slot] = {
+        highlights: new Set(toks.filter(t => t.isSpan).map(t => t.index))
+      };
+    }
+  }
+}
+
+// ── LOCAL STORAGE ─────────────────────────────────────────────────────────────
+function lsKey() {
+  return `uh-mazing:${annotatorInfo?.prolific_id}:${LANG}`;
+}
+function saveToLocal() {
+  const serialised = {};
+  for (const [uttId, slots] of Object.entries(edits)) {
+    serialised[uttId] = {};
+    for (const [slot, e] of Object.entries(slots)) {
+      serialised[uttId][slot] = {
+        highlights: [...e.highlights],
+        text: e.text
+      };
+    }
+  }
+  localStorage.setItem(lsKey(), JSON.stringify({
+    currentIdx,
+    annotatorInfo,
+    edits: serialised,
+    savedAt: Date.now()
+  }));
+}
+function loadFromLocal() {
+  const raw = localStorage.getItem(lsKey());
+  if (!raw) return false;
+  try {
+    const saved = JSON.parse(raw);
+    currentIdx    = saved.currentIdx || 0;
+    annotatorInfo = saved.annotatorInfo || annotatorInfo;
+    for (const [uttId, slots] of Object.entries(saved.edits || {})) {
+      if (!edits[uttId]) continue;
+      for (const [slot, e] of Object.entries(slots)) {
+        if (!edits[uttId][slot]) continue;
+        edits[uttId][slot] = {
+          highlights: new Set(e.highlights || []),
+          text: e.text
+        };
+      }
+    }
+    return true;
+  } catch { return false; }
+}
+
+// ── SCREEN ROUTER ─────────────────────────────────────────────────────────────
+let currentScreen = 'intake';
+function goTo(screen) {
+  currentScreen = screen;
+  render();
+  window.scrollTo(0, 0);
+}
+function render() {
+  document.getElementById('app').innerHTML = SCREENS[currentScreen]();
+}
+
+// ── SCREEN: INTAKE ────────────────────────────────────────────────────────────
+const IS_PREVIEW = !!PID_PREFILL;
+
+function screenIntake() {
+  const langName = LANG_NAMES[LANG] || LANG || '(unknown)';
+  // Preview mode: pre-fill all fields with dummy values
+  const natVal  = IS_PREVIEW ? 'English' : '';
+  const ageVal  = IS_PREVIEW ? '25–34'   : '';
+  const fluPre  = IS_PREVIEW ? 5         : null;
+
+  return `
+  <div class="screen">
+    <h1>Disfluency Annotation</h1>
+    <p>You have been assigned to annotate <strong>${langName}</strong> translations.
+       This should take approximately <strong>20–30 minutes</strong>.</p>
+    <hr>
+    <h2>About you</h2>
+
+    <div class="field">
+      <label for="prolific_id">Prolific ID <span style="color:#c00">*</span></label>
+      <input type="text" id="prolific_id" placeholder="e.g. 5f3c2a..." autocomplete="off" value="${PID_PREFILL}">
+      <div class="error-msg" id="err-pid">Please enter your Prolific ID.</div>
+    </div>
+
+    <div class="field">
+      <label for="native_lang">Native language <span style="color:#c00">*</span></label>
+      <input type="text" id="native_lang" placeholder="e.g. English, Spanish, Hindi…" value="${natVal}">
+      <div class="error-msg" id="err-nat">Please enter your native language.</div>
+    </div>
+
+    <div class="field">
+      <label>Your fluency in <strong>${langName}</strong> <span style="color:#c00">*</span></label>
+      <div class="radio-group" id="fluency-group">
+        ${[1,2,3,4,5].map(n => `
+          <label>
+            <input type="radio" name="fluency" value="${n}" ${fluPre === n ? 'checked' : ''}>
+            <span>${n}</span>
+          </label>`).join('')}
+      </div>
+      <div style="font-size:.78rem;color:#999;margin-top:4px">1 = beginner &nbsp;·&nbsp; 5 = native/near-native</div>
+      <div class="error-msg" id="err-flu">Please select your fluency level.</div>
+    </div>
+
+    <div class="field">
+      <label for="age_range">Age range <span style="color:#c00">*</span></label>
+      <select id="age_range">
+        <option value="">— select —</option>
+        ${['18–24','25–34','35–44','45–54','55+'].map(r =>
+          `<option ${r === ageVal ? 'selected' : ''}>${r}</option>`).join('')}
+      </select>
+      <div class="error-msg" id="err-age">Please select your age range.</div>
+    </div>
+
+    <div class="btn-row right">
+      <button class="btn btn-primary" onclick="submitIntake()">Continue →</button>
+    </div>
+  </div>`;
+}
+
+function submitIntake() {
+  const pid  = document.getElementById('prolific_id').value.trim();
+  const nat  = document.getElementById('native_lang').value.trim();
+  const flu  = document.querySelector('input[name=fluency]:checked')?.value || '';
+  const age  = document.getElementById('age_range').value;
+
+  let ok = true;
+  const show = (id, vis) => document.getElementById(id).classList.toggle('visible', vis);
+  show('err-pid', !pid);   if (!pid)  ok = false;
+  show('err-nat', !nat);   if (!nat)  ok = false;
+  show('err-flu', !flu);   if (!flu)  ok = false;
+  show('err-age', !age);   if (!age)  ok = false;
+  if (!ok) return;
+
+  annotatorInfo = { prolific_id: pid, native_language: nat, fluency: flu, age_range: age };
+
+  // Try to resume from localStorage
+  const resumed = loadFromLocal();
+
+  // Log intake to Sheets (fire-and-forget)
+  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'started' });
+
+  if (resumed && currentIdx > 0) {
+    // Skip straight to annotation
+    goTo('annotate');
+  } else {
+    goTo('instructions');
+  }
+}
+
+// ── SCREEN: INSTRUCTIONS ──────────────────────────────────────────────────────
+function screenInstructions() {
+  return `
+  <div class="screen">
+    <h1>Instructions</h1>
+
+    <div class="instr-section">
+      <h3>Background</h3>
+      <p>These are transcripts of real spoken English conversations. Spoken language
+         contains <strong>disfluencies</strong> — the repetitions, fillers, and false
+         starts that naturally occur when people speak. For example:</p>
+      <p style="margin:10px 0 4px;padding:10px 16px;background:#f9f8fb;border-left:3px solid var(--accent);border-radius:4px">
+        "<span class="hl">I mean</span>, <span class="hl">I</span> — <span class="hl">I</span> think that, <span class="hl">you know</span>, we should…"
+      </p>
+      <p>The highlighted words (<em>I mean, I, you know</em>) are disfluent — they
+         add no meaning and are artefacts of speaking.</p>
+    </div>
+
+    <div class="instr-section">
+      <h3>What you'll see</h3>
+      <p>Each screen shows one utterance: the <strong>English source</strong> on top,
+         with disfluent tokens already highlighted in
+         <span style="background:var(--hl);padding:0 4px;border-radius:3px;font-weight:600">yellow</span>,
+         and a <strong>${LANG_NAMES[LANG] || LANG} translation</strong> below it.</p>
+    </div>
+
+    <div class="instr-section">
+      <h3>Your task</h3>
+      <ul>
+        <li>Look at the <strong>highlighted English words</strong> — these are the disfluencies.</li>
+        <li>Find their equivalents in the <strong>${LANG_NAMES[LANG] || LANG} translation</strong>
+            and make sure they are highlighted too.</li>
+        <li><strong>Click a plain word</strong> to highlight it as disfluent.</li>
+        <li><strong>Click a highlighted word</strong> to remove the highlight if it shouldn't be there.</li>
+        <li>If the translation text is missing words, mistranslated, or otherwise wrong,
+            click <strong>Edit text</strong> to fix it — then re-check the highlights.</li>
+        <li>When the highlights in the translation match the English, click <strong>Save &amp; Next</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="instr-section">
+      <h3>What counts as disfluent</h3>
+      <p>We have already identified the disfluencies in the English using a formal linguistic
+         definition — you don't need to judge whether something is disfluent.
+         <strong>Your only job is to find the equivalent words in the translation and make
+         sure they are highlighted.</strong> Whatever is highlighted in English should have
+         a corresponding highlight in the translation.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goTo('intake')">← Back</button>
+      <button class="btn btn-primary" onclick="goTo('tutorial')">See examples →</button>
+    </div>
+  </div>`;
+}
+
+// ── SCREEN: TUTORIAL ─────────────────────────────────────────────────────────
+function screenTutorial() {
+  initTutorialHighlights();
+
+  const examples = TUTORIAL.map((ex, i) => {
+    const enToks   = tokenize(ex.en);
+    const esToks   = tokenize(tutorialTexts[i]);
+    const enHtml   = renderTutToks(enToks, i, new Set(enToks.filter(t => t.isSpan).map(t => t.index)));
+    const esHtml   = renderTutToks(esToks, i, tutorialHighlights[i]);
+    const enHtmlRO = enHtml.replace(/onclick="[^"]*"/g, '');
+
+    const editArea = ex.needsTextEdit ? `
+      <div style="margin-top:10px">
+        <button class="text-edit-toggle" onclick="openTutTextEdit(${i})">Edit text</button>
+      </div>
+      <div class="text-edit-area" id="tut-edit-area-${i}">
+        <textarea id="tut-edit-ta-${i}">${escHtml(tutorialTexts[i])}</textarea>
+        <div class="text-edit-actions">
+          <button class="btn-sm btn-save-sm" onclick="saveTutTextEdit(${i})">Save</button>
+          <button class="btn-sm btn-cancel-sm" onclick="closeTutTextEdit(${i})">Cancel</button>
+        </div>
+      </div>` : '';
+
+    const hintHtml = ex.hint
+      ? `<p style="font-size:.85rem;color:#666;margin-top:10px;border-top:1px solid #ece7f5;padding-top:10px">${ex.hint}</p>`
+      : '';
+
+    return `
+    <div class="example-card">
+      <div class="ex-label">Practice ${i + 1} — fix the Spanish to match the English</div>
+      <div class="ex-row">
+        <div class="ex-lang">EN</div>
+        <div class="ex-text">${enHtmlRO}</div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-lang">ES</div>
+        <div class="ex-text" id="tut-es-${i}">${esHtml}</div>
+      </div>
+      ${editArea}
+      ${hintHtml}
+      <div style="margin-top:8px;font-size:.85rem;font-weight:600;display:flex;gap:16px;align-items:center">
+        <span id="tut-check-${i}"></span>
+        <span id="tut-feedback-${i}" style="font-weight:500;opacity:0;transition:opacity .4s"></span>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="screen">
+    <h1>Tutorial</h1>
+    <p>The Spanish translations below have incorrect highlights. Click words to fix them
+       so they match the English disfluencies above. When you get it right you'll see a checkmark.</p>
+    ${examples}
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goTo('instructions')">← Back</button>
+      ${IS_PREVIEW ? `<button class="btn btn-secondary" onclick="startAnnotating()" style="opacity:.6;font-size:.85rem">Skip tutorial (test mode)</button>` : ''}
+      <span id="tut-proceed-hint" style="font-size:.85rem;color:#888">
+        Fix both examples to continue.
+      </span>
+      <button class="btn btn-primary" id="tut-proceed-btn" onclick="startAnnotating()" disabled>
+        Start annotating →
+      </button>
+    </div>
+  </div>`;
+}
+
+function startAnnotating() {
+  if (ITEMS.length === 0) {
+    alert('No data found for language: ' + LANG);
+    return;
+  }
+  initEdits();
+  loadFromLocal();   // restore any saved progress
+  goTo('annotate');
+}
+
+// ── TOGGLE HIGHLIGHT (annotation screen) ─────────────────────────────────────
+function toggleHL(uttId, slot, idxArg) {
+  const e   = edits[uttId]?.[slot];
+  if (!e) return;
+  const idx = Number(idxArg);
+  if (e.highlights.has(idx)) e.highlights.delete(idx);
+  else                        e.highlights.add(idx);
+
+  const item = ITEMS.find(i => i.utt_id === uttId);
+  if (!item) return;
+  const raw     = e.text !== undefined ? e.text : (item.translations || {})[slot] || '';
+  const toks    = tokenize(raw);
+  const el      = document.getElementById(`trans-${uttId}-${slot}`);
+  if (el) el.innerHTML = renderTokens(toks, uttId, slot, 'trans', e.highlights);
+}
+
+// ── TEXT EDITING ──────────────────────────────────────────────────────────────
+function openTextEdit(uttId, slot) {
+  document.getElementById(`edit-area-${uttId}-${slot}`).classList.add('open');
+}
+function closeTextEdit(uttId, slot) {
+  document.getElementById(`edit-area-${uttId}-${slot}`).classList.remove('open');
+}
+function saveTextEdit(uttId, slot) {
+  const ta   = document.getElementById(`edit-ta-${uttId}-${slot}`);
+  const text = ta.value;
+  const e    = edits[uttId][slot];
+  e.text     = text;
+  // Re-init highlights for new token positions
+  const toks = tokenize(text);
+  e.highlights = new Set(toks.filter(t => t.isSpan).map(t => t.index));
+  const el = document.getElementById(`trans-${uttId}-${slot}`);
+  if (el) el.innerHTML = renderTokens(toks, uttId, slot, 'trans', e.highlights);
+  closeTextEdit(uttId, slot);
+}
+function resetSlot(uttId, slot) {
+  const item = ITEMS.find(i => i.utt_id === uttId);
+  if (!item) return;
+  const raw  = (item.translations || {})[slot] || '';
+  const toks = tokenize(raw);
+  edits[uttId][slot] = { highlights: new Set(toks.filter(t => t.isSpan).map(t => t.index)) };
+  const e    = edits[uttId][slot];
+  const el   = document.getElementById(`trans-${uttId}-${slot}`);
+  if (el) el.innerHTML = renderTokens(toks, uttId, slot, 'trans', e.highlights);
+  const ta   = document.getElementById(`edit-ta-${uttId}-${slot}`);
+  if (ta) ta.value = raw;
+  closeTextEdit(uttId, slot);
+}
+
+// ── SCREEN: ANNOTATE ──────────────────────────────────────────────────────────
+function screenAnnotate() {
+  if (currentIdx >= ITEMS.length) {
+    goTo('complete');
+    return '';
+  }
+
+  const item    = ITEMS[currentIdx];
+  const isRTL   = RTL_LANGS.has(LANG);
+  const uttEdits = edits[item.utt_id] || {};
+
+  const enToks  = tokenize(item.en);
+  const enHtml  = renderTokens(enToks, item.utt_id, null, 'en', null);
+
+  const availSlots = SLOTS.filter(s => (item.translations || {})[s]);
+
+  const transRows = availSlots.map(slot => {
+    const e        = uttEdits[slot];
+    const raw      = e?.text !== undefined ? e.text : (item.translations || {})[slot] || '';
+    const toks     = tokenize(raw);
+    const hlSet    = e ? e.highlights : null;
+    const transHtml = renderTokens(toks, item.utt_id, slot, 'trans', hlSet);
+    const rtlClass  = isRTL ? ' rtl' : '';
+    return `
+      <div style="margin-bottom:16px">
+        <div class="trans-label-row">
+          <span class="slot-tag">${slot}</span>
+          <button class="text-edit-toggle" onclick="openTextEdit('${item.utt_id}','${slot}')">Edit text</button>
+          <button class="text-edit-toggle" onclick="resetSlot('${item.utt_id}','${slot}')">Reset</button>
+        </div>
+        <div class="trans-text${rtlClass}" id="trans-${item.utt_id}-${slot}">${transHtml}</div>
+        <div class="text-edit-area" id="edit-area-${item.utt_id}-${slot}">
+          <textarea id="edit-ta-${item.utt_id}-${slot}" class="${rtlClass.trim()}">${escHtml(raw)}</textarea>
+          <div class="text-edit-actions">
+            <button class="btn-sm btn-save-sm" onclick="saveTextEdit('${item.utt_id}','${slot}')">Save</button>
+            <button class="btn-sm btn-cancel-sm" onclick="closeTextEdit('${item.utt_id}','${slot}')">Cancel</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const pct = Math.round((currentIdx / ITEMS.length) * 100);
+
+  return `
+  <div class="screen">
+    <div class="progress-wrap">
+      <div class="progress-label">Utterance ${currentIdx + 1} of ${ITEMS.length}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    </div>
+
+    <div class="utt-card">
+      <div class="utt-card-header">${escHtml(item.utt_id)}</div>
+      <div class="utt-card-body">
+        <div class="side-label">English (source)</div>
+        <div class="en-text">${enHtml}</div>
+        <div class="side-label">${LANG_NAMES[LANG] || LANG} translation${availSlots.length > 1 ? 's' : ''}</div>
+        ${transRows}
+      </div>
+    </div>
+
+    <div class="qc-checklist" style="margin-top:20px;grid-template-columns:1fr">
+      <label><input type="checkbox" id="chk0"> All highlighted English words have an equivalent highlighted in the translation</label>
+      <label><input type="checkbox" id="chk1"> No words are missing from the translation</label>
+    </div>
+
+    <div class="btn-row">
+      ${currentIdx > 0 ? `<button class="btn btn-secondary" onclick="prevItem()">← Back</button>` : ''}
+      <span class="save-status" id="save-status"></span>
+      <span class="checklist-warn" id="checklist-warn"></span>
+      <button class="btn btn-primary" id="save-next-btn" style="margin-left:auto" onclick="saveAndNext()">
+        ${currentIdx + 1 < ITEMS.length ? 'Save &amp; Next →' : 'Submit &amp; Finish ✓'}
+      </button>
+    </div>
+  </div>`;
+}
+
+function prevItem() {
+  if (currentIdx > 0) { currentIdx--; render(); }
+}
+
+
+// ── QC (AI QUALITY CHECK) ─────────────────────────────────────────────────────
+let _pendingPayloads = null;
+let _pendingFeedback = null;
+
+function buildPayloads(item) {
+  const uttEdits = edits[item.utt_id] || {};
+  const payloads = [];
+  for (const slot of SLOTS) {
+    const raw = (item.translations || {})[slot];
+    if (raw === undefined) continue;
+    const e = uttEdits[slot];
+    if (!e) continue;
+    const origToks  = tokenize(e.text !== undefined ? e.text : raw);
+    const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
+    payloads.push({
+      type: 'annotation', lang: LANG, ...annotatorInfo,
+      utt_id:    item.utt_id,
+      slot,
+      removed:   [...origSpans].filter(i => !e.highlights.has(i)),
+      added:     [...e.highlights].filter(i => !origSpans.has(i)),
+      text_edit: e.text !== undefined ? e.text : ''
+    });
+  }
+  return payloads;
+}
+
+function buildQCPrompt(item) {
+  const langName  = LANG_NAMES[LANG] || LANG;
+  const uttEdits  = edits[item.utt_id] || {};
+
+  const slotLines = SLOTS
+    .filter(s => (item.translations || {})[s])
+    .map(s => {
+      const e   = uttEdits[s];
+      const raw = e?.text !== undefined ? e.text : (item.translations || {})[s] || '';
+      const toks = tokenize(raw);
+      const rendered = toks
+        .filter(t => !t.isSpace)
+        .map(t => (e && e.highlights.has(t.index)) ? `_${t.text}_` : t.text)
+        .join(' ');
+      return `  ${s}: ${rendered}`;
+    }).join('\n');
+
+  return `You are quality-checking a disfluency annotation task.
+
+The annotator saw an English utterance with disfluent words marked in underscores (e.g. _I_ _mean_ _,_ _uh_), and had to find the equivalent disfluent words in the ${langName} translation and mark them the same way.
+
+English (disfluencies in underscores):
+  ${item.en}
+
+${langName} translation(s) — annotator's highlighted words shown in underscores:
+${slotLines}
+
+Check:
+1. Do the highlighted translation words correspond to the English disfluencies (same count and type — fillers, repetitions, false starts, separating commas)?
+2. Are there obvious missing or extra highlights?
+3. Does the translation text seem complete?
+
+Reply in 1–3 sentences. Start with "Looks correct." if everything is fine. If there are issues, be specific.`;
+}
+
+function callQCApi(item) {
+  // Proxy through Apps Script (JSONP GET) so the OpenAI key stays server-side
+  return new Promise((resolve, reject) => {
+    const cbName = '_qc_' + Date.now();
+    const script = document.createElement('script');
+    const timer  = setTimeout(() => { cleanup(); reject(new Error('QC timeout')); }, 25000);
+
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[cbName];
+      script.remove();
+    }
+
+    window[cbName] = (data) => {
+      cleanup();
+      if (data.status === 'ok') resolve(data.feedback);
+      else reject(new Error(data.message || 'QC error'));
+    };
+    script.onerror = () => { cleanup(); reject(new Error('network error')); };
+
+    // Serialize translation slots with current highlights as _word_ marks
+    const uttEdits = edits[item.utt_id] || {};
+    const params   = new URLSearchParams({ callback: cbName, type: 'qc_check', lang: LANG, model: QC_MODEL, en: item.en });
+    for (const s of SLOTS) {
+      if (!(item.translations || {})[s]) continue;
+      const e   = uttEdits[s];
+      const raw = e?.text !== undefined ? e.text : item.translations[s] || '';
+      const toks = tokenize(raw);
+      const rendered = toks.filter(t => !t.isSpace)
+        .map(t => (e && e.highlights.has(t.index)) ? `_${t.text}_` : t.text)
+        .join(' ');
+      params.set(s.toLowerCase(), rendered);
+    }
+
+    script.src = APPS_SCRIPT_URL + '?' + params.toString();
+    document.head.appendChild(script);
+  });
+}
+
+async function saveAndNext() {
+  // Gate: all checkboxes must be ticked
+  if (![0,1].every(i => document.getElementById('chk'+i)?.checked)) {
+    const btn = document.getElementById('save-next-btn');
+    const warn = document.getElementById('checklist-warn');
+    btn.classList.remove('btn-blink');
+    void btn.offsetWidth; // force reflow to restart animation
+    btn.classList.add('btn-blink');
+    if (warn) { warn.textContent = 'Please check all boxes above first.'; }
+    btn.addEventListener('animationend', () => btn.classList.remove('btn-blink'), { once: true });
+    return;
+  }
+
+  const item     = ITEMS[currentIdx];
+  const statusEl = document.getElementById('save-status');
+  const saveBtn  = document.getElementById('save-next-btn');
+
+  if (saveBtn) saveBtn.disabled = true;
+  statusEl.textContent = '';
+
+  _pendingPayloads = buildPayloads(item);
+
+  // Show loading panel immediately
+  const panel = document.createElement('div');
+  panel.id        = 'qc-panel';
+  panel.className = 'qc-panel';
+  panel.innerHTML = `
+    <div class="qc-header">🤖 AI Review</div>
+    <div class="qc-thinking">
+      <div class="qc-dots"><span></span><span></span><span></span></div>
+      Reviewing your annotation…
+    </div>`;
+  const btnRow = document.querySelector('#app .btn-row');
+  if (btnRow) { btnRow.style.display = 'none'; btnRow.insertAdjacentElement('afterend', panel); }
+
+  try {
+    _pendingFeedback = await callQCApi(item);
+  } catch (err) {
+    console.warn('QC error:', err);
+    _pendingFeedback = '(AI review unavailable — ' + err.message + ')';
+  }
+
+  // Swap loading content for real feedback
+  const isOK = /^looks correct/i.test(_pendingFeedback);
+  panel.innerHTML = `
+    <div class="qc-header">🤖 AI Review</div>
+    <div class="qc-feedback ${isOK ? 'qc-ok' : 'qc-warn'}">${escHtml(_pendingFeedback)}</div>
+    <label for="qc-note">We encourage you to disagree with the AI feedback if it is wrong. If you disagree and choose to disregard the feedback, you <strong>MUST</strong> explain the decision here so we can understand it:</label>
+    <textarea id="qc-note" placeholder="Leave blank if you agree with the AI, or explain your reasoning here…"></textarea>
+    <div class="qc-btn-row">
+      <button class="btn btn-secondary" onclick="dismissQCPanel()">← Edit annotation</button>
+      <button class="btn btn-primary" style="margin-left:auto" onclick="proceedFromQC()">
+        ${currentIdx + 1 < ITEMS.length ? 'Proceed →' : 'Submit ✓'}
+      </button>
+    </div>`;
+}
+
+function dismissQCPanel() {
+  document.getElementById('qc-panel')?.remove();
+  const btnRow = document.querySelector('#app .btn-row');
+  if (btnRow) btnRow.style.display = '';
+  const saveBtn = document.getElementById('save-next-btn');
+  if (saveBtn) saveBtn.disabled = false;
+  const statusEl = document.getElementById('save-status');
+  if (statusEl) statusEl.textContent = '';
+}
+
+async function proceedFromQC() {
+  const note    = document.getElementById('qc-note')?.value.trim() || '';
+  const checked = [0,1].filter(i => document.getElementById('chk'+i)?.checked);
+  const checkInfo = `checklist:${checked.join(',') || 'none'}`;
+  await doSave(_pendingFeedback, note ? note + ' | ' + checkInfo : checkInfo);
+}
+
+async function doSave(qcFeedback, qcNote) {
+  const statusEl = document.getElementById('save-status');
+  if (statusEl) { statusEl.textContent = 'Saving…'; statusEl.className = 'save-status'; }
+
+  const enriched = (_pendingPayloads || []).map(p => ({
+    ...p,
+    qc_feedback: qcFeedback || '',
+    qc_note:     qcNote     || '',
+  }));
+
+  try {
+    await Promise.all(enriched.map(p => post(p)));
+    if (statusEl) { statusEl.textContent = 'Saved ✓'; statusEl.className = 'save-status ok'; }
+  } catch {
+    if (statusEl) { statusEl.textContent = 'Save failed — continuing locally'; statusEl.className = 'save-status err'; }
+  }
+
+  _pendingPayloads = null;
+  _pendingFeedback = null;
+  saveToLocal();
+  currentIdx++;
+  render();
+}
+
+// ── SCREEN: COMPLETE ──────────────────────────────────────────────────────────
+function screenComplete() {
+  // Log completion to Sheets
+  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
+
+  return `
+  <div class="screen" style="text-align:center;padding:56px 48px">
+    <div style="font-size:2.5rem;margin-bottom:16px">🎉</div>
+    <h1>You're done!</h1>
+    <p style="margin-top:12px">Thank you for completing the annotation.
+       Your responses have been recorded.</p>
+    <p style="margin-top:6px">Please return to Prolific using your completion code:</p>
+    <div class="completion-code">${COMPLETION_CODE}</div>
+    <div style="margin-top:24px">
+      <a href="${PROLIFIC_RETURN_URL}" class="btn btn-primary" style="text-decoration:none">
+        Return to Prolific →
+      </a>
+    </div>
+  </div>`;
+}
+
+// ── SCREENS MAP ───────────────────────────────────────────────────────────────
+const SCREENS = {
+  intake:       screenIntake,
+  instructions: screenInstructions,
+  tutorial:     screenTutorial,
+  annotate:     screenAnnotate,
+  complete:     screenComplete,
+};
+
+// ── HTTP ──────────────────────────────────────────────────────────────────────
+function post(data) {
+  // Apps Script requires no-cors; we can't read response but data is written
+  return fetch(APPS_SCRIPT_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+    body:    JSON.stringify(data),
+    mode:    'no-cors',
+  }).catch(() => {});  // silently fail — localStorage is the backup
+}
+
+// ── REPORT AN ISSUE ───────────────────────────────────────────────────────────
+function openReportModal() {
+  document.getElementById('report-msg').value = '';
+  document.getElementById('report-status').textContent = '';
+  document.getElementById('report-modal').classList.add('open');
+  setTimeout(() => document.getElementById('report-msg').focus(), 50);
+}
+function closeReportModal(e) {
+  // If called from overlay click, only close when clicking the backdrop itself
+  if (e && e.target !== document.getElementById('report-modal')) return;
+  document.getElementById('report-modal').classList.remove('open');
+}
+async function submitReport() {
+  const msg = document.getElementById('report-msg').value.trim();
+  const statusEl = document.getElementById('report-status');
+  if (!msg) { statusEl.textContent = 'Please describe the issue first.'; return; }
+
+  statusEl.textContent = 'Sending…';
+
+  const info = annotatorInfo || {};
+  await post({
+    type:            'report',
+    lang:            LANG,
+    prolific_id:     info.prolific_id     || '',
+    native_language: info.native_language || '',
+    fluency:         info.fluency         || '',
+    age_range:       info.age_range       || '',
+    screen:          currentScreen,
+    utt_id:          (currentScreen === 'annotate' && ITEMS[currentIdx]) ? ITEMS[currentIdx].utt_id : '',
+    item_index:      currentScreen === 'annotate' ? String(currentIdx) : '',
+    message:         msg,
+  });
+
+  statusEl.style.color = '#2e7d32';
+  statusEl.textContent = 'Sent — thank you!';
+  setTimeout(() => document.getElementById('report-modal').classList.remove('open'), 1600);
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+if (!LANG || !INLINE_DATA[LANG]) {
+  document.getElementById('app').innerHTML = `
+    <div class="screen">
+      <h1 style="color:#c00">Missing language parameter</h1>
+      <p>This link is missing a <code>?lang=XX</code> parameter.
+         Please use the link provided to you by the study.</p>
+      <p>Valid languages: ${Object.keys(LANG_NAMES).join(', ')}</p>
+    </div>`;
+} else {
+  render();
+}
+</script>
+</body>
+</html>

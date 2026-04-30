@@ -76,6 +76,34 @@ def make_prompt(base: str, noextra: bool) -> str:
     return base + NOEXTRA_SUFFIX if noextra else base
 
 
+def _load_translation_source(input_csv: str) -> pd.DataFrame:
+    """Read the Switchboard-derived English source and normalize columns to
+    the names this script expects (ID, EN_fluent, EN_disfluent).
+
+    Accepts either:
+      * data/translation-dataset-with-timestamps.csv  (file/speaker/turn,
+        text_fluent, text_disfluent) — the canonical layout, or
+      * any CSV that already has ID/EN_fluent/EN_disfluent (passthrough).
+    """
+    df = pd.read_csv(input_csv)
+    if "ID" not in df.columns and {"file", "speaker", "turn"}.issubset(df.columns):
+        df["ID"] = (
+            df["file"].astype(str).str.strip()
+            + "_"
+            + df["speaker"].astype(str).str.strip()
+            + "_"
+            + df["turn"].astype(str).str.strip()
+        )
+    rename_map = {}
+    if "EN_fluent" not in df.columns and "text_fluent" in df.columns:
+        rename_map["text_fluent"] = "EN_fluent"
+    if "EN_disfluent" not in df.columns and "text_disfluent" in df.columns:
+        rename_map["text_disfluent"] = "EN_disfluent"
+    if rename_map:
+        df = df.rename(columns=rename_map)
+    return df
+
+
 def id_to_audio_filename(value: str) -> str:
     text = str(value).strip()
     text = re.sub(r"\.wav$", "", text, flags=re.IGNORECASE)
@@ -315,13 +343,13 @@ def main():
             )
 
     if args.mode == "text":
-        input_csv = args.input_csv or "./data/uh-mazing.csv"
-        df_base = pd.read_csv(input_csv)
+        input_csv = args.input_csv or "./data/translation-dataset-with-timestamps.csv"
+        df_base = _load_translation_source(input_csv)
         run(build_text_conditions(args.noextra))
 
     elif args.mode == "audio":
-        input_csv = args.input_csv or "./data/uh-mazing.csv"
-        df_base = pd.read_csv(input_csv)
+        input_csv = args.input_csv or "./data/translation-dataset-with-timestamps.csv"
+        df_base = _load_translation_source(input_csv)
         if "ID" not in df_base.columns:
             raise RuntimeError(f"Missing 'ID' column in {input_csv}")
         df_base["_audio_filename"] = df_base["ID"].map(id_to_audio_filename)

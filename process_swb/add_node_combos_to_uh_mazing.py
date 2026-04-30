@@ -1,5 +1,6 @@
 """
-Append disfluency-node combo text columns to uh-mazing.csv.
+Append disfluency-node combo text columns to the Switchboard translation
+source CSV.
 
 This keeps all non-excluded node content per combo:
 - edited_nodes_only: excludes INTJ + PRN
@@ -9,6 +10,10 @@ This keeps all non-excluded node content per combo:
 - intj_prn: excludes EDITED
 - edited_prn: excludes INTJ
 - edited_prn_intj: excludes nothing
+
+Reads the canonical Switchboard-derived English source
+(data/translation-dataset-with-timestamps.csv), synthesizes the `ID` column
+from file/speaker/turn, and writes a CSV enriched with the node-combo text.
 
 Usage:
     python process_swb/add_node_combos_to_uh_mazing.py
@@ -22,9 +27,9 @@ import re
 import pandas as pd
 
 
-DEFAULT_INPUT_CSV = Path("data/uh-mazing.csv")
+DEFAULT_INPUT_CSV = Path("data/translation-dataset-with-timestamps.csv")
 DEFAULT_MRG_ROOT = Path("dres/data/treebank_3/parsed/mrg/swbd")
-DEFAULT_OUTPUT_CSV = Path("data/uh-mazing-with-node-combos.csv")
+DEFAULT_OUTPUT_CSV = Path("data/translation-source-with-node-combos.csv")
 
 
 def _ensure_import_path() -> None:
@@ -159,6 +164,18 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     df = pd.read_csv(args.input_csv)
+    # If the source uses the Switchboard column layout (file/speaker/turn),
+    # synthesize the ID column expected by add_combo_columns. This lets the
+    # script work directly on data/translation-dataset-with-timestamps.csv
+    # without an intermediate uh-mazing.csv file.
+    if "ID" not in df.columns and {"file", "speaker", "turn"}.issubset(df.columns):
+        df["ID"] = (
+            df["file"].astype(str).str.strip()
+            + "_"
+            + df["speaker"].astype(str).str.strip()
+            + "_"
+            + df["turn"].astype(str).str.strip()
+        )
     out = add_combo_columns(df, args.mrg_root)
     args.output_csv.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.output_csv, index=False)

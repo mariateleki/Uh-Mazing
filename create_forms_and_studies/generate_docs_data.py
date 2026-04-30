@@ -18,9 +18,9 @@ from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parent.parent
 FILTERED_CSV = ROOT / "data" / "prolific_responses_filtered.csv"
-EN_SOURCE    = ROOT / "round2" / "data.json"
+EN_SOURCE    = ROOT / "docs" / "round2" / "data.json"
 OUT_DATA_JS  = ROOT / "docs" / "data.js"
-OUT_JSON     = ROOT / "round2" / "data.json"
+OUT_JSON     = ROOT / "docs" / "round2" / "data.json"
 
 UID_RE = re.compile(r"^([A-Z]{2,3})_(T\d)$")
 QUESTION_RE = re.compile(r"\[(sw\d+_[AB]_\d+)\]")
