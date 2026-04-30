@@ -144,6 +144,7 @@
       <tr>
         <th>Prolific ID</th>
         <th>Lang</th>
+        <th>Part</th>
         <th>Native lang</th>
         <th>Fluency</th>
         <th>Age</th>
@@ -153,7 +154,7 @@
       </tr>
     </thead>
     <tbody id="tableBody">
-      <tr><td colspan="8" style="color:#aaa;text-align:center;padding:24px">No data loaded yet.</td></tr>
+      <tr><td colspan="9" style="color:#aaa;text-align:center;padding:24px">No data loaded yet.</td></tr>
     </tbody>
   </table>
 </div>
@@ -170,6 +171,13 @@ const LANG_TOTALS = {};
 for (const [lang, items] of Object.entries(INLINE_DATA)) {
   LANG_TOTALS[lang] = items.length;
 }
+// Annotators do half a language at a time. Mirror PART_SIZE in annotate.html.
+const PART_SIZE = 40;
+function denomFor(lang, part) {
+  // 40 if a specific part is set, otherwise the full language total.
+  if (part === 1 || part === 2) return PART_SIZE;
+  return LANG_TOTALS[lang] || '?';
+}
 
 // Pre-fill script URL from query param ?script=...
 const params = new URLSearchParams(location.search);
@@ -180,31 +188,52 @@ if (params.get('script')) {
 // ── LINKS ─────────────────────────────────────────────────────────────────────
 const BASE_URL = location.href.replace(/admin\.html.*$/, 'annotate.html');
 
-function annotatorUrl(lang, pid) {
-  return BASE_URL + '?lang=' + lang + (pid ? '&pid=' + pid : '');
+function annotatorUrl(lang, opts = {}) {
+  const qs = new URLSearchParams();
+  qs.set('lang', lang);
+  if (opts.part) qs.set('part', String(opts.part));
+  if (opts.pid)  qs.set('pid', opts.pid);
+  return BASE_URL + '?' + qs.toString();
 }
 
 function renderLinks() {
   const grid = document.getElementById('linksGrid');
   grid.innerHTML = Object.entries(LANG_NAMES).map(([lang, name]) => {
-    const liveUrl = annotatorUrl(lang);
-    const testUrl = annotatorUrl(lang, 'TESTXXX');
     const total   = LANG_TOTALS[lang] || '?';
+    const p1Live  = annotatorUrl(lang, { part: 1 });
+    const p2Live  = annotatorUrl(lang, { part: 2 });
+    const p1Test  = annotatorUrl(lang, { part: 1, pid: 'TESTXXX' });
+    const p2Test  = annotatorUrl(lang, { part: 2, pid: 'TESTXXX' });
+    const allUrl  = annotatorUrl(lang);  // back-compat / preview, all 80
     return `
     <div class="link-card">
       <div class="lc-header">
         <span class="lc-lang">${lang} — ${name}</span>
-        <span class="lc-count">${total} utterances</span>
+        <span class="lc-count">${total} utts · ${PART_SIZE}/part</span>
       </div>
       <div class="link-row">
-        <span class="tag tag-live">live</span>
-        <a href="${liveUrl}" target="_blank">${liveUrl}</a>
-        <button class="copy-btn" onclick="copyLink(this,'${liveUrl}')">Copy</button>
+        <span class="tag tag-live">part 1 live</span>
+        <a href="${p1Live}" target="_blank">${p1Live}</a>
+        <button class="copy-btn" onclick="copyLink(this,'${p1Live}')">Copy</button>
       </div>
       <div class="link-row">
-        <span class="tag tag-test">test</span>
-        <a href="${testUrl}" target="_blank">${testUrl}</a>
-        <button class="copy-btn" onclick="copyLink(this,'${testUrl}')">Copy</button>
+        <span class="tag tag-live">part 2 live</span>
+        <a href="${p2Live}" target="_blank">${p2Live}</a>
+        <button class="copy-btn" onclick="copyLink(this,'${p2Live}')">Copy</button>
+      </div>
+      <div class="link-row">
+        <span class="tag tag-test">part 1 test</span>
+        <a href="${p1Test}" target="_blank">${p1Test}</a>
+        <button class="copy-btn" onclick="copyLink(this,'${p1Test}')">Copy</button>
+      </div>
+      <div class="link-row">
+        <span class="tag tag-test">part 2 test</span>
+        <a href="${p2Test}" target="_blank">${p2Test}</a>
+        <button class="copy-btn" onclick="copyLink(this,'${p2Test}')">Copy</button>
+      </div>
+      <div class="link-row" style="opacity:.6;font-size:.78rem">
+        <span class="tag" style="background:#eee;color:#666">preview all</span>
+        <a href="${allUrl}" target="_blank">${allUrl}</a>
       </div>
     </div>`;
   }).join('');
@@ -260,58 +289,79 @@ function setStatus(msg, isErr = false) {
   el.className = 'status' + (isErr ? ' err' : '');
 }
 
+function partLabel(part) {
+  if (part === 1 || part === '1') return 'p1';
+  if (part === 2 || part === '2') return 'p2';
+  return 'all';
+}
+
 function renderData(annotators) {
-  // ── Summary cards ──
-  const byLang = {};
+  // ── Summary cards: one card per (lang, part) bucket ──
+  // Keys look like "ZH:p1", "ZH:p2", "ZH:all" so each Prolific study is
+  // tracked separately even when the same worker did both halves.
+  const buckets = {};
   for (const a of annotators) {
-    if (!byLang[a.lang]) byLang[a.lang] = { started: 0, completed: 0, annotations: 0 };
-    byLang[a.lang][a.status === 'completed' ? 'completed' : 'started']++;
-    byLang[a.lang].annotations += a.annotations_submitted || 0;
+    const key = a.lang + ':' + partLabel(a.part);
+    if (!buckets[key]) buckets[key] = {
+      lang: a.lang, part: a.part, started: 0, completed: 0,
+      annotations: 0, n_annotators: 0
+    };
+    buckets[key][a.status === 'completed' ? 'completed' : 'started']++;
+    buckets[key].annotations += a.annotations_submitted || 0;
+    buckets[key].n_annotators++;
   }
 
   const grid = document.getElementById('summaryGrid');
-  grid.innerHTML = Object.entries(byLang).sort().map(([lang, d]) => {
-    const total   = LANG_TOTALS[lang] || '?';
-    const pctDone = typeof total === 'number'
-      ? Math.round((d.completed / Math.max(1, annotators.filter(a => a.lang === lang).length)) * 100)
-      : 0;
-    return `
-    <div class="summary-card">
-      <div class="lang">${lang} — ${LANG_NAMES[lang] || ''}</div>
-      <div class="counts">
-        ${d.completed} completed · ${d.started} in progress<br>
-        ${d.annotations} annotations · ${total} utts/lang
-      </div>
-      <div class="bar"><div class="bar-fill" style="width:${pctDone}%"></div></div>
-    </div>`;
-  }).join('');
+  grid.innerHTML = Object.entries(buckets)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, d]) => {
+      const partTag = d.part === 1 || d.part === '1' ? 'part 1'
+                    : d.part === 2 || d.part === '2' ? 'part 2'
+                    : 'all';
+      const denom = denomFor(d.lang, d.part);
+      const pctDone = typeof denom === 'number'
+        ? Math.round((d.completed / Math.max(1, d.n_annotators)) * 100) : 0;
+      return `
+      <div class="summary-card">
+        <div class="lang">${d.lang} — ${LANG_NAMES[d.lang] || ''} <span style="color:#999;font-weight:400">· ${partTag}</span></div>
+        <div class="counts">
+          ${d.completed} completed · ${d.started} in progress<br>
+          ${d.annotations} annotations · ${denom} utts/annotator
+        </div>
+        <div class="bar"><div class="bar-fill" style="width:${pctDone}%"></div></div>
+      </div>`;
+    }).join('');
 
   // ── Table ──
   const tbody = document.getElementById('tableBody');
   if (annotators.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="8" style="color:#aaa;text-align:center;padding:24px">No annotations yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" style="color:#aaa;text-align:center;padding:24px">No annotations yet.</td></tr>';
     return;
   }
 
   tbody.innerHTML = annotators
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     .map(a => {
-      const total   = LANG_TOTALS[a.lang] || '?';
-      const pct     = typeof total === 'number'
-        ? Math.round(((a.annotations_submitted || 0) / total) * 100) : '?';
-      const badge   = a.status === 'completed'
+      const denom = denomFor(a.lang, a.part);
+      const pct   = typeof denom === 'number'
+        ? Math.round(((a.annotations_submitted || 0) / denom) * 100) : '?';
+      const badge = a.status === 'completed'
         ? '<span class="badge badge-completed">completed</span>'
         : '<span class="badge badge-started">in progress</span>';
-      const date    = a.timestamp ? new Date(a.timestamp).toLocaleString() : '—';
+      const date  = a.timestamp ? new Date(a.timestamp).toLocaleString() : '—';
+      const partCell = (a.part === 1 || a.part === '1') ? '1'
+                     : (a.part === 2 || a.part === '2') ? '2'
+                     : '<span style="color:#aaa">—</span>';
       return `
       <tr>
         <td><code style="font-size:.82rem">${esc(a.prolific_id)}</code></td>
         <td><strong>${esc(a.lang)}</strong></td>
+        <td>${partCell}</td>
         <td>${esc(a.native_language)}</td>
         <td>${esc(a.fluency)}</td>
         <td>${esc(a.age_range)}</td>
         <td>${badge}</td>
-        <td class="prog">${a.annotations_submitted || 0} / ${total} (${pct}%)</td>
+        <td class="prog">${a.annotations_submitted || 0} / ${denom} (${pct}%)</td>
         <td style="font-size:.78rem;color:#aaa">${date}</td>
       </tr>`;
     }).join('');
