@@ -53,10 +53,11 @@ function doPost(e) {
       const sheet = getOrCreateSheet('Responses', [
         'timestamp', 'prolific_id', 'lang',
         'native_language', 'fluency', 'age_range',
-        'utt_id', 'slot', 'removed', 'added', 'text_edit'
+        'utt_id', 'slot', 'removed', 'added',
+        'text_edit', 'text_annotated', 'no_changes'
       ]);
-      // Append by header lookup so we don't disturb legacy 'part'/'qc_*' cols
-      // in older sheets — those just stay blank for new rows.
+      // Append by header lookup so legacy columns (part, qc_*) in older
+      // sheets stay blank instead of getting clobbered.
       const row = new Array(sheet.getLastColumn()).fill('');
       const set = (h, v) => { const c = colIdx(sheet, h); if (c) row[c - 1] = v; };
       set('timestamp',       new Date().toISOString());
@@ -69,7 +70,9 @@ function doPost(e) {
       set('slot',            data.slot);
       set('removed',         JSON.stringify(data.removed || []));
       set('added',           JSON.stringify(data.added || []));
-      set('text_edit',       data.text_edit || '');
+      set('text_edit',       data.text_edit      || '');
+      set('text_annotated',  data.text_annotated || '');
+      set('no_changes',      data.no_changes ? 'TRUE' : 'FALSE');
       sheet.appendRow(row);
     }
 

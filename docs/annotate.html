@@ -580,6 +580,7 @@ const PID_PREFILL = params.get('pid') || '';
 let annotatorInfo = null;   // { prolific_id, native_language, fluency, age_range }
 let currentIdx    = 0;      // which item we're annotating
 let edits         = {};     // { uttId: { slot: { highlights: Set, text? } } }
+let noChangesFlags = {};    // { uttId: bool } — worker confirmed default highlights are correct
 let saveStatus    = '';     // 'saving' | 'ok' | 'error' | ''
 
 function initEdits() {
@@ -615,6 +616,7 @@ function saveToLocal() {
     currentIdx,
     annotatorInfo,
     edits: serialised,
+    noChangesFlags,
     savedAt: Date.now()
   }));
 }
@@ -625,6 +627,7 @@ function loadFromLocal() {
     const saved = JSON.parse(raw);
     currentIdx    = saved.currentIdx || 0;
     annotatorInfo = saved.annotatorInfo || annotatorInfo;
+    noChangesFlags = saved.noChangesFlags || {};
     for (const [uttId, slots] of Object.entries(saved.edits || {})) {
       if (!edits[uttId]) continue;
       for (const [slot, e] of Object.entries(slots)) {
@@ -637,6 +640,38 @@ function loadFromLocal() {
     }
     return true;
   } catch { return false; }
+}
+
+// ── COMPLETION TRACKING ───────────────────────────────────────────────────────
+// An item counts as "completed" if the worker either marked "no changes"
+// OR made any edit (highlight differs from default, or text was changed).
+function _origSpansFor(item, slot) {
+  const raw = (item.translations || {})[slot];
+  if (raw === undefined) return null;
+  const toks = tokenize(raw);
+  return new Set(toks.filter(t => t.isSpan).map(t => t.index));
+}
+function hasEdits(uttId) {
+  const item = ITEMS.find(i => i.utt_id === uttId);
+  if (!item) return false;
+  for (const slot of SLOTS) {
+    const e = edits[uttId]?.[slot];
+    if (!e) continue;
+    if (e.text !== undefined) return true;
+    const orig = _origSpansFor(item, slot);
+    if (!orig) continue;
+    if (e.highlights.size !== orig.size) return true;
+    for (const i of e.highlights) if (!orig.has(i)) return true;
+  }
+  return false;
+}
+function isItemCompleted(uttId) {
+  return noChangesFlags[uttId] === true || hasEdits(uttId);
+}
+function progressStats() {
+  let completed = 0;
+  for (const item of ITEMS) if (isItemCompleted(item.utt_id)) completed++;
+  return { current: currentIdx, total: ITEMS.length, completed };
 }
 
 // ── SCREEN ROUTER ─────────────────────────────────────────────────────────────
@@ -1069,13 +1104,33 @@ function screenAnnotate() {
       </div>`;
   }).join('');
 
-  const pct = Math.round((currentIdx / ITEMS.length) * 100);
+  const stats   = progressStats();
+  const pct     = Math.round((stats.completed / stats.total) * 100);
+  const noChg   = noChangesFlags[item.utt_id] === true;
+  const itemDone = isItemCompleted(item.utt_id);
+
+  // Jump dropdown — every item, with ✓ marker for completed items
+  const jumpOptions = ITEMS.map((it, idx) => {
+    const done = isItemCompleted(it.utt_id) ? ' ✓' : '';
+    const sel  = idx === currentIdx ? ' selected' : '';
+    return `<option value="${idx}"${sel}>Item ${idx + 1}${done}</option>`;
+  }).join('');
 
   return `
   <div class="screen">
     <div class="progress-wrap">
-      <div class="progress-label">Utterance ${currentIdx + 1} of ${ITEMS.length}</div>
+      <div class="progress-label">
+        Item <strong>${currentIdx + 1}</strong> of ${ITEMS.length}
+        · <strong>${stats.completed}</strong> completed (${pct}%)
+        ${itemDone ? '<span style="color:#2e7d32;font-weight:600;margin-left:8px">✓ this item done</span>' : ''}
+      </div>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:.88rem">
+        <label for="jump-select" style="color:#666">Jump to:</label>
+        <select id="jump-select" onchange="jumpToItem(this.value)" style="padding:4px 8px;border:1px solid #ccc;border-radius:4px;font-size:.88rem">
+          ${jumpOptions}
+        </select>
+      </div>
     </div>
 
     <div class="utt-card">
@@ -1086,6 +1141,13 @@ function screenAnnotate() {
         <div class="side-label">${LANG_NAMES[LANG] || LANG} translation${availSlots.length > 1 ? 's' : ''}</div>
         ${transRows}
       </div>
+    </div>
+
+    <div style="margin-top:14px;padding:10px 14px;background:#f9f8fb;border:1px solid #e0d9ec;border-radius:8px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.92rem">
+        <input type="checkbox" ${noChg ? 'checked' : ''} onchange="toggleNoChanges('${item.utt_id}', this.checked)" style="width:16px;height:16px;accent-color:var(--accent)">
+        <span>No changes needed for this translation — the default highlights are correct.</span>
+      </label>
     </div>
 
     <div class="btn-row">
@@ -1102,12 +1164,27 @@ function prevItem() {
   if (currentIdx > 0) { currentIdx--; render(); }
 }
 
+function jumpToItem(idxArg) {
+  const idx = Number(idxArg);
+  if (!Number.isInteger(idx) || idx < 0 || idx >= ITEMS.length) return;
+  currentIdx = idx;
+  saveToLocal();
+  render();
+}
+
+function toggleNoChanges(uttId, checked) {
+  noChangesFlags[uttId] = !!checked;
+  saveToLocal();
+  render();   // refresh progress bar / counts / dropdown ✓ markers
+}
+
 
 // ── SAVE & ADVANCE ────────────────────────────────────────────────────────────
 // AI quality-check has been removed — workers now save and advance directly.
 
 function buildPayloads(item) {
   const uttEdits = edits[item.utt_id] || {};
+  const noChg    = noChangesFlags[item.utt_id] === true;
   const payloads = [];
   for (const slot of SLOTS) {
     const raw = (item.translations || {})[slot];
@@ -1116,13 +1193,21 @@ function buildPayloads(item) {
     if (!e) continue;
     const origToks  = tokenize(e.text !== undefined ? e.text : raw);
     const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
+    // Rebuild the translation text with the worker's current highlight set
+    // expressed as _word_ markup, so the sheet has the final annotated form.
+    const text_annotated = origToks
+      .filter(t => !t.isSpace)
+      .map(t => e.highlights.has(t.index) ? `_${t.text}_` : t.text)
+      .join(' ');
     payloads.push({
       type: 'annotation', lang: LANG, ...annotatorInfo,
       utt_id:    item.utt_id,
       slot,
       removed:   [...origSpans].filter(i => !e.highlights.has(i)),
       added:     [...e.highlights].filter(i => !origSpans.has(i)),
-      text_edit: e.text !== undefined ? e.text : ''
+      text_edit:      e.text !== undefined ? e.text : '',
+      text_annotated: text_annotated,
+      no_changes:     noChg,
     });
   }
   return payloads;
@@ -1231,6 +1316,10 @@ function payloadForKey(uttId, slot) {
   if (raw === undefined) return null;
   const origToks  = tokenize(e.text !== undefined ? e.text : raw);
   const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
+  const text_annotated = origToks
+    .filter(t => !t.isSpace)
+    .map(t => e.highlights.has(t.index) ? `_${t.text}_` : t.text)
+    .join(' ');
   return {
     type: 'annotation',
     lang: LANG,
@@ -1239,7 +1328,9 @@ function payloadForKey(uttId, slot) {
     slot,
     removed:   [...origSpans].filter(i => !e.highlights.has(i)),
     added:     [...e.highlights].filter(i => !origSpans.has(i)),
-    text_edit: e.text !== undefined ? e.text : '',
+    text_edit:      e.text !== undefined ? e.text : '',
+    text_annotated: text_annotated,
+    no_changes:     noChangesFlags[uttId] === true,
   };
 }
 
