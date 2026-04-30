@@ -1339,11 +1339,11 @@ async function runBackgroundVerify() {
 // rows) caused by Apps Script's appendRow being interrupted when the tab
 // closes too quickly.
 function screenComplete() {
-  // Defer the actual verification until after this string is in the DOM.
-  // Any verify failure is logged but the worker still sees the completion
+  // Defer the dump-all-80 until after this string is in the DOM. Any
+  // network failure is logged but the worker still sees the completion
   // code — their work is preserved either way.
-  setTimeout(() => runFinalVerification().catch(err => {
-    console.error('Final verification error:', err);
+  setTimeout(() => runFinalDump().catch(err => {
+    console.error('Final dump error:', err);
     showCompletionCode();
   }), 0);
 
@@ -1460,73 +1460,47 @@ function showCompletionCode(extraNote) {
 // Main retry loop: verify, re-POST any missing rows, repeat until all
 // expected keys are confirmed (or attempts exhausted). Then fire the
 // completed-intake event and reveal the completion code.
-async function runFinalVerification() {
-  const expected = expectedSaveKeys();
-  const total    = expected.length;
+// Build a "dump" payload for every (item, slot) — same shape as a normal
+// save, plus dump_tag = "DUMP-ALL80-{utt_id}" so these rows are easy to
+// pick out from the per-Save&Next rows in the sheet.
+function buildAllDumpPayloads() {
+  const all = [];
+  for (const item of ITEMS) {
+    for (const p of buildPayloads(item)) {
+      p.dump_tag = `DUMP-ALL80-${p.utt_id}`;
+      all.push(p);
+    }
+  }
+  return all;
+}
 
-  // Test-mode bypass: don't try to re-verify a partial test session.
+// One-shot final dump: POST every item once at the end, no verify/retry
+// loop. Each row carries the DUMP-ALL80-{utt_id} marker so it's clearly
+// distinguishable from per-Save&Next rows (which have an empty dump_tag).
+async function runFinalDump() {
+  // Test-mode bypass: don't dump partial test sessions.
   if (isTestMode()) {
-    setFinalStatus(undefined, '(Test mode — skipping verification.)');
+    setFinalStatus(undefined, '(Test mode — skipping final dump.)');
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
     showCompletionCode();
     return;
   }
 
-  if (total === 0) {
-    showCompletionCode();
-    post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
-    return;
-  }
-
-  // Fast path: if the in-session background verifies have already confirmed
-  // every expected save, skip the full retry loop and go straight to the
-  // completion code.
-  const cachedMissing = expected.filter(k => !serverSavedKeys.has(k));
-  if (cachedMissing.length === 0 && serverSavedKeys.size > 0) {
-    setFinalStatus(undefined, `All ${total} of your annotations have been saved.`);
+  const payloads = buildAllDumpPayloads();
+  if (payloads.length === 0) {
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
     showCompletionCode();
     return;
   }
 
-  const MAX_ATTEMPTS = 3;
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    setFinalStatus(undefined,
-      attempt === 1
-        ? 'Confirming your saves with the server…'
-        : `Confirming your saves (try ${attempt} of ${MAX_ATTEMPTS})…`
-    );
-    let saved;
-    try {
-      saved = await fetchSavedRows();
-    } catch (err) {
-      await new Promise(r => setTimeout(r, 600));
-      continue;
-    }
+  setFinalStatus(undefined, `Submitting all ${payloads.length} of your annotations…`);
+  await Promise.all(payloads.map(p => post(p)));
 
-    const missing = expected.filter(k => !saved.has(k));
-    setFinalStatus(undefined, `Confirmed ${total - missing.length} of ${total} saves.`);
+  // Brief settle time so Apps Script's appendRow calls finish before the
+  // worker can navigate away from the tab.
+  await new Promise(r => setTimeout(r, 1800));
 
-    if (missing.length === 0) {
-      post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
-      showCompletionCode();
-      return;
-    }
-
-    // A few items didn't land yet — quietly re-send them.
-    setFinalStatus(undefined, `Catching up on ${missing.length} save${missing.length === 1 ? '' : 's'}…`);
-    const reposts = missing.map(k => {
-      const [uttId, slot] = k.split('::');
-      const payload = payloadForKey(uttId, slot);
-      return payload ? post(payload) : null;
-    }).filter(Boolean);
-    await Promise.all(reposts);
-
-    await new Promise(r => setTimeout(r, 800));
-  }
-
-  // Even after retries we couldn't confirm everything — show the code
-  // anyway. Verify failures are logged to the console for debugging.
+  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
   showCompletionCode();
 }
 

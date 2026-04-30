@@ -54,7 +54,7 @@ function doPost(e) {
         'timestamp', 'prolific_id', 'lang',
         'native_language', 'fluency', 'age_range',
         'utt_id', 'slot', 'removed', 'added',
-        'text_edit', 'text_annotated', 'no_changes'
+        'text_edit', 'text_annotated', 'no_changes', 'dump_tag'
       ]);
       // Append by header lookup so legacy columns (part, qc_*) in older
       // sheets stay blank instead of getting clobbered.
@@ -73,6 +73,7 @@ function doPost(e) {
       set('text_edit',       data.text_edit      || '');
       set('text_annotated',  data.text_annotated || '');
       set('no_changes',      data.no_changes ? 'TRUE' : 'FALSE');
+      set('dump_tag',        data.dump_tag       || '');
       sheet.appendRow(row);
     }
 
