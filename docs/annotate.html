@@ -350,7 +350,11 @@
 // Run instructions: deploy appscript.gs as a Google Apps Script web app, then
 // paste the deployment URL below.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBp1d_eI8Z_nbJfeLoUc4LE9IgLCJOOFs3y9tb2n-RDwZHa82_TFhes-O-ALtSPSgk/exec';
-const COMPLETION_CODE = 'CXXXXXXX'; // TODO: replace with your Prolific completion code
+// Default fallback. Each (lang × part) Prolific study should pass its own
+// completion code via ?cc=… on the link given to participants. The full URL
+// parsing happens later in the STATE section as CC_OVERRIDE.
+const _CC_FROM_URL    = (new URLSearchParams(location.search).get('cc') || '').trim();
+const COMPLETION_CODE = _CC_FROM_URL || 'CXXXXXXX'; // TODO: keep fallback up to date
 
 // OpenAI QC — key lives in Apps Script Script Properties, not here
 const QC_MODEL = 'gpt-5.4';
@@ -629,8 +633,31 @@ function renderTokens(tokens, uttId, slot, side, highlights) {
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const params   = new URLSearchParams(location.search);
 const LANG     = (params.get('lang') || '').toUpperCase();
-const ITEMS    = (INLINE_DATA[LANG] || []);
+// Split each language's 80 items into two 40-item halves so a single
+// annotator only does 40. URLs:
+//   ?lang=ZH          → all 80 items (back-compat / preview)
+//   ?lang=ZH&part=1   → first 40 items
+//   ?lang=ZH&part=2   → second 40 items
+// Selection is deterministic (sorted by utt_id then sliced) so the same
+// part assignment is stable across loads and across annotators.
+const PART_RAW = params.get('part') || '';
+const PART     = ['1', '2'].includes(PART_RAW) ? Number(PART_RAW) : null;
+const PART_SIZE = 40;
+
+function _sliceForPart(allItems, part) {
+  if (part === null) return allItems;
+  // Stable sort by utt_id so part 1/2 always covers the same 40 items.
+  const sorted = [...allItems].sort((a, b) =>
+    String(a.utt_id).localeCompare(String(b.utt_id))
+  );
+  const start = (part - 1) * PART_SIZE;
+  return sorted.slice(start, start + PART_SIZE);
+}
+
+const ITEMS    = _sliceForPart(INLINE_DATA[LANG] || [], PART);
 const PID_PREFILL = params.get('pid') || '';
+// COMPLETION_CODE is parsed near the top of the script (see _CC_FROM_URL)
+// because it's used by const expressions before the STATE section runs.
 
 let annotatorInfo = null;   // { prolific_id, native_language, fluency, age_range }
 let currentIdx    = 0;      // which item we're annotating
@@ -653,7 +680,10 @@ function initEdits() {
 
 // ── LOCAL STORAGE ─────────────────────────────────────────────────────────────
 function lsKey() {
-  return `uh-mazing:${annotatorInfo?.prolific_id}:${LANG}`;
+  // Namespace per part so a single browser doing both halves of the same
+  // language won't have part-1 progress shadow part-2.
+  const partTag = PART === null ? 'all' : `p${PART}`;
+  return `uh-mazing:${annotatorInfo?.prolific_id}:${LANG}:${partTag}`;
 }
 function saveToLocal() {
   const serialised = {};
@@ -807,7 +837,7 @@ function screenConsent() {
 function acceptConsent() {
   // Fire-and-forget: log a consent event. Captures only timestamp and lang —
   // no personal data (intake fields are still empty at this point).
-  post({ type: 'consent', lang: LANG, accepted_at: new Date().toISOString() });
+  post({ type: 'consent', lang: LANG, part: PART, accepted_at: new Date().toISOString() });
   goTo('intake');
 }
 
@@ -821,8 +851,9 @@ function screenIntake() {
   return `
   <div class="screen">
     <h1>Disfluency Annotation</h1>
-    <p>You have been assigned to annotate <strong>${langName}</strong> translations.
-       This should take approximately <strong>20–30 minutes</strong>.</p>
+    <p>You have been assigned to annotate <strong>${langName}</strong> translations${PART !== null ? ` — <strong>part ${PART} of 2</strong>` : ''}.
+       You will see <strong>${ITEMS.length}</strong> utterances. This should take approximately
+       <strong>${PART !== null ? '15–20' : '20–30'} minutes</strong>.</p>
     <hr>
     <h2>About you</h2>
 
@@ -887,7 +918,7 @@ function submitIntake() {
   const resumed = loadFromLocal();
 
   // Log intake to Sheets (fire-and-forget)
-  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'started' });
+  post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'started' });
 
   if (resumed && currentIdx > 0) {
     // Skip straight to annotation
@@ -1174,7 +1205,7 @@ function buildPayloads(item) {
     const origToks  = tokenize(e.text !== undefined ? e.text : raw);
     const origSpans = new Set(origToks.filter(t => t.isSpan).map(t => t.index));
     payloads.push({
-      type: 'annotation', lang: LANG, ...annotatorInfo,
+      type: 'annotation', lang: LANG, part: PART, ...annotatorInfo,
       utt_id:    item.utt_id,
       slot,
       removed:   [...origSpans].filter(i => !e.highlights.has(i)),
@@ -1242,7 +1273,7 @@ function callQCApi(item) {
 
     // Serialize translation slots with current highlights as _word_ marks
     const uttEdits = edits[item.utt_id] || {};
-    const params   = new URLSearchParams({ callback: cbName, type: 'qc_check', lang: LANG, model: QC_MODEL, en: item.en });
+    const params   = new URLSearchParams({ callback: cbName, type: 'qc_check', lang: LANG, part: PART ?? '', model: QC_MODEL, en: item.en });
     for (const s of SLOTS) {
       if (!(item.translations || {})[s]) continue;
       const e   = uttEdits[s];
@@ -1360,7 +1391,7 @@ async function doSave(qcFeedback, qcNote) {
 // ── SCREEN: COMPLETE ──────────────────────────────────────────────────────────
 function screenComplete() {
   // Log completion to Sheets
-  post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
+  post({ type: 'intake', lang: LANG, part: PART, ...annotatorInfo, status: 'completed' });
 
   return `
   <div class="screen" style="text-align:center;padding:56px 48px">
@@ -1422,6 +1453,7 @@ async function submitReport() {
   await post({
     type:            'report',
     lang:            LANG,
+    part:            PART,
     prolific_id:     info.prolific_id     || '',
     native_language: info.native_language || '',
     fluency:         info.fluency         || '',
