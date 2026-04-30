@@ -30,7 +30,9 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------
 load_dotenv()
 API_TOKEN = os.getenv("PROLIFIC_TOKEN")
-PROJECT   = os.getenv("PROLIFIC_PROJECT_ID")
+# Dedicated Prolific project for the round-2 (lang × part) disfluency studies.
+# Override with PROLIFIC_PROJECT_ID env var if you want to publish elsewhere.
+PROJECT   = os.getenv("PROLIFIC_PROJECT_ID") or "69f2e9293c71ad8d3978a8f6"
 BASE_URL  = "https://api.prolific.com/api/v1"
 
 ANNOTATE_BASE = "https://mariateleki.github.io/Uh-Mazing/annotate.html"
@@ -181,10 +183,13 @@ def publish_study(study_id):
 # MAIN
 # ---------------------------------------------------------
 def main():
-    if not API_TOKEN or not PROJECT:
+    if not API_TOKEN:
+        raise RuntimeError("PROLIFIC_TOKEN must be set in .env")
+    if not PROJECT:
         raise RuntimeError(
-            "PROLIFIC_TOKEN and PROLIFIC_PROJECT_ID must be set in .env"
+            "PROLIFIC_PROJECT_ID is unset and no default project hardcoded"
         )
+    print(f"Using Prolific project {PROJECT}")
 
     pairs = [(lc, ln, p) for lc, ln in LANGUAGES.items() for p in PARTS]
     if TEST_MODE:

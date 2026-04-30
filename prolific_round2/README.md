@@ -15,7 +15,10 @@ live Prolific studies (8 languages × 2 parts).
 
 ## Standard workflow
 
-1. Set `PROLIFIC_TOKEN` and `PROLIFIC_PROJECT_ID` in `.env` at the repo root.
+1. Set `PROLIFIC_TOKEN` in `.env` at the repo root. The Prolific project ID
+   is hardcoded to `69f2e9293c71ad8d3978a8f6` (a dedicated round-2 project)
+   inside `bulk_create_studies.py`; override by setting `PROLIFIC_PROJECT_ID`
+   in `.env` if you need to publish somewhere else.
 2. (Optional) Set `TEST_MODE = True` near the top of `bulk_create_studies.py`
    to dry-run a single study before publishing all 16.
 3. Run:
