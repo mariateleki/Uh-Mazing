@@ -291,11 +291,10 @@
 // Run instructions: deploy appscript.gs as a Google Apps Script web app, then
 // paste the deployment URL below.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPFTiYQUGH0RIrAJ_WUYRqgwPnKZD-ecquT-pFLRUG1o7H8DmM2MG5NGp8ewnkgtrr/exec';
-// Default fallback. Each (lang × part) Prolific study should pass its own
-// completion code via ?cc=… on the link given to participants. The full URL
-// parsing happens later in the STATE section as CC_OVERRIDE.
-const _CC_FROM_URL    = (new URLSearchParams(location.search).get('cc') || '').trim();
-const COMPLETION_CODE = _CC_FROM_URL || 'CXXXXXXX'; // TODO: keep fallback up to date
+// Single completion code shared across all language studies. Hardcoded so
+// the final screen always displays the same code regardless of any ?cc=…
+// URL parameter the worker may have arrived with.
+const COMPLETION_CODE = 'CLS237NX';
 
 const PROLIFIC_RETURN_URL = `https://app.prolific.com/submissions/complete?cc=${COMPLETION_CODE}`;
 
@@ -583,6 +582,14 @@ let edits         = {};     // { uttId: { slot: { highlights: Set, text? } } }
 let noChangesFlags = {};    // { uttId: bool } — worker confirmed default highlights are correct
 let saveStatus    = '';     // 'saving' | 'ok' | 'error' | ''
 
+// Continuous-verification state. After every saveAndNext we record the
+// (utt_id, slot) keys we tried to POST in localSubmittedKeys, then run a
+// debounced background verify that fetches what the server actually has
+// (serverSavedKeys) and re-posts anything still missing.
+let localSubmittedKeys = new Set();   // keys the worker has submitted at least once
+let serverSavedKeys    = new Set();   // keys confirmed present on server (via verify_saves)
+let _verifyTimer       = null;        // debounce handle
+
 function initEdits() {
   for (const item of ITEMS) {
     edits[item.utt_id] = {};
@@ -617,6 +624,7 @@ function saveToLocal() {
     annotatorInfo,
     edits: serialised,
     noChangesFlags,
+    localSubmittedKeys: [...localSubmittedKeys],
     savedAt: Date.now()
   }));
 }
@@ -628,6 +636,7 @@ function loadFromLocal() {
     currentIdx    = saved.currentIdx || 0;
     annotatorInfo = saved.annotatorInfo || annotatorInfo;
     noChangesFlags = saved.noChangesFlags || {};
+    localSubmittedKeys = new Set(saved.localSubmittedKeys || []);
     for (const [uttId, slots] of Object.entries(saved.edits || {})) {
       if (!edits[uttId]) continue;
       for (const [slot, e] of Object.entries(slots)) {
@@ -1229,6 +1238,14 @@ async function saveAndNext() {
     if (statusEl) { statusEl.textContent = 'Save failed — continuing locally'; statusEl.className = 'save-status err'; }
   }
 
+  // Track what we submitted and kick off a debounced background verify so
+  // any silently-dropped no-cors POSTs get caught (and re-posted) within
+  // the session, not only at the completion screen.
+  for (const p of payloads) {
+    localSubmittedKeys.add(`${p.utt_id}::${p.slot}`);
+  }
+  scheduleBackgroundVerify();
+
   saveToLocal();
   currentIdx++;
   if (currentIdx >= ITEMS.length) {
@@ -1236,6 +1253,42 @@ async function saveAndNext() {
   } else {
     render();
   }
+}
+
+// ── BACKGROUND VERIFY ─────────────────────────────────────────────────────────
+// Debounced verify-and-flush that runs DURING the session, not just at the
+// end. After every saveAndNext we wait ~3s of idle, then ask the server
+// what it actually has, and silently re-POST anything missing. Catches
+// no-cors silent failures early so the completion screen verify is a
+// no-op in the common case.
+function scheduleBackgroundVerify(delayMs = 3000) {
+  if (_verifyTimer) clearTimeout(_verifyTimer);
+  _verifyTimer = setTimeout(() => {
+    _verifyTimer = null;
+    runBackgroundVerify();
+  }, delayMs);
+}
+
+async function runBackgroundVerify() {
+  if (!annotatorInfo?.prolific_id) return;
+  let saved;
+  try {
+    saved = await fetchSavedRows();
+  } catch (err) {
+    // Silent failure — we'll try again after the next save.
+    return;
+  }
+  serverSavedKeys = saved;
+  // Anything submitted but not on the server gets a quiet re-POST.
+  const missing = [...localSubmittedKeys].filter(k => !serverSavedKeys.has(k));
+  if (missing.length === 0) return;
+  for (const k of missing) {
+    const [uttId, slot] = k.split('::');
+    const payload = payloadForKey(uttId, slot);
+    if (payload) post(payload);
+  }
+  // Re-check after Apps Script has had a moment to append.
+  scheduleBackgroundVerify(2500);
 }
 
 // ── SCREEN: COMPLETE ──────────────────────────────────────────────────────────
@@ -1372,6 +1425,17 @@ async function runFinalVerification() {
   if (total === 0) {
     showCompletionCode();
     post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
+    return;
+  }
+
+  // Fast path: if the in-session background verifies have already confirmed
+  // every expected save, skip the full retry loop and go straight to the
+  // completion code.
+  const cachedMissing = expected.filter(k => !serverSavedKeys.has(k));
+  if (cachedMissing.length === 0 && serverSavedKeys.size > 0) {
+    setFinalStatus(undefined, `All ${total} saves confirmed.`);
+    post({ type: 'intake', lang: LANG, ...annotatorInfo, status: 'completed' });
+    showCompletionCode();
     return;
   }
 
