@@ -103,15 +103,24 @@ You'll annotate 80 utterances total. This study should take approximately 90–1
 Native {lang_name} speakers only. The site asks you to read and accept a short privacy policy before you start."""
 
 
+# MUST match the COMPLETION_CODE constant hardcoded in docs/annotate.html
+# (currently 'CLS237NX'). When the worker reaches the completion screen,
+# annotate.html shows them this exact string; they paste it back into
+# Prolific. If this value diverges from annotate.html's, every worker's
+# submission will be rejected as an unrecognized completion code.
+COMPLETION_CODE_VALUE = "CLS237NX"
+
+
 def completion_code(lang_code):
-    """Stable per-language code, used both in the URL and registered with
-    Prolific as the COMPLETED code."""
-    return f"UM-{lang_code}"
+    """Same code for every language study — matches the value that
+    annotate.html displays to every worker regardless of which study URL
+    they entered through. lang_code is accepted for backward signature
+    compatibility but ignored."""
+    return COMPLETION_CODE_VALUE
 
 
 def study_url(lang_code):
-    cc = completion_code(lang_code)
-    qs = urlencode({"lang": lang_code, "cc": cc})
+    qs = urlencode({"lang": lang_code, "cc": COMPLETION_CODE_VALUE})
     # No PROLIFIC_PID placeholder needed — the worker enters their ID via
     # the intake form on annotate.html (PROLIFIC_ID_OPTION = "question").
     return f"{ANNOTATE_BASE}?{qs}"
