@@ -70,7 +70,7 @@ TOTAL_PLACES_PER_STUDY = 1   # how many distinct workers per language
 
 # Reward / time. Bumped to $20 for 60 min (~$20/hr) to attract more
 # qualified annotators given the niche language requirements.
-ESTIMATED_TIME_MIN  = 60
+ESTIMATED_TIME_MIN  = 105   # 90–120 minute window; we display this median
 REWARD_USD_CENTS    = 2000   # $20.00 per submission
 MIN_COMPLETION_TIME = 15     # auto-reject submissions faster than 15 min
 
@@ -98,7 +98,7 @@ HEADERS = {
 STUDY_TITLE_TEMPLATE = "Disfluency Annotation — {lang_name}"
 STUDY_DESCRIPTION_TEMPLATE = """You will look at short English utterances paired with their {lang_name} translations and highlight which words in the translation correspond to the disfluencies (filler words, repetitions, false starts) marked in the English. If a translation is missing words or contains errors, you can edit it.
 
-You'll annotate 80 utterances total. This study should take approximately {time_min} minutes.
+You'll annotate 80 utterances total. This study should take approximately 90–120 minutes.
 
 Native {lang_name} speakers only. The site asks you to read and accept a short privacy policy before you start."""
 
@@ -137,8 +137,7 @@ def build_payload(lang_code, lang_name):
     return {
         "name":           STUDY_TITLE_TEMPLATE.format(lang_name=lang_name),
         "internal_name":  f"uh-mazing_round2_disfluency_{lang_code.lower()}",
-        "description":    STUDY_DESCRIPTION_TEMPLATE.format(
-                              lang_name=lang_name, time_min=ESTIMATED_TIME_MIN),
+        "description":    STUDY_DESCRIPTION_TEMPLATE.format(lang_name=lang_name),
         "external_study_url":        study_url(lang_code),
         "project":                   PROJECT,
         "prolific_id_option":        PROLIFIC_ID_OPTION,
