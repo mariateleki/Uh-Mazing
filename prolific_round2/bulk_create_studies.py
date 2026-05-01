@@ -32,7 +32,7 @@ API_TOKEN = os.getenv("PROLIFIC_TOKEN")
 # Hard-pinned to the dedicated round-2 disfluency-annotation project.
 # Intentionally ignores PROLIFIC_PROJECT_ID env var so this script always
 # publishes to the right place even if .env points elsewhere.
-PROJECT   = "69f2eaa7c3cb0d7c7a476d8b"
+PROJECT   = "69f413daf24a04ebd935e088"
 BASE_URL  = "https://api.prolific.com/api/v1"
 
 ANNOTATE_BASE = "https://mariateleki.github.io/Uh-Mazing/annotate.html"
@@ -71,7 +71,7 @@ TOTAL_PLACES_PER_STUDY = 1   # how many distinct workers per language
 # Reward / time. Bumped to $20 for 60 min (~$20/hr) to attract more
 # qualified annotators given the niche language requirements.
 ESTIMATED_TIME_MIN  = 105   # 90–120 minute window; we display this median
-REWARD_USD_CENTS    = 2000   # $20.00 per submission
+REWARD_USD_CENTS    = 4000   # $40.00 per submission
 MIN_COMPLETION_TIME = 15     # auto-reject submissions faster than 15 min
 
 DEVICE_COMPATIBILITY = ["desktop"]
@@ -201,7 +201,9 @@ def main():
         try:
             draft    = create_draft_study(build_payload(lang_code, lang_name))
             study_id = draft["id"]
-            publish_study(study_id)
+            # NOTE: leave studies as drafts — do not publish here.
+            # Review and click PUBLISH manually in the Prolific dashboard
+            # before workers can claim them.
             dashboard = f"https://app.prolific.com/researcher/studies/{study_id}/overview"
             results.append({
                 "lang":            lang_code,
@@ -209,9 +211,9 @@ def main():
                 "study_url":       url,
                 "study_id":        study_id,
                 "dashboard_url":   dashboard,
-                "status":          "published",
+                "status":          "draft",
             })
-            print(f"[{i}/{len(pairs)}] ✓ {lang_code}  → {study_id}")
+            print(f"[{i}/{len(pairs)}] ✓ {lang_code} drafted → {study_id}")
             print(f"    {dashboard}")
         except requests.exceptions.HTTPError as e:
             body = e.response.text if e.response is not None else ""
