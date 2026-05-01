@@ -1157,11 +1157,13 @@ function screenAnnotate() {
   const noChg   = noChangesFlags[item.utt_id] === true;
   const itemDone = isItemCompleted(item.utt_id);
 
-  // Jump dropdown — every item, with ✓ marker for completed items
+  // Jump dropdown — every item with utt_id alongside the item number, plus
+  // ✓ marker for completed items. Including the utt_id makes it easier to
+  // navigate to a specific utterance when debugging.
   const jumpOptions = ITEMS.map((it, idx) => {
     const done = isItemCompleted(it.utt_id) ? ' ✓' : '';
     const sel  = idx === currentIdx ? ' selected' : '';
-    return `<option value="${idx}"${sel}>Item ${idx + 1}${done}</option>`;
+    return `<option value="${idx}"${sel}>Item ${idx + 1} — ${it.utt_id}${done}</option>`;
   }).join('');
 
   const testBanner = isTestMode()
