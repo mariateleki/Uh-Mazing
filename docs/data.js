@@ -4,14 +4,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_111",
       "en": "_I_ _think_ _, _ _I_ _think_ _, _ I think, _you_ _know_ for myself _I_ _, _ I see that as probably _the_ _, _ _the_ _, _ what everything would hinge upon.",
       "translations": {
-        "T1": "_انا_ _اعتقد_ _,_ _انا_ _ اعتقد_ _,_ انا اعتقد, _انت_ _تعلم_ بالنسبة لي_انا_ _,_ انا ارى ذلك غالبا _ال_ _,_ _ال_ _,_ ما يتعلق به كل شيء."
+        "T1": "انا اعتقد , انا  اعتقد , انا اعتقد, انت تعلم بالنسبة ليانا , انا ارى ذلك غالبا ال , ال , ما يتعلق به كل شيء."
       }
     },
     {
       "utt_id": "sw02005_A_121",
       "en": "_Yeah_ _. _ _You_ _know_ _it_ _'s_ _, _ it's interesting _that_ _, _ that _a_ _lot_ _, _ the population of the United States is changing because _, _ _you_ _know_ _, _ _uh_, now that so many more minorities, where they have had extended families for such a long time.",
       "translations": {
-        "T1": "_اجل_ _,_ _انت_ _تعلم_ _انه_ _م-_,_ انه مثير للاهتمام _انه_ _,_انه_ _ال_ _كثير_ _,_الشعب في الولايات المتحدة يتغير بسبب_,_ _انت_ _تعلم_ _,_ _اه_, الان يوجد الكثير من الاقليات, حيث لديهم عائلات ممتدة لفترة طويلة."
+        "T1": "اجل , انت تعلم انه م-, انه مثير للاهتمام انه ,انه ال كثير ,الشعب في الولايات المتحدة يتغير بسبب, انت تعلم , اه, الان يوجد الكثير من الاقليات, حيث لديهم عائلات ممتدة لفترة طويلة."
       }
     },
     {
@@ -25,7 +25,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_147",
       "en": "_Yeah_ _. _ But, _uh_, _I_ _, _ _I_ _, _ I think that _, _ _you_ _know_ _, _ _we_ _always_ _, _ _uh_ _, _ _I_ _mean_ _, _ _I_ _'ve_ _, _ I've had a lot of good experiences _with_ _, _ _uh_, with _many_ many people especially where they've had, _uh_, extended family. _And_ _I_ _, _ and _I_ _, _ I kind of see _that_ _, _ that, _you_ _know_ _, _ perhaps _, _ _you_ _know_ _, _ we may need to _like_ get close to the family environment _and_ and get down to the values of _, _ _you_ _know_,",
       "translations": {
-        "T1": "_اجل_ _._لكن, _اه_,_انا_ _,_ _انا_ _,_انا عتقد انه _,_ _انت_ _تعلم_ _,_ _نحن_ _دائما_ _,_ _اه_ _,_ _انا_ _اقصد_ _,_ _انا_ _قد_ _,_لقد حصلت على كثير من التجارب الجيدة _مع_ _,_ _اه_, مع _الكثير_ الكثير من الناس خصوصا عندما كان لديهم, _اه_, عائلات ممتدة. _و_ _انا_ _,_و_ _انا_ _,_ ارى ذلك نوعا _ما_ _,_انه, _انت_ _تعلم_ _,_ربما_,_ _انت_ _تعلم_ _,_نحن ربما نحتاج الى _ان_ نتقرب الى بيئة العائلة _و_ و نصل الى القيمة في _,_ _انت_ _تعلم_,"
+        "T1": "اجل .لكن, اه,انا , انا ,انا عتقد انه , انت تعلم , نحن دائما , اه , انا اقصد , انا قد ,لقد حصلت على كثير من التجارب الجيدة مع , اه, مع الكثير الكثير من الناس خصوصا عندما كان لديهم, اه, عائلات ممتدة. و انا ,و انا , ارى ذلك نوعا ما ,انه, انت تعلم ,ربما, انت تعلم ,نحن ربما نحتاج الى ان نتقرب الى بيئة العائلة و و نصل الى القيمة في , انت تعلم,"
       }
     },
     {
@@ -60,7 +60,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_37",
       "en": "_Yeah_ _. _ _I_ _mean_ _, _ for somebody who _is_ _, _ _you_ _know_ _, _ for most of their life _has_ _, _ has, _uh_, not just merely had a farm but had ten children had a farm, ran everything because her husband was away in the coal mines.",
       "translations": {
-        "T1": "_احل_ _._انا_ _اعني_ _,_ لشخص قد _كان_ _,_ _انت_ _تعلم_ _,_ لمعظم حياته _يملك_ _,_يملك_,_اه_, لم تملك فقد مزرعة بل عشرة اطفال و تملك مزرعة, كانت تقوم بدارة كل شيء لان زوجها كان بعيدا حيث كان يعمل في مناجم الفحم."
+        "T1": "احل .انا اعني , لشخص قد كان , انت تعلم , لمعظم حياته يملك ,يملك,اه, لم تملك فقد مزرعة بل عشرة اطفال و تملك مزرعة, كانت تقوم بدارة كل شيء لان زوجها كان بعيدا حيث كان يعمل في مناجم الفحم."
       }
     },
     {
@@ -74,14 +74,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_55",
       "en": "_You_ _know_ _, _ whether it was just _, _ _you_ _know_ _, _ giving money or whether it was actually taking part in a lot, of the decision making _, _ _you_ _know_ _, _ like finding a proper nursing home.",
       "translations": {
-        "T1": "_انت_ _تعلم_,_ سواء كان مجرد_,_ _انت_ تعلم_ _,_ اعطاء المال او المشاركة بالفعل في اتخاذ القرارات_,_ _انت_ _تعلم_ _, مثل البحث عن دار رعاية مناسب."
+        "T1": "انت تعلم, سواء كان مجرد, انت تعلم , اعطاء المال او المشاركة بالفعل في اتخاذ القرارات, انت تعلم , مثل البحث عن دار رعاية مناسب."
       }
     },
     {
       "utt_id": "sw02005_A_65",
       "en": "_So_ _, _ so, _I_ _mean_ _, _ it, _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _, _ _I_ _har-_ _, _ _I_ _, _ I truly wish that if something like that were to happen that my children would do something like, that for me.",
       "translations": {
-        "T1": "_ف_ _,_ فانا_ _اعني_ _,_انه, _انا_ _اعني_ _,_ _انا_ _,_ _ انا_ _,_ _انا_ _,_ _انا_ _بص-_ _,_ _انا_ _,_ _انا_ _,_ انا حقا اتمنى انه اذا حدث امر كهذا ان يقوم ابنائي بعمل شيء مثل ذلك من اجلي."
+        "T1": "ف , فانا اعني ,انه, انا اعني , انا ,  انا , انا , انا بص- , انا , انا , انا حقا اتمنى انه اذا حدث امر كهذا ان يقوم ابنائي بعمل شيء مثل ذلك من اجلي."
       }
     },
     {
@@ -95,7 +95,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_93",
       "en": "And, _um_, _I_ _mean_ _, _ but _she_ _was_ _truly_ _, _ she was truly aware. _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _di-_ _, _ I don't know _how_ _I_ _would_ _, _ how I would deal if one of my parents came _with_ _, _ with Alzheimer's. or something like, that _which_ _is_ _, _ which is far more devastating.",
       "translations": {
-        "T1": "و, _ام_,_انا_ _اعني_ _,_لكن_ هي_ _كانت_ _حقا_ _,_ لقد كانت حقا واعية بالكامل. _انا_ _اعني_ _,_ _انا_ _,_ _انا_ _,_ _انا_ _لم-_ _,_ لا اعلم _كيف_ _انا_ _ س-_ _,_ كيف ساتعامل مع الامر اذا اصيب احد والدي _ب_ _,_ بمرض الزهايمر. او شيء مماثل, _لذلك_ _, و هو اكثر فتكا."
+        "T1": "و, ام,انا اعني ,لكن هي كانت حقا , لقد كانت حقا واعية بالكامل. انا اعني , انا , انا , انا لم- , لا اعلم كيف انا  س- , كيف ساتعامل مع الامر اذا اصيب احد والدي ب , بمرض الزهايمر. او شيء مماثل, لذلك , و هو اكثر فتكا."
       }
     },
     {
@@ -116,21 +116,21 @@ const INLINE_DATA = {
       "utt_id": "sw02005_B_2",
       "en": "_Well_, of course, _it_ _'s_ _, _ _you_ _know_ _, _ it's one of the last few things in the world you'd ever want to do _, _ _you_ _know_ _. _ Unless it's just _, _ _you_ _know_ _, _ really _, _ _you_ _know_ _, _ _and_, _uh_, _for_ _their_ _, _ _uh_ _, _ _you_ _know_ _, _ for their own good.",
       "translations": {
-        "T1": "_اجل_ بالتاكيد ,  _هو _ _انت تعلم_ _,_انه احد اخر الاشياء في العالم التي قد ترغب في عملها مطلقا _,_ _انت_ _تعلم_ _._ الا اذا كان _انت_ _تعلم_ _,_حقا_,_انت _ _تعلم_ _و_ _ اه_ _ من_ _ اجل_ _ اه_ _,_ _انت_ _ تعلم_ , من اجل مصلحتهم."
+        "T1": "اجل بالتاكيد ,  هو  انت تعلم ,انه احد اخر الاشياء في العالم التي قد ترغب في عملها مطلقا , انت تعلم . الا اذا كان انت تعلم ,حقا,انت  تعلم و  اه  من  اجل  اه , انت  تعلم , من اجل مصلحتهم."
       }
     },
     {
       "utt_id": "sw02005_B_4",
       "en": "I'd be very very careful _and_ _, _ _uh_ _, _ _you_ _know_ _, _ checking them out. _Uh_, our, had t-, place my mother in a nursing home. She had a rather massive stroke _about_ _, _ _uh_, about _uh_, eight months ago _I_ _guess_.",
       "translations": {
-        "T1": "ساكون حذرا جدا جدا _و_ _,_ _ اه _ _,_ _انت_ _تعلم_ _,_عند فحصهم. _اه_ ,لفد اضطررنا, لوضع والدتي في دار رعاية. لقد تعرضت الى سكتة دماغية هائلة  منذ _حوالي_ _,_اه_ _حوالي_ _اه_, ثمانية اشهر _على_ _ما_ _اعتقد_."
+        "T1": "ساكون حذرا جدا جدا و ,  اه  , انت تعلم ,عند فحصهم. اه ,لفد اضطررنا, لوضع والدتي في دار رعاية. لقد تعرضت الى سكتة دماغية هائلة  منذ حوالي ,اه حوالي اه, ثمانية اشهر على ما اعتقد."
       }
     },
     {
       "utt_id": "sw02005_B_8",
       "en": "So, I was very comfortable _, _ _you_ _know_ _, _ in doing it when it got to the point that we had to do it. But there's, _well_, I had an occasion for my mother-in-law who had fell and _needed_ _to_ _be_ _, _ _you_ _know_ _, _ could not take care of herself anymore, was confined to a nursing home for a while that was really not a very good experience. _Uh_, it had to be done in a hurry. _I_ _mean_ _, _ we didn't have _, _ _you_ _know_ _, _ _like_ six months to check all of these places out. And it was really _not_ _, _ not very good, _uh_, deal.",
       "translations": {
-        "T1": "لقد كنت مرتاح جدا_._ _ انت_ _تعلم _ _, عند فعل ذلك عندما وصل الامر الى نقطة يجب فيها ان نفعله. لكن هناك, _مثلا_ كان هناك مناسبة لحماتي التي سقطت و _احتاجت_ _ ان_ _تكون_,_ انت_ _ تعلم_, لم تعد تستطيع رعاية نفسها بعد الان, كانت محجوزة في دار رعاية لفترة و لم تكن هذه تجربة جيدة. _اه_, كان يجب ان يتم الامر بسرعة. _انا_ _اقصد_,_لم يكن لدينا_,_انت_ _تعرف_ _,_ _ مثل 6 اشهر لمعاينة كل هذه الاماكن. و كان الامر _اه_ سيئ."
+        "T1": "لقد كنت مرتاح جدا.  انت تعلم  , عند فعل ذلك عندما وصل الامر الى نقطة يجب فيها ان نفعله. لكن هناك, مثلا كان هناك مناسبة لحماتي التي سقطت و احتاجت  ان تكون, انت  تعلم, لم تعد تستطيع رعاية نفسها بعد الان, كانت محجوزة في دار رعاية لفترة و لم تكن هذه تجربة جيدة. اه, كان يجب ان يتم الامر بسرعة. انا اقصد,لم يكن لدينا,انت تعرف ,  مثل 6 اشهر لمعاينة كل هذه الاماكن. و كان الامر اه سيئ."
       }
     },
     {
@@ -144,7 +144,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_A_75",
       "en": "This is pretty _un-_ _, _ unseasonal, but, _uh_, at least, we, _you_ _know_ _, _ _it_ _, _ _it_ _, _ it feels good, it gets, _uh_, everybody doesn't have cabin fever today. It's nice to get, out and about.",
       "translations": {
-        "T2": "هذا شيء _غير_ _،_ _غير موسمي، لكن، _أم_، على الأقل، نحن، _أنت_ _تعرف_ _،_ _هذا_ ،_ _هذا_ _،_ هذا شعور جيد، _إنه يجعل_، _أم_، الجميع ليس لديهم شعور بالملل اليوم. من الجميل الخروج والتنقل."
+        "T2": "هذا شيء غير ، غير موسمي، لكن، أم، على الأقل، نحن، أنت تعرف ، هذا ، هذا ، هذا شعور جيد، إنه يجعل، أم، الجميع ليس لديهم شعور بالملل اليوم. من الجميل الخروج والتنقل."
       }
     },
     {
@@ -165,7 +165,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_48",
       "en": "In fact, _I_ _just_ _bought_ _, _ _I_ _, _ I just got a new outfit as a gift that, _um_, it's one of those skorts, _you_ _know_, th-, it's shorts but it looks like a skirt.",
       "translations": {
-        "T2": "في الواقع، _أنا_ اشتريت للتو_، _أنا_، لقد حصلت للتو على زي جديد كهدية الذي، _أم_، إنه واحد من تلك التنانير بسروال قصير، _أنت_تعرف_، _إنه_، إنه سروال ولكنه يبدو كتنورة."
+        "T2": "في الواقع، أنا اشتريت للتو، أنا، لقد حصلت للتو على زي جديد كهدية الذي، أم، إنه واحد من تلك التنانير بسروال قصير، أنتتعرف، إنه، إنه سروال ولكنه يبدو كتنورة."
       }
     },
     {
@@ -179,28 +179,28 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_62",
       "en": "_Yeah_ _. _ _Yeah_ _. _ So, I'm, _you_ _know_, _like_ right now, today was in about _, _ _you_ _know_ _, _ the fifties.",
       "translations": {
-        "T2": "_نعم_._نعم_._ إذن، أنا، _أنت_ _تعرف_، مثل الآن، اليوم كان حوالي _،_ _أنت_ _تعرف_ _،_ الخمسينيات."
+        "T2": "نعم.نعم. إذن، أنا، أنت تعرف، مثل الآن، اليوم كان حوالي ، أنت تعرف ، الخمسينيات."
       }
     },
     {
       "utt_id": "sw02010_A_23",
       "en": "_Well_, the interesting thing _was_ is I had heard that, and _I_ _, _ _I_ _, _ I tend to _, _ _I_ _think_ _, _ overreact occasionally when somebody tells me it's that great. _And_ _, _ and _it_ _was_ _, _ the thing is, _it_ _was_ _, _ it was a good story.",
       "translations": {
-        "T2": "حسنًا، الشيء المثير للاهتمام كان أنني سمعت أن _،_ و _أنا_ _،_ _أنا_ ، _ أميل إلى _، أنا أعتقد _،_  أنني أبالغ أحيانا عندما يخبرني أحدهم أنه رائع إلى هذا الحد. _و_ ، _ و_ _هو_ _كان _،_ الحقيقة هي، _هو_ _كان_ _،_ كانت قصة جيدة."
+        "T2": "حسنًا، الشيء المثير للاهتمام كان أنني سمعت أن ، و أنا ، أنا ،  أميل إلى ، أنا أعتقد ،  أنني أبالغ أحيانا عندما يخبرني أحدهم أنه رائع إلى هذا الحد. و ،  و هو كان ، الحقيقة هي، هو كان ، كانت قصة جيدة."
       }
     },
     {
       "utt_id": "sw02010_B_22",
       "en": "I agree with that. _Um_, _I_ _, _ I noticed yesterday in the paper, something said that it, I think it's been nominated for twelve awards _and_ _, _ and all the critics initially said that _, _ _you_ _know_ _, _ it wouldn't go anywhere, that it was just going to be a dud. So, _it_ _, _ it has surprised everybody.",
       "translations": {
-        "T2": "أنا أتفق مع ذلك. _أم-، _أنا_ _،_ لقد لاحظت أمس في الجريدة، شيء قال إنّه، أعتقد أنه تم ترشيحه لاثني عشر جائزة _و_ _،_ _ وكل النقاد في البداية قالوا أن _،_ _ _أنت_ _تعرف_ _،_  لن يصل لأي مكان، وأنه سيكون مجرد فشل. لذا، _هو_ _،_  لقد فاجأ الجميع."
+        "T2": "أنا أتفق مع ذلك. أم-، أنا ، لقد لاحظت أمس في الجريدة، شيء قال إنّه، أعتقد أنه تم ترشيحه لاثني عشر جائزة و ،  وكل النقاد في البداية قالوا أن ،  أنت تعرف ،  لن يصل لأي مكان، وأنه سيكون مجرد فشل. لذا، هو ،  لقد فاجأ الجميع."
       }
     },
     {
       "utt_id": "sw02010_B_38",
       "en": "It's suspenseful. I don't think it's very t-, _I_ _mean_ _, _ there's not really any, _uh_, blood and guts in it or anything like that. _It_ _'s_ _, _ it's more suspense. _Um_, the other one, SILENCE OF THE LAMBS, is kind of _a_ _, _ a gory movie, _if_ _, _ if somebody's not into that kind of stuff. _It_ _'s_ _, _ it's pretty graphic at points. But, _uh_, I think they're both excellent movies.",
       "translations": {
-        "T2": "إنه مشوق. لا أعتقد أنه كثير ال_،_ _أنا_ _أعني_ _،_ لا يوجد فعليًا أي _أم_، دم وأعضاء أو شيء من هذا القبيل. _إنه_ _،_ _إنه تشويقي أكثر. _أم_، الفيلم الآخر، صمت الحملان، هو نوعًا ما _,_ فيلم دموي، _إذا_ _،_إذا لم يكن شخص ما مهتمًا بهذا النوع من الأشياء. _إنه_ _،_إنه رسومي جدًا في بعض الأجزاء. لكن، _أم_، أعتقد أن كلاهما أفلام ممتازة."
+        "T2": "إنه مشوق. لا أعتقد أنه كثير ال، أنا أعني ، لا يوجد فعليًا أي أم، دم وأعضاء أو شيء من هذا القبيل. إنه ، إنه تشويقي أكثر. أم، الفيلم الآخر، صمت الحملان، هو نوعًا ما , فيلم دموي، إذا ،إذا لم يكن شخص ما مهتمًا بهذا النوع من الأشياء. إنه ،إنه رسومي جدًا في بعض الأجزاء. لكن، أم، أعتقد أن كلاهما أفلام ممتازة."
       }
     },
     {
@@ -228,7 +228,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_25",
       "en": "_Well_, presumably those who find out such information, if they are doing it, I would prefer _to_ not to be known, and _, _ _I_ _mean_ _, _ _you_ _know_ _, _ the classic, _oh_ _, _ _I_ _do_ _n't_ _know_ C I A conspiracy theories or whatever, would have such parties trying to do it without your knowledge. So there's, things that invade that second type of privacy where you do know about them and possibly things that invade that second type of privacy without you knowing about it, and I can't talk about the second one other than _to_ _, _ _to_ _, _ to generate paranoia. It's a surmise and, I'd like to think that it's quite low, at least in this country.",
       "translations": {
-        "T2": "_حسنًا_، من المفترض أن أولئك الذين يكتشفون مثل هذه المعلومات، إذا كانوا يفعلون ذلك، أفضل ألا أعرف، و _،_ أنا أعني_،_ _ _أنت_ _تعرف_ _،_ المبتذل، _أوه_ _،_ أنا لا أعرف نظريات المؤامرة الخاصة بـ وكالة الاستخبارات المركزية(CIA) أو أي شيء من هذا القبيل، سيكون لديهم مثل هذه  المجموعات تحاول القيام بذلك دون علمك. إذن هناك، أشياء تنتهك النوع الثاني من الخصوصية حيث أنك تعرف عنها وربما أشياء تنتهك النوع الثاني من الخصوصية دون أن تعرف عنها، ولا أستطيع التحدث عن النوع الثاني إلا _ل_ _،_ _ل_ _،_ لتوليد جنون الارتياب. إنه افتراض، وأود أن أعتقد أنه منخفض جدًا، على الأقل في هذه البلد."
+        "T2": "حسنًا، من المفترض أن أولئك الذين يكتشفون مثل هذه المعلومات، إذا كانوا يفعلون ذلك، أفضل ألا أعرف، و ، أنا أعني،  أنت تعرف ، المبتذل، أوه ، أنا لا أعرف نظريات المؤامرة الخاصة بـ وكالة الاستخبارات المركزية(CIA) أو أي شيء من هذا القبيل، سيكون لديهم مثل هذه  المجموعات تحاول القيام بذلك دون علمك. إذن هناك، أشياء تنتهك النوع الثاني من الخصوصية حيث أنك تعرف عنها وربما أشياء تنتهك النوع الثاني من الخصوصية دون أن تعرف عنها، ولا أستطيع التحدث عن النوع الثاني إلا ل ، ل ، لتوليد جنون الارتياب. إنه افتراض، وأود أن أعتقد أنه منخفض جدًا، على الأقل في هذه البلد."
       }
     },
     {
@@ -242,7 +242,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_63",
       "en": "_It_ _would_ _, _ it would be pirated and they wouldn't bother to check that carefully anyway to someone who's offering _, _ _you_ _know_ _, _ full cash price, for it.",
       "translations": {
-        "T2": "_هو_ _سوف_ _،_ سوف يتم قرصنته ولن يهتموا بالتحقق من ذلك بدقة على أي حال لشخص يقدم _،_ _ _أنت_ _تعرف_ _،_ السعر الكامل نقدًا من أجله."
+        "T2": "هو سوف ، سوف يتم قرصنته ولن يهتموا بالتحقق من ذلك بدقة على أي حال لشخص يقدم ،  أنت تعرف ، السعر الكامل نقدًا من أجله."
       }
     },
     {
@@ -256,14 +256,14 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_71",
       "en": "_Uh-huh_ _. _ I also thought about it, _was_ _of_ _, _ _uh_, waiting to talk to you that, another thing that occurred to me is there is not so much invasion of my privacy because I know how to behave such that there isn't. But I realized I have to behave in a certain way in order to not have people invade my privacy. If I deviate from social norms of behavior, if I run up and down the street yelling or something, someone's going to invade my privacy very quickly.",
       "translations": {
-        "T2": "_أهم_ _._ لقد فكرت أيضًا في ذلك، _كنت_ _،_ _أم_،_ أنتظر للتحدث معك بخصوص أن شيء آخر قد خطَر لي هو أنه لا يوجد الكثير من الانتهاك في خصوصيتي لأنني أعرف كيف أتصرف بحيث لا يحدث ذلك. لكن أدركت أن عليّ التصرف بطريقة معينة لكي لا يقوم الناس بانتهاك خصوصيتي. إذا انحرفت عن الأعراف الاجتماعية للسلوك، إذا ركضت ذهابًا وإيابًا في الشارع أصرخ أو شيء من هذا القبيل، فسوف ينتهك أحدهم خصوصيتي بسرعة كبيرة."
+        "T2": "أهم . لقد فكرت أيضًا في ذلك، كنت ، أم، أنتظر للتحدث معك بخصوص أن شيء آخر قد خطَر لي هو أنه لا يوجد الكثير من الانتهاك في خصوصيتي لأنني أعرف كيف أتصرف بحيث لا يحدث ذلك. لكن أدركت أن عليّ التصرف بطريقة معينة لكي لا يقوم الناس بانتهاك خصوصيتي. إذا انحرفت عن الأعراف الاجتماعية للسلوك، إذا ركضت ذهابًا وإيابًا في الشارع أصرخ أو شيء من هذا القبيل، فسوف ينتهك أحدهم خصوصيتي بسرعة كبيرة."
       }
     },
     {
       "utt_id": "sw02012_A_87",
       "en": "Whereas in this country where everyone respects the closed doors very much, if you go out and then act like the lunatic _you_ _, _ you violate _the_ _, _ _uh_, the norms _of_ _social_ _, _ of, _um_, public behavior. _Um_, people start paying attention to you very much and they start asking questions and in the sense are _invite-_ _, _ _invade_ _, _ invading your privacy although, if you know what the social norms are _, _ _you_ _know_ _, _ quote unquote, you asked for it. But it does mean that you have yet another reason to follow a set of social norms.",
       "translations": {
-        "T2": "بينما في هذه البلد حيث يحترم الجميع الأبواب المغلقة جدًا، إذا خرجت ثم تصرفت مثل المجنون أنت إذًا _،_ تنتهك _الـ_ _،_ _أم_، الأعراف الاجتماعية _،_ _لـ_ _أم_، السلوك العام. _أم_، يبدأ الناس بالانتباه لك كثيرًا ويبدؤون بطرح الأسئلة وفي هذا المعنى هم _يدعون_ _،_ _ _ينتهكون_ _،_ ينتهكون خصوصيتك، رغم أنه إذا كنت تعرف ما هي الأعراف الاجتماعية _،_ _أنت_ _تعرف_ _،_ كما يقال، فقد طلبت ذلك. لكن هذا يعني أن لديك سببًا آخر لاتباع مجموعة من الأعراف الاجتماعية."
+        "T2": "بينما في هذه البلد حيث يحترم الجميع الأبواب المغلقة جدًا، إذا خرجت ثم تصرفت مثل المجنون أنت إذًا ، تنتهك الـ ، أم، الأعراف الاجتماعية ، لـ أم، السلوك العام. أم، يبدأ الناس بالانتباه لك كثيرًا ويبدؤون بطرح الأسئلة وفي هذا المعنى هم يدعون ،  ينتهكون ، ينتهكون خصوصيتك، رغم أنه إذا كنت تعرف ما هي الأعراف الاجتماعية ، أنت تعرف ، كما يقال، فقد طلبت ذلك. لكن هذا يعني أن لديك سببًا آخر لاتباع مجموعة من الأعراف الاجتماعية."
       }
     },
     {
@@ -284,7 +284,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_B_50",
       "en": "But then if it turns out to generate incorrect things, that's even worse _so_ _, _ or if my call rate _of_ _, _ of eight _t-_ _, _ or so a week went up even higher because, _uh_, someone _had_ _, _ had,",
       "translations": {
-        "T2": "لكن إذا تبين أن ذلك يولد معلومات خاطئة، فذلك أسوأ لذلك _،_ أو إذا ارتفع معدل مكالماتي _لـ_ _،_ حوالي ثمانية مكالمات_،_ أو نحو ذلك في الأسبوع، لأن _أم_، شخص ما كان _،_ كان _،_"
+        "T2": "لكن إذا تبين أن ذلك يولد معلومات خاطئة، فذلك أسوأ لذلك ، أو إذا ارتفع معدل مكالماتي لـ ، حوالي ثمانية مكالمات، أو نحو ذلك في الأسبوع، لأن أم، شخص ما كان ، كان ،"
       }
     },
     {
@@ -298,28 +298,28 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "أجل _  _أجل_ _نعم_  هذا صحيح. إن العيش في مجمّعٍ سكنيّ _أنت_ _تعرف_ _أنك_ _لا_ _تست..._ _طيع_ _أمم_ _ لا يمكنك حقًا منع أولئك الناس من القدوم حتى وإن وضعوا لافتات في الخارج تقول ممنوع الاستدعاء أو البيع، _آه_  لكنهم مع ذلك يأتون إلى باب الشقة و_أجل_ _أنت_ _تعرف_ _,_ يتجولون في المكان. لذلك، عادةً ما أفعله هو أنني أتصل بمدير المجمع وأخبره _مرحبًا_، هناك أشخاص يأتون إلى هنا _أنت_ _تعرف_، ويحاولون بيع شيء _أو_ أو أنهم من منظمة دينية وأنا أكره ذلك حقًا. أكرهه جدًا بالفعل. لقد جاء أحدهم إلى الباب قبل حوالي أسبوعين و_أه_، _يا إلهي_ كان ذلك في حوالي الساعة التاسعة مساءً أيضًا. لم يكن حتى ما أعتبره _,_أنت_ _تعرف_ _ وقتًا عائليًا، وقت أن _أنت_ _تعرف_  تبدأ بالذهاب إلى النوم _و_ _أجل_ وكان شخصًا من _أمم_,_ أوه_ _ما*_ _كان_  _هذا_ من *أجل*، كنيسة يسوع المسيح لقديسي الأيام الأخيرة، و_أجل_ لقد قرأت كثيرًا عن *أجل* تلك الطائفة تحديدًا ولا أميل إليها، لذا فأنا خصوصًا لا أحب أن يأتوا إلى بابي _و_ ويحاولوا التحدث معي.\n"
+        "T3": "أجل   أجل نعم  هذا صحيح. إن العيش في مجمّعٍ سكنيّ أنت تعرف أنك لا تست... طيع أمم  لا يمكنك حقًا منع أولئك الناس من القدوم حتى وإن وضعوا لافتات في الخارج تقول ممنوع الاستدعاء أو البيع، آه  لكنهم مع ذلك يأتون إلى باب الشقة وأجل أنت تعرف , يتجولون في المكان. لذلك، عادةً ما أفعله هو أنني أتصل بمدير المجمع وأخبره مرحبًا، هناك أشخاص يأتون إلى هنا أنت تعرف، ويحاولون بيع شيء أو أو أنهم من منظمة دينية وأنا أكره ذلك حقًا. أكرهه جدًا بالفعل. لقد جاء أحدهم إلى الباب قبل حوالي أسبوعين وأه، يا إلهي كان ذلك في حوالي الساعة التاسعة مساءً أيضًا. لم يكن حتى ما أعتبره ,أنت تعرف  وقتًا عائليًا، وقت أن أنت تعرف  تبدأ بالذهاب إلى النوم و أجل وكان شخصًا من أمم, أوه ما* كان  هذا من *أجل*، كنيسة يسوع المسيح لقديسي الأيام الأخيرة، وأجل لقد قرأت كثيرًا عن *أجل* تلك الطائفة تحديدًا ولا أميل إليها، لذا فأنا خصوصًا لا أحب أن يأتوا إلى بابي و ويحاولوا التحدث معي.\n"
       }
     },
     {
       "utt_id": "sw02015_B_20",
       "en": "_Yeah_ _, _ _yeah_ _, _ _no_ _, _ _I_ _, _ I agree with you there. If they want to choose that particular religion that's fine with me too _, _ _you_ _know_ _, _ as long as they don't try and pull me in and drag me in. _And_ _, _ and I don't like the way that they do it either, _and_ _, _ and, it's their mission that they do it. They go door to door and they go out into the public and they actually have the, _uh_, teenagers serving two years _like_ _you_ _would_ _say_ _like_ in an army and two years in going around and doing missionary type work and, _uh_, I don't know, I just, _um_, don't particularly care for that at all. And _that_ _, _ that's one thing that I feel really strongly about though, is, _uh_ _, _ _you_ _know_ _, _ people coming up to my door, and especially religious organizations and wanting _to_ _uh_ _, _ _you_ _know_ _, _ to try and get me to join or _, _ _you_ _know_ _, _ become interested in their religion, because I have my own.",
       "translations": {
-        "T3": "_أجل_ _أجل_ _لا_ _أنا_ أنا اتفق معك هناك، إن ارادوا اختيار هذه الديانة بالتحديد أنا لا امانع في ذلك _أنت_ _تعرف_ طالما إنهم لا يحاولون جري وسحبي معهم _و_ لا تعجبني طريقة ادائهم في الديانة ايضًا _و_ و إنها مهمتهم أن يفعلو ذلك، إنهم يذهبون من منزل إلى آخر ويخرجون في العلن وهم في الحقيقة لديهم _آه_ مراهقين يؤدو سنتان _مثل_ _ما_ _كنت _ ستقوله_ _مثل_ الخدمة في الجيش لمدة عامين والقيام باعمال تبشيرية و _أه_ لا  أعرف انا فقط _أم_ لا اهتم بشان ذكل على الإطلاق _أنت_ _تعرف_ الناس يطرقون على بابي خاصة المجموعات الدينية ويريدون _أن_ _أه_ _أنت_ _تعرف_ يحاولون أن انضم إليهم أو _أنت_ _تعرف_ أن تكون مهتم بديانتهم لأنني لدي ديانتي الخاصة"
+        "T3": "أجل أجل لا أنا أنا اتفق معك هناك، إن ارادوا اختيار هذه الديانة بالتحديد أنا لا امانع في ذلك أنت تعرف طالما إنهم لا يحاولون جري وسحبي معهم و لا تعجبني طريقة ادائهم في الديانة ايضًا و و إنها مهمتهم أن يفعلو ذلك، إنهم يذهبون من منزل إلى آخر ويخرجون في العلن وهم في الحقيقة لديهم آه مراهقين يؤدو سنتان مثل ما كنت  ستقوله مثل الخدمة في الجيش لمدة عامين والقيام باعمال تبشيرية و أه لا  أعرف انا فقط أم لا اهتم بشان ذكل على الإطلاق أنت تعرف الناس يطرقون على بابي خاصة المجموعات الدينية ويريدون أن أه أنت تعرف يحاولون أن انضم إليهم أو أنت تعرف أن تكون مهتم بديانتهم لأنني لدي ديانتي الخاصة"
       }
     },
     {
       "utt_id": "sw02015_B_22",
       "en": "_Yeah_ _, _ _yeah_ _, _ that's true, _yeah_ _. _ _No_ _I_ _do_ _n't_ _, _ _uh_ _, _ _I_ _do_ _n't_ _have_ _, _ I didn't go that far but, _uh_, _yeah_ I probably could do the same thing, _uh_ _, _ _you_ _know_, I don't have a storm door, but I'm sure I could rig up something. But _you_ _know_ I don't think that that would stop people. _I_ _, _ it's like they see that word and it says go, instead of stop. _Oh_ _, _ _goodness_ _. _",
       "translations": {
-        "T3": "_أجل_ _أجل_ _هذا صحيح_ _أجل_ _لا_ _أنا_ لا_ _أفعل_ _أه_ _أنا_ _لا_ _أفعل_ _كنت_ لم اتعمق ولكن _اه_ أجل_ غالبًا يمكنني فعل نفس الشيء _اه_ _أنت_ _تعرف_ لا اعتقد أن هذا سيوقف الناس _أنا_ إنه مثل أنهم يرو هذه الكلمة التي تقول اذهب بدلًا من توقف _اوه_ _رباه_"
+        "T3": "أجل أجل هذا صحيح أجل لا أنا لا أفعل أه أنا لا أفعل كنت لم اتعمق ولكن اه أجل غالبًا يمكنني فعل نفس الشيء اه أنت تعرف لا اعتقد أن هذا سيوقف الناس أنا إنه مثل أنهم يرو هذه الكلمة التي تقول اذهب بدلًا من توقف اوه رباه"
       }
     },
     {
       "utt_id": "sw02015_B_30",
       "en": "I know, but I remember _you_ _, _ you talked about something, you started off and said, _well_ let me think, you talked about the telephone calls and people coming and soliciting and selling things at the door. You said something else. I can't remember what it was, and I thought yeah, _that_ _, _ that kind of touched a nerve right there, but _we_ _got_ _uh_, we got to talking about the, _uh_, _uh_, people coming to you at the front door.",
       "translations": {
-        "T3": "أعرف ولكنني أتذكر _أنت_ انت تكلمت عن شيء ما، لقد بدأت بالحديث وقلت _حسنًا_ دعني افكر، لقد تحدثت عن مكالمات الهاتف والناس الذين يأتو ويحاولون بيع شيء لك على باب منزلك، لقد قلت شيئًا آخر، لا يمكنني تذكر ما هو وقلت لنفسي أجل _هذا_ هذا النوع اثارني بالغضب ولكن _نحن_ لدينا_ _اه_ يجب علينا التحدث عن _اه_ _اه_ الناس الذين يأتون إلى منزلك"
+        "T3": "أعرف ولكنني أتذكر أنت انت تكلمت عن شيء ما، لقد بدأت بالحديث وقلت حسنًا دعني افكر، لقد تحدثت عن مكالمات الهاتف والناس الذين يأتو ويحاولون بيع شيء لك على باب منزلك، لقد قلت شيئًا آخر، لا يمكنني تذكر ما هو وقلت لنفسي أجل هذا هذا النوع اثارني بالغضب ولكن نحن لدينا اه يجب علينا التحدث عن اه اه الناس الذين يأتون إلى منزلك"
       }
     },
     {
@@ -347,7 +347,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_104",
       "en": "_Well_ _, _ _you_ _know_ _, _ really that's not world music. But, _what_ _, _ what Paul Simon's doing _, _ _I_ _think_ _is_ _, _ _is_ _, _ is great because he's _, _ _you_ _know_ _I_ _think_ _, _ _I_ _think_ _that_ using _, _ _I_ _guess_ _what_ _they_ _call_ _it_ _is_ eclectic _, _ _you_ _know_ _. _ drawing from a lot of different sources and making _, _ _you_ _know_ _, _ a synthesis of a new type of music. _Um_ _, _",
       "translations": {
-        "T3": "_حسنًا_ _أنت_ _تعرف_ حقًا هذا ليس عالم الموسيقى ولكن _ما_ _ما يفعله بول سايمون _أنا_ _اعتقد_ _إنه_ _إنه_ عظيم لأنه _أنت_ _تعرف_ _انا_ _اعتقد_ _أنا_ _اعتقد_ _أن_ _استخدام_ _أنا__اعتقد_ _ما_ _يسمونه_ _هو_ انتقائي _أنت_ _تعرف_ من امتصاص المصادر المختلفة وصنع _أنت_ _تعرف_ توليف نوع جديد من الموسيقى _أمم_"
+        "T3": "حسنًا أنت تعرف حقًا هذا ليس عالم الموسيقى ولكن ما ما يفعله بول سايمون أنا اعتقد إنه إنه عظيم لأنه أنت تعرف انا اعتقد أنا اعتقد أن استخدام أنااعتقد ما يسمونه هو انتقائي أنت تعرف من امتصاص المصادر المختلفة وصنع أنت تعرف توليف نوع جديد من الموسيقى أمم"
       }
     },
     {
@@ -382,7 +382,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_24",
       "en": "_I_ _, _ I have strong objections to that. _Um_, actually I listen to, one time I remember _, _ _this_ _was_ _back_ _when_ _, _ _even_ _, _ _uh_ _, _ _I_ _would_ _say_ _about_ _ten_ _or_ _fifteen_ _years_ _ago_ I,",
       "translations": {
-        "T3": "_أنا_ أنا أعارض ذلك بشدة _إمم_ في الحقيقة أنا استمع إلى، اتذكر في مرة _لقد_ _كان_  _ذلك_ _في_ _حتى_ _اه_ _أنا_ _كنت_ _سأخبرك_ -أنه_ _منذ_ _عشر_ _أو_ _خمسة عشر_  _عامًا_"
+        "T3": "أنا أنا أعارض ذلك بشدة إمم في الحقيقة أنا استمع إلى، اتذكر في مرة لقد كان  ذلك في حتى اه أنا كنت سأخبرك -أنه منذ عشر أو خمسة عشر  عامًا"
       }
     },
     {
@@ -403,7 +403,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_64",
       "en": "_I_ _mean_ _I_ _, _ I, _there_ _are_ _a_ _lot_ _, _ there are so many different songs, _I_ _mean_ _like_ the whole thing about cover versions a lot of times. _I_ _mean_ I've heard some songs _that_ _, _ that I just thought were horrendous cover versions of, I'm _like_ _, _ _you_ _know_ _, _ _I_ _, _ I don't want to listen to this. Because _you_ _know_ _, _ you think of the original is _like_,",
       "translations": {
-        "T3": "_انا_ _أعني_ _أنا_ _أنا_ _يوجد_ _الكثير_ يوجد الكثير من الأغاني المختلفة، _اعني_  _مثل_ فكرة النسخ الموسيقية في الكثير من الأحيان _أنا_ _اعني_ _لقد سمعت بعض الاغاني _هذا_ اعتقد أن هناك نسخ سيئة جدًا ل، أنا _مثل_ _أنت_ _تعرف_ _أنا_ لا اريد الاستماع لهذا لأنك _أنت_ _تعرف_ تعتقد أن النسخة الأصلية _مثل_"
+        "T3": "انا أعني أنا أنا يوجد الكثير يوجد الكثير من الأغاني المختلفة، اعني  مثل فكرة النسخ الموسيقية في الكثير من الأحيان أنا اعني لقد سمعت بعض الاغاني هذا اعتقد أن هناك نسخ سيئة جدًا ل، أنا مثل أنت تعرف أنا لا اريد الاستماع لهذا لأنك أنت تعرف تعتقد أن النسخة الأصلية مثل"
       }
     },
     {
@@ -431,7 +431,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_12",
       "en": "_Uh_, _we_ _'ve_ _, _ we've, _uh_, taken how much we have _, _ _you_ _know_ _, _ write down how much we have coming in each month and then, _uh_, we've, at the beginning of the year we sat down and determined how much we could spend. We _sat_ _dow-_ _, _ made up different accounts _like_ _, _ _you_ _know_, we've set a budget for each _, _ _you_ _know_ _, _ household expenses, or food, and clothing and entertainment and then _our_ _, _ our own fun money and just stuff like that and then _we_ _write_ _down_ _each_ _, _ each time we spend something, we write down in a book and at the end of the month we tally it up to see how close we _, _ _you_ _know_ _we_ _, _ we try to stay within a certain budget, so.",
       "translations": {
-        "T3": "_أه_ نحن_ _نحن_ _اه_ اخذنا بالاعتبار ما لدينا _أنت_ _تعرف_ كتبت كل شيء نجنيه كل شهر ومن ثم _اه_ لقد جلسنا في بداية العام وقررنا كيف سندفع لقد _جلسنا_ _قمنا بإنشاء حسابات مختلفة_ _مثل_ _أنت_ _تعرف_ لقد قمنا بوضع خطة ميزانية لكل شيء _أنت_ _تعرف_ مصاريف المنزل والطعام والملبس والترفيه ومن ثم _نحن_ _مالنا للترفيه وأمور مثل هذه ومن ثم _نحن_ _نكتب_ _كل_ كل مرة نقوم بصرف شيء نحن نكتب في كتاب وبنهاية الشهر نقوم بمراجعته لنرى كما كنا قريبين _أنت_ _تعرف_ _نحن_ نحن نحاول أن لا نخرج عن ميزانيتنا"
+        "T3": "أه نحن نحن اه اخذنا بالاعتبار ما لدينا أنت تعرف كتبت كل شيء نجنيه كل شهر ومن ثم اه لقد جلسنا في بداية العام وقررنا كيف سندفع لقد جلسنا قمنا بإنشاء حسابات مختلفة مثل أنت تعرف لقد قمنا بوضع خطة ميزانية لكل شيء أنت تعرف مصاريف المنزل والطعام والملبس والترفيه ومن ثم نحن مالنا للترفيه وأمور مثل هذه ومن ثم نحن نكتب كل كل مرة نقوم بصرف شيء نحن نكتب في كتاب وبنهاية الشهر نقوم بمراجعته لنرى كما كنا قريبين أنت تعرف نحن نحن نحاول أن لا نخرج عن ميزانيتنا"
       }
     },
     {
@@ -466,7 +466,7 @@ const INLINE_DATA = {
       "utt_id": "sw02024_A_35",
       "en": "_Well_, I don't know, _um_, I, _uh_, have attended some seminars that had some tapes that went with them, but, _uh_ _, _ _I_ _guess_ not so much books although they sometimes have manuals and things, but, _uh_, they would be things on _like_ how to be successful and sort of talking to yourself _. _ _You_ _know_ _ge-_ _, _ getting _your_ _, _ yourself in gear to, _uh_, sort of pull yourself up by your boot straps and do what you really want to do. Convincing you that you need to get on with it.",
       "translations": {
-        "T4": "_حسنًا_ ، لا أدري، _أم_ ، أنا، _أم_ ، حضرت بعض الندوات التي كانت تتضمن أشرطة مرافقة لها، لكن، _أم_ _،_ _أنا_ _أظن_ ليس كثيرًا من الكتب، رغم أنهم أحيانًا يملكون كتيبات وأشياء، لكن، _أم_ ، كانت تتعلق _بـمثل_ كيف تكون ناجحًا ونوعًا ما الحديث مع نفسك _._ _كما_ _تعلم_ _-تق_ _،_ _ جعل _نفسك_ _،_ نفسك في حالة استعداد لـ، _أم_ ، نوعًا ما أن تعتمد على نفسك وتفعل ما تريد فعله حقًا. إقناع نفسك بأن عليك أن تمضي قدمًا في ذلك."
+        "T4": "حسنًا ، لا أدري، أم ، أنا، أم ، حضرت بعض الندوات التي كانت تتضمن أشرطة مرافقة لها، لكن، أم ، أنا أظن ليس كثيرًا من الكتب، رغم أنهم أحيانًا يملكون كتيبات وأشياء، لكن، أم ، كانت تتعلق بـمثل كيف تكون ناجحًا ونوعًا ما الحديث مع نفسك . كما تعلم -تق ،  جعل نفسك ، نفسك في حالة استعداد لـ، أم ، نوعًا ما أن تعتمد على نفسك وتفعل ما تريد فعله حقًا. إقناع نفسك بأن عليك أن تمضي قدمًا في ذلك."
       }
     },
     {
@@ -480,14 +480,14 @@ const INLINE_DATA = {
       "utt_id": "sw02024_B_4",
       "en": "_Uh_, _have_ _n't_ _, _ _have_ _, _ I have a wide variety _of_ _, _ of hobbies, therefore, _my_ _, _ my reading pleasures are quite wide. _Um_, I get a charge out of, _uh_, TEXAS HIGHWAY, which is, _uh_, very colorful, and, _uh_, not being a native of Texas, but being here eleven years have a tendency to, _uh_, find out _the_ _, _ _uh_, about the different areas _of_ _the_ _co-_ _, _ _of_ _the_ _, _ of the state by reading it.",
       "translations": {
-        "T4": "_أم_ ، _لم_ _أ_ ، _،_ _ _لدي_ _،_ لدي مجموعة واسعة _من_ _،_ _ من الهوايات، لذلك فإن متع قراءتي واسعة جدًا. _أم_ ، أستمتع بـ، _أم_ ، TEXAS HIGHWAY، وهو، _أم_ ، ملون جدًا، و، _أم_ ، وبما أنني لست من أبناء تكساس، لكن إقامتي هنا منذ أحد عشر عامًا تجعلني أميل إلى، _أم_ ، اكتشاف _الـ_ _،_ _ _أم_ ، حول المناطق المختلفة _من_ _الـ_  _،_ _ من_ _الـ_ _،_ _ من الولاية من خلال قراءته."
+        "T4": "أم ، لم أ ، ،  لدي ، لدي مجموعة واسعة من ،  من الهوايات، لذلك فإن متع قراءتي واسعة جدًا. أم ، أستمتع بـ، أم ، TEXAS HIGHWAY، وهو، أم ، ملون جدًا، و، أم ، وبما أنني لست من أبناء تكساس، لكن إقامتي هنا منذ أحد عشر عامًا تجعلني أميل إلى، أم ، اكتشاف الـ ،  أم ، حول المناطق المختلفة من الـ  ،  من الـ ،  من الولاية من خلال قراءته."
       }
     },
     {
       "utt_id": "sw02024_B_8",
       "en": "_Oh_ _yeah_ _, _ _it_ _'s_ _, _ _it_ _'s_ _, _ _uh_, absolutely, it's great the way that it's broken out and you can, _uh_, set up little trips and day trips and things. It's _pretty_ _, _ pretty neat. _Um_, _oh_, I like photography, _um_, magazines. I don't take a subscription or anything like that. _Um_, things, _oh_, being an engineer in facilities I do read _a_ _lot_ _of_ _, _ a lot of, _uh_, building magazines _and_ _, _ _and_ _, _ and plant engineering magazines and, read up on different ways to do things and energy management type of magazines _and_ _, _ and, _uh_, kind of strange because _I_ _, _ it's not unusual to, _uh_, see, _uh_, an engineering manual or something laying around the house",
       "translations": {
-        "T4": "_أوه_ _نعم_ _،_ _ _إنه_ _،_ _ _إنه_ _،_ _ _أم_ ، بالتأكيد، إنه رائع من حيث الطريقة التي تم بها تنظيمه ويمكنك، _أم_ ، إعداد رحلات صغيرة ورحلات ليوم واحد وأشياء من هذا القبيل. إنه _جميل_ _،_ _ جميل حقًا. _أم_ ، _أوه_ ، أحب التصوير، _أم_ ، والمجلات. لا أشترك في أي اشتراك أو شيء من هذا القبيل. _أم_ ، أشياء، _أوه_ ، وبحكم كوني مهندسًا في المرافق فإنني أقرأ _الكثير_ _من_ _،_ _ الكثير من، _أم_ ، مجلات البناء _و_ _،_ _ _و_ _،_ _ و_ مجلات هندسة المصانع و، أطلع على طرق مختلفة لإنجاز الأمور ومجلات تتعلق بإدارة الطاقة _و_ _،_ _ و، _أم_ ، وهذا نوعًا ما غريب لأن _أنا_ _،_ _ ليس من غير المعتاد أن، _أم_ ، ترى، _أم_ ، دليلًا هندسيًا أو شيئًا من هذا القبيل ملقى في أرجاء المنزل."
+        "T4": "أوه نعم ،  إنه ،  إنه ،  أم ، بالتأكيد، إنه رائع من حيث الطريقة التي تم بها تنظيمه ويمكنك، أم ، إعداد رحلات صغيرة ورحلات ليوم واحد وأشياء من هذا القبيل. إنه جميل ،  جميل حقًا. أم ، أوه ، أحب التصوير، أم ، والمجلات. لا أشترك في أي اشتراك أو شيء من هذا القبيل. أم ، أشياء، أوه ، وبحكم كوني مهندسًا في المرافق فإنني أقرأ الكثير من ،  الكثير من، أم ، مجلات البناء و ،  و ،  و مجلات هندسة المصانع و، أطلع على طرق مختلفة لإنجاز الأمور ومجلات تتعلق بإدارة الطاقة و ،  و، أم ، وهذا نوعًا ما غريب لأن أنا ،  ليس من غير المعتاد أن، أم ، ترى، أم ، دليلًا هندسيًا أو شيئًا من هذا القبيل ملقى في أرجاء المنزل."
       }
     },
     {
@@ -508,14 +508,14 @@ const INLINE_DATA = {
       "utt_id": "sw02027_A_7",
       "en": "_Yeah_ _, _ _you_ _know_ _, _ we're kind of that way too. I try to, I'm the same way you are, I kind of try to judge from day to day. I know _, _ _you_ _know_ _, _ where I am we work a lot with the customers and we have a lot of government folks come in all the time _and_ _, _ and, _you_ _know_ _, _ if I know that they're going to be there _, _ _you_ _know_ _, _ _you_ _, _ I try to really watch it and like you say _, _ _you_ _know_ _, _ really dress up",
       "translations": {
-        "T4": "_نعم_ _،_  _كما_ _تعلم_ _،_ نحن نوعًا ما كذلك أيضًا. أحاول أن، أنا بنفس طريقتك، أحاول نوعًا ما أن أحكم من يوم لآخر. أعلم _،_ _ _كما_ _تعلم_ _،_ في المكان الذي أعمل فيه نتعامل كثيرًا مع العملاء ويأتي الكثير من المسؤولين الحكوميين طوال الوقت _و_ _،_ و، _كما_ _تعلم_ _،_ إذا كنت أعلم أنهم سيكونون هناك _،_ _كما_ _تعلم_ _،_ _أنت_ _،_ أحاول حقًا أن أنتبه لذلك وكما تقول _،_ _كما_ _تعلم_ _،_ أن أرتدي ملابس أنيقة فعلًا."
+        "T4": "نعم ،  كما تعلم ، نحن نوعًا ما كذلك أيضًا. أحاول أن، أنا بنفس طريقتك، أحاول نوعًا ما أن أحكم من يوم لآخر. أعلم ،  كما تعلم ، في المكان الذي أعمل فيه نتعامل كثيرًا مع العملاء ويأتي الكثير من المسؤولين الحكوميين طوال الوقت و ، و، كما تعلم ، إذا كنت أعلم أنهم سيكونون هناك ، كما تعلم ، أنت ، أحاول حقًا أن أنتبه لذلك وكما تقول ، كما تعلم ، أن أرتدي ملابس أنيقة فعلًا."
       }
     },
     {
       "utt_id": "sw02027_A_79",
       "en": "_Well_ I don't know, I just figure _, _ _you_ _know_ _, _ _yeah_, sometimes I worry about _, _ _you_ _know_ _, _ if I go in in pants, and _I_ _never_ _, _ I never ever, ever, ever go in in a pair of jeans _, _ _you_ _know_. But I'll go in in pants. _I_ _mean_ today I had on a pair of _, _ _you_ _know_ _, _ navy blue dress slacks _and_ _, _ and, _uh_, _like_ a peach colored top and _, _ _you_ _know_ _, _ not cruddy, but not a dress either. And sometimes I wonder if stuff like that _would_ _, _ will hold you back _, _ _you_ _know_ _, _ if you don't dress in _, _ _you_ _know_ _, _ your dress for success business suits everyday _if_ _, _ _you_ _know_ _, _ if upper management doesn't notice that and remember that later on, but _, _ _you_ _know_ _, _ I don't know if they do or not. _You_ _know_ _, _ I see a lot of the managers and they're in jeans, so _, _ _you_ _know_.",
       "translations": {
-        "T4": "_حسنًا_ لا أدري، أنا فقط أظن _،_ _كما_ _تعلم_ _،_ _نعم_ ، أحيانًا أقلق بشأن _،_ _كما_ _تعلم_ _،_ إذا ذهبت مرتدية بنطالًا، و _أنا_ _أبدًا_ _،_ أنا لا أذهب أبدًا، أبدًا، أبدًا مرتديةً بنطال جينز _،_ _كما_ _تعلم_ . لكنني أذهب مرتدية بنطالًا. _أنا_ _أعني_ اليوم كنت أرتدي _،_ _كما_ _تعلم_ _،_ بنطالًا رسميًا كحلي اللون _و_ _،_ و، _أم_ ، _مثل_ بلوزة بلون الخوخ و _،_ _كما_ _تعلم_ _،_ ليس رديئًا، لكنه ليس فستانًا أيضًا. وأحيانًا أتساءل إن كانت أشياء كهذه _قد_ _،_ قد تعيقك _،_ _كما_ _تعلم_ _،_ إذا لم ترتدِ _،_ _كما_ _تعلم_ _،_ _ بدلات العمل الرسمية يوميًا من نوع “النجاح في المظهر” _إذا_ _،_ _كما_ _تعلم_ _،_ إذا كانت الإدارة العليا لا تلاحظ ذلك وتتذكره لاحقًا، لكن _،_كما_ _تعلم_ _،_ لا أعلم إن كانوا يفعلون ذلك أم لا. _كما_ _تعلم_ _،_ أرى الكثير من المديرين وهم يرتدون الجينز، لذا _،_ _كما_ _تعلم_."
+        "T4": "حسنًا لا أدري، أنا فقط أظن ، كما تعلم ، نعم ، أحيانًا أقلق بشأن ، كما تعلم ، إذا ذهبت مرتدية بنطالًا، و أنا أبدًا ، أنا لا أذهب أبدًا، أبدًا، أبدًا مرتديةً بنطال جينز ، كما تعلم . لكنني أذهب مرتدية بنطالًا. أنا أعني اليوم كنت أرتدي ، كما تعلم ، بنطالًا رسميًا كحلي اللون و ، و، أم ، مثل بلوزة بلون الخوخ و ، كما تعلم ، ليس رديئًا، لكنه ليس فستانًا أيضًا. وأحيانًا أتساءل إن كانت أشياء كهذه قد ، قد تعيقك ، كما تعلم ، إذا لم ترتدِ ، كما تعلم ،  بدلات العمل الرسمية يوميًا من نوع “النجاح في المظهر” إذا ، كما تعلم ، إذا كانت الإدارة العليا لا تلاحظ ذلك وتتذكره لاحقًا، لكن ،كما تعلم ، لا أعلم إن كانوا يفعلون ذلك أم لا. كما تعلم ، أرى الكثير من المديرين وهم يرتدون الجينز، لذا ، كما تعلم."
       }
     },
     {
@@ -587,7 +587,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_147",
       "en": "_Yeah_ _. _ But, _uh_, _I_ _, _ _I_ _, _ I think that _, _ _you_ _know_ _, _ _we_ _always_ _, _ _uh_ _, _ _I_ _mean_ _, _ _I_ _'ve_ _, _ I've had a lot of good experiences _with_ _, _ _uh_, with _many_ many people especially where they've had, _uh_, extended family. _And_ _I_ _, _ and _I_ _, _ I kind of see _that_ _, _ that, _you_ _know_ _, _ perhaps _, _ _you_ _know_ _, _ we may need to _like_ get close to the family environment _and_ and get down to the values of _, _ _you_ _know_,",
       "translations": {
-        "T1": "_Jo_ _._ Ale, _ach_,_já_ _,_ _já_ _,_ já myslím že _,_ _ty_ _víš_ _,_ _my_ _vždycky_ _,_ _ach_ _,_ _já_ _myslím_ _,_ já_ _měl_ _,_ já měl hodně dobrých zkušeností _s_ _,_ _ach_, s _mnoha_ mnoha lídmi obzvlášť tam kde měli, _ach_, širší rodinu. _A_ _já_ _,_ a _já_ _,_ Já tak nějak vidím _že_ _,_ že, _ty_ _víš_ _,_ možná _,_ _ty_ _víš_ _,_ možná se budeme muset _jako_ přiblížit rodinnému prostředí _a_ a dostat se k hodnotám _,_ _ty_ _víš_,"
+        "T1": "Jo . Ale, ach,já , já , já myslím že , ty víš , my vždycky , ach , já myslím , já měl , já měl hodně dobrých zkušeností s , ach, s mnoha mnoha lídmi obzvlášť tam kde měli, ach, širší rodinu. A já , a já , Já tak nějak vidím že , že, ty víš , možná , ty víš , možná se budeme muset jako přiblížit rodinnému prostředí a a dostat se k hodnotám , ty víš,"
       }
     },
     {
@@ -776,7 +776,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_101",
       "en": "Because _I_, _any_ _, _ _anyone_ _, _ any friend, anyone I give my number to is welcome to call me, but no one is just welcome to come by my house. So that is more of a sense of invasion.",
       "translations": {
-        "T3": "Protože _já_,_někdo_,_kdokoliv_,_kterýkoliv kamarád, kdokoliv komu dám své číslo mi může zavolat, ale nikdo nemůže jen tak přijít ke mně domů. To je spíš jako invaze."
+        "T3": "Protože já,někdo,kdokoliv,kterýkoliv kamarád, kdokoliv komu dám své číslo mi může zavolat, ale nikdo nemůže jen tak přijít ke mně domů. To je spíš jako invaze."
       }
     },
     {
@@ -832,7 +832,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_99",
       "en": "All _the_ _class-_ _, _ the other classic examples, the Jehovah's Witness _or_ _, _ or Mormons or someone knocking at the front door, _um_, which is more intrusive because I have to really tell someone to go away. And there's that sense of, I have now opened my door they now see what I look like, what I live like _and_ _nor-_ _, _ and they're doing something that normally I really only invite, people to.",
       "translations": {
-        "T3": "Celá_třída_,_další klasické příklady, Svědci Jehovovy _nebo_,_ nebo Mormoni nebo někdo klepající na dveře, _um_, což je více narušující protože opravdu musím někomu říct, ať jde pryč. A je tu takový smysl, že teď když jsem otevřel dveře, vědí jak vypadá, jak žiju__,_ a dělají něco k čemu normálně jen zvu lidi."
+        "T3": "Celátřída,další klasické příklady, Svědci Jehovovy nebo, nebo Mormoni nebo někdo klepající na dveře, um, což je více narušující protože opravdu musím někomu říct, ať jde pryč. A je tu takový smysl, že teď když jsem otevřel dveře, vědí jak vypadá, jak žiju, a dělají něco k čemu normálně jen zvu lidi."
       }
     },
     {
@@ -860,7 +860,7 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "_uhuh_,_uhuh_._Jo, to je pravda. Žití v komplexním apartmánu, víš že nemůžeš, _um_, nemůžeš jen tak zastavit lidi aby nechodili okolo i kdyby vytáhli cedule které říkají žádné žádosti, _uh_, ale oni stejně přicházejí k předním dveřím a _uh_ však víš, obcházejí tu. Takže, co většinou já dělám je, že zavolám domovnímu správci a řeknu mu, _hele_, jsou tu lidi a chodí tu_,_ víš, a snaží se něco prodávat nebo jsou z náboženské organizace a to nesnáším. Fakt to nesnáším. Před dvěma týdny jsem měl někoho za dveřmi a  bylo okolo devíti večer. Ani to nebylo že bych to považoval za rodinný čas, víš, začít jít do postele, a byl to někdo, um, co to bylo... Ježíš Kristus církev posledních dnů, a o tom jsem hodně četl, o této konkrétní sektě a mě to nezajímá, takže nechci aby chodili k mým dveřím a snažili se na mě mluvit."
+        "T3": "uhuh,uhuh.Jo, to je pravda. Žití v komplexním apartmánu, víš že nemůžeš, um, nemůžeš jen tak zastavit lidi aby nechodili okolo i kdyby vytáhli cedule které říkají žádné žádosti, uh, ale oni stejně přicházejí k předním dveřím a uh však víš, obcházejí tu. Takže, co většinou já dělám je, že zavolám domovnímu správci a řeknu mu, hele, jsou tu lidi a chodí tu, víš, a snaží se něco prodávat nebo jsou z náboženské organizace a to nesnáším. Fakt to nesnáším. Před dvěma týdny jsem měl někoho za dveřmi a  bylo okolo devíti večer. Ani to nebylo že bych to považoval za rodinný čas, víš, začít jít do postele, a byl to někdo, um, co to bylo... Ježíš Kristus církev posledních dnů, a o tom jsem hodně četl, o této konkrétní sektě a mě to nezajímá, takže nechci aby chodili k mým dveřím a snažili se na mě mluvit."
       }
     },
     {
@@ -972,7 +972,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_A_21",
       "en": "That's a good choice, _we_ _'ve_ _been_ _trying_ _, _ we're trying to, _uh_, do that this year. We've budgeted the money that _we_ _used_ _to_ _spend_ _, _ we were spending on a CODA account with T I and then money we were also buying stock with for that year, we've taken that this year, and said we're going to pay off all of our credit cards",
       "translations": {
-        "T4": "To je dobrá volba, _my__se__snažíme__,_snažíme se,_uh_, to udělat tenhle rok. Rozpočítali jsme ty peníze, které_jsme_ _ předtím_ utráceli_aby_ _,_ které jsme utráceli na CODA účet s T I a taky ty peníze, s kterými jsme kupoval stock pro ten rok, to jsme vzali tenhle rok a řekli, že zaplatíme dluhy na našich kreditních kartách."
+        "T4": "To je dobrá volba, mysesnažíme,snažíme se,uh, to udělat tenhle rok. Rozpočítali jsme ty peníze, kteréjsme  předtím utráceliaby , které jsme utráceli na CODA účet s T I a taky ty peníze, s kterými jsme kupoval stock pro ten rok, to jsme vzali tenhle rok a řekli, že zaplatíme dluhy na našich kreditních kartách."
       }
     },
     {
@@ -986,7 +986,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_A_45",
       "en": "_Yeah_ _. _ The other thing that we've done, _that_ _, _ that was really nice to see, we had one of the financial companies, _um_, _han-_ _, _ _uh_, John Hancock company came out and their agent did a long term analysis based on salary and, _uh_, _what_ _we_ _were_ _pla-_ _, _ _what_ _, _ what our, _uh_, goals were on a long term budget in terms of retirement, kids college, paying off the house, buying a different house, _um_, special thing, buying land and building our own house",
       "translations": {
-        "T4": "_Jo_ _._ Další věc, kterou jsme udělali, _která_ _,_která byla fajn, jedna z těch finančních firem, _um_,_Han-_ _,_ _uh_, firma John Hancock udělala dlouhodobou analýzu na základě mzdy a, _uh_,_co_ _my_ _jsme_ plá-_ _,_ _co_ _,_ co naše, _uh_, cíle byly dlouhodobé, co se týče důchodu, studia dětí, splácení hypotéky, koupě jiného domu, _um_, něčeho zvláštního, koupě pozemku a stavění našeho vlastního domu."
+        "T4": "Jo . Další věc, kterou jsme udělali, která ,která byla fajn, jedna z těch finančních firem, um,Han- , uh, firma John Hancock udělala dlouhodobou analýzu na základě mzdy a, uh,co my jsme plá- , co , co naše, uh, cíle byly dlouhodobé, co se týče důchodu, studia dětí, splácení hypotéky, koupě jiného domu, um, něčeho zvláštního, koupě pozemku a stavění našeho vlastního domu."
       }
     },
     {
@@ -1007,14 +1007,14 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_52",
       "en": "_Uh-huh_ _. _ That sounds interesting, we've never done any-, we have, _you_ _know_ _, _ _just_ _our_ _, _ our life insurance guy has come out _, _ _you_ _know_, and he's _set_ _up_ _, _ _uh_ _, _ _you_ _know_ _, _ determined how much _we_ _need_ _to_ _, _ _you_ _know_ _, _ we need if something were to happen.",
       "translations": {
-        "T4": "_Aha_ _._ To zní zajímavě, nikdy jsme nic takového nedělali – vlastně ano, _víš_ _,_ _jen_ _náš_ _,_ přišel k nám ten chlapík z životní pojišťovny _,_ _víš_ _, a on _sestavil_ _,_ _ehm_ _,_ _víš_ _,_ určil, kolik _my_ _potřebujeme_ _,_ _víš_ _,_ kolik potřebujeme, kdyby se něco stalo."
+        "T4": "Aha . To zní zajímavě, nikdy jsme nic takového nedělali – vlastně ano, víš , jen náš , přišel k nám ten chlapík z životní pojišťovny , víš , a on sestavil , ehm , víš , určil, kolik my potřebujeme , víš , kolik potřebujeme, kdyby se něco stalo."
       }
     },
     {
       "utt_id": "sw02022_B_54",
       "en": "_Right_ _, _ _yeah_ _, _ _you_ _know_, if, I would sell the _, _ _you_ _know_, if, _he_ _, _ something would happen to him, I wouldn't stay in Texas, I would, _uh_, sell the house and move back home _, _ _you_ _know_ _, _ to my home town, _and_ _, _ and, _uh_, I wouldn't stay here in Texas, so _you_ _know_ _, _ I don't know what he would do.",
       "translations": {
-        "T4": "_Jasně_ _,_ _jo_ _,_ _no_ _víš_, kdybych prodal tu _,_ _víš_ _kdyby, _on_ _,_ kdyby se mu něco stalo, nezůstal bych v Texasu, prodal bych, _uh_, prodal bych dům a přistěhoval se zpátky domu _,_ _víš_ _no_ _,_ do mého rodného města, _a_ _,_ a, _uh_, nezůstal bych tady v Texasu, takže _víš_ _no_ _,_ nevím, co by dělal."
+        "T4": "Jasně , jo , no víš, kdybych prodal tu , víš kdyby, on , kdyby se mu něco stalo, nezůstal bych v Texasu, prodal bych, uh, prodal bych dům a přistěhoval se zpátky domu , víš no , do mého rodného města, a , a, uh, nezůstal bych tady v Texasu, takže víš no , nevím, co by dělal."
       }
     },
     {
@@ -1042,7 +1042,7 @@ const INLINE_DATA = {
       "utt_id": "sw02024_B_4",
       "en": "_Uh_, _have_ _n't_ _, _ _have_ _, _ I have a wide variety _of_ _, _ of hobbies, therefore, _my_ _, _ my reading pleasures are quite wide. _Um_, I get a charge out of, _uh_, TEXAS HIGHWAY, which is, _uh_, very colorful, and, _uh_, not being a native of Texas, but being here eleven years have a tendency to, _uh_, find out _the_ _, _ _uh_, about the different areas _of_ _the_ _co-_ _, _ _of_ _the_ _, _ of the state by reading it.",
       "translations": {
-        "T4": "_Uh_,_nemám_ _,_ _mám_ _,_ mám širokou škálu _ _ koníčků, takže, _moje_ _,_ čtenářské potěšení je poměrně široké. _Um_, baví mě, _uh_, „TEXAS HIGHWAY\", což je, _uh_, velmi barvité, a, _uh_, nejsem sice rodilý Texasan, ale žiji tady jedenáct let a mám tendenci _uh_ zajímat se o různé části _toho_ _ _t- _ _toho_ státu čtením."
+        "T4": "Uh,nemám , mám , mám širokou škálu   koníčků, takže, moje , čtenářské potěšení je poměrně široké. Um, baví mě, uh, „TEXAS HIGHWAY\", což je, uh, velmi barvité, a, uh, nejsem sice rodilý Texasan, ale žiji tady jedenáct let a mám tendenci uh zajímat se o různé části toho  t-  toho státu čtením."
       }
     },
     {
@@ -1063,7 +1063,7 @@ const INLINE_DATA = {
       "utt_id": "sw02027_A_65",
       "en": "_I_ _, _ I am. I work faster, I get things done faster, than when I'm in a dress and heels _, _ _you_ _know_, I, and it's weird but _I_ _, _ _it_ _'s_ _I_ _do_ _, _ _I_ _can_ _, _ I can get so much more done if I'm dressed comfortable _, _ _you_ _know_.",
       "translations": {
-        "T4": "_já_ _,_ já jsem. Pracuji rychleji, udělám věci rychleji, než když jsem v šatech a podpatkách _,_ _víš_ _no_, já, a je to divné ale _já_ _,_ _je_ _to_ _ já_ dělám_ _,_ _já_ _můžu_ _,_ můžu toho stihnout mnohem víc, jestli jsem příjemně oblečena _,_ _chápeš."
+        "T4": "já , já jsem. Pracuji rychleji, udělám věci rychleji, než když jsem v šatech a podpatkách , víš no, já, a je to divné ale já , je to  já dělám , já můžu , můžu toho stihnout mnohem víc, jestli jsem příjemně oblečena , chápeš."
       }
     },
     {
@@ -1077,7 +1077,7 @@ const INLINE_DATA = {
       "utt_id": "sw02027_A_79",
       "en": "_Well_ I don't know, I just figure _, _ _you_ _know_ _, _ _yeah_, sometimes I worry about _, _ _you_ _know_ _, _ if I go in in pants, and _I_ _never_ _, _ I never ever, ever, ever go in in a pair of jeans _, _ _you_ _know_. But I'll go in in pants. _I_ _mean_ today I had on a pair of _, _ _you_ _know_ _, _ navy blue dress slacks _and_ _, _ and, _uh_, _like_ a peach colored top and _, _ _you_ _know_ _, _ not cruddy, but not a dress either. And sometimes I wonder if stuff like that _would_ _, _ will hold you back _, _ _you_ _know_ _, _ if you don't dress in _, _ _you_ _know_ _, _ your dress for success business suits everyday _if_ _, _ _you_ _know_ _, _ if upper management doesn't notice that and remember that later on, but _, _ _you_ _know_ _, _ I don't know if they do or not. _You_ _know_ _, _ I see a lot of the managers and they're in jeans, so _, _ _you_ _know_.",
       "translations": {
-        "T4": "_No_, já nevím, prostě si říkám _,_ _víš_ _no_ _,_ _jo_, někdy mám obavy z toho, _,_ _víš_ _no_ _,_ jestli tam půjdu v kalhotách, a _já_ _nikdy_ _,_ já tam nikdy, nikdy, nikdy nejdu v džínách _,_ _víš_ _no_ _. Ale v kalhotách tam půjdu. _Chci říct_, dneska jsem měla na sobě _,_ _víš_ _no_ _,_ tmavě modré společenské kalhoty _a_ _,_ a, _uh_,_něco jako_ broskvový top a _,_ _víš_ _no_ _,_ nic ošuntělého, ale ani šaty. A někdy si říkám, jestli tě takové věci _mohou_ _,_ brzdit _,_ _víš_ _no_ _,_ jestli se neoblékáš do _,_ _víš_ _no_ _,_ svých kostýmků pro úspěch každý den _jestli_ _,_ _víš_ _no_ _,_ jestli si toho vrcholový management nevšimne a nezapamatuje si to na později, ale _,_ _víš_ _no_ _,_ nevím, jestli si to všimnou nebo ne. _Víš_ _no_ _,_ vidím spoustu manažerů a mají na sobě džíny, takže _,_ _chápeš."
+        "T4": "No, já nevím, prostě si říkám , víš no , jo, někdy mám obavy z toho, , víš no , jestli tam půjdu v kalhotách, a já nikdy , já tam nikdy, nikdy, nikdy nejdu v džínách , víš no . Ale v kalhotách tam půjdu. Chci říct, dneska jsem měla na sobě , víš no , tmavě modré společenské kalhoty a , a, uh,něco jako broskvový top a , víš no , nic ošuntělého, ale ani šaty. A někdy si říkám, jestli tě takové věci mohou , brzdit , víš no , jestli se neoblékáš do , víš no , svých kostýmků pro úspěch každý den jestli , víš no , jestli si toho vrcholový management nevšimne a nezapamatuje si to na později, ale , víš no , nevím, jestli si to všimnou nebo ne. Víš no , vidím spoustu manažerů a mají na sobě džíny, takže , chápeš."
       }
     },
     {
@@ -1091,7 +1091,7 @@ const INLINE_DATA = {
       "utt_id": "sw02028_A_125",
       "en": "_Taking_ _, _ taking care of _uh_, I'm actually in the air division, and we monitor, _um_, anything that comes out of a stack, or out of a building, or, _um_, we do have customers that, _um_, their concerns are in the work place and we take care of that, but, within our department. We take care of everything. Waste water, _uh_, solid waste, and recycling, _and_ _, _ and air and,",
       "translations": {
-        "T4": "_ Starat_ _,_ starat se o_uh_, já jsem vlastně ve větrném sektoru a monitorujeme, _um_, cokoliv, co vyjde ze zásob(?), nebo z budovy, nebo, _um_, máme zákazníky kteří, _um_, jejich starosti jsou na pracovišti a o to se staráme, ale, v rámci našeho oddělení. O všechno se staráme. Odpadní vody, _uh_, pevný odpad, a recyklace, _a_ _,_ a vzduch a,"
+        "T4": " Starat , starat se ouh, já jsem vlastně ve větrném sektoru a monitorujeme, um, cokoliv, co vyjde ze zásob(?), nebo z budovy, nebo, um, máme zákazníky kteří, um, jejich starosti jsou na pracovišti a o to se staráme, ale, v rámci našeho oddělení. O všechno se staráme. Odpadní vody, uh, pevný odpad, a recyklace, a , a vzduch a,"
       }
     },
     {
@@ -1105,7 +1105,7 @@ const INLINE_DATA = {
       "utt_id": "sw02032_A_135",
       "en": "So, it's like, nothing happened during the seventies. Everything happened during the sixties, the seventies I don't know what they're called _, _ _you_ _know_, it's _like_ _, _ like _the_ _, _ the eighties are called, _like_ the progressive years, _or_ _the_ _, _ or _, _ _you_ _know_ _, _ _like_ the technology years, because of all the computers and stuff.",
       "translations": {
-        "T4": "Takže, je to jako, nic se během sedmdesátek nestalo. Všechno se stalo během šedesátek, sedmdesátky, nevím, jak se jim říká _,_ _víš_ _no_, je to _jako_ _,_jako _ _,_ osmdesátkám se říká, _jako_ progresivní léta, _nebo_ _ _,_nebo_,_ _víš_ _no_ _,_ _jako_ léta technologie, díky těm počítačům a tak."
+        "T4": "Takže, je to jako, nic se během sedmdesátek nestalo. Všechno se stalo během šedesátek, sedmdesátky, nevím, jak se jim říká , víš no, je to jako ,jako  , osmdesátkám se říká, jako progresivní léta, nebo  ,nebo, víš no , jako léta technologie, díky těm počítačům a tak."
       }
     },
     {
@@ -1119,7 +1119,7 @@ const INLINE_DATA = {
       "utt_id": "sw02032_A_77",
       "en": "_Yeah_ _, _ _they_ _'re_ _, _ they're still around, they've got a _ne-_ _, _ new C D out, but _I_ _, _ I wouldn't buy it. Because _see_, what happens is, the old, _see_ whe-, _I_ _like_ _, _ I like the old Rolling Stones. I don't like the new stuff.",
       "translations": {
-        "T4": "_Jo_ _,_ _oni_ _,_ pořád ještě hrají, mají teď _no-_ _,_nové CDéčko, ale _já_ _, já bych si ho nekoupil. Protože _víš_, co se děje, tak ti staří, _víš_ kdy-, _já_ mám rád_ _,_ mám rád ty staré Rolling Stones. Ty nové věci se mi nelíbí."
+        "T4": "Jo , oni , pořád ještě hrají, mají teď no- ,nové CDéčko, ale já , já bych si ho nekoupil. Protože víš, co se děje, tak ti staří, víš kdy-, já mám rád , mám rád ty staré Rolling Stones. Ty nové věci se mi nelíbí."
       }
     }
   ],
@@ -1198,7 +1198,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_55",
       "en": "_You_ _know_ _, _ whether it was just _, _ _you_ _know_ _, _ giving money or whether it was actually taking part in a lot, of the decision making _, _ _you_ _know_ _, _ like finding a proper nursing home.",
       "translations": {
-        "T1": "_Du_ _weißt _,_ ob es nun nur _,_ _du_ _weißt_ _,_ Geld geben or ob es tatsächlich entscheidungen treffen war _,_ _du_ _weißt_ _,_ wie ein richtiges Pflegeheim finden.\n"
+        "T1": "Du weißt , ob es nun nur , du weißt , Geld geben or ob es tatsächlich entscheidungen treffen war , du weißt , wie ein richtiges Pflegeheim finden.\n"
       }
     },
     {
@@ -1240,7 +1240,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_B_2",
       "en": "_Well_, of course, _it_ _'s_ _, _ _you_ _know_ _, _ it's one of the last few things in the world you'd ever want to do _, _ _you_ _know_ _. _ Unless it's just _, _ _you_ _know_ _, _ really _, _ _you_ _know_ _, _ _and_, _uh_, _for_ _their_ _, _ _uh_ _, _ _you_ _know_ _, _ for their own good.",
       "translations": {
-        "T1": "_Nun_, natürlich, _es_ist_ _,_ _du_ _weißt_ _,_ _es ist eines der letzten dinge auf dieser Welt die du jemals machen wollen würdest _,_ _äh_ _du_ _weißt_ _._Ausser es ist nur_,_ _du_ _weißt_ _,_wirklich _,_ _du_ _weißt_ _,_ _und_,_äh_,_ für_ _sein_ _,_ _äh_ _,_ _du_ _weißt_ _,_für sein eigenes gutes."
+        "T1": "Nun, natürlich, esist , du weißt , es ist eines der letzten dinge auf dieser Welt die du jemals machen wollen würdest , äh du weißt .Ausser es ist nur, du weißt ,wirklich , du weißt , und,äh, für sein , äh , du weißt ,für sein eigenes gutes."
       }
     },
     {
@@ -1534,21 +1534,21 @@ const INLINE_DATA = {
       "utt_id": "sw02022_A_21",
       "en": "That's a good choice, _we_ _'ve_ _been_ _trying_ _, _ we're trying to, _uh_, do that this year. We've budgeted the money that _we_ _used_ _to_ _spend_ _, _ we were spending on a CODA account with T I and then money we were also buying stock with for that year, we've taken that this year, and said we're going to pay off all of our credit cards",
       "translations": {
-        "T4": "Das ist eine gute Wahl, _wir_ _haben_ _schon_ _versucht_ _,_wir versuchen zu, _äh_, das dieses Jahr zu machen. Wir haben das Geld eingeplant, das _wir_ _früher_ _ausgegeben_ _haben_,_das wir für das CODA-Konto bei T I bezahlt haben und dann auch das Geld, mit dem wir in diesem Jahr Aktien gekauft haben, haben wir dieses Jahr genommen und gesagt, dass wir alle unsere Kreditkarten abbezahlen werden."
+        "T4": "Das ist eine gute Wahl, wir haben schon versucht ,wir versuchen zu, äh, das dieses Jahr zu machen. Wir haben das Geld eingeplant, das wir früher ausgegeben haben,das wir für das CODA-Konto bei T I bezahlt haben und dann auch das Geld, mit dem wir in diesem Jahr Aktien gekauft haben, haben wir dieses Jahr genommen und gesagt, dass wir alle unsere Kreditkarten abbezahlen werden."
       }
     },
     {
       "utt_id": "sw02022_A_39",
       "en": "_Yeah_ _, _ mostly what _we_ _'re_ _doing_ _, _ _we_ _'ve_ _worked_ _, _ we've done the, _uh_, CODA account with T I where _they_ _, _ we put in so much a month, and then they, or so much a pay check and then they match it.",
       "translations": {
-        "T4": "_Ja_,_größtenteils was _wir_ _machen_,_wir_ _haben_ _gearbeitet_,_wir haben das, _äh_, CODA-Konto bei T I gemacht, wo _sie_,_wir jeden Monat so viel einzahlen und sie dann, oder sowas, pro Gehaltscheck sie das dann aufstocken. "
+        "T4": "Ja,größtenteils was wir machen,wir haben gearbeitet,wir haben das, äh, CODA-Konto bei T I gemacht, wo sie,wir jeden Monat so viel einzahlen und sie dann, oder sowas, pro Gehaltscheck sie das dann aufstocken. "
       }
     },
     {
       "utt_id": "sw02022_A_45",
       "en": "_Yeah_ _. _ The other thing that we've done, _that_ _, _ that was really nice to see, we had one of the financial companies, _um_, _han-_ _, _ _uh_, John Hancock company came out and their agent did a long term analysis based on salary and, _uh_, _what_ _we_ _were_ _pla-_ _, _ _what_ _, _ what our, _uh_, goals were on a long term budget in terms of retirement, kids college, paying off the house, buying a different house, _um_, special thing, buying land and building our own house",
       "translations": {
-        "T4": "_Ja_._Die andere Sache, die wir gemacht haben, _das_,_das war wirklich nett zu sehen, wir hatten eine dieser Finanzfirmen, _äh_,_han-_,_äh_, die Firma John Hancock kam auf uns zu und ihr Vertreter hat eine langfristige Analyse gemacht basierend auf dem Gehalt und _äh_,_was_ _wir_ _gepla-,_ _was_,_was unser, _äh_, unsere langfristigen Ziele in Bezug auf Ruhestand, Studium der Kinder, das Haus abbezahlen, ein anderes Haus kaufen, _ähm_, etwas besonderes, ein Grundstück kaufen und unser eigenes Haus bauen. "
+        "T4": "Ja.Die andere Sache, die wir gemacht haben, das,das war wirklich nett zu sehen, wir hatten eine dieser Finanzfirmen, äh,han-,äh, die Firma John Hancock kam auf uns zu und ihr Vertreter hat eine langfristige Analyse gemacht basierend auf dem Gehalt und äh,was wir gepla-, was,was unser, äh, unsere langfristigen Ziele in Bezug auf Ruhestand, Studium der Kinder, das Haus abbezahlen, ein anderes Haus kaufen, ähm, etwas besonderes, ein Grundstück kaufen und unser eigenes Haus bauen. "
       }
     },
     {
@@ -1569,14 +1569,14 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_52",
       "en": "_Uh-huh_ _. _ That sounds interesting, we've never done any-, we have, _you_ _know_ _, _ _just_ _our_ _, _ our life insurance guy has come out _, _ _you_ _know_, and he's _set_ _up_ _, _ _uh_ _, _ _you_ _know_ _, _ determined how much _we_ _need_ _to_ _, _ _you_ _know_ _, _ we need if something were to happen.",
       "translations": {
-        "T4": "_Mhm_._Das klingt interessant, wir haben noch nie irgend-, wir haben, _du_ _weißt_,_nur_ _unser_,_unser Lebensversicherungsberater ist vorbeigekommen_,_du_ _weißt_, und er hat _uns_ _das_ _eingerichtet_,_äh_,_du_ _weißt_,_festgestellt, wie viel _wir_ _brauchen_ _um_,_du_ _weißt_,_wir brauchen, falls etwas passieren sollte. "
+        "T4": "Mhm.Das klingt interessant, wir haben noch nie irgend-, wir haben, du weißt,nur unser,unser Lebensversicherungsberater ist vorbeigekommen,du weißt, und er hat uns das eingerichtet,äh,du weißt,festgestellt, wie viel wir brauchen um,du weißt,wir brauchen, falls etwas passieren sollte. "
       }
     },
     {
       "utt_id": "sw02022_B_54",
       "en": "_Right_ _, _ _yeah_ _, _ _you_ _know_, if, I would sell the _, _ _you_ _know_, if, _he_ _, _ something would happen to him, I wouldn't stay in Texas, I would, _uh_, sell the house and move back home _, _ _you_ _know_ _, _ to my home town, _and_ _, _ and, _uh_, I wouldn't stay here in Texas, so _you_ _know_ _, _ I don't know what he would do.",
       "translations": {
-        "T4": "_Richtig_,_ja_,_du_ _weißt_, ich würde das verkaufen wenn_,_du_ _weißt_ _schon_, wenn, _er_,_wenn ihm etwas zustoßen würde, würde ich nicht in Texas bleiben, ich würde, _ähm_, das Haus verkaufen und zurückziehen_,_du_ _weißt_ _schon_,_in meine Heimatstadt _und_ _und_ _ähm_, ich würde nicht in Texas bleiben, nur _damit_ _du_ _weißt_,_ich weiß nicht was er tun würde. "
+        "T4": "Richtig,ja,du weißt, ich würde das verkaufen wenn,du weißt schon, wenn, er,wenn ihm etwas zustoßen würde, würde ich nicht in Texas bleiben, ich würde, ähm, das Haus verkaufen und zurückziehen,du weißt schon,in meine Heimatstadt und und ähm, ich würde nicht in Texas bleiben, nur damit du weißt,ich weiß nicht was er tun würde. "
       }
     },
     {
@@ -1590,7 +1590,7 @@ const INLINE_DATA = {
       "utt_id": "sw02024_A_35",
       "en": "_Well_, I don't know, _um_, I, _uh_, have attended some seminars that had some tapes that went with them, but, _uh_ _, _ _I_ _guess_ not so much books although they sometimes have manuals and things, but, _uh_, they would be things on _like_ how to be successful and sort of talking to yourself _. _ _You_ _know_ _ge-_ _, _ getting _your_ _, _ yourself in gear to, _uh_, sort of pull yourself up by your boot straps and do what you really want to do. Convincing you that you need to get on with it.",
       "translations": {
-        "T4": "_Also_, ich weiß nicht, _ähm_, ich, _ähm_, hab an solchen Seminaren schon teilgenommen, die einige Aufnahmen dazu hatten, aber, _äh_,_ich_ _schätze_ kaum Bücher, obwohl sie manchmal auch Handbücher und so etwas hatten, aber, _äh_, es wäre über Dinge _wie_ man erfolgreich sein kann und irgendwie sich das dann einreden_._Du_ _weißt_ _schon_,_si-_,_sich_,_sich selbst in Gang zu bringen um, _äh_, sich irgendwie selbst aufzurichten und das zu tun, was man wirklich tun möchte. Dich davon zu überzeugen, dass du weitermachen musst. "
+        "T4": "Also, ich weiß nicht, ähm, ich, ähm, hab an solchen Seminaren schon teilgenommen, die einige Aufnahmen dazu hatten, aber, äh,ich schätze kaum Bücher, obwohl sie manchmal auch Handbücher und so etwas hatten, aber, äh, es wäre über Dinge wie man erfolgreich sein kann und irgendwie sich das dann einreden.Du weißt schon,si-,sich,sich selbst in Gang zu bringen um, äh, sich irgendwie selbst aufzurichten und das zu tun, was man wirklich tun möchte. Dich davon zu überzeugen, dass du weitermachen musst. "
       }
     },
     {
@@ -1604,21 +1604,21 @@ const INLINE_DATA = {
       "utt_id": "sw02024_B_4",
       "en": "_Uh_, _have_ _n't_ _, _ _have_ _, _ I have a wide variety _of_ _, _ of hobbies, therefore, _my_ _, _ my reading pleasures are quite wide. _Um_, I get a charge out of, _uh_, TEXAS HIGHWAY, which is, _uh_, very colorful, and, _uh_, not being a native of Texas, but being here eleven years have a tendency to, _uh_, find out _the_ _, _ _uh_, about the different areas _of_ _the_ _co-_ _, _ _of_ _the_ _, _ of the state by reading it.",
       "translations": {
-        "T4": "_Äh_,_haben_ _nicht_,_haben_,_ich habe eine große Auswahl _von_,_von hobbys, also, _meine_,_meine Lesevorlieben ziemlich breit. _Ähm_ ich habe Freude an, _ähm_, TEXAS HIGHWAY, was, _äh_, sehr farbenfroh ist und _äh_, da ich kein gebürtiger Texaner bin, aber seit elf Jahren, habe ich die Tendenz, _ähm_,_die_,_ähm_, über die verschiedenen Gebiete _des_ _co-_,_des_,_des Bundesstaates zu erfahren, indem ich es lese. "
+        "T4": "Äh,haben nicht,haben,ich habe eine große Auswahl von,von hobbys, also, meine,meine Lesevorlieben ziemlich breit. Ähm ich habe Freude an, ähm, TEXAS HIGHWAY, was, äh, sehr farbenfroh ist und äh, da ich kein gebürtiger Texaner bin, aber seit elf Jahren, habe ich die Tendenz, ähm,die,ähm, über die verschiedenen Gebiete des co-,des,des Bundesstaates zu erfahren, indem ich es lese. "
       }
     },
     {
       "utt_id": "sw02024_B_8",
       "en": "_Oh_ _yeah_ _, _ _it_ _'s_ _, _ _it_ _'s_ _, _ _uh_, absolutely, it's great the way that it's broken out and you can, _uh_, set up little trips and day trips and things. It's _pretty_ _, _ pretty neat. _Um_, _oh_, I like photography, _um_, magazines. I don't take a subscription or anything like that. _Um_, things, _oh_, being an engineer in facilities I do read _a_ _lot_ _of_ _, _ a lot of, _uh_, building magazines _and_ _, _ _and_ _, _ and plant engineering magazines and, read up on different ways to do things and energy management type of magazines _and_ _, _ and, _uh_, kind of strange because _I_ _, _ it's not unusual to, _uh_, see, _uh_, an engineering manual or something laying around the house",
       "translations": {
-        "T4": "_Oh_ _ja_,_es_ _ist_,_es_ _ist_,_äh_, absolut, es ist großartig, wie es aufgebaut ist und man kann, _äh_, kleine Ausflüge und Tagesausflüge und so etwas planen. Es ist _ziemlich_,_ziemlich_ angenehm. _Ähm_,_oh_, ich mag Fotografie, _ähm_, Magazine. Ich habe kein Abonnement oder so etwas. _Äh_, Dinge, _oh_, da ich ein Ingenieur an Anlagen bin, lese ich _viele_,_viele, _äh_, Bauzeitschriften _und_ _und_ _und_ und Zeitschriften über Anlagenbau und lese mich in viele verschiedene Arten, Dinge zu machen und über Energiemanagement _und_ _und_ _äh_, irgendwie seltsam, weil _ich_,_es ist nicht außergewöhnlich zu, _ähm_, sehen, _ähm_, wie ein Ingenieurshandbuch oder so etwas im Haus rumliegt. "
+        "T4": "Oh ja,es ist,es ist,äh, absolut, es ist großartig, wie es aufgebaut ist und man kann, äh, kleine Ausflüge und Tagesausflüge und so etwas planen. Es ist ziemlich,ziemlich angenehm. Ähm,oh, ich mag Fotografie, ähm, Magazine. Ich habe kein Abonnement oder so etwas. Äh, Dinge, oh, da ich ein Ingenieur an Anlagen bin, lese ich viele,viele, äh, Bauzeitschriften und und und und Zeitschriften über Anlagenbau und lese mich in viele verschiedene Arten, Dinge zu machen und über Energiemanagement und und äh, irgendwie seltsam, weil ich,es ist nicht außergewöhnlich zu, ähm, sehen, ähm, wie ein Ingenieurshandbuch oder so etwas im Haus rumliegt. "
       }
     },
     {
       "utt_id": "sw02027_A_31",
       "en": "And these weren't even really full ones. _I_ _mean_ they had a problem out here with it last summer, wearing these shorts that were _, _ _you_ _know_ _, _ the real wide full ones _, _ _you_ _know_, and _becau-_ _, _ these weren't even those. These were _like_ pretty short, black, and they were very dressy, the were black velvet shorts and she had on black hose and black heels and she looked very, very nice.",
       "translations": {
-        "T4": "Und das waren nicht einmal wirklich volle. _Ich_ _meine, sie hatten letzten Sommer damit ein Problem, diese Shorts zu tragen, die _,_du_ weißt_ _schon_,_die richtig weiten_,_du_ _weißt_ _schon_ und _wei-_,_das waren nicht mal diese. Die waren _so_ sehr kurz, schwarz und sie waren sehr schick, es waren schwarze Samtshorts und sie trug schwarze Strümpfe und schwarze Absätze und sie sah sehr, sehr gut aus. "
+        "T4": "Und das waren nicht einmal wirklich volle. Ich meine, sie hatten letzten Sommer damit ein Problem, diese Shorts zu tragen, die ,du weißt schon,die richtig weiten,du weißt schon und wei-,das waren nicht mal diese. Die waren so sehr kurz, schwarz und sie waren sehr schick, es waren schwarze Samtshorts und sie trug schwarze Strümpfe und schwarze Absätze und sie sah sehr, sehr gut aus. "
       }
     },
     {
@@ -1632,14 +1632,14 @@ const INLINE_DATA = {
       "utt_id": "sw02027_A_7",
       "en": "_Yeah_ _, _ _you_ _know_ _, _ we're kind of that way too. I try to, I'm the same way you are, I kind of try to judge from day to day. I know _, _ _you_ _know_ _, _ where I am we work a lot with the customers and we have a lot of government folks come in all the time _and_ _, _ and, _you_ _know_ _, _ if I know that they're going to be there _, _ _you_ _know_ _, _ _you_ _, _ I try to really watch it and like you say _, _ _you_ _know_ _, _ really dress up",
       "translations": {
-        "T4": "_Ja_,_du_ _weißt_,_wir sind irgendwie auch so. Ich versuche, ich bin genau so wie du, ich versuche irgendwie, von Tag zu Tag zu beurteilen. Ich weiß_,_du weißt_,_wo ich bin, wir arbeiten viel mit den Kunden und wir haben ständig Regierungsleute hier _und_,_und_,_du weißt_,_wenn ich weiß, dass sie da sein werden_,_du_ _weißt_,_du_,_ich versuche wirklich darauf zu achten und wie du schon sagtest_,_du_ _weißt_, das auszuschmücken."
+        "T4": "Ja,du weißt,wir sind irgendwie auch so. Ich versuche, ich bin genau so wie du, ich versuche irgendwie, von Tag zu Tag zu beurteilen. Ich weiß,du weißt,wo ich bin, wir arbeiten viel mit den Kunden und wir haben ständig Regierungsleute hier und,und,du weißt,wenn ich weiß, dass sie da sein werden,du weißt,du,ich versuche wirklich darauf zu achten und wie du schon sagtest,du weißt, das auszuschmücken."
       }
     },
     {
       "utt_id": "sw02027_A_79",
       "en": "_Well_ I don't know, I just figure _, _ _you_ _know_ _, _ _yeah_, sometimes I worry about _, _ _you_ _know_ _, _ if I go in in pants, and _I_ _never_ _, _ I never ever, ever, ever go in in a pair of jeans _, _ _you_ _know_. But I'll go in in pants. _I_ _mean_ today I had on a pair of _, _ _you_ _know_ _, _ navy blue dress slacks _and_ _, _ and, _uh_, _like_ a peach colored top and _, _ _you_ _know_ _, _ not cruddy, but not a dress either. And sometimes I wonder if stuff like that _would_ _, _ will hold you back _, _ _you_ _know_ _, _ if you don't dress in _, _ _you_ _know_ _, _ your dress for success business suits everyday _if_ _, _ _you_ _know_ _, _ if upper management doesn't notice that and remember that later on, but _, _ _you_ _know_ _, _ I don't know if they do or not. _You_ _know_ _, _ I see a lot of the managers and they're in jeans, so _, _ _you_ _know_.",
       "translations": {
-        "T4": "_Naja_, ich weiß nicht, ich denke einfach_,_du_ _weißt_ _schon_,_ja_, manchmal mache ich mir Sorgen um_,_du_ _weißt_ _schon_,_wenn ich in Hose gehe und _ich_ _nie_,_ich nie, nie, niemals in Jeans gehe_,_du_ _weißt_ _schon_. Aber ich gehe in Jeans. _Ich_ _meine_ heute hatte ich ein Paar_,_du_ _weißt_ _schon_,_marineblaue Stoffhose _und_ _und_ _ähm_ _so_ ein pfirsichfarbenes Oberteil und_,_du_ _weißt_ _schon_,_nicht schäbig, aber auch kein Kleid. Und manchmal wundere ich mich, ob _sowas_,_jemanden zurückhält_,_du_ _weißt_ _schon_,_wenn man nicht jeden Tag in_,_du_ _weißt_ _schon_,_deinen Businessanzug zum Erfolg trägst, _wenn_,_du_ _weißt_ _schon_,_wenn das obere Management das nicht bemerkt und sich später dran erinnert, aber_,_du_ _weißt_ _schon_,_ich weiß nicht, ob sie es tun oder nicht. _Du_ _weißt_ _schon_,_ich sehe viele Manager und sie tragen Jeans oder so, _weißt_ _du_."
+        "T4": "Naja, ich weiß nicht, ich denke einfach,du weißt schon,ja, manchmal mache ich mir Sorgen um,du weißt schon,wenn ich in Hose gehe und ich nie,ich nie, nie, niemals in Jeans gehe,du weißt schon. Aber ich gehe in Jeans. Ich meine heute hatte ich ein Paar,du weißt schon,marineblaue Stoffhose und und ähm so ein pfirsichfarbenes Oberteil und,du weißt schon,nicht schäbig, aber auch kein Kleid. Und manchmal wundere ich mich, ob sowas,jemanden zurückhält,du weißt schon,wenn man nicht jeden Tag in,du weißt schon,deinen Businessanzug zum Erfolg trägst, wenn,du weißt schon,wenn das obere Management das nicht bemerkt und sich später dran erinnert, aber,du weißt schon,ich weiß nicht, ob sie es tun oder nicht. Du weißt schon,ich sehe viele Manager und sie tragen Jeans oder so, weißt du."
       }
     },
     {
@@ -1653,21 +1653,21 @@ const INLINE_DATA = {
       "utt_id": "sw02028_A_125",
       "en": "_Taking_ _, _ taking care of _uh_, I'm actually in the air division, and we monitor, _um_, anything that comes out of a stack, or out of a building, or, _um_, we do have customers that, _um_, their concerns are in the work place and we take care of that, but, within our department. We take care of everything. Waste water, _uh_, solid waste, and recycling, _and_ _, _ and air and,",
       "translations": {
-        "T4": "_Sich_,_sich kümmern um _ähm_, ich bin eigentlich nur in der Luftabteilung und wir beobachten, _ähm_ alles was aus einem Schornstein kommt oder aus einem Gebäude oder _ähm_, wir haben Kunden die, _ähm_, deren Anliegen am Arbeitsplatz liegen und wir kümmern uns drum, aber, nur in unserer Abteilung. Wir kümmern uns um alles. Abwasser, _ähm_, Abfälle und Recycling _und_ _und_ Luft und,"
+        "T4": "Sich,sich kümmern um ähm, ich bin eigentlich nur in der Luftabteilung und wir beobachten, ähm alles was aus einem Schornstein kommt oder aus einem Gebäude oder ähm, wir haben Kunden die, ähm, deren Anliegen am Arbeitsplatz liegen und wir kümmern uns drum, aber, nur in unserer Abteilung. Wir kümmern uns um alles. Abwasser, ähm, Abfälle und Recycling und und Luft und,"
       }
     },
     {
       "utt_id": "sw02028_A_147",
       "en": "And, _uh_, _our_ _, _ our chemical data base, so that we know every chemical on site _and_ _, _ and, _um_, its concentration, and _if_ _, _ if anything ever happened _, _ _God_ _forbid_ _, _ _you_ _know_ _, _ a building explosion or something _tha-_ _, _ we'd be able to track chemicals from that building with our weather station.",
       "translations": {
-        "T4": "Und, _ähm_,_unser_,_unsere chemische Datenbank, damit wir jede Chemikalie vor Ort kennen _und_ _und_ _ähm_, die Konzentration und _wenn_,_wenn jemals was passieren sollte_,_Gott verhindere_,_du_ _weißt_ _schon_,_ein Gebäude explodiert oder so etwas _da-_,_wir Chemikalien aus diesem Gebäude mit unserer Wetterstation nachverfolgen könnten."
+        "T4": "Und, ähm,unser,unsere chemische Datenbank, damit wir jede Chemikalie vor Ort kennen und und ähm, die Konzentration und wenn,wenn jemals was passieren sollte,Gott verhindere,du weißt schon,ein Gebäude explodiert oder so etwas da-,wir Chemikalien aus diesem Gebäude mit unserer Wetterstation nachverfolgen könnten."
       }
     },
     {
       "utt_id": "sw02032_A_135",
       "en": "So, it's like, nothing happened during the seventies. Everything happened during the sixties, the seventies I don't know what they're called _, _ _you_ _know_, it's _like_ _, _ like _the_ _, _ the eighties are called, _like_ the progressive years, _or_ _the_ _, _ or _, _ _you_ _know_ _, _ _like_ the technology years, because of all the computers and stuff.",
       "translations": {
-        "T4": "Also, es ist so, als wäre in den Siebzigern nichts passiert. Alles passierte in den Sechzigern, die Siebziger, ich weiß nicht, wie man sie nennt_,_du_ weißt_ _schon_, es ist _wie_,_wie_ _die_,_die Achtziger nennt man, _so_ die progressiven Jahre, _oder_ _die_,_oder_,_du_ weißt_ _schon_,_wie_ die Technologie-Jahre, wegen all der Computer und so. "
+        "T4": "Also, es ist so, als wäre in den Siebzigern nichts passiert. Alles passierte in den Sechzigern, die Siebziger, ich weiß nicht, wie man sie nennt,du weißt schon, es ist wie,wie die,die Achtziger nennt man, so die progressiven Jahre, oder die,oder,du weißt schon,wie die Technologie-Jahre, wegen all der Computer und so. "
       }
     },
     {
@@ -1681,7 +1681,7 @@ const INLINE_DATA = {
       "utt_id": "sw02032_A_77",
       "en": "_Yeah_ _, _ _they_ _'re_ _, _ they're still around, they've got a _ne-_ _, _ new C D out, but _I_ _, _ I wouldn't buy it. Because _see_, what happens is, the old, _see_ whe-, _I_ _like_ _, _ I like the old Rolling Stones. I don't like the new stuff.",
       "translations": {
-        "T4": "_Ja_,_sie_ _sind_,_sie sind immer noch aktiv, sie haben eine _neu-_,_neue CD rausgebracht, aber _ich_,_ich würde sie nicht kaufen. Weil, _schau_ was passiert ist, die alte, _schau_ wi, _ich_ _mag_,_ich mag die alten Rolling Stones. Ich mag die neuen Sachen nicht. "
+        "T4": "Ja,sie sind,sie sind immer noch aktiv, sie haben eine neu-,neue CD rausgebracht, aber ich,ich würde sie nicht kaufen. Weil, schau was passiert ist, die alte, schau wi, ich mag,ich mag die alten Rolling Stones. Ich mag die neuen Sachen nicht. "
       }
     }
   ],
@@ -1739,14 +1739,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_29",
       "en": "_I_ _mean_ _, _ _she_ _tr-_ _, _ _she_ _had_ _, _ she had children all across the United States",
       "translations": {
-        "T1": "_Me_ _refiero_ _,_ _ella_ tr-_ _,_ _ella_ _tenia_ _,_ ella tenia hijos por todo Estados Unidos"
+        "T1": "Me refiero , ella tr- , ella tenia , ella tenia hijos por todo Estados Unidos"
       }
     },
     {
       "utt_id": "sw02005_A_37",
       "en": "_Yeah_ _. _ _I_ _mean_ _, _ for somebody who _is_ _, _ _you_ _know_ _, _ for most of their life _has_ _, _ has, _uh_, not just merely had a farm but had ten children had a farm, ran everything because her husband was away in the coal mines.",
       "translations": {
-        "T1": "_Si_ _._ _Me_ _me refiero_ _,_ para alguien quien _es_ _,_tu_ _sabes_,_ por gran parte de su vida _ ha_ _,_ ha, _uh_, no solamente tenia una granja sino que tenia diez hijos y una granja, mantenía todo andando porque su esposo estaba lejos en las minas de carbón."
+        "T1": "Si . Me me refiero , para alguien quien es ,tu sabes, por gran parte de su vida  ha , ha, uh, no solamente tenia una granja sino que tenia diez hijos y una granja, mantenía todo andando porque su esposo estaba lejos en las minas de carbón."
       }
     },
     {
@@ -1760,14 +1760,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_55",
       "en": "_You_ _know_ _, _ whether it was just _, _ _you_ _know_ _, _ giving money or whether it was actually taking part in a lot, of the decision making _, _ _you_ _know_ _, _ like finding a proper nursing home.",
       "translations": {
-        "T1": "_Tu_ _sabes_,_ si fue solamente_,_ _tu_ _sabes_,_ dar dinero o si era hacerse parte de, de la toma de decisión_,_ _tu_ _sabes_,_ como encontrar un asilo de ancianos adecuado."
+        "T1": "Tu sabes, si fue solamente, tu sabes, dar dinero o si era hacerse parte de, de la toma de decisión, tu sabes, como encontrar un asilo de ancianos adecuado."
       }
     },
     {
       "utt_id": "sw02005_A_65",
       "en": "_So_ _, _ so, _I_ _mean_ _, _ it, _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _, _ _I_ _har-_ _, _ _I_ _, _ I truly wish that if something like that were to happen that my children would do something like, that for me.",
       "translations": {
-        "T1": "_Así que_ _,_así que, _me_ _refiero_ _,_a, _me_ _refiero_ _,_yo_,_yo_,_yo_,_yo_, har-_ _,_me_,_yo realmente desearía que si eso fuera a llegar a pasar mis hijo hicieran algo, como eso por mi."
+        "T1": "Así que ,así que, me refiero ,a, me refiero ,yo,yo,yo,yo, har- ,me,yo realmente desearía que si eso fuera a llegar a pasar mis hijo hicieran algo, como eso por mi."
       }
     },
     {
@@ -1795,28 +1795,28 @@ const INLINE_DATA = {
       "utt_id": "sw02005_B_14",
       "en": "_You_ _know_ _, _ is there something else we could have done _, _ _you_ _know_ _, _ in checking out all the places that, _uh_, might be available. Of course _, _ _you_ _know_ _, _ there's not one on every corner, especially _, _ _you_ _know_ _, _ smaller areas, smaller towns.",
       "translations": {
-        "T1": "_Tu_ _sabes_,_ si hubo algo mas que pudiéramos hacer_,_tu_ _sabes_,_chequeando todos los lugares que, _uh_, estaban disponibles. Por su puesto, _tu_ _sabes_,_ no hay uno en cada esquina, especialmente_,_tu_ _sabes_,_áreas pequeñas, pueblos pequeños."
+        "T1": "Tu sabes, si hubo algo mas que pudiéramos hacer,tu sabes,chequeando todos los lugares que, uh, estaban disponibles. Por su puesto, tu sabes, no hay uno en cada esquina, especialmente,tu sabes,áreas pequeñas, pueblos pequeños."
       }
     },
     {
       "utt_id": "sw02005_B_2",
       "en": "_Well_, of course, _it_ _'s_ _, _ _you_ _know_ _, _ it's one of the last few things in the world you'd ever want to do _, _ _you_ _know_ _. _ Unless it's just _, _ _you_ _know_ _, _ really _, _ _you_ _know_ _, _ _and_, _uh_, _for_ _their_ _, _ _uh_ _, _ _you_ _know_ _, _ for their own good.",
       "translations": {
-        "T1": "_Bien_, de acuerdo, es, _tu sabes_,_es una de las últimas cosas en el mundo que quisieras hacer_,_tu sabes_._A menos que es solo_,_tu sabes_,_de verdad_,_tu_ _sabes_,_y_,_uh_,_para_ _ellos_,_uh_,_tu_ _sabes_,_por su propio bien. "
+        "T1": "Bien, de acuerdo, es, tu sabes,es una de las últimas cosas en el mundo que quisieras hacer,tu sabes.A menos que es solo,tu sabes,de verdad,tu sabes,y,uh,para ellos,uh,tu sabes,por su propio bien. "
       }
     },
     {
       "utt_id": "sw02005_B_4",
       "en": "I'd be very very careful _and_ _, _ _uh_ _, _ _you_ _know_ _, _ checking them out. _Uh_, our, had t-, place my mother in a nursing home. She had a rather massive stroke _about_ _, _ _uh_, about _uh_, eight months ago _I_ _guess_.",
       "translations": {
-        "T1": "Yo seria muy muy cuidadoso _y_,_uh_,_tu_ _sabes_,_chequearlos. _Uh_, nuestro, tenia t-, dejamos a mi madre en un asilo de ancianos. Ella tuvo un accidente cerebrovascular masivo _sobre_,_uh_, ocho meses atrás _yo_ _creo_."
+        "T1": "Yo seria muy muy cuidadoso y,uh,tu sabes,chequearlos. Uh, nuestro, tenia t-, dejamos a mi madre en un asilo de ancianos. Ella tuvo un accidente cerebrovascular masivo sobre,uh, ocho meses atrás yo creo."
       }
     },
     {
       "utt_id": "sw02005_B_8",
       "en": "So, I was very comfortable _, _ _you_ _know_ _, _ in doing it when it got to the point that we had to do it. But there's, _well_, I had an occasion for my mother-in-law who had fell and _needed_ _to_ _be_ _, _ _you_ _know_ _, _ could not take care of herself anymore, was confined to a nursing home for a while that was really not a very good experience. _Uh_, it had to be done in a hurry. _I_ _mean_ _, _ we didn't have _, _ _you_ _know_ _, _ _like_ six months to check all of these places out. And it was really _not_ _, _ not very good, _uh_, deal.",
       "translations": {
-        "T1": "Así que, yo estaba muy cómodo_,_tu_ _sabes_,_ haciéndolo en el momento que teníamos que hacerlo. Pero, _bien_, yo tuve una ocasión en la que mi suegra quien se había caído y _necesitaba_ estar_ _en_,_tu_ _sabes_,_ no podía cuidarse a si misma ya, fue llevada a un asilo de ancianos por un tiempo no fue una muy buena experiencia. _Uh_, tuvo que ser hecho de prisa. _Me_ _refiero_,_nosotros no teníamos_,_tu_ _sabes_,_como_ _seis meses para chequear todos los lugares. Y _no_ fue realmente, _no fue buen_,_uh_, trato."
+        "T1": "Así que, yo estaba muy cómodo,tu sabes, haciéndolo en el momento que teníamos que hacerlo. Pero, bien, yo tuve una ocasión en la que mi suegra quien se había caído y necesitaba estar en,tu sabes, no podía cuidarse a si misma ya, fue llevada a un asilo de ancianos por un tiempo no fue una muy buena experiencia. Uh, tuvo que ser hecho de prisa. Me refiero,nosotros no teníamos,tu sabes,como seis meses para chequear todos los lugares. Y no fue realmente, no fue buen,uh, trato."
       }
     },
     {
@@ -1900,7 +1900,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_101",
       "en": "Because _I_, _any_ _, _ _anyone_ _, _ any friend, anyone I give my number to is welcome to call me, but no one is just welcome to come by my house. So that is more of a sense of invasion.",
       "translations": {
-        "T3": "Porque _yo_,_ cualquier__, cualquiera__,_cualquier amigo, cualquiera a quién le doy mi número es bienvenido a llamarme, pero nadie tiene simplemente permitido venir a mi casa. Asi que eso se siente más como una invasión."
+        "T3": "Porque yo, cualquier, cualquiera,cualquier amigo, cualquiera a quién le doy mi número es bienvenido a llamarme, pero nadie tiene simplemente permitido venir a mi casa. Asi que eso se siente más como una invasión."
       }
     },
     {
@@ -1942,7 +1942,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_71",
       "en": "_Uh-huh_ _. _ I also thought about it, _was_ _of_ _, _ _uh_, waiting to talk to you that, another thing that occurred to me is there is not so much invasion of my privacy because I know how to behave such that there isn't. But I realized I have to behave in a certain way in order to not have people invade my privacy. If I deviate from social norms of behavior, if I run up and down the street yelling or something, someone's going to invade my privacy very quickly.",
       "translations": {
-        "T2": "_Así_ _es_._ También pensé sobre ello, _estaba_ _,_ _eh_, esperando hablarte esa, otra cosa que me se ocurrió es que no es tanto invasión a mi privacidad porque sé cómo comportarme de tal forma que no hay alguna. Pero me di cuenta que tengo que comportarme de cierta forma para que la gente no invada mi privacidad. Si me desvio de las normas sociales de comportamiento, si corro por la calle gritando o algo, alguien va a invadir mi privacidad muy rápidamente."
+        "T2": "Así es. También pensé sobre ello, estaba , eh, esperando hablarte esa, otra cosa que me se ocurrió es que no es tanto invasión a mi privacidad porque sé cómo comportarme de tal forma que no hay alguna. Pero me di cuenta que tengo que comportarme de cierta forma para que la gente no invada mi privacidad. Si me desvio de las normas sociales de comportamiento, si corro por la calle gritando o algo, alguien va a invadir mi privacidad muy rápidamente."
       }
     },
     {
@@ -1956,7 +1956,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_99",
       "en": "All _the_ _class-_ _, _ the other classic examples, the Jehovah's Witness _or_ _, _ or Mormons or someone knocking at the front door, _um_, which is more intrusive because I have to really tell someone to go away. And there's that sense of, I have now opened my door they now see what I look like, what I live like _and_ _nor-_ _, _ and they're doing something that normally I really only invite, people to.",
       "translations": {
-        "T3": "Todos _los __ clási__,_los otros ejemplos clásicos, el Testigo de Jehova _o__.__o Mormones o alguien golpeando la puerta principal, _em_, que es más intrusivo porque realmente le tengo que pedir a alguien que se vaya. Y está ese sentimiento de, ahora abri la puerta, ahora saben cómo me veo, cómo vivo _y__o__,__ y están haciendo algo en lo que sólo yo normalmente invito gente."
+        "T3": "Todos los  clási,los otros ejemplos clásicos, el Testigo de Jehova o.o Mormones o alguien golpeando la puerta principal, em, que es más intrusivo porque realmente le tengo que pedir a alguien que se vaya. Y está ese sentimiento de, ahora abri la puerta, ahora saben cómo me veo, cómo vivo yo, y están haciendo algo en lo que sólo yo normalmente invito gente."
       }
     },
     {
@@ -1984,7 +1984,7 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "_Uh-huh__,__uh-huh__.__SI__,_ eso es verdad. Sin embargo al vivir en un departamento_,__tu__ sabes__ que no__,__em_, no puedes detener las visitas de estas personas aunque hayan puesto carteles en el frente que dicen no se permiten vendedores ambulantes, _uh_, pero ellos siguen viniendo a la puerta principal y, _uh__,__ ya __sabes__,_deambulan. Asi que, lo que yo hago usualmente es que llamo al gerente del departamento y le digo _hola_, hay gente deambulando_,_ ya __sabes_, y están intentando vender algo _o__._o son de alguna organización religiosa y realmente odio eso. De verdad odio eso. Alguien vino a la puerta hace más o menos dos semanas y, __uh_,_dios_ eran como las nueve de la noche también. Ni siquiera era lo que yo consideraría_,__ya__sabes__,_horario familiar, hora de _,__ya__sabes__,_ empezar a ir a la cama _y__uh_, y era alguien de, _em__,__oh_ que__ era__,_la Iglesia de Jesucristo de los Santos de los Últimos días, y _uh_, leí mucho sobre, _uh_, esa secta particular y no me interesa particularmente, asi que no quiero especialmente que ellos vengan a mi puerta _y__,_ y intenten hablarme."
+        "T3": "Uh-huh,uh-huh.SI, eso es verdad. Sin embargo al vivir en un departamento,tu sabes que no,em, no puedes detener las visitas de estas personas aunque hayan puesto carteles en el frente que dicen no se permiten vendedores ambulantes, uh, pero ellos siguen viniendo a la puerta principal y, uh, ya sabes,deambulan. Asi que, lo que yo hago usualmente es que llamo al gerente del departamento y le digo hola, hay gente deambulando, ya sabes, y están intentando vender algo o.o son de alguna organización religiosa y realmente odio eso. De verdad odio eso. Alguien vino a la puerta hace más o menos dos semanas y, uh,dios eran como las nueve de la noche también. Ni siquiera era lo que yo consideraría,yasabes,horario familiar, hora de ,yasabes, empezar a ir a la cama yuh, y era alguien de, em,oh que era,la Iglesia de Jesucristo de los Santos de los Últimos días, y uh, leí mucho sobre, uh, esa secta particular y no me interesa particularmente, asi que no quiero especialmente que ellos vengan a mi puerta y, y intenten hablarme."
       }
     },
     {
@@ -2033,14 +2033,14 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_104",
       "en": "_Well_ _, _ _you_ _know_ _, _ really that's not world music. But, _what_ _, _ what Paul Simon's doing _, _ _I_ _think_ _is_ _, _ _is_ _, _ is great because he's _, _ _you_ _know_ _I_ _think_ _, _ _I_ _think_ _that_ using _, _ _I_ _guess_ _what_ _they_ _call_ _it_ _is_ eclectic _, _ _you_ _know_ _. _ drawing from a lot of different sources and making _, _ _you_ _know_ _, _ a synthesis of a new type of music. _Um_ _, _",
       "translations": {
-        "T3": "_Bueno_ _,_ _ya_ _sabes_ _,_ realmente eso no es musica mundial. Pero, _lo que_ _,_lo que Paul Simon está haciendo _,_ _yo_ _creo_ _es_ _,_ _es_ _,_ es genial porque el es _,_ _ya_ _sabes_ _yo_ _creo_ _,_ _yo_ _creo_ _que_ usando_,_ _yo_ _supongo_ _ellos_ _lo_ _llaman_ _ ecléctico _,_ _ya_ _sabes_ _._ elegir desde un montón de diferentes fuentes y haciendo _,_ _ya_ _sabes_ _,_ una síntesis de un nuevo tipo de música. _Um_ _,_"
+        "T3": "Bueno , ya sabes , realmente eso no es musica mundial. Pero, lo que ,lo que Paul Simon está haciendo , yo creo es , es , es genial porque el es , ya sabes yo creo , yo creo que usando, yo supongo ellos lo llaman  ecléctico , ya sabes . elegir desde un montón de diferentes fuentes y haciendo , ya sabes , una síntesis de un nuevo tipo de música. Um ,"
       }
     },
     {
       "utt_id": "sw02020_B_110",
       "en": "_Uh_, for example, let's say you're taking _like_ an original Brazilian form of music _and_ _, _ with a certain style, and then you try to make it a little bit more listenable for _, _ _let_ _'s_ _say_ another audience _, _ _let_ _'s_ _say_ a North American.",
       "translations": {
-        "T3": "_Uh_, por ejemplo, digamos tu estás agarrando _como_ una forma de música de origen Brasilero_y_ _,_ con un estilo particular, y lo intentas hacer más escuchable para _,_ _digamos_ otra audiencia _,_ _digamos_ una audiencia Norteamericana."
+        "T3": "Uh, por ejemplo, digamos tu estás agarrando como una forma de música de origen Brasileroy , con un estilo particular, y lo intentas hacer más escuchable para , digamos otra audiencia , digamos una audiencia Norteamericana."
       }
     },
     {
@@ -2061,7 +2061,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_20",
       "en": "_Yeah_ _. _ _Well_, _I_ _, _ I don't really have anything against rap music. I, the one thing I do object to about rap music _is_ _, _ is when it becomes militant, or, if it's, _uh_, violence oriented.",
       "translations": {
-        "T3": "_Si_ _._ _Bueno_,_yo_ _,_realmente no tengo nada en contra de la música de rap.yo, la única cosa que no concuerdo de la música de rap_es_ _,_ es cuando se vuelve militante, o, si es, _uh_, orientada a la violencia."
+        "T3": "Si . Bueno,yo ,realmente no tengo nada en contra de la música de rap.yo, la única cosa que no concuerdo de la música de rapes , es cuando se vuelve militante, o, si es, uh, orientada a la violencia."
       }
     },
     {
@@ -2117,14 +2117,14 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_12",
       "en": "_Uh_, _we_ _'ve_ _, _ we've, _uh_, taken how much we have _, _ _you_ _know_ _, _ write down how much we have coming in each month and then, _uh_, we've, at the beginning of the year we sat down and determined how much we could spend. We _sat_ _dow-_ _, _ made up different accounts _like_ _, _ _you_ _know_, we've set a budget for each _, _ _you_ _know_ _, _ household expenses, or food, and clothing and entertainment and then _our_ _, _ our own fun money and just stuff like that and then _we_ _write_ _down_ _each_ _, _ each time we spend something, we write down in a book and at the end of the month we tally it up to see how close we _, _ _you_ _know_ _we_ _, _ we try to stay within a certain budget, so.",
       "translations": {
-        "T3": "_Uh_,_nosotros_ _,_ nosotros, _uh_, tomamos cuánto tenemos _,_ _ya_ _sabes_ _,_ escribimos cuánto tenemos entrando cada mes y entonces, _uh_, nosotros, a principio de el año nos sentamos y determinamos cuánto podíamos gastar. Nos _sentam-_ _,_ hicimos distintas cuentas _es decir_ _,_ _ya_ _sabes_, fijamos un presupuesto para casa _,_ _ya _sabes_ _,_ expensas de la casa, o comida, y ropa y entretenimiento y entonces _nuestro_ _,_ nuestro propio dinero para diversión y cosas asi y entonces _nosotros_ _escribimos_ _cada_ _,_ cada vez que gastamos algo, lo escribimos en un libro y a fin de mes sacamos la cuenta para ver que tan cerca _,_ _ya_ _sabes_ _nosotros_ _,_ nosotros intentamos mantenernos dentro de un presupuesto específico, entonces.\n"
+        "T3": "Uh,nosotros , nosotros, uh, tomamos cuánto tenemos , ya sabes , escribimos cuánto tenemos entrando cada mes y entonces, uh, nosotros, a principio de el año nos sentamos y determinamos cuánto podíamos gastar. Nos sentam- , hicimos distintas cuentas es decir , ya sabes, fijamos un presupuesto para casa , ya sabes , expensas de la casa, o comida, y ropa y entretenimiento y entonces nuestro , nuestro propio dinero para diversión y cosas asi y entonces nosotros escribimos cada , cada vez que gastamos algo, lo escribimos en un libro y a fin de mes sacamos la cuenta para ver que tan cerca , ya sabes nosotros , nosotros intentamos mantenernos dentro de un presupuesto específico, entonces.\n"
       }
     },
     {
       "utt_id": "sw02022_B_18",
       "en": "_Yeah_ _, _ _yeah_ _, _ _I_ _stay_ _wi-_ _, _ I have to stay within it, so I _, _ _you_ _know_, and then we have that _, _ _you_ _know_, _if_ _you_ _ca_ _n't_ _stay_ _, _ if something comes up and you can't stay within it then we have, _uh_ _, _ _you_ _know_ _, _ a budget for _, _ _you_ _know_ _, _ _like_ we call our slush fund or something and _some-_ _, _ an unexpected comes up, then _you_ _'re_ _not_ _, _ _you_ _know_ _, _ you don't feel _it_ so strapped.",
       "translations": {
-        "T3": "_Si_ _,_ _si_ _,_ _yo_ _me mantengo_ _den-_ _,_ me tengo que mantener dentro de el, asi _,_ _ya_ _sabes_, y después tenemos eso_,_ _ya_ _sabes_,_si_ _tu_ no puedes_ _mantenerte_ _,_ si algo surge y no puedes mantenerte dentro del presupuesto entonces tenemos, _uh_ _,_ _ya_ _sabes_ _,_ un presupuesto para _,_ _ya_ _sabes_ _,_ _like_ llamamos a nuestro fondo secreto o algo asi _algo-_ _,_ surge algo inesperado, entonces _tu_ _no_ _,_ _ya_ _sabes_ _,_ tu no lo sientes tan aferrado."
+        "T3": "Si , si , yo me mantengo den- , me tengo que mantener dentro de el, asi , ya sabes, y después tenemos eso, ya sabes,si tu no puedes mantenerte , si algo surge y no puedes mantenerte dentro del presupuesto entonces tenemos, uh , ya sabes , un presupuesto para , ya sabes , like llamamos a nuestro fondo secreto o algo asi algo- , surge algo inesperado, entonces tu no , ya sabes , tu no lo sientes tan aferrado."
       }
     },
     {
@@ -2266,7 +2266,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_127",
       "en": "But, I guess as we become more industrialized and _more_ _, _ _you_ _know_ _, _ less in a rural situation _we_ _, _ _we_ _do_ _n't_ _, _ _we_ _, _ _we_ _, _ we choose not to deal with the, extended family because we feel it's kind of cumbersome, when in reality it makes things much much easier.",
       "translations": {
-        "T1": "Mais, j'imagine que plus on s'industrialise et _plus_,_tu _ _sais_, mois dans les environment ruraux _on_,_on_ ne_,_on_,_on_, on ne decide pas de s'occuper de, la famille éloigner parce que ca semble un peux lourd, quand en réalité ca rends les choses bien bien plus simple."
+        "T1": "Mais, j'imagine que plus on s'industrialise et plus,tu  sais, mois dans les environment ruraux on,on ne,on,on, on ne decide pas de s'occuper de, la famille éloigner parce que ca semble un peux lourd, quand en réalité ca rends les choses bien bien plus simple."
       }
     },
     {
@@ -2287,28 +2287,28 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_155",
       "en": "and _I_ _, _ _I_ _think_ _, _ I think _that_ _we_ _may_ _not_ _, _ that may be, _you_ _know_ _, _ perhaps if we put money on the back burner _that_ _may_ _, _ that may choose to alleviate a lot of the problem.",
       "translations": {
-        "T1": "et _je_,_je_ _pense_, je pense _que_ _on_ a peut être_ _pas_, que peut être, _tu_ _sais_, peut-être se on met de l'ergent dans le fond _que_ _peut être_, ca allege beaucoup du problème."
+        "T1": "et je,je pense, je pense que on a peut être pas, que peut être, tu sais, peut-être se on met de l'ergent dans le fond que peut être, ca allege beaucoup du problème."
       }
     },
     {
       "utt_id": "sw02005_A_19",
       "en": "_Uh-huh_ _. _ _Yeah_ _. _ Probably the hardest thing _in_ _, _ in my family, _uh_, my grandmother, she had to be put in a nursing home and, _um_, she had used the walker _for_ _, _ for quite some time, probably about six to nine months. And, _um_, she had a fall and, _uh_, finally, _uh_, she had Parkinson's disease,",
       "translations": {
-        "T1": "_ Euh_._Ouais_. Probablement la chose la plus dur _dans_,_dans ma famille_,_euh_, ma grand mere, elle a du être mise en maison de retraite et, _euh_, elle a eu due utiliser un déambulateur _pour_,_ pour une longue durée, probablement six a neuf mois. Et, _euh_, elle est tomber et, _euh_ finalement, _euh_, elle avait Parkinson."
+        "T1": " Euh.Ouais. Probablement la chose la plus dur dans,dans ma famille,euh, ma grand mere, elle a du être mise en maison de retraite et, euh, elle a eu due utiliser un déambulateur pour, pour une longue durée, probablement six a neuf mois. Et, euh, elle est tomber et, euh finalement, euh, elle avait Parkinson."
       }
     },
     {
       "utt_id": "sw02005_A_29",
       "en": "_I_ _mean_ _, _ _she_ _tr-_ _, _ _she_ _had_ _, _ she had children all across the United States",
       "translations": {
-        "T1": "_je_ _veux dire_,_elle voy-_,_elle_ _avait_,_elle avait des enfants dispersés dans les Etats Unies"
+        "T1": "je veux dire,elle voy-,elle avait,elle avait des enfants dispersés dans les Etats Unies"
       }
     },
     {
       "utt_id": "sw02005_A_37",
       "en": "_Yeah_ _. _ _I_ _mean_ _, _ for somebody who _is_ _, _ _you_ _know_ _, _ for most of their life _has_ _, _ has, _uh_, not just merely had a farm but had ten children had a farm, ran everything because her husband was away in the coal mines.",
       "translations": {
-        "T1": "_ouais_._je_ _veux dire_, pour quelqu'un qui_ est_,_tu_ _sais_, pour la plus part de leur vie _avait_,_avait_,_euh_, pas juste une ferme mais dix enfants avait une ferme, qui commandait tous car son mari était dans les mine de charbon."
+        "T1": "ouais.je veux dire, pour quelqu'un qui est,tu sais, pour la plus part de leur vie avait,avait,euh, pas juste une ferme mais dix enfants avait une ferme, qui commandait tous car son mari était dans les mine de charbon."
       }
     },
     {
@@ -2329,7 +2329,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_65",
       "en": "_So_ _, _ so, _I_ _mean_ _, _ it, _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _, _ _I_ _har-_ _, _ _I_ _, _ I truly wish that if something like that were to happen that my children would do something like, that for me.",
       "translations": {
-        "T1": "_donc_,_donc_,_ je_ _veux dire_,_si_,_je_ veux dire_,_je_,_je_,_je_,_je_ _trou-_, je souhaite que si une chose comme ca arriver a mes enfants qu'ils feraient ca genre, pour moi."
+        "T1": "donc,donc, je veux dire,si,je veux dire,je,je,je,je trou-, je souhaite que si une chose comme ca arriver a mes enfants qu'ils feraient ca genre, pour moi."
       }
     },
     {
@@ -2343,7 +2343,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_93",
       "en": "And, _um_, _I_ _mean_ _, _ but _she_ _was_ _truly_ _, _ she was truly aware. _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _di-_ _, _ I don't know _how_ _I_ _would_ _, _ how I would deal if one of my parents came _with_ _, _ with Alzheimer's. or something like, that _which_ _is_ _, _ which is far more devastating.",
       "translations": {
-        "T1": "Et, _euh_,_je_ _veux dire_, mais _elle_ _était_ _réellement_, elle était réellement consciente. _je_ _veux dire_,_je_,_je_,_je_ di-, je sais pas _comment_ _je_ _ferais_, comment je ferais si un de mes parents venait _avec_, avec Alzheimer. ou quelque chose come ca, ca _qui_ est_, ca qui est le plus déprimant."
+        "T1": "Et, euh,je veux dire, mais elle était réellement, elle était réellement consciente. je veux dire,je,je,je di-, je sais pas comment je ferais, comment je ferais si un de mes parents venait avec, avec Alzheimer. ou quelque chose come ca, ca qui est, ca qui est le plus déprimant."
       }
     },
     {
@@ -2371,14 +2371,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_B_4",
       "en": "I'd be very very careful _and_ _, _ _uh_ _, _ _you_ _know_ _, _ checking them out. _Uh_, our, had t-, place my mother in a nursing home. She had a rather massive stroke _about_ _, _ _uh_, about _uh_, eight months ago _I_ _guess_.",
       "translations": {
-        "T1": "Je ferais bien bien attention _et_,_euh_,_tu sais_, a les verifier. _euh-, nous avions es-, mettre ma mere en maison de retraite. Elle a eu une gross crise cardiaque _il y a_,_euh_, environ, _euh_ , huit mois _je crois_."
+        "T1": "Je ferais bien bien attention et,euh,tu sais, a les verifier. euh-, nous avions es-, mettre ma mere en maison de retraite. Elle a eu une gross crise cardiaque il y a,euh, environ, euh , huit mois je crois."
       }
     },
     {
       "utt_id": "sw02005_B_8",
       "en": "So, I was very comfortable _, _ _you_ _know_ _, _ in doing it when it got to the point that we had to do it. But there's, _well_, I had an occasion for my mother-in-law who had fell and _needed_ _to_ _be_ _, _ _you_ _know_ _, _ could not take care of herself anymore, was confined to a nursing home for a while that was really not a very good experience. _Uh_, it had to be done in a hurry. _I_ _mean_ _, _ we didn't have _, _ _you_ _know_ _, _ _like_ six months to check all of these places out. And it was really _not_ _, _ not very good, _uh_, deal.",
       "translations": {
-        "T1": "Donc, j'etais vraiment confortable, _tu sais_, a le faire au point on devais le faire. Mais il y a,_enfin_, j'ai eu une occasion pour ma belle-mere qui était tombée  et _ qui avait besoin _ d'etre_,_ tu sais_, elle ne pouvait plus prendre soins d'elle maintenant, elle a été enfermer dans une maison de soins pour un moment et ce n'etait pas vraiment une bonne exprerience. _Euh_, ca a du etre fais en vitesse. _je veux dire_,_on avait pas_,_tu sais_,_genre_ six mois pour visiter tous ces lieux. Et c'etait vraiment _pas_,_vraiment pas un bon_,_euh_, deal."
+        "T1": "Donc, j'etais vraiment confortable, tu sais, a le faire au point on devais le faire. Mais il y a,enfin, j'ai eu une occasion pour ma belle-mere qui était tombée  et  qui avait besoin  d'etre, tu sais, elle ne pouvait plus prendre soins d'elle maintenant, elle a été enfermer dans une maison de soins pour un moment et ce n'etait pas vraiment une bonne exprerience. Euh, ca a du etre fais en vitesse. je veux dire,on avait pas,tu sais,genre six mois pour visiter tous ces lieux. Et c'etait vraiment pas,vraiment pas un bon,euh, deal."
       }
     },
     {
@@ -2399,7 +2399,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_18",
       "en": "So, I predominantly wear flat shoes. _Um_ _, _ _you_ _know_ _, _ in the winter I wear sweaters, in summer _I_ _, _ _you_ _know_ _, _ I like one piece dresses, short sleeves, things like that.",
       "translations": {
-        "T2": "Donc, je porte principalement des chaussures plates. _Euh_ _,_tu sais_ _,_ en hiver je porte des pulls, en été _je_ _,_ _tu sais_ _,_ j’aime les robes une pièce, manches courtes, des choses comme ça."
+        "T2": "Donc, je porte principalement des chaussures plates. Euh ,tu sais , en hiver je porte des pulls, en été je , tu sais , j’aime les robes une pièce, manches courtes, des choses comme ça."
       }
     },
     {
@@ -2420,7 +2420,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_6",
       "en": "_Um_, I do vary. _Um_ _, _ _you_ _know_ _, _ I wear suits, I wear skirts and sweaters. On occasion I can wear jeans. _Um_, how about you?",
       "translations": {
-        "T2": "_Euh_, je varie. _Euh_ _,_ _tu sais_,_ je porte des costumes, je porte des jupes et des pulls. Par occasion je peux porter des jeans. _Euh_, comment à propos de toi ?"
+        "T2": "Euh, je varie. Euh , tu sais, je porte des costumes, je porte des jupes et des pulls. Par occasion je peux porter des jeans. Euh, comment à propos de toi ?"
       }
     },
     {
@@ -2476,7 +2476,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_25",
       "en": "_Well_, presumably those who find out such information, if they are doing it, I would prefer _to_ not to be known, and _, _ _I_ _mean_ _, _ _you_ _know_ _, _ the classic, _oh_ _, _ _I_ _do_ _n't_ _know_ C I A conspiracy theories or whatever, would have such parties trying to do it without your knowledge. So there's, things that invade that second type of privacy where you do know about them and possibly things that invade that second type of privacy without you knowing about it, and I can't talk about the second one other than _to_ _, _ _to_ _, _ to generate paranoia. It's a surmise and, I'd like to think that it's quite low, at least in this country.",
       "translations": {
-        "T2": "Bon, vraisemblablement, ceux qui découvrent ce genre d’informations, s’ils le font, je préférerais qu’on ne le sache pas, et _,_ je veux dire _,_ tu sais, _ les classiques, oh _,_ je ne connais pas les théories du complot de la CIA ou peu importe, auraient de telles organisations qui essaieraient de le faire à ton insu. Donc il y a des choses qui envahissent ce deuxième type de vie privée dont tu es conscient, et possiblement des choses qui envahissent ce deuxième type de vie privée sans que tu le saches, et je ne peux pas parler de la seconde catégorie autrement que pour _,_ pour _,_ générer de la paranoïa. C’est une supposition, et j’aimerais penser que c’est assez faible, au moins dans ce pays."
+        "T2": "Bon, vraisemblablement, ceux qui découvrent ce genre d’informations, s’ils le font, je préférerais qu’on ne le sache pas, et , je veux dire , tu sais,  les classiques, oh , je ne connais pas les théories du complot de la CIA ou peu importe, auraient de telles organisations qui essaieraient de le faire à ton insu. Donc il y a des choses qui envahissent ce deuxième type de vie privée dont tu es conscient, et possiblement des choses qui envahissent ce deuxième type de vie privée sans que tu le saches, et je ne peux pas parler de la seconde catégorie autrement que pour , pour , générer de la paranoïa. C’est une supposition, et j’aimerais penser que c’est assez faible, au moins dans ce pays."
       }
     },
     {
@@ -2511,7 +2511,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_87",
       "en": "Whereas in this country where everyone respects the closed doors very much, if you go out and then act like the lunatic _you_ _, _ you violate _the_ _, _ _uh_, the norms _of_ _social_ _, _ of, _um_, public behavior. _Um_, people start paying attention to you very much and they start asking questions and in the sense are _invite-_ _, _ _invade_ _, _ invading your privacy although, if you know what the social norms are _, _ _you_ _know_ _, _ quote unquote, you asked for it. But it does mean that you have yet another reason to follow a set of social norms.",
       "translations": {
-        "T2": "Alors que dans ce pays où tout le monde respecte les portes fermées beaucoup, si tu sors et ensuite agis comme le fou _tu_ _,_ tu violes _les_ _,_ _euh_, les normes _de_ _social_ _,_ de_,_euh_, comportement public. Euh, les gens commencent à faire attention à toi beaucoup et ils commencent à poser des questions et dans le sens sont _invit-_ _,_ _envahi-_ _,_ envahissant ta vie privée bien que, si tu sais ce que les normes sociales sont _,_ _tu_ _sais_ _,_ entre guillemets, tu l'as cherché. Mais cela veut dire que tu as encore une autre raison de suivre un ensemble de normes sociales."
+        "T2": "Alors que dans ce pays où tout le monde respecte les portes fermées beaucoup, si tu sors et ensuite agis comme le fou tu , tu violes les , euh, les normes de social , de,euh, comportement public. Euh, les gens commencent à faire attention à toi beaucoup et ils commencent à poser des questions et dans le sens sont invit- , envahi- , envahissant ta vie privée bien que, si tu sais ce que les normes sociales sont , tu sais , entre guillemets, tu l'as cherché. Mais cela veut dire que tu as encore une autre raison de suivre un ensemble de normes sociales."
       }
     },
     {
@@ -2525,7 +2525,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_B_40",
       "en": "_Um_, _the_ _, _ the other side of that might be _if_ _, _ if someone found out something or surmised something that weren't true then I would feel probably more invaded in the gossipy sort of sense.",
       "translations": {
-        "T2": "Um, l’autre _,_ l’autre côté de cela pourrait être si , _ si quelqu’un découvrait quelque chose ou supposait quelque chose qui n’était pas vrai, alors je me sentirais probablement plus envahi, dans un sens plutôt lié aux ragots."
+        "T2": "Um, l’autre , l’autre côté de cela pourrait être si ,  si quelqu’un découvrait quelque chose ou supposait quelque chose qui n’était pas vrai, alors je me sentirais probablement plus envahi, dans un sens plutôt lié aux ragots."
       }
     },
     {
@@ -2574,7 +2574,7 @@ const INLINE_DATA = {
       "utt_id": "sw02018_A_86",
       "en": "_Oh_, it is, it is, _well_ both of ours is school age, but we don't want to miss any of those P T A -s and _, _ _you_ _know_ _, _ all of that.",
       "translations": {
-        "T3": "_Oh_, c'est vrai, c'est vrai, _bon_ nos deux enfants sont en âge d'aller à l'école, mais nous ne voulons manquer aucun de ces réunions de l'association de parents d'élèves et _ et _,_ _vous_ _savez_ _,_ tout ça."
+        "T3": "Oh, c'est vrai, c'est vrai, bon nos deux enfants sont en âge d'aller à l'école, mais nous ne voulons manquer aucun de ces réunions de l'association de parents d'élèves et  et , vous savez , tout ça."
       }
     },
     {
@@ -2595,7 +2595,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_104",
       "en": "_Well_ _, _ _you_ _know_ _, _ really that's not world music. But, _what_ _, _ what Paul Simon's doing _, _ _I_ _think_ _is_ _, _ _is_ _, _ is great because he's _, _ _you_ _know_ _I_ _think_ _, _ _I_ _think_ _that_ using _, _ _I_ _guess_ _what_ _they_ _call_ _it_ _is_ eclectic _, _ _you_ _know_ _. _ drawing from a lot of different sources and making _, _ _you_ _know_ _, _ a synthesis of a new type of music. _Um_ _, _",
       "translations": {
-        "T3": "_Bon_ _,_ _vous_ _savez_ _,_ vraiment ce n'est pas de la musique du monde. Mais, _ce_ _,_ ce que fait Paul Simon _,_ _je_ _pense_ _est_ _,_ _est_ _,_ est génial parce qu'il _,_ _vous_ _savez_ _je_ _pense_ _,_ _je_ _pense_ _que_ en utilisant _,_ _je_ _suppose_ _qu'_ _ils_ _appellent_ _ça__ éclectique _,_ _vous_ _savez_ _._ en puisant dans beaucoup de sources différentes et en faisant _,_ _vous_ _savez_ _,_ une synthèse d'un nouveau type de musique. _Euh_ _,_"
+        "T3": "Bon , vous savez , vraiment ce n'est pas de la musique du monde. Mais, ce , ce que fait Paul Simon , je pense est , est , est génial parce qu'il , vous savez je pense , je pense que en utilisant , je suppose qu' ils appellent ça éclectique , vous savez . en puisant dans beaucoup de sources différentes et en faisant , vous savez , une synthèse d'un nouveau type de musique. Euh ,"
       }
     },
     {
@@ -2658,7 +2658,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_A_21",
       "en": "That's a good choice, _we_ _'ve_ _been_ _trying_ _, _ we're trying to, _uh_, do that this year. We've budgeted the money that _we_ _used_ _to_ _spend_ _, _ we were spending on a CODA account with T I and then money we were also buying stock with for that year, we've taken that this year, and said we're going to pay off all of our credit cards",
       "translations": {
-        "T4": "C’est un bon choix, on_a_essayé, _on _essaie _de, _euh_, faire ça cette année. On a prévu dans le budget l’argent qu'on _avait_ _l’habitude_ _de_ _dépenser_ _,_ on dépensait pour un compte CODA avec T I et puis l’argent avec lequel on achetait aussi des actions cette année-là, on a pris ça cette année, et on a dit qu’on allait rembourser toutes nos cartes de crédit."
+        "T4": "C’est un bon choix, onaessayé, on essaie de, euh, faire ça cette année. On a prévu dans le budget l’argent qu'on avait l’habitude de dépenser , on dépensait pour un compte CODA avec T I et puis l’argent avec lequel on achetait aussi des actions cette année-là, on a pris ça cette année, et on a dit qu’on allait rembourser toutes nos cartes de crédit."
       }
     },
     {
@@ -2686,7 +2686,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_18",
       "en": "_Yeah_ _, _ _yeah_ _, _ _I_ _stay_ _wi-_ _, _ I have to stay within it, so I _, _ _you_ _know_, and then we have that _, _ _you_ _know_, _if_ _you_ _ca_ _n't_ _stay_ _, _ if something comes up and you can't stay within it then we have, _uh_ _, _ _you_ _know_ _, _ a budget for _, _ _you_ _know_ _, _ _like_ we call our slush fund or something and _some-_ _, _ an unexpected comes up, then _you_ _'re_ _not_ _, _ _you_ _know_ _, _ you don't feel _it_ so strapped.",
       "translations": {
-        "T3": "_Ouais_ _,_ _ouais_ _,_ _je_ _dois_ _rester_ _de-_ _,_ je dois rester dedans, donc je _,_ _vous_ _savez_, et puis nous avons ce _,_ _vous_ _savez_,_si_ _vous_ _ne_ _pouvez_ _pas_ _rester_ _,_ si quelque chose survient et que vous ne pouvez pas rester dedans alors nous avons, _euh_ _,_ _vous_ _savez_,_ un budget pour _,_ _vous_ _savez_,_ _comme_ nous appelons notre cagnotte ou quelque chose et _quelque-_ _,_ un imprévu survient, alors _vous_ _n'êtes_ _pas_ _,_ _vous_ _savez_ _,_ vous ne vous sentez pas _trop_ à court."
+        "T3": "Ouais , ouais , je dois rester de- , je dois rester dedans, donc je , vous savez, et puis nous avons ce , vous savez,si vous ne pouvez pas rester , si quelque chose survient et que vous ne pouvez pas rester dedans alors nous avons, euh , vous savez, un budget pour , vous savez, comme nous appelons notre cagnotte ou quelque chose et quelque- , un imprévu survient, alors vous n'êtes pas , vous savez , vous ne vous sentez pas trop à court."
       }
     },
     {
@@ -2821,7 +2821,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_121",
       "en": "_Yeah_ _. _ _You_ _know_ _it_ _'s_ _, _ it's interesting _that_ _, _ that _a_ _lot_ _, _ the population of the United States is changing because _, _ _you_ _know_ _, _ _uh_, now that so many more minorities, where they have had extended families for such a long time.",
       "translations": {
-        "T1": "हाँ _,_ तुम्हें पता है_ यह _,_ यह दिलचस्प है कि _,_ कि काफी _,_ संयुक्त राज्य अमेरिका की जनसंख्या बदल रही है क्योंकि _,_ आप जानते हैं _,_ uh, अब जब कि बहुत अधिक अल्पसंख्यक, जहाँ उनके पास लंबे समय से विस्तारित परिवार रहे हैं।"
+        "T1": "हाँ , तुम्हें पता है यह , यह दिलचस्प है कि , कि काफी , संयुक्त राज्य अमेरिका की जनसंख्या बदल रही है क्योंकि , आप जानते हैं , uh, अब जब कि बहुत अधिक अल्पसंख्यक, जहाँ उनके पास लंबे समय से विस्तारित परिवार रहे हैं।"
       }
     },
     {
@@ -2877,7 +2877,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_47",
       "en": "I think that _they_ _, _ they had a great deal of, _um_, all the brothers and sisters got together and they actually had a conference.",
       "translations": {
-        "T1": "मुझे लगता है कि _उन्होंने_, उन्होंने एक अच्छा समझौता किया_ , um, सभी भाई-बहन एक साथ इकट्ठा हुए और उन्होंने वास्तव में एक बैठक की।"
+        "T1": "मुझे लगता है कि उन्होंने, उन्होंने एक अच्छा समझौता किया , um, सभी भाई-बहन एक साथ इकट्ठा हुए और उन्होंने वास्तव में एक बैठक की।"
       }
     },
     {
@@ -2905,7 +2905,7 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_93",
       "en": "And, _um_, _I_ _mean_ _, _ but _she_ _was_ _truly_ _, _ she was truly aware. _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _di-_ _, _ I don't know _how_ _I_ _would_ _, _ how I would deal if one of my parents came _with_ _, _ with Alzheimer's. or something like, that _which_ _is_ _, _ which is far more devastating.",
       "translations": {
-        "T1": "और, um, मेरा मतलब _,_ लेकिन वह वास्तव में _,_ वह वास्तव में सजग थीं। मेरा मतलब _,_ मैं _,_ मैं _,_ मैं di- _,_ मुझे नहीं पता कि मैं कैसे _,_ कैसे संभालूंगा अगर मेरे माता-पिता में से किसी को _,_ अल्ज़ाइमर हो जाए। या ऐसा कुछ, _ जो है _,_ जो कहीं अधिक विनाशकारी है।"
+        "T1": "और, um, मेरा मतलब , लेकिन वह वास्तव में , वह वास्तव में सजग थीं। मेरा मतलब , मैं , मैं , मैं di- , मुझे नहीं पता कि मैं कैसे , कैसे संभालूंगा अगर मेरे माता-पिता में से किसी को , अल्ज़ाइमर हो जाए। या ऐसा कुछ,  जो है , जो कहीं अधिक विनाशकारी है।"
       }
     },
     {
@@ -2926,14 +2926,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_B_2",
       "en": "_Well_, of course, _it_ _'s_ _, _ _you_ _know_ _, _ it's one of the last few things in the world you'd ever want to do _, _ _you_ _know_ _. _ Unless it's just _, _ _you_ _know_ _, _ really _, _ _you_ _know_ _, _ _and_, _uh_, _for_ _their_ _, _ _uh_ _, _ _you_ _know_ _, _ for their own good.",
       "translations": {
-        "T1": "_ठीक है_, बिल्कुल, _ये _,__तुम्हें तो पता होगा_, यह दुनिया में आखिरी कुछ चीज़ों में से एक है जो तुम कभी करना चाहोगे, _जब तक कि यह सिर्फ _,_ तुम्हें तो पता होगा _,_ वास्तव में _,_ तुम्हें तो पता होगा _,_ और, uh, उनके _,_ uh _,_ तुम्हें तो पता होगा , _ उनके अपने भले के लिए."
+        "T1": "ठीक है, बिल्कुल, ये ,तुम्हें तो पता होगा, यह दुनिया में आखिरी कुछ चीज़ों में से एक है जो तुम कभी करना चाहोगे, जब तक कि यह सिर्फ , तुम्हें तो पता होगा , वास्तव में , तुम्हें तो पता होगा , और, uh, उनके , uh , तुम्हें तो पता होगा ,  उनके अपने भले के लिए."
       }
     },
     {
       "utt_id": "sw02005_B_4",
       "en": "I'd be very very careful _and_ _, _ _uh_ _, _ _you_ _know_ _, _ checking them out. _Uh_, our, had t-, place my mother in a nursing home. She had a rather massive stroke _about_ _, _ _uh_, about _uh_, eight months ago _I_ _guess_.",
       "translations": {
-        "T1": "मैं बहुत बहुत सावधान रहूंगा_और  _,_ uh _,_ तुम्हें तो पता होगा _,_ उन्हें जाँचते हुए। Uh, हमारे, को t-, मेरी माँ को एक नर्सिंग होम में रखना पड़ा। उन्हें लगभग _,_ uh, लगभग uh, आठ महीने पहले एक काफी गंभीर स्ट्रोक हुआ था _मुझे_ लगता है।"
+        "T1": "मैं बहुत बहुत सावधान रहूंगाऔर  , uh , तुम्हें तो पता होगा , उन्हें जाँचते हुए। Uh, हमारे, को t-, मेरी माँ को एक नर्सिंग होम में रखना पड़ा। उन्हें लगभग , uh, लगभग uh, आठ महीने पहले एक काफी गंभीर स्ट्रोक हुआ था मुझे लगता है।"
       }
     },
     {
@@ -2975,7 +2975,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_48",
       "en": "In fact, _I_ _just_ _bought_ _, _ _I_ _, _ I just got a new outfit as a gift that, _um_, it's one of those skorts, _you_ _know_, th-, it's shorts but it looks like a skirt.",
       "translations": {
-        "T2": "असल में, _मैं_ _बस_ _खरीदा_ _,_ _मैं_ _,_ मुझे अभी एक नया आउटफिट गिफ्ट के तौर पर मिला है जो, _उम्_, यह उन स्कॉर्ट्स में से एक है, _आप जानते_ _, थ-, यह शॉर्ट्स है लेकिन दिखता है स्कर्ट जैसा।"
+        "T2": "असल में, मैं बस खरीदा , मैं , मुझे अभी एक नया आउटफिट गिफ्ट के तौर पर मिला है जो, उम्, यह उन स्कॉर्ट्स में से एक है, आप जानते , थ-, यह शॉर्ट्स है लेकिन दिखता है स्कर्ट जैसा।"
       }
     },
     {
@@ -3017,7 +3017,7 @@ const INLINE_DATA = {
       "utt_id": "sw02010_B_50",
       "en": "_I_ _think_ _that_ _, _ I think he really, his heart was in it, but _I_ _, _ I don't think he really knew it was going to be as big as it was. I think it was something that he really wanted to do. He wanted to direct it, he wanted _to_ _, _ to star in it. _You_ _know_ _, _ _he_ _, _ he enjoyed the story line and I think _he_ _just_ _really_ _w-_ _, _ he really wanted it. And _whether_ _it_ _, _ whether it won all kinds of awards or whether it just was okay at the box office, I think he would have been happy. Because _I_ _think_ _that_ _, _ I think he did a good job _and_ _, _ _and_ the self-satisfaction he got out of it is much greater than any awards that they can give him.",
       "translations": {
-        "T2": "_मैं_ _सोचती_ _हूँ_ _,_ मैं सोचती हूँ कि उसने वास्तव में, उसका दिल इसमें था, लेकिन _मैं_ _,_ मुझे नहीं लगता कि वह वास्तव में जानता था कि यह इतना बड़ा होने वाला है। मुझे लगता है कि यह कुछ था जो वह वास्तव में करना चाहता था। वह इसे निर्देशित करना चाहता था, वह इसमें अभिनय करना चाहता _था_ _,_ इसमें अभिनय करना। _आप_ _जानते_ _,_ _उस_ _,_ उसने कहानी का आनंद लिया और मुझे लगता है कि _उस_ _बस_ _वास्तव_ में _चाहता_ _w-_ _,_ वह वास्तव में चाहता था। और चाहे यह _,_ चाहे इसे सभी प्रकार के पुरस्कार मिले या बॉक्स ऑफिस पर बस ठीक-ठाक रही हो, मुझे लगता है कि वह खुश रहता। क्योंकि मैं सोचती हूँ _,_ _मैं_ _सोचती_ _हूँ_ _कि_ _, उसने अच्छा काम किया _और_ _,_ _और_ उसे जो आत्म-संतुष्टि मिली, वह किसी भी पुरस्कार से कहीं अधिक है जो उन्हें दिया जा सकता है।"
+        "T2": "मैं सोचती हूँ , मैं सोचती हूँ कि उसने वास्तव में, उसका दिल इसमें था, लेकिन मैं , मुझे नहीं लगता कि वह वास्तव में जानता था कि यह इतना बड़ा होने वाला है। मुझे लगता है कि यह कुछ था जो वह वास्तव में करना चाहता था। वह इसे निर्देशित करना चाहता था, वह इसमें अभिनय करना चाहता था , इसमें अभिनय करना। आप जानते , उस , उसने कहानी का आनंद लिया और मुझे लगता है कि उस बस वास्तव में चाहता w- , वह वास्तव में चाहता था। और चाहे यह , चाहे इसे सभी प्रकार के पुरस्कार मिले या बॉक्स ऑफिस पर बस ठीक-ठाक रही हो, मुझे लगता है कि वह खुश रहता। क्योंकि मैं सोचती हूँ , मैं सोचती हूँ कि , उसने अच्छा काम किया और , और उसे जो आत्म-संतुष्टि मिली, वह किसी भी पुरस्कार से कहीं अधिक है जो उन्हें दिया जा सकता है।"
       }
     },
     {
@@ -3052,7 +3052,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_63",
       "en": "_It_ _would_ _, _ it would be pirated and they wouldn't bother to check that carefully anyway to someone who's offering _, _ _you_ _know_ _, _ full cash price, for it.",
       "translations": {
-        "T2": "_यह_ _होगा_ _,_ यह पायरेटेड होगा और वे वैसे भी सावधानी से जांच करने की जहमत नहीं उठाएंगे किसी के लिए जो _ _,_ _आप_ _जानते_ _,_ इसके लिए पूरा नकद मूल्य ऑफ़र कर रहा है।"
+        "T2": "यह होगा , यह पायरेटेड होगा और वे वैसे भी सावधानी से जांच करने की जहमत नहीं उठाएंगे किसी के लिए जो  , आप जानते , इसके लिए पूरा नकद मूल्य ऑफ़र कर रहा है।"
       }
     },
     {
@@ -3073,7 +3073,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_87",
       "en": "Whereas in this country where everyone respects the closed doors very much, if you go out and then act like the lunatic _you_ _, _ you violate _the_ _, _ _uh_, the norms _of_ _social_ _, _ of, _um_, public behavior. _Um_, people start paying attention to you very much and they start asking questions and in the sense are _invite-_ _, _ _invade_ _, _ invading your privacy although, if you know what the social norms are _, _ _you_ _know_ _, _ quote unquote, you asked for it. But it does mean that you have yet another reason to follow a set of social norms.",
       "translations": {
-        "T2": "जबकि इस देश में जहाँ हर कोई बंद दरवाजों का बहुत सम्मान करता है, अगर आप बाहर जाते हैं और फिर पागल की तरह व्यवहार करते हैं _आप_ _,_ आप _the_ _,_ _उह्_, सामाजिक _norms_ _,_ _of_ _,_उम्_, सार्वजनिक व्यवहार। _उम्_, लोग आपकी ओर बहुत ध्यान देना शुरू कर देते हैं और वे सवाल पूछने लगते हैं और इस अर्थ में _invite-_ _,_ _invade_ _,_ आपकी गोपनीयता में हस्तक्षेप करते हैं, हालांकि, अगर आप जानते हैं कि सामाजिक नियम क्या हैं _,_ _आप_ _जानते_ _,_ शाब्दिक अर्थ में, आपने इसके लिए कहा। लेकिन इसका मतलब है कि आपके पास सामाजिक नियमों का पालन करने का एक और कारण है।"
+        "T2": "जबकि इस देश में जहाँ हर कोई बंद दरवाजों का बहुत सम्मान करता है, अगर आप बाहर जाते हैं और फिर पागल की तरह व्यवहार करते हैं आप , आप the , उह्, सामाजिक norms , of ,उम्, सार्वजनिक व्यवहार। उम्, लोग आपकी ओर बहुत ध्यान देना शुरू कर देते हैं और वे सवाल पूछने लगते हैं और इस अर्थ में invite- , invade , आपकी गोपनीयता में हस्तक्षेप करते हैं, हालांकि, अगर आप जानते हैं कि सामाजिक नियम क्या हैं , आप जानते , शाब्दिक अर्थ में, आपने इसके लिए कहा। लेकिन इसका मतलब है कि आपके पास सामाजिक नियमों का पालन करने का एक और कारण है।"
       }
     },
     {
@@ -3108,14 +3108,14 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "_उह-हूह_ _,_ _उह-हूह_ _। _ _हाँ_ _,_ यह सच है। एक अपार्टमेंट कॉम्प्लेक्स में रहना, हालांकि _आप_ _जानते_ _हैं_ _आप_ _नहीं_ _,_ _उम_, आप असल में उन लोगों को आने से नहीं रोक सकते भले ही वे बाहर आगे चिन्ह लगाएं जिनपे लिखा है कोई याचना नहीं, _उह_, लेकिन वो फिर भी आगे के दरवाजे तक आ जाते हैं और, _उह_ _,_ _आप_ _जानते_ _हैं_ _,_ घूमते रहते हैं। तो आमतौर पर मैं क्या करता हूँ मैं अपार्टमेंट मैनेजर को फोन कर देता हूँ और उन्हे बता देता हूँ _हे_, यहाँ लोग आ रहे हैं _,_ _आप_ जानते_ _हैं_, और वे कुछ बेचने की कोशिश कर रहे हैं _या_ _,_ या वे किसी धार्मिक संगठन से हैं और मैं उससे सचमें नफरत करता हूँ। मैं वास्तव में, वास्तव में करता हूँ।  लगभग दो हफ्ते पहले कोई मेरे दरवाजे पे आया था, और, _उह_,_बाप रे_ रात के भी नौ बज रहे थे। इसको तो मैं मानूँगा भी नहीं _,_ _आप_ _जानते_ _हैं_ _,_ पारिवारिक समय, समय था _,_ _आप_ _जानते_ _हैं_ _,_ सोने का _और_ _उह_, और वह कोई था, _उम_ _,_ओह_ _क्या_ _था_ _यह_ _,_ _उह_, जीसस क्राइस्ट ऑफ लैटर डे सैंट्स, और _उह_, मैंने बहुत पढ़ है, _उह_ उस विशिष्ट समुदाय के बारे में और मुझे इसकी विसेश कोई परवाह नहीं, तो मैं विशेष रूप से पसंद नहीं करता उनका मेरे दरवाजे पर आना _और_ _,_  और मुझसे बात करने की कोशिश करना।"
+        "T3": "उह-हूह , उह-हूह ।  हाँ , यह सच है। एक अपार्टमेंट कॉम्प्लेक्स में रहना, हालांकि आप जानते हैं आप नहीं , उम, आप असल में उन लोगों को आने से नहीं रोक सकते भले ही वे बाहर आगे चिन्ह लगाएं जिनपे लिखा है कोई याचना नहीं, उह, लेकिन वो फिर भी आगे के दरवाजे तक आ जाते हैं और, उह , आप जानते हैं , घूमते रहते हैं। तो आमतौर पर मैं क्या करता हूँ मैं अपार्टमेंट मैनेजर को फोन कर देता हूँ और उन्हे बता देता हूँ हे, यहाँ लोग आ रहे हैं , आप जानते हैं, और वे कुछ बेचने की कोशिश कर रहे हैं या , या वे किसी धार्मिक संगठन से हैं और मैं उससे सचमें नफरत करता हूँ। मैं वास्तव में, वास्तव में करता हूँ।  लगभग दो हफ्ते पहले कोई मेरे दरवाजे पे आया था, और, उह,बाप रे रात के भी नौ बज रहे थे। इसको तो मैं मानूँगा भी नहीं , आप जानते हैं , पारिवारिक समय, समय था , आप जानते हैं , सोने का और उह, और वह कोई था, उम ,ओह क्या था यह , उह, जीसस क्राइस्ट ऑफ लैटर डे सैंट्स, और उह, मैंने बहुत पढ़ है, उह उस विशिष्ट समुदाय के बारे में और मुझे इसकी विसेश कोई परवाह नहीं, तो मैं विशेष रूप से पसंद नहीं करता उनका मेरे दरवाजे पर आना और ,  और मुझसे बात करने की कोशिश करना।"
       }
     },
     {
       "utt_id": "sw02015_B_20",
       "en": "_Yeah_ _, _ _yeah_ _, _ _no_ _, _ _I_ _, _ I agree with you there. If they want to choose that particular religion that's fine with me too _, _ _you_ _know_ _, _ as long as they don't try and pull me in and drag me in. _And_ _, _ and I don't like the way that they do it either, _and_ _, _ and, it's their mission that they do it. They go door to door and they go out into the public and they actually have the, _uh_, teenagers serving two years _like_ _you_ _would_ _say_ _like_ in an army and two years in going around and doing missionary type work and, _uh_, I don't know, I just, _um_, don't particularly care for that at all. And _that_ _, _ that's one thing that I feel really strongly about though, is, _uh_ _, _ _you_ _know_ _, _ people coming up to my door, and especially religious organizations and wanting _to_ _uh_ _, _ _you_ _know_ _, _ to try and get me to join or _, _ _you_ _know_ _, _ become interested in their religion, because I have my own.",
       "translations": {
-        "T3": "_हाँ_ _,_ _हाँ_ _,_ _नहीं_ _,_ _मैं_ _,_ मैं वहाँ आपसे सहमत हूँ। यदि वे उस विशेष धर्म का चयन करना चाहते हैं तो वह मेरे लिए भी ठीक है _,_ _आप_ _जानते_ _हैं_ _,_ जब तक कि वे मुझे अंदर खींचने और मुझे अंदर घसीटने की कोशिश न करें। _और_ _,_ और मुझे उनके ऐसा करने का तरीका भी पसंद नहीं है, _और_ _,_ और, यह उनका उद्देश्य है कि वे ऐसा करते हैं। वे घर-घर जाते हैं और वे लोगों के बीच जाते हैं और उनके पास वास्तव में वह, _उह_ , किशोर होते हैं जो दो साल की सेवा करते हैं _जैसे_ _आप_ _कहेंगे_ जैसे_ सेना में और दो साल इधर-उधर जाने और मिशनरी जैसा काम करने में और, _उह_, मुझे नहीं पता, मैं बस, _उम_, इसकी विशेष परवाह नहीं करता। और _वह_ _,_ हालांकि वह एक ऐसी चीज है जिसके बारे में मैं वास्तव में दृढ़ता से महसूस करता हूँ, , वह है, _उह_ _,_ _आप_ _जानते_ _हैं_ _,_ लोगों का मेरे दरवाजे पर आना, और विशेष रूप से धार्मिक संगठनओं का और चाहना _उह_ _,_  _आप_ _जानते_ _हैं__,_ मुझे शामिल करने की कोशिश करना या _,_  _आप_ _जानते_ _हैं_ _,_ उनके धर्म में दिलचस्पी पैदा करना, क्योंकि मेरा अपना धर्म है।"
+        "T3": "हाँ , हाँ , नहीं , मैं , मैं वहाँ आपसे सहमत हूँ। यदि वे उस विशेष धर्म का चयन करना चाहते हैं तो वह मेरे लिए भी ठीक है , आप जानते हैं , जब तक कि वे मुझे अंदर खींचने और मुझे अंदर घसीटने की कोशिश न करें। और , और मुझे उनके ऐसा करने का तरीका भी पसंद नहीं है, और , और, यह उनका उद्देश्य है कि वे ऐसा करते हैं। वे घर-घर जाते हैं और वे लोगों के बीच जाते हैं और उनके पास वास्तव में वह, उह , किशोर होते हैं जो दो साल की सेवा करते हैं जैसे आप कहेंगे जैसे सेना में और दो साल इधर-उधर जाने और मिशनरी जैसा काम करने में और, उह, मुझे नहीं पता, मैं बस, उम, इसकी विशेष परवाह नहीं करता। और वह , हालांकि वह एक ऐसी चीज है जिसके बारे में मैं वास्तव में दृढ़ता से महसूस करता हूँ, , वह है, उह , आप जानते हैं , लोगों का मेरे दरवाजे पर आना, और विशेष रूप से धार्मिक संगठनओं का और चाहना उह ,  आप जानते हैं, मुझे शामिल करने की कोशिश करना या ,  आप जानते हैं , उनके धर्म में दिलचस्पी पैदा करना, क्योंकि मेरा अपना धर्म है।"
       }
     },
     {
@@ -3157,7 +3157,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_104",
       "en": "_Well_ _, _ _you_ _know_ _, _ really that's not world music. But, _what_ _, _ what Paul Simon's doing _, _ _I_ _think_ _is_ _, _ _is_ _, _ is great because he's _, _ _you_ _know_ _I_ _think_ _, _ _I_ _think_ _that_ using _, _ _I_ _guess_ _what_ _they_ _call_ _it_ _is_ eclectic _, _ _you_ _know_ _. _ drawing from a lot of different sources and making _, _ _you_ _know_ _, _ a synthesis of a new type of music. _Um_ _, _",
       "translations": {
-        "T3": "_खैर_ _,_ _आप_ _जानते_ _हैं_ _,_ वास्तव में वह विश्व संगीत नहीं है। लेकिन, _क्या_ _,_ जो पॉल साइमन कर रहा है _,_ _मैं_ _सोचता_ _हूँ_ _है_ _,_ _है_ _, वह शानदार है क्योंकि वह _,_ _आप_ _जानते_ _हैं_ _मैं_ _सोचता_ _हूँ_ _,_ _मैं_ _सोचता_ _हूँ_ कि इस्तेमाल कर रहा है, _मेरा_ _अंदाजा_ _है_ _जिसे_ _वे_ _कहते_ _हैं_ _वह_ _है_ _उदार_ _,_ _आप_ _जानते_ _हैं_ _। _ बहुत सारे अलग-अलग स्रोतों से लेना और बनाना _,_ _आप_ _जानते_ _हैं_ _,_ एक नए प्रकार के संगीत का संश्लेषण। _उम_ _,_"
+        "T3": "खैर , आप जानते हैं , वास्तव में वह विश्व संगीत नहीं है। लेकिन, क्या , जो पॉल साइमन कर रहा है , मैं सोचता हूँ है , है , वह शानदार है क्योंकि वह , आप जानते हैं मैं सोचता हूँ , मैं सोचता हूँ कि इस्तेमाल कर रहा है, मेरा अंदाजा है जिसे वे कहते हैं वह है उदार , आप जानते हैं ।  बहुत सारे अलग-अलग स्रोतों से लेना और बनाना , आप जानते हैं , एक नए प्रकार के संगीत का संश्लेषण। उम ,"
       }
     },
     {
@@ -3241,7 +3241,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_12",
       "en": "_Uh_, _we_ _'ve_ _, _ we've, _uh_, taken how much we have _, _ _you_ _know_ _, _ write down how much we have coming in each month and then, _uh_, we've, at the beginning of the year we sat down and determined how much we could spend. We _sat_ _dow-_ _, _ made up different accounts _like_ _, _ _you_ _know_, we've set a budget for each _, _ _you_ _know_ _, _ household expenses, or food, and clothing and entertainment and then _our_ _, _ our own fun money and just stuff like that and then _we_ _write_ _down_ _each_ _, _ each time we spend something, we write down in a book and at the end of the month we tally it up to see how close we _, _ _you_ _know_ _we_ _, _ we try to stay within a certain budget, so.",
       "translations": {
-        "T3": "_उह_,_हमने_ _,_ हमने, _उह_, लिया है जितना हमारे पास है_,_ _आप_ _जानते_ _हैं_ _,_ हम लिख लेते हैं कि हर महीने हमारे पास कितना आ रहा है और फिर, _उह_, हम, साल की शुरुआत में हम साथ बैठे और निर्धारित किया कि हम कितना खर्च कर सकते हैं। हम _नीचे_ _बेठे_ _,_ अलग-अलग खाते बनाए _जैसे_ _,_ _आप_ _जानते_ _हैं_, हमने प्रत्येक के लिए एक बजट निर्धारित किया है _,_ _आप_ _जानते_ _हैं_ _,_ घर के खर्च, या भोजन, और कपड़े और मनोरंजन और फिर _हमारा_ _,_ हमारा अपने मज़े का पैसा और बस उस तरह का सामान और फिर _हम_ _प्रत्येक_ _खर्च__लिखते_ _हैं_ _,_ हर बार जब हम कुछ खर्च करते हैं, हम एक किताब में लिख लेते हैं और महीने के अंत में हम इसका मिलान करते हैं यह देखने के लिए कि हम कितने करीब हैं_,_ _आप_ _जानते_ _हैं_ _हम_ _,_ हम एक निश्चित बजट के भीतर रहने की कोशिश करते हैं, इसलिए।"
+        "T3": "उह,हमने , हमने, उह, लिया है जितना हमारे पास है, आप जानते हैं , हम लिख लेते हैं कि हर महीने हमारे पास कितना आ रहा है और फिर, उह, हम, साल की शुरुआत में हम साथ बैठे और निर्धारित किया कि हम कितना खर्च कर सकते हैं। हम नीचे बेठे , अलग-अलग खाते बनाए जैसे , आप जानते हैं, हमने प्रत्येक के लिए एक बजट निर्धारित किया है , आप जानते हैं , घर के खर्च, या भोजन, और कपड़े और मनोरंजन और फिर हमारा , हमारा अपने मज़े का पैसा और बस उस तरह का सामान और फिर हम प्रत्येक खर्चलिखते हैं , हर बार जब हम कुछ खर्च करते हैं, हम एक किताब में लिख लेते हैं और महीने के अंत में हम इसका मिलान करते हैं यह देखने के लिए कि हम कितने करीब हैं, आप जानते हैं हम , हम एक निश्चित बजट के भीतर रहने की कोशिश करते हैं, इसलिए।"
       }
     },
     {
@@ -3262,7 +3262,7 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_54",
       "en": "_Right_ _, _ _yeah_ _, _ _you_ _know_, if, I would sell the _, _ _you_ _know_, if, _he_ _, _ something would happen to him, I wouldn't stay in Texas, I would, _uh_, sell the house and move back home _, _ _you_ _know_ _, _ to my home town, _and_ _, _ and, _uh_, I wouldn't stay here in Texas, so _you_ _know_ _, _ I don't know what he would do.",
       "translations": {
-        "T4": "_ठीक_ _,_ _हाँ_ _,_ _आप_ _जानते_ _, अगर, मैं बेच दूँगा _,_ _आप_ _जानते_ _, अगर, _वह_ _,_ उसके साथ कुछ हो जाए, मैं टेक्सास में नहीं रुकूँगा, मैं, _अह_, घर बेच दूँगा और वापस घर चला जाऊँगा _,_ _आप_ _जानते_ _,_ अपने गृह नगर में, _और_ _,_ और, _अह_, मैं यहाँ टेक्सास में नहीं रुकूँगा, तो _आप_ _जानते_ _,_ मुझे नहीं पता वह क्या करेगा।"
+        "T4": "ठीक , हाँ , आप जानते , अगर, मैं बेच दूँगा , आप जानते , अगर, वह , उसके साथ कुछ हो जाए, मैं टेक्सास में नहीं रुकूँगा, मैं, अह, घर बेच दूँगा और वापस घर चला जाऊँगा , आप जानते , अपने गृह नगर में, और , और, अह, मैं यहाँ टेक्सास में नहीं रुकूँगा, तो आप जानते , मुझे नहीं पता वह क्या करेगा।"
       }
     },
     {
@@ -3453,14 +3453,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_65",
       "en": "_So_ _, _ so, _I_ _mean_ _, _ it, _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _, _ _I_ _har-_ _, _ _I_ _, _ I truly wish that if something like that were to happen that my children would do something like, that for me.",
       "translations": {
-        "T1": "Dunque _,_ insomma, voglio dire, _diciamo_,_ io _,_ io _,_ io _,_ io dif- _,_ io _,_ io spero davvero che se dovesse succedere qualcosa del genere i miei figli farebbero qualcosa di simile, per me."
+        "T1": "Dunque , insomma, voglio dire, diciamo, io , io , io , io dif- , io , io spero davvero che se dovesse succedere qualcosa del genere i miei figli farebbero qualcosa di simile, per me."
       }
     },
     {
       "utt_id": "sw02005_A_81",
       "en": "_Yeah_ _. _ _Yeah_ _. _ _Well_, _with_ _my_ _, _ with my grandmother _I_ _think_ _it_ _was_ _, _ it was such _that_ _, _ _uh_, that she did not have the problem with, she was very well aware and her daughter came and visited her",
       "translations": {
-        "T1": "Sì _,_ Sì _,_ Dunque, con la mia _,_ con mia nonna io penso che fosse _,_ _ che era tale che _,_ uh , che non aveva problemi, era molto consapevole e sua figlia veniva e la visitava"
+        "T1": "Sì , Sì , Dunque, con la mia , con mia nonna io penso che fosse ,  che era tale che , uh , che non aveva problemi, era molto consapevole e sua figlia veniva e la visitava"
       }
     },
     {
@@ -3516,14 +3516,14 @@ const INLINE_DATA = {
       "utt_id": "sw02008_A_75",
       "en": "This is pretty _un-_ _, _ unseasonal, but, _uh_, at least, we, _you_ _know_ _, _ _it_ _, _ _it_ _, _ it feels good, it gets, _uh_, everybody doesn't have cabin fever today. It's nice to get, out and about.",
       "translations": {
-        "T2": "Questo è abbasta _fuo-_ _,_ fuori stagione, ma, _ehm_, almeno, noi, _tu_,_sai_ _,_ _è_ _,_ _è_ _, fa stare bene, diventa, _ehm_, non tutti hanno la passione per la baita oggi. È bello uscire."
+        "T2": "Questo è abbasta fuo- , fuori stagione, ma, ehm, almeno, noi, tu,sai , è , è , fa stare bene, diventa, ehm, non tutti hanno la passione per la baita oggi. È bello uscire."
       }
     },
     {
       "utt_id": "sw02008_B_18",
       "en": "So, I predominantly wear flat shoes. _Um_ _, _ _you_ _know_ _, _ in the winter I wear sweaters, in summer _I_ _, _ _you_ _know_ _, _ I like one piece dresses, short sleeves, things like that.",
       "translations": {
-        "T2": "Allora, principalmente indosso scarpe basse. _Ehm_ _,_ _ sai _ _, in inverno indosso maglioni, in estate _ _ sai _ _, mi piacciono i vestiti, le maniche corte, cose così."
+        "T2": "Allora, principalmente indosso scarpe basse. Ehm ,  sai  , in inverno indosso maglioni, in estate   sai  , mi piacciono i vestiti, le maniche corte, cose così."
       }
     },
     {
@@ -3537,7 +3537,7 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_48",
       "en": "In fact, _I_ _just_ _bought_ _, _ _I_ _, _ I just got a new outfit as a gift that, _um_, it's one of those skorts, _you_ _know_, th-, it's shorts but it looks like a skirt.",
       "translations": {
-        "T2": "A dire il vero, _io_ _ho_ _appena_,_io_, ho appena comprato un nuovo outfit come regalo che, _ehm, è uno di quegli skort, _sai_, sono shorts ma sembrano una gonna."
+        "T2": "A dire il vero, io ho appena,io, ho appena comprato un nuovo outfit come regalo che, ehm, è uno di quegli skort, sai, sono shorts ma sembrano una gonna."
       }
     },
     {
@@ -3551,35 +3551,35 @@ const INLINE_DATA = {
       "utt_id": "sw02008_B_62",
       "en": "_Yeah_ _. _ _Yeah_ _. _ So, I'm, _you_ _know_, _like_ right now, today was in about _, _ _you_ _know_ _, _ the fifties.",
       "translations": {
-        "T2": "_Sì_ _._ _ Sì_ _._ Allora, io, _sai_,_tipo_, adesso, oggi ero in circa_,_ _ sai_ _, gli anni cinquanta."
+        "T2": "Sì .  Sì . Allora, io, sai,tipo, adesso, oggi ero in circa,  sai , gli anni cinquanta."
       }
     },
     {
       "utt_id": "sw02010_A_23",
       "en": "_Well_, the interesting thing _was_ is I had heard that, and _I_ _, _ _I_ _, _ I tend to _, _ _I_ _think_ _, _ overreact occasionally when somebody tells me it's that great. _And_ _, _ and _it_ _was_ _, _ the thing is, _it_ _was_ _, _ it was a good story.",
       "translations": {
-        "T2": "_Beh_, la cosa interessante _era_ è che l'avevo sentito, e _io_ _,_ _io_ _,_ io tendo a _,_ _io_ _penso_ _, reagisco eccessivamente quando qualcuno mi dice che è così grandioso. _E_ _,_ e _è_ _statp_ _,_ il fatto è, _è_ _stato_ _,_ è stata una bella storia."
+        "T2": "Beh, la cosa interessante era è che l'avevo sentito, e io , io , io tendo a , io penso , reagisco eccessivamente quando qualcuno mi dice che è così grandioso. E , e è statp , il fatto è, è stato , è stata una bella storia."
       }
     },
     {
       "utt_id": "sw02010_B_22",
       "en": "I agree with that. _Um_, _I_ _, _ I noticed yesterday in the paper, something said that it, I think it's been nominated for twelve awards _and_ _, _ and all the critics initially said that _, _ _you_ _know_ _, _ it wouldn't go anywhere, that it was just going to be a dud. So, _it_ _, _ it has surprised everybody.",
       "translations": {
-        "T2": "Sono d'accordo. _Ehm_,_io_ _,_ ho notato ieri sul giornale, qualcuno l'ha detto, penso che sia stato nominato per dodici premi _e_ _,_ e tutti i critici inizialmente hanno detto _,_ _sai_ _, non avrebbe avuto successo, sarebbe solo stato un flop. Quindi, _ha_ _,_ ha, ha sorpreso tutti."
+        "T2": "Sono d'accordo. Ehm,io , ho notato ieri sul giornale, qualcuno l'ha detto, penso che sia stato nominato per dodici premi e , e tutti i critici inizialmente hanno detto , sai , non avrebbe avuto successo, sarebbe solo stato un flop. Quindi, ha , ha, ha sorpreso tutti."
       }
     },
     {
       "utt_id": "sw02010_B_38",
       "en": "It's suspenseful. I don't think it's very t-, _I_ _mean_ _, _ there's not really any, _uh_, blood and guts in it or anything like that. _It_ _'s_ _, _ it's more suspense. _Um_, the other one, SILENCE OF THE LAMBS, is kind of _a_ _, _ a gory movie, _if_ _, _ if somebody's not into that kind of stuff. _It_ _'s_ _, _ it's pretty graphic at points. But, _uh_, I think they're both excellent movies.",
       "translations": {
-        "T2": "È pieno di suspense. Non penso sia veramente, _intendo_ _, non c'è veramente del, _ehm_, sangue e viscere o roba del genere. _È_ _, più suspense. _Ehm_, l'altro, IL SILENZIO DEGLI INNOCENTI, è tipo _un_ _,_ un film gore, _se_ _,_ se a qualcuno non piace quel tipo di cose. _È_ _,_ è piuttosto grafico in certi momenti. Ma, _ehm_, penso che siano entrambi film eccellenti."
+        "T2": "È pieno di suspense. Non penso sia veramente, intendo , non c'è veramente del, ehm, sangue e viscere o roba del genere. È , più suspense. Ehm, l'altro, IL SILENZIO DEGLI INNOCENTI, è tipo un , un film gore, se , se a qualcuno non piace quel tipo di cose. È , è piuttosto grafico in certi momenti. Ma, ehm, penso che siano entrambi film eccellenti."
       }
     },
     {
       "utt_id": "sw02010_B_50",
       "en": "_I_ _think_ _that_ _, _ I think he really, his heart was in it, but _I_ _, _ I don't think he really knew it was going to be as big as it was. I think it was something that he really wanted to do. He wanted to direct it, he wanted _to_ _, _ to star in it. _You_ _know_ _, _ _he_ _, _ he enjoyed the story line and I think _he_ _just_ _really_ _w-_ _, _ he really wanted it. And _whether_ _it_ _, _ whether it won all kinds of awards or whether it just was okay at the box office, I think he would have been happy. Because _I_ _think_ _that_ _, _ I think he did a good job _and_ _, _ _and_ the self-satisfaction he got out of it is much greater than any awards that they can give him.",
       "translations": {
-        "T2": "_Io_ _penso_ _che_ _,_ Io penso che lui in realtà, lui ci avesse messo il cuore, ma _io__,_ io non penso che pensasse veramente che sarebbe stato il successo che è stato. Penso che fosse qualcosa che volesse davvero fare. Voleva dirigerlo, voleva _ recitarci. _Sai_ _,_ _lui_ _,_ amava la storia e penso che _volesse_ _veramente_ _,_ volesse farlo veramente. E _che_ _,_ che vincesse tutti i tipi di premi o che fosse solo ok al box office, penso che sarebbe stato comunque contento. Perché _io_ _penso_ _che_,_ io penso che abbia fatto un buon lavoro _e_ _,_ _e_ la soddisfazione personale che ne ha ricavato è molto maggiore di qualsiasi premio possano dargli."
+        "T2": "Io penso che , Io penso che lui in realtà, lui ci avesse messo il cuore, ma io, io non penso che pensasse veramente che sarebbe stato il successo che è stato. Penso che fosse qualcosa che volesse davvero fare. Voleva dirigerlo, voleva  recitarci. Sai , lui , amava la storia e penso che volesse veramente , volesse farlo veramente. E che , che vincesse tutti i tipi di premi o che fosse solo ok al box office, penso che sarebbe stato comunque contento. Perché io penso che, io penso che abbia fatto un buon lavoro e , e la soddisfazione personale che ne ha ricavato è molto maggiore di qualsiasi premio possano dargli."
       }
     },
     {
@@ -3600,28 +3600,28 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_25",
       "en": "_Well_, presumably those who find out such information, if they are doing it, I would prefer _to_ not to be known, and _, _ _I_ _mean_ _, _ _you_ _know_ _, _ the classic, _oh_ _, _ _I_ _do_ _n't_ _know_ C I A conspiracy theories or whatever, would have such parties trying to do it without your knowledge. So there's, things that invade that second type of privacy where you do know about them and possibly things that invade that second type of privacy without you knowing about it, and I can't talk about the second one other than _to_ _, _ _to_ _, _ to generate paranoia. It's a surmise and, I'd like to think that it's quite low, at least in this country.",
       "translations": {
-        "T2": "_Beh_, presumibilmente coloro che scoprono questa informazione, se lo stanno facendo, preferirei _non_ non si sapesse, e _,_ _io__ _intendo_ _,_ _sai_ _, il classico, _oh_ _,_io_ _non_ _saprei_ complotti della CIA o altro, avrebbero attori che cercano di farlo senza che tu lo sappia. Quindi ci sono cose che invadono quel secondo tipo di privacy dove tu sai di loro e possibilmente cose che invadono quel secondo tipo di privacy senza che tu ne sappia niente, e potrei parlare del secondo se non _per_ _,_ _per_ _,_ per generare paranoia. È un'ipotesi e mi piacerebbe pensare che sia piuttosto raro, almeno in questo paese."
+        "T2": "Beh, presumibilmente coloro che scoprono questa informazione, se lo stanno facendo, preferirei non non si sapesse, e , io intendo , sai , il classico, oh ,io non saprei complotti della CIA o altro, avrebbero attori che cercano di farlo senza che tu lo sappia. Quindi ci sono cose che invadono quel secondo tipo di privacy dove tu sai di loro e possibilmente cose che invadono quel secondo tipo di privacy senza che tu ne sappia niente, e potrei parlare del secondo se non per , per , per generare paranoia. È un'ipotesi e mi piacerebbe pensare che sia piuttosto raro, almeno in questo paese."
       }
     },
     {
       "utt_id": "sw02012_A_61",
       "en": "_Yeah_ _. _ And, _um_, one of the problems with the Lotus data base was, _um_, that it was uncontrolled access to who would have that information. _I_ _mean_ _, _ they said they would give it out to only select companies _but_, _um_ _, _ _you_ _know_ _, _ just like software is only given out to customers, _I_ _mean_ _, _ you can't believe that.",
       "translations": {
-        "T2": "_Sì_ _._ E, _ehm_, uno dei problemi con il database Lotus era, _ehm_, che non c'era controllo su chi avesse quell'informazione. _Io_ _intendo_ _,_ loro dicevano che l'avrebbero dato solo ad alcune aziende selezionate _ma_,_ehm_ _,_sai_ _,_ come il software è solo ceduto ai clienti, _io_ _intendo_ _,_ non puoi crederci."
+        "T2": "Sì . E, ehm, uno dei problemi con il database Lotus era, ehm, che non c'era controllo su chi avesse quell'informazione. Io intendo , loro dicevano che l'avrebbero dato solo ad alcune aziende selezionate ma,ehm ,sai , come il software è solo ceduto ai clienti, io intendo , non puoi crederci."
       }
     },
     {
       "utt_id": "sw02012_A_63",
       "en": "_It_ _would_ _, _ it would be pirated and they wouldn't bother to check that carefully anyway to someone who's offering _, _ _you_ _know_ _, _ full cash price, for it.",
       "translations": {
-        "T2": "_Verrebbe_ _,_ verrebbe piratato e loro non si preoccuperebbero di controllare comunque qualcuno che sta offrendo _,_ _sai_ _, il prezzo pieno in contati."
+        "T2": "Verrebbe , verrebbe piratato e loro non si preoccuperebbero di controllare comunque qualcuno che sta offrendo , sai , il prezzo pieno in contati."
       }
     },
     {
       "utt_id": "sw02012_A_65",
       "en": "_I_ _mean_ _, _ _you_ _know_ _, _ you can't tell it, what a company really has to do with it and there's something rather ominous about having virtually anyone, any hacker being able to know what your income is, what your spending habits are, _and_ _, _ _you_ _know_ _, _ _and_ _, _ and that hacker just has to get _in_ _to_ _, _ in touch with the sneak thief and suddenly _and_ _then_ what started as an invasion of privacy can be an invasion of your actual home.",
       "translations": {
-        "T2": "_Io_ _intendo_ _,_ _sai_ _,_ non puoi saperlo, quello che un'azienda ci ha a che fare e c'è qualcosa di piuttosto inquietante ad avere virtualmente chiunque, qualsiasi hacker capace di sapere qual è il tuo reddito, quali sono le tue abitudini di acquisto, _e_ _,_sai_ _,_ _e_ _,_ e che l'hacker deve solo entrare _in_ _nel_ _,_ in contatto con il ladro e improvvisamente _e_ _poi_ quello che è iniziato come un'invasione di privacy può diventare un'invasione della tua casa vera e propria."
+        "T2": "Io intendo , sai , non puoi saperlo, quello che un'azienda ci ha a che fare e c'è qualcosa di piuttosto inquietante ad avere virtualmente chiunque, qualsiasi hacker capace di sapere qual è il tuo reddito, quali sono le tue abitudini di acquisto, e ,sai , e , e che l'hacker deve solo entrare in nel , in contatto con il ladro e improvvisamente e poi quello che è iniziato come un'invasione di privacy può diventare un'invasione della tua casa vera e propria."
       }
     },
     {
@@ -3635,14 +3635,14 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_87",
       "en": "Whereas in this country where everyone respects the closed doors very much, if you go out and then act like the lunatic _you_ _, _ you violate _the_ _, _ _uh_, the norms _of_ _social_ _, _ of, _um_, public behavior. _Um_, people start paying attention to you very much and they start asking questions and in the sense are _invite-_ _, _ _invade_ _, _ invading your privacy although, if you know what the social norms are _, _ _you_ _know_ _, _ quote unquote, you asked for it. But it does mean that you have yet another reason to follow a set of social norms.",
       "translations": {
-        "T2": "Anche in questo paese dove tutti rispettano molto l'intimità, se tu esci e ti comporti come un pazzo _tu_ _,_ tu violi _le_ _,_ _ehm_, le norme _del_ _comportamento_ _ehm_ comportamento sociale. _Ehm_, le persone cominciano a prestarti molta attenzione e iniziano a farti domande e nel senso sono _invit-_ _,_ _invade_ _,_invadendo la tua privacy anche se, se sai quali sono le norme sociali _,_sai_ _,_ tra virgolette, te la sei cercato. Ma significa che hai ancora un altro motivo per seguire l'insieme di norme sociali."
+        "T2": "Anche in questo paese dove tutti rispettano molto l'intimità, se tu esci e ti comporti come un pazzo tu , tu violi le , ehm, le norme del comportamento ehm comportamento sociale. Ehm, le persone cominciano a prestarti molta attenzione e iniziano a farti domande e nel senso sono invit- , invade ,invadendo la tua privacy anche se, se sai quali sono le norme sociali ,sai , tra virgolette, te la sei cercato. Ma significa che hai ancora un altro motivo per seguire l'insieme di norme sociali."
       }
     },
     {
       "utt_id": "sw02012_A_99",
       "en": "All _the_ _class-_ _, _ the other classic examples, the Jehovah's Witness _or_ _, _ or Mormons or someone knocking at the front door, _um_, which is more intrusive because I have to really tell someone to go away. And there's that sense of, I have now opened my door they now see what I look like, what I live like _and_ _nor-_ _, _ and they're doing something that normally I really only invite, people to.",
       "translations": {
-        "T3": "Tutte_le_classi-_ _,_ l'altro esempio classico, il testimone di Geova _oppure_ _,_ oppure i mormoni o qualcuno che bussa alla porta di casa, _ um_ che è più intrusico perchè io devo davvero dire a qualcuno di andare via. E c'è quel senso di, ora ho aperto la porta, sanno come sono, come vivo_ e _ _ ne-_ _,_ e stanno facendo qualcosa che normalmente io solo inviterei le persone"
+        "T3": "Tutteleclassi- , l'altro esempio classico, il testimone di Geova oppure , oppure i mormoni o qualcuno che bussa alla porta di casa,  um che è più intrusico perchè io devo davvero dire a qualcuno di andare via. E c'è quel senso di, ora ho aperto la porta, sanno come sono, come vivo e   ne- , e stanno facendo qualcosa che normalmente io solo inviterei le persone"
       }
     },
     {
@@ -3656,21 +3656,21 @@ const INLINE_DATA = {
       "utt_id": "sw02012_B_50",
       "en": "But then if it turns out to generate incorrect things, that's even worse _so_ _, _ or if my call rate _of_ _, _ of eight _t-_ _, _ or so a week went up even higher because, _uh_, someone _had_ _, _ had,",
       "translations": {
-        "T2": "Ma allora se si rivelasse generare cose incorrette, è ancora peggio _allora_ _, o se il mio call rate _di_ _,_ di otto _,_ circa settimane è salito ancora perché, _ehm_. qualcuno _ha_ _,_ha,"
+        "T2": "Ma allora se si rivelasse generare cose incorrette, è ancora peggio allora , o se il mio call rate di , di otto , circa settimane è salito ancora perché, ehm. qualcuno ha ,ha,"
       }
     },
     {
       "utt_id": "sw02012_B_98",
       "en": "That's interesting. _Are_ _th-_ _, _ are there any other specific things _that_ _, _ _that_ _you_ _feel_ _like_ _, _ _where_ _, _ where you feel your privacy to be invaded on a day-to-day basis or either on a growing frequency?",
       "translations": {
-        "T2": "Questo è interessante. _Ci_ _so-_,_ ci sono altre cose specifiche _che_ _,_ _che_ _tu_ _pensi_ _,_ _dove_ _,_ dove pensi che la tua privacy sia invasa su base giornaliera o dove la cosa stia crescendo di frequenza?"
+        "T2": "Questo è interessante. Ci so-, ci sono altre cose specifiche che , che tu pensi , dove , dove pensi che la tua privacy sia invasa su base giornaliera o dove la cosa stia crescendo di frequenza?"
       }
     },
     {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "_ah-ah_ _,_ _ah-ah_ _._ _si_ _,_ questo è vero. vivere in un complesso di appartamenti però _ _tu_ _sai_ _tu_ _no_ _n_ _,_ _um_, non puoi veramente fermare queste persone dal venire intorno, anche se loro mettono cartelli che dicono non disturbare, _uh_, ma loro continuano ad arrivare alla porta di casa e, _uh_ _,_ _tu_ _sai_ _,_ camminare intorno. Quindi, normalmente quello che farei è chiamare il manager dell'appartamento e dirgli _ hey_ ci sono persone che arrivano _,_ _tu_ _sai_, e loro stanno cercando di vendere qualcosa _oppure_ _,_ oppure loro sono parte di una organizzazione religiosa e io lo odio davvero. Davvero, davvero li odio. ho avuto qualcuno che è arrivato alla porta due settimane fa e _uh_,_dio_ saranno state attorno alle nove di sera, per giunta. Non erano nemmeno ciò che considererei _,_ _tu_ _sai_ _,_ ore di famiglia, tempo di _,_ _tu_ _sai_ _,_iniziare ad andare a letto _e_ _ uh_, ed era qualcuno che veniva, _um_ _,_ _oh_ _cosa_ _era_ _ _ _,_ il, _uh_, Gesù Cristo dei santi degli ultimi giorni, e _uh_, ho letto un sacco a riguardo, _uh_, quella setta particolare e io non mi interesso particolarmente, quindi specialmente non mi piace quando loro arrivano alla mia porta _e_ _,_ e provano a parlarmi. "
+        "T3": "ah-ah , ah-ah . si , questo è vero. vivere in un complesso di appartamenti però  tu sai tu no n , um, non puoi veramente fermare queste persone dal venire intorno, anche se loro mettono cartelli che dicono non disturbare, uh, ma loro continuano ad arrivare alla porta di casa e, uh , tu sai , camminare intorno. Quindi, normalmente quello che farei è chiamare il manager dell'appartamento e dirgli  hey ci sono persone che arrivano , tu sai, e loro stanno cercando di vendere qualcosa oppure , oppure loro sono parte di una organizzazione religiosa e io lo odio davvero. Davvero, davvero li odio. ho avuto qualcuno che è arrivato alla porta due settimane fa e uh,dio saranno state attorno alle nove di sera, per giunta. Non erano nemmeno ciò che considererei , tu sai , ore di famiglia, tempo di , tu sai ,iniziare ad andare a letto e  uh, ed era qualcuno che veniva, um , oh cosa era   , il, uh, Gesù Cristo dei santi degli ultimi giorni, e uh, ho letto un sacco a riguardo, uh, quella setta particolare e io non mi interesso particolarmente, quindi specialmente non mi piace quando loro arrivano alla mia porta e , e provano a parlarmi. "
       }
     },
     {
@@ -3726,7 +3726,7 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_110",
       "en": "_Uh_, for example, let's say you're taking _like_ an original Brazilian form of music _and_ _, _ with a certain style, and then you try to make it a little bit more listenable for _, _ _let_ _'s_ _say_ another audience _, _ _let_ _'s_ _say_ a North American.",
       "translations": {
-        "T3": "_Uh_, per esempio, diciamo che stai prendendo _come_ una forma originale  di musica brasiliana _e_ _,_ con un certo stile, e poi provi a renderla un po’ più ascoltabile per _,_ _diciamo_ _ _ _ un altro pubblico_,_ _diciamo_ _ _ _ _ un nordamericano."
+        "T3": "Uh, per esempio, diciamo che stai prendendo come una forma originale  di musica brasiliana e , con un certo stile, e poi provi a renderla un po’ più ascoltabile per , diciamo    un altro pubblico, diciamo     un nordamericano."
       }
     },
     {
@@ -3768,14 +3768,14 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_34",
       "en": "And, _um_, _you_ _, _ you listen a lot, _if_ _you_ _, _ if you hear a lot of old gospel, _uh_, _uh_, especially _well_, the black gospel. _You_ _know_ _, _ _you_ _will_ _, _ _you_ _know_ _, _ you can really pick it up _. _ _I_ _mean_,",
       "translations": {
-        "T3": "E, ehm, tu _,_ tu ascolti molto, _se_ _tu_ _,_ se senti molto vecchio gospel, _uh_,_uh_, specialmente _beh_, il gospel nero. _Tu_ _sai_ _,_ _tu_ _farai_ _,_ _tu_ _sai_ _,_ tu puoi davvero raccoglierlo _._ _ _ _intendo,"
+        "T3": "E, ehm, tu , tu ascolti molto, se tu , se senti molto vecchio gospel, uh,uh, specialmente beh, il gospel nero. Tu sai , tu farai , tu sai , tu puoi davvero raccoglierlo .   intendo,"
       }
     },
     {
       "utt_id": "sw02020_B_64",
       "en": "_I_ _mean_ _I_ _, _ I, _there_ _are_ _a_ _lot_ _, _ there are so many different songs, _I_ _mean_ _like_ the whole thing about cover versions a lot of times. _I_ _mean_ I've heard some songs _that_ _, _ that I just thought were horrendous cover versions of, I'm _like_ _, _ _you_ _know_ _, _ _I_ _, _ I don't want to listen to this. Because _you_ _know_ _, _ you think of the original is _like_,",
       "translations": {
-        "T3": "_Io_ _intendo_ _Io_ _,_ Io, _ci_ _sono_ _un_ _sacco_ _,_ ci sono così tante canzoni diverse, _Io_ _intendo_ _come_ l’intera cosa delle cover un sacco di volte. _Io_  _intendo_ ho sentito alcune canzoni _che_ _,_ che io ho appena pensato fossero orrende cover di, io sono _come_ _,_tu_ _sai_ _,_ _Io_ _,_ Io non voglio ascoltare questo. Perché _tu_ _sai_ _,_ tu pensi dell’originale è _come_,"
+        "T3": "Io intendo Io , Io, ci sono un sacco , ci sono così tante canzoni diverse, Io intendo come l’intera cosa delle cover un sacco di volte. Io  intendo ho sentito alcune canzoni che , che io ho appena pensato fossero orrende cover di, io sono come ,tu sai , Io , Io non voglio ascoltare questo. Perché tu sai , tu pensi dell’originale è come,"
       }
     },
     {
@@ -3945,21 +3945,21 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_121",
       "en": "_Yeah_ _. _ _You_ _know_ _it_ _'s_ _, _ it's interesting _that_ _, _ that _a_ _lot_ _, _ the population of the United States is changing because _, _ _you_ _know_ _, _ _uh_, now that so many more minorities, where they have had extended families for such a long time.",
       "translations": {
-        "T1": "_是啊_ _。_ _你知道_ _，_ _这_ _很_ _有意思_ _，_ _那就是_ _，_ _美国的人口正在发生变化，因为_ _，_ _你知道_ _，_ _呃_ _，现在有越来越多的少数族裔，而他们长期以来一直保持着大家庭的传统。"
+        "T1": "是啊 。 你知道 ， 这 很 有意思 ， 那就是 ， 美国的人口正在发生变化，因为 ， 你知道 ， 呃 ，现在有越来越多的少数族裔，而他们长期以来一直保持着大家庭的传统。"
       }
     },
     {
       "utt_id": "sw02005_A_127",
       "en": "But, I guess as we become more industrialized and _more_ _, _ _you_ _know_ _, _ less in a rural situation _we_ _, _ _we_ _do_ _n't_ _, _ _we_ _, _ _we_ _, _ we choose not to deal with the, extended family because we feel it's kind of cumbersome, when in reality it makes things much much easier.",
       "translations": {
-        "T1": "不过，我想随着工业化程度越来越高，_越来越_，_ _你知道的_ _，_ 越来越少处于农村环境_我们_ _，_ _我们_ _并不_ _，_ _我们_ _，_ _我们_ _，_ 我们选择不去处理那些大家庭关系，因为觉得这有点麻烦，而实际上这反而会让事情变得容易得多。"
+        "T1": "不过，我想随着工业化程度越来越高，越来越， 你知道的 ， 越来越少处于农村环境我们 ， 我们 并不 ， 我们 ， 我们 ， 我们选择不去处理那些大家庭关系，因为觉得这有点麻烦，而实际上这反而会让事情变得容易得多。"
       }
     },
     {
       "utt_id": "sw02005_A_147",
       "en": "_Yeah_ _. _ But, _uh_, _I_ _, _ _I_ _, _ I think that _, _ _you_ _know_ _, _ _we_ _always_ _, _ _uh_ _, _ _I_ _mean_ _, _ _I_ _'ve_ _, _ I've had a lot of good experiences _with_ _, _ _uh_, with _many_ many people especially where they've had, _uh_, extended family. _And_ _I_ _, _ and _I_ _, _ I kind of see _that_ _, _ that, _you_ _know_ _, _ perhaps _, _ _you_ _know_ _, _ we may need to _like_ get close to the family environment _and_ and get down to the values of _, _ _you_ _know_,",
       "translations": {
-        "T1": "_是啊_ _。_ 但，_呃_，_我_ _，_ _我_ _，_ 我觉得_，_ _你知道_ _，_ _我们_ _总是_ _，_ _呃_ _，_ _我是说_ _，_ _我_ _曾_ _，_ 我和很多人都有过很多美好的经历_，_ _呃_，尤其是那些有_，_呃_，大家庭的人。 _而且_ _我_ _，_ 还有_我_ _，_ 我觉得_那_ _，_ 那个，_你知道_ _，_ 也许_，_ _你知道_ _，_ 我们可能需要_像_ 融入家庭环境_，_ 并回归到_，_ _你知道_，"
+        "T1": "是啊 。 但，呃，我 ， 我 ， 我觉得， 你知道 ， 我们 总是 ， 呃 ， 我是说 ， 我 曾 ， 我和很多人都有过很多美好的经历， 呃，尤其是那些有，呃，大家庭的人。 而且 我 ， 还有我 ， 我觉得那 ， 那个，你知道 ， 也许， 你知道 ， 我们可能需要像 融入家庭环境， 并回归到， 你知道，"
       }
     },
     {
@@ -3973,14 +3973,14 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_155",
       "en": "and _I_ _, _ _I_ _think_ _, _ I think _that_ _we_ _may_ _not_ _, _ that may be, _you_ _know_ _, _ perhaps if we put money on the back burner _that_ _may_ _, _ that may choose to alleviate a lot of the problem.",
       "translations": {
-        "T1": "而且，_我_，_，_ _我觉得_，_我觉得_，_我们_，_可能_，_，_那或许，_你知道_，_也许如果我们把资金问题暂且搁置一旁，_那_，_那或许能缓解很多问题。"
+        "T1": "而且，我，， 我觉得，我觉得，我们，可能，，那或许，你知道，也许如果我们把资金问题暂且搁置一旁，那，那或许能缓解很多问题。"
       }
     },
     {
       "utt_id": "sw02005_A_19",
       "en": "_Uh-huh_ _. _ _Yeah_ _. _ Probably the hardest thing _in_ _, _ in my family, _uh_, my grandmother, she had to be put in a nursing home and, _um_, she had used the walker _for_ _, _ for quite some time, probably about six to nine months. And, _um_, she had a fall and, _uh_, finally, _uh_, she had Parkinson's disease,",
       "translations": {
-        "T1": "_嗯_ _。_ _是啊_ _。_ 这大概是我家里最难熬的事了，_嗯_，我奶奶，她不得不被送进了养老院，而且，_嗯_，她用了助行器_好_ _，_好长一段时间，大概有六到九个月吧。 而且，_嗯_，她摔了一跤，_嗯_，最后，_嗯_，她患上了帕金森病，"
+        "T1": "嗯 。 是啊 。 这大概是我家里最难熬的事了，嗯，我奶奶，她不得不被送进了养老院，而且，嗯，她用了助行器好 ，好长一段时间，大概有六到九个月吧。 而且，嗯，她摔了一跤，嗯，最后，嗯，她患上了帕金森病，"
       }
     },
     {
@@ -3994,77 +3994,77 @@ const INLINE_DATA = {
       "utt_id": "sw02005_A_37",
       "en": "_Yeah_ _. _ _I_ _mean_ _, _ for somebody who _is_ _, _ _you_ _know_ _, _ for most of their life _has_ _, _ has, _uh_, not just merely had a farm but had ten children had a farm, ran everything because her husband was away in the coal mines.",
       "translations": {
-        "T1": "_是啊_ _。_ _我的意思是_ _，_ 对于这样一个人来说_，_你知道_ _，_ 她大半辈子_一直_，_一直，_呃_，不仅拥有一个农场，还养育了十个孩子，经营着整个农场，因为她的丈夫一直在煤矿里工作。"
+        "T1": "是啊 。 我的意思是 ， 对于这样一个人来说，你知道 ， 她大半辈子一直，一直，呃，不仅拥有一个农场，还养育了十个孩子，经营着整个农场，因为她的丈夫一直在煤矿里工作。"
       }
     },
     {
       "utt_id": "sw02005_A_47",
       "en": "I think that _they_ _, _ they had a great deal of, _um_, all the brothers and sisters got together and they actually had a conference.",
       "translations": {
-        "T1": "我觉得_他们_，_他们举办了一场盛大的，_嗯_，所有兄弟姐妹都聚在一起，还真的开了一次会议。"
+        "T1": "我觉得他们，他们举办了一场盛大的，嗯，所有兄弟姐妹都聚在一起，还真的开了一次会议。"
       }
     },
     {
       "utt_id": "sw02005_A_55",
       "en": "_You_ _know_ _, _ whether it was just _, _ _you_ _know_ _, _ giving money or whether it was actually taking part in a lot, of the decision making _, _ _you_ _know_ _, _ like finding a proper nursing home.",
       "translations": {
-        "T1": "_你知道_，_不管_，_是单纯_，__你知道_，_给点钱，还是真的参与了很多决策_，__你知道_，_比如找一家合适的养老院。"
+        "T1": "你知道，不管，是单纯，你知道，给点钱，还是真的参与了很多决策，你知道，比如找一家合适的养老院。"
       }
     },
     {
       "utt_id": "sw02005_A_65",
       "en": "_So_ _, _ so, _I_ _mean_ _, _ it, _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _, _ _I_ _har-_ _, _ _I_ _, _ I truly wish that if something like that were to happen that my children would do something like, that for me.",
       "translations": {
-        "T1": "_所以_ _，_ _所以，_ _我是说_ _，_ _就是说，_ _我是说_ _，_ _我_ _，_ _我_ _，_ _我_ _，_ _我_ _哈——_ _，_ _我_ _，_ _我真心希望，如果真发生那种事，我的孩子们也能为我做点类似的事。"
+        "T1": "所以 ， 所以， 我是说 ， 就是说， 我是说 ， 我 ， 我 ， 我 ， 我 哈—— ， 我 ， 我真心希望，如果真发生那种事，我的孩子们也能为我做点类似的事。"
       }
     },
     {
       "utt_id": "sw02005_A_81",
       "en": "_Yeah_ _. _ _Yeah_ _. _ _Well_, _with_ _my_ _, _ with my grandmother _I_ _think_ _it_ _was_ _, _ it was such _that_ _, _ _uh_, that she did not have the problem with, she was very well aware and her daughter came and visited her",
       "translations": {
-        "T1": "_是啊_ _。_ _是啊_ _。_ _嗯_，_就_ _我_ _，_就我奶奶来说，_我_ _觉得_ _那_ _是_ _，_那情况是_，_ _呃_，她并没有什么困扰，她非常清楚，而且她女儿还来探望过她"
+        "T1": "是啊 。 是啊 。 嗯，就 我 ，就我奶奶来说，我 觉得 那 是 ，那情况是， 呃，她并没有什么困扰，她非常清楚，而且她女儿还来探望过她"
       }
     },
     {
       "utt_id": "sw02005_A_93",
       "en": "And, _um_, _I_ _mean_ _, _ but _she_ _was_ _truly_ _, _ she was truly aware. _I_ _mean_ _, _ _I_ _, _ _I_ _, _ _I_ _di-_ _, _ I don't know _how_ _I_ _would_ _, _ how I would deal if one of my parents came _with_ _, _ with Alzheimer's. or something like, that _which_ _is_ _, _ which is far more devastating.",
       "translations": {
-        "T1": "而且，_嗯_，_我_ _的意思是_ _,_但她_ _确实_ _,_她确实意识到了。_我_ _的意思是_ _,_ _我_ _,_ _我_ _,_ _我_ _没—— _,_我不知道_我_ _会怎样_ _,_我会怎样应对如果我的父母_ _带着_ _,_带着阿尔茨海默病。或者类似的情况，_那_ _是_ _,_那是更加毁灭性的。"
+        "T1": "而且，嗯，我 的意思是 ,但她 确实 ,她确实意识到了。我 的意思是 , 我 , 我 , 我 没—— ,我不知道我 会怎样 ,我会怎样应对如果我的父母 带着 ,带着阿尔茨海默病。或者类似的情况，那 是 ,那是更加毁灭性的。"
       }
     },
     {
       "utt_id": "sw02005_A_99",
       "en": "And, _um_, _I_ _, _ _I_ _, _ I think that _what_ one thing that they were concerned probably was the fact it wasn't necessarily _, _ _you_ _know_ _, _ _like_ the quantity of care but the quality of, care.",
       "translations": {
-        "T1": "而且，_嗯_，_我_，_ _我_，_我觉得他们可能最在意的，大概并不是_，_ _你知道_，_ _比如_护理的数量，而是护理的质量。"
+        "T1": "而且，嗯，我， 我，我觉得他们可能最在意的，大概并不是， 你知道， 比如护理的数量，而是护理的质量。"
       }
     },
     {
       "utt_id": "sw02005_B_14",
       "en": "_You_ _know_ _, _ is there something else we could have done _, _ _you_ _know_ _, _ in checking out all the places that, _uh_, might be available. Of course _, _ _you_ _know_ _, _ there's not one on every corner, especially _, _ _you_ _know_ _, _ smaller areas, smaller towns.",
       "translations": {
-        "T1": "_你知道_，_我们是不是还能做点别的_，_你知道_，_在考察所有可能有空房的地方时。当然_，_你知道_，_并不是每个街角都有，尤其是_，_你知道_，_在较小的区域、较小的城镇里。"
+        "T1": "你知道，我们是不是还能做点别的，你知道，在考察所有可能有空房的地方时。当然，你知道，并不是每个街角都有，尤其是，你知道，在较小的区域、较小的城镇里。"
       }
     },
     {
       "utt_id": "sw02005_B_2",
       "en": "_Well_, of course, _it_ _'s_ _, _ _you_ _know_ _, _ it's one of the last few things in the world you'd ever want to do _, _ _you_ _know_ _. _ Unless it's just _, _ _you_ _know_ _, _ really _, _ _you_ _know_ _, _ _and_, _uh_, _for_ _their_ _, _ _uh_ _, _ _you_ _know_ _, _ for their own good.",
       "translations": {
-        "T1": "_嗯_，当然，_这_ _是_ _，_ _你_ _知道_ _，_这大概是你这辈子最不想做的事之一了_，_ _你_ _知道_ _。_除非，_，_你知道，_真的，_你知道，_而且，_呃，_为了_他们的，_呃，_你知道，_为了他们好。"
+        "T1": "嗯，当然，这 是 ， 你 知道 ，这大概是你这辈子最不想做的事之一了， 你 知道 。除非，，你知道，真的，你知道，而且，呃，为了他们的，呃，你知道，为了他们好。"
       }
     },
     {
       "utt_id": "sw02005_B_4",
       "en": "I'd be very very careful _and_ _, _ _uh_ _, _ _you_ _know_ _, _ checking them out. _Uh_, our, had t-, place my mother in a nursing home. She had a rather massive stroke _about_ _, _ _uh_, about _uh_, eight months ago _I_ _guess_.",
       "translations": {
-        "T1": "我会非常非常小心_并且__，__嗯__，你知道的，_检查一下它们。_嗯_，我们 t-，曾经把我的母亲送进养老院。她在大约八个月前，我猜，有过一次相当严重的中风。"
+        "T1": "我会非常非常小心并且，嗯，你知道的，检查一下它们。嗯，我们 t-，曾经把我的母亲送进养老院。她在大约八个月前，我猜，有过一次相当严重的中风。"
       }
     },
     {
       "utt_id": "sw02005_B_8",
       "en": "So, I was very comfortable _, _ _you_ _know_ _, _ in doing it when it got to the point that we had to do it. But there's, _well_, I had an occasion for my mother-in-law who had fell and _needed_ _to_ _be_ _, _ _you_ _know_ _, _ could not take care of herself anymore, was confined to a nursing home for a while that was really not a very good experience. _Uh_, it had to be done in a hurry. _I_ _mean_ _, _ we didn't have _, _ _you_ _know_ _, _ _like_ six months to check all of these places out. And it was really _not_ _, _ not very good, _uh_, deal.",
       "translations": {
-        "T1": "所以，当到了不得不这么做的时候，我做起来_，_ _你知道的_ _，_ 感觉很自在。 但有一次，_嗯_，我婆婆摔了一跤，_需要_ _被_ _，_ _你知道的_ _，_ 已经无法自理了，不得不住进一家养老院一段时间，那真的不是什么好经历。_呃_，当时必须得赶紧办妥。 _我__是说__，_我们没有_，__你知道的__，_像_六个月那样的时间去考察所有这些地方。而且那真的_不是__，_不是什么好，_呃_，安排。"
+        "T1": "所以，当到了不得不这么做的时候，我做起来， 你知道的 ， 感觉很自在。 但有一次，嗯，我婆婆摔了一跤，需要 被 ， 你知道的 ， 已经无法自理了，不得不住进一家养老院一段时间，那真的不是什么好经历。呃，当时必须得赶紧办妥。 我是说，我们没有，你知道的，像六个月那样的时间去考察所有这些地方。而且那真的不是，不是什么好，呃，安排。"
       }
     },
     {
@@ -4141,14 +4141,14 @@ const INLINE_DATA = {
       "utt_id": "sw02010_B_50",
       "en": "_I_ _think_ _that_ _, _ I think he really, his heart was in it, but _I_ _, _ I don't think he really knew it was going to be as big as it was. I think it was something that he really wanted to do. He wanted to direct it, he wanted _to_ _, _ to star in it. _You_ _know_ _, _ _he_ _, _ he enjoyed the story line and I think _he_ _just_ _really_ _w-_ _, _ he really wanted it. And _whether_ _it_ _, _ whether it won all kinds of awards or whether it just was okay at the box office, I think he would have been happy. Because _I_ _think_ _that_ _, _ I think he did a good job _and_ _, _ _and_ the self-satisfaction he got out of it is much greater than any awards that they can give him.",
       "translations": {
-        "T2": "_我_ _觉得_ _那个_ _，_ 我觉得他真的，他全身心投入进去了，但是_我_，我不觉得他真的知道这会变得像后来那么大。我觉得那是他真的很像做的事情。他像导演它，他想_去_ _，出演这部电影。_ 你_ _知道的_ _，_他_ _，_ 他特相中那个本子，我觉得 _他_ _只是_ _真的_ _想-_ _，_ 他当时是真想要那个。而且 _无论_ _它_ _，_ 甭管是拿了一堆奖还是说仅仅票房还凑合，我觉得他都会挺高兴的。因为 _我_ _觉得_ _那个_ _，_ 我觉得他干得漂亮 _而且_ _，_ _而且_ 他打心底里那种成就感，比那些奖杯重多了。"
+        "T2": "我 觉得 那个 ， 我觉得他真的，他全身心投入进去了，但是我，我不觉得他真的知道这会变得像后来那么大。我觉得那是他真的很像做的事情。他像导演它，他想去 ，出演这部电影。 你 知道的 ，他 ， 他特相中那个本子，我觉得 他 只是 真的 想- ， 他当时是真想要那个。而且 无论 它 ， 甭管是拿了一堆奖还是说仅仅票房还凑合，我觉得他都会挺高兴的。因为 我 觉得 那个 ， 我觉得他干得漂亮 而且 ， 而且 他打心底里那种成就感，比那些奖杯重多了。"
       }
     },
     {
       "utt_id": "sw02012_A_101",
       "en": "Because _I_, _any_ _, _ _anyone_ _, _ any friend, anyone I give my number to is welcome to call me, but no one is just welcome to come by my house. So that is more of a sense of invasion.",
       "translations": {
-        "T3": "因为我_，_任何_，任何我给过电话号码的人、朋友都欢迎打电话给我，但并不是所有人都欢迎来我家。所以这感觉有点像是入侵了。"
+        "T3": "因为我，任何，任何我给过电话号码的人、朋友都欢迎打电话给我，但并不是所有人都欢迎来我家。所以这感觉有点像是入侵了。"
       }
     },
     {
@@ -4169,7 +4169,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_61",
       "en": "_Yeah_ _. _ And, _um_, one of the problems with the Lotus data base was, _um_, that it was uncontrolled access to who would have that information. _I_ _mean_ _, _ they said they would give it out to only select companies _but_, _um_ _, _ _you_ _know_ _, _ just like software is only given out to customers, _I_ _mean_ _, _ you can't believe that.",
       "translations": {
-        "T2": "_是啊_ _，_ 而且， _额_ ，Lotus 数据库的问题之一就是， _额_ ，谁能获取那些信息完全没人管。 _我的意思是_ _，_ 他们说只会提供给特定的公司 _但是_，_额_，_ _你_ _知道_ _，_ 就像软件只提供给客户一样， _我的意思是_ _，_ 你哪能信那个啊。"
+        "T2": "是啊 ， 而且， 额 ，Lotus 数据库的问题之一就是， 额 ，谁能获取那些信息完全没人管。 我的意思是 ， 他们说只会提供给特定的公司 但是，额， 你 知道 ， 就像软件只提供给客户一样， 我的意思是 ， 你哪能信那个啊。"
       }
     },
     {
@@ -4204,7 +4204,7 @@ const INLINE_DATA = {
       "utt_id": "sw02012_A_99",
       "en": "All _the_ _class-_ _, _ the other classic examples, the Jehovah's Witness _or_ _, _ or Mormons or someone knocking at the front door, _um_, which is more intrusive because I have to really tell someone to go away. And there's that sense of, I have now opened my door they now see what I look like, what I live like _and_ _nor-_ _, _ and they're doing something that normally I really only invite, people to.",
       "translations": {
-        "T3": "所有的经典_，其他经典的例子，包括耶和华的见证者，_或者_，_或者摩门教徒，或者其他人来敲门都过于，_呃_打搅，因为我必须叫这些人离开。这种感觉就像是我打开了房门，然后被他们看到了我的相貌、我的居住环境，_以及_，而且他们做的事是我平常邀请别人来做客时才会做的。"
+        "T3": "所有的经典，其他经典的例子，包括耶和华的见证者，或者，或者摩门教徒，或者其他人来敲门都过于，呃打搅，因为我必须叫这些人离开。这种感觉就像是我打开了房门，然后被他们看到了我的相貌、我的居住环境，以及，而且他们做的事是我平常邀请别人来做客时才会做的。"
       }
     },
     {
@@ -4232,7 +4232,7 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_18",
       "en": "_Uh-huh_ _, _ _uh-huh_ _. _ _Yeah_ _, _ that's true. Living in an apartment complex though _, _ _you_ _know_ _you_ _ca_ _n't_ _, _ _um_, you can't really stop those people from coming around even though they put up signs out front that says no solicitations, _uh_, but they still come up to the front door and, _uh_ _, _ _you_ _know_ _, _ walk around. So, usually what I do is I'll call the apartment manager and tell them _hey_, there's people coming around _, _ _you_ _know_, and they're trying to sell something _or_ _, _ or they're from a religious organization and I really hate that. I really, really do. I had somebody come to the door about two weeks ago and, _uh_, _gosh_ it was about nine o'clock at night, too. It wasn't even what I would consider _, _ _you_ _know_ _, _ family hours, time to _, _ _you_ _know_ _, _ start going to bed _and_ _uh_, and it was somebody from, _um_ _, _ _oh_ _what_ _was_ _it_ _, _ the, _uh_, Jesus Christ of Latter Day Saints, and _uh_, I've read a lot about, _uh_, that particular sect and I don't particularly care for it, so I especially don't like for them to come up to my door _and_ _, _ and try and talk to me.",
       "translations": {
-        "T3": "_嗯_，_嗯_，_对_，没错。因为你住在公寓里，_你知道的_，尽管你在门口挂上请勿推销的牌子也无法阻止人们来访_呃_，_呃_，他们还是照样会在你家门口，_呃_，_你知道的_，逗留。所以通常我会打电话给公寓负责经理，并告诉他们，嘿，有陌生人来访，_你知道的_，他们试图向我推销产品，_或_或者是某个我非常讨厌的宗教组织成员。我真的会这么做。大概两个星期前有个人来我家，_呃_我的天_，大概是晚上9点左右。_你知道_在我看来这都不算家庭时间了，_你知道的_，这已经是要去睡觉的时间了，然后就有一个，_呃_，_哦_，_什么来着的_，_呃_，耶稣基督后期圣徒的人，_呃_，我听说过很多关于那个教会的事，而且我也不是很关心，所以我特别不喜欢他们来我家试图和我交谈。"
+        "T3": "嗯，嗯，对，没错。因为你住在公寓里，你知道的，尽管你在门口挂上请勿推销的牌子也无法阻止人们来访呃，呃，他们还是照样会在你家门口，呃，你知道的，逗留。所以通常我会打电话给公寓负责经理，并告诉他们，嘿，有陌生人来访，你知道的，他们试图向我推销产品，或或者是某个我非常讨厌的宗教组织成员。我真的会这么做。大概两个星期前有个人来我家，呃我的天，大概是晚上9点左右。你知道在我看来这都不算家庭时间了，你知道的，这已经是要去睡觉的时间了，然后就有一个，呃，哦，什么来着的，呃，耶稣基督后期圣徒的人，呃，我听说过很多关于那个教会的事，而且我也不是很关心，所以我特别不喜欢他们来我家试图和我交谈。"
       }
     },
     {
@@ -4253,7 +4253,7 @@ const INLINE_DATA = {
       "utt_id": "sw02015_B_30",
       "en": "I know, but I remember _you_ _, _ you talked about something, you started off and said, _well_ let me think, you talked about the telephone calls and people coming and soliciting and selling things at the door. You said something else. I can't remember what it was, and I thought yeah, _that_ _, _ that kind of touched a nerve right there, but _we_ _got_ _uh_, we got to talking about the, _uh_, _uh_, people coming to you at the front door.",
       "translations": {
-        "T3": "我知道，但是我记得_你_，你说过一件事，你说，_嗯_让我想想，你说过电话来电和在门口试图推销卖产品的人。你说了别的。我不记得是什么了，但我想，_对_，那种被冒犯的感觉，但_我们要_，_呃_，我们要聊聊，_呃_，_呃_，来你家门口推销的人。"
+        "T3": "我知道，但是我记得你，你说过一件事，你说，嗯让我想想，你说过电话来电和在门口试图推销卖产品的人。你说了别的。我不记得是什么了，但我想，对，那种被冒犯的感觉，但我们要，呃，我们要聊聊，呃，呃，来你家门口推销的人。"
       }
     },
     {
@@ -4267,21 +4267,21 @@ const INLINE_DATA = {
       "utt_id": "sw02018_B_61",
       "en": "Or, a lot of women I know now and _my_ _, _ _uh_, one of my supervisors, when she went on L O A to have her baby, we hooked up, _uh_, _uh_, a terminal at her house and _she_ _, _ _you_ _know_ _, _ we could send her messages, _and_ _, _ and she kept in touch like that, and basically, just worked out of her house.",
       "translations": {
-        "T3": "或者，有很多我知道的女性和_我的_，_呃_，我的一个上司，她休产假时，我们在她家里给她装了一台终端设备，_而且她_，_你知道的_，我们就可以给她发信息，_而且_，而且她可以通过这种方式和我们保持联络，基本上就可以在家办公了。"
+        "T3": "或者，有很多我知道的女性和我的，呃，我的一个上司，她休产假时，我们在她家里给她装了一台终端设备，而且她，你知道的，我们就可以给她发信息，而且，而且她可以通过这种方式和我们保持联络，基本上就可以在家办公了。"
       }
     },
     {
       "utt_id": "sw02020_A_3",
       "en": "_Well_, I mostly listen to popular music. I, _uh_, listen to it all the time _in_ _, _ in my car, so, _I_ _, _ I tend to be one of those people who switches stations a lot because I don't like commercials. But, _uh_, I find myself listening to popular music,",
       "translations": {
-        "T3": "_嗯_，我通常都听流行音乐。_我_，_呃_，总是_在_，在我的车里听这类型的音乐，所以，_我_，我时那种经常换台的人，因为我不喜欢广告。但是，_呃_，我也听流行音乐，"
+        "T3": "嗯，我通常都听流行音乐。我，呃，总是在，在我的车里听这类型的音乐，所以，我，我时那种经常换台的人，因为我不喜欢广告。但是，呃，我也听流行音乐，"
       }
     },
     {
       "utt_id": "sw02020_B_104",
       "en": "_Well_ _, _ _you_ _know_ _, _ really that's not world music. But, _what_ _, _ what Paul Simon's doing _, _ _I_ _think_ _is_ _, _ _is_ _, _ is great because he's _, _ _you_ _know_ _I_ _think_ _, _ _I_ _think_ _that_ using _, _ _I_ _guess_ _what_ _they_ _call_ _it_ _is_ eclectic _, _ _you_ _know_ _. _ drawing from a lot of different sources and making _, _ _you_ _know_ _, _ a synthesis of a new type of music. _Um_ _, _",
       "translations": {
-        "T3": "_嗯_，_你知道的_，那就不是世界音乐。但是，保罗西蒙的音乐我觉得_就_，_就_，就很棒，因为他是，_你知道的_，我觉得他在用一种我猜叫作混合的手法，_你知道的_，从不同的歌曲源头中吸取灵感，然后，_你知道的_，把它们融合成一种音乐。_呃_"
+        "T3": "嗯，你知道的，那就不是世界音乐。但是，保罗西蒙的音乐我觉得就，就，就很棒，因为他是，你知道的，我觉得他在用一种我猜叫作混合的手法，你知道的，从不同的歌曲源头中吸取灵感，然后，你知道的，把它们融合成一种音乐。呃"
       }
     },
     {
@@ -4337,28 +4337,28 @@ const INLINE_DATA = {
       "utt_id": "sw02020_B_64",
       "en": "_I_ _mean_ _I_ _, _ I, _there_ _are_ _a_ _lot_ _, _ there are so many different songs, _I_ _mean_ _like_ the whole thing about cover versions a lot of times. _I_ _mean_ I've heard some songs _that_ _, _ that I just thought were horrendous cover versions of, I'm _like_ _, _ _you_ _know_ _, _ _I_ _, _ I don't want to listen to this. Because _you_ _know_ _, _ you think of the original is _like_,",
       "translations": {
-        "T3": "_我的意思是_，_我_，_有很多_，有很多不同的歌，我指的是很多时候关于翻唱版本这件事，_我的意思是_，我听过一些我觉得是非常糟糕的翻唱歌曲，_我就_，_你知道的_，我就不想听这些歌了。因为_你知道的_，原唱就像是，"
+        "T3": "我的意思是，我，有很多，有很多不同的歌，我指的是很多时候关于翻唱版本这件事，我的意思是，我听过一些我觉得是非常糟糕的翻唱歌曲，我就，你知道的，我就不想听这些歌了。因为你知道的，原唱就像是，"
       }
     },
     {
       "utt_id": "sw02022_A_21",
       "en": "That's a good choice, _we_ _'ve_ _been_ _trying_ _, _ we're trying to, _uh_, do that this year. We've budgeted the money that _we_ _used_ _to_ _spend_ _, _ we were spending on a CODA account with T I and then money we were also buying stock with for that year, we've taken that this year, and said we're going to pay off all of our credit cards",
       "translations": {
-        "T4": "这是个不错的选择，我们__一直在_尝试，_我们尝试，呃，今年这样做。我们已经预算_我们_用于__花费_的钱，_我们在CODA的T I 账户上花费了，然后我们还用当年购买股票的钱，我们今年已经拿走了，并说我们将还清我们所有的信用卡"
+        "T4": "这是个不错的选择，我们一直在尝试，我们尝试，呃，今年这样做。我们已经预算我们用于花费的钱，我们在CODA的T I 账户上花费了，然后我们还用当年购买股票的钱，我们今年已经拿走了，并说我们将还清我们所有的信用卡"
       }
     },
     {
       "utt_id": "sw02022_A_39",
       "en": "_Yeah_ _, _ mostly what _we_ _'re_ _doing_ _, _ _we_ _'ve_ _worked_ _, _ we've done the, _uh_, CODA account with T I where _they_ _, _ we put in so much a month, and then they, or so much a pay check and then they match it.",
       "translations": {
-        "T4": "是的_，_主要_我们__正在_，_我们_已经_工作_，_我们已经完成，_呃_，CODA帐户的T I，哪里_他们_，_我们每月投入了这么多，然后他们，或者这么多工资，然后他们添加相同的。"
+        "T4": "是的，主要我们正在，我们已经工作，我们已经完成，呃，CODA帐户的T I，哪里他们，我们每月投入了这么多，然后他们，或者这么多工资，然后他们添加相同的。"
       }
     },
     {
       "utt_id": "sw02022_A_45",
       "en": "_Yeah_ _. _ The other thing that we've done, _that_ _, _ that was really nice to see, we had one of the financial companies, _um_, _han-_ _, _ _uh_, John Hancock company came out and their agent did a long term analysis based on salary and, _uh_, _what_ _we_ _were_ _pla-_ _, _ _what_ _, _ what our, _uh_, goals were on a long term budget in terms of retirement, kids college, paying off the house, buying a different house, _um_, special thing, buying land and building our own house",
       "translations": {
-        "T4": "_是的_ _。_我们做的另一件事，_那个__，_真的不错看到，我们有一家金融公司，_嗯_汉，__嗯_，约翰·汉考克公司出来了，他们的经纪人根据工资进行了长期分析，_呃_，_，_然后_我们_是__计_，__那个_，_那个我们，_呃_，长期预算目标关于退休、孩子的大学，还清房子，买另一栋房子方面的_嗯_，特别的事情，买土地和建造我们自己的房子"
+        "T4": "是的 。我们做的另一件事，那个，真的不错看到，我们有一家金融公司，嗯汉，嗯，约翰·汉考克公司出来了，他们的经纪人根据工资进行了长期分析，呃，，然后我们是计，那个，那个我们，呃，长期预算目标关于退休、孩子的大学，还清房子，买另一栋房子方面的嗯，特别的事情，买土地和建造我们自己的房子"
       }
     },
     {
@@ -4372,126 +4372,126 @@ const INLINE_DATA = {
       "utt_id": "sw02022_B_18",
       "en": "_Yeah_ _, _ _yeah_ _, _ _I_ _stay_ _wi-_ _, _ I have to stay within it, so I _, _ _you_ _know_, and then we have that _, _ _you_ _know_, _if_ _you_ _ca_ _n't_ _stay_ _, _ if something comes up and you can't stay within it then we have, _uh_ _, _ _you_ _know_ _, _ a budget for _, _ _you_ _know_ _, _ _like_ we call our slush fund or something and _some-_ _, _ an unexpected comes up, then _you_ _'re_ _not_ _, _ _you_ _know_ _, _ you don't feel _it_ so strapped.",
       "translations": {
-        "T3": "_对_，_对_，我的花费必须在预算之内，所以_我_，_你知道的_，_我们有_，_你知道的_，_如果你无法_，如果有事情发生导致你无法控制在预算之内，_你知道的_，我们还有紧急资金，这样即使有意料之外的事情发生，你也不会感到手头很紧。"
+        "T3": "对，对，我的花费必须在预算之内，所以我，你知道的，我们有，你知道的，如果你无法，如果有事情发生导致你无法控制在预算之内，你知道的，我们还有紧急资金，这样即使有意料之外的事情发生，你也不会感到手头很紧。"
       }
     },
     {
       "utt_id": "sw02022_B_52",
       "en": "_Uh-huh_ _. _ That sounds interesting, we've never done any-, we have, _you_ _know_ _, _ _just_ _our_ _, _ our life insurance guy has come out _, _ _you_ _know_, and he's _set_ _up_ _, _ _uh_ _, _ _you_ _know_ _, _ determined how much _we_ _need_ _to_ _, _ _you_ _know_ _, _ we need if something were to happen.",
       "translations": {
-        "T4": "_呃-嗯_ _。_这听起来很有趣，我们从来没有做过任何-，我们有，_你_知道_，_只是___我们的__，_我们的人寿保险代理人已经出来了_，__你__知道_，他_设置__，_呃_ ___，_你___知道_，_决定了_我们_需要___，_ _你__知道_，_如果发生什么事，_我们会需要的。"
+        "T4": "呃-嗯 。这听起来很有趣，我们从来没有做过任何-，我们有，你知道，只是我们的，我们的人寿保险代理人已经出来了，你知道，他设置，呃 ，你知道，决定了我们需要， 你知道，如果发生什么事，我们会需要的。"
       }
     },
     {
       "utt_id": "sw02022_B_54",
       "en": "_Right_ _, _ _yeah_ _, _ _you_ _know_, if, I would sell the _, _ _you_ _know_, if, _he_ _, _ something would happen to him, I wouldn't stay in Texas, I would, _uh_, sell the house and move back home _, _ _you_ _know_ _, _ to my home town, _and_ _, _ and, _uh_, I wouldn't stay here in Texas, so _you_ _know_ _, _ I don't know what he would do.",
       "translations": {
-        "T4": "_对__，_是的__，__你__知道_，如果，我会卖掉_，___你_知道_，如果，_他_，_出事了，我不会呆在德克萨斯州，我会，_呃_，卖掉房子搬回家_，__你____知道_，_到我的家乡，_和_，_和，_呃_，我不会呆在德克萨斯州，所以_你____知道_，_，_我不知道他会做什么。"
+        "T4": "对，是的，你知道，如果，我会卖掉，你知道，如果，他，出事了，我不会呆在德克萨斯州，我会，呃，卖掉房子搬回家，你知道，到我的家乡，和，和，呃，我不会呆在德克萨斯州，所以你知道，，我不知道他会做什么。"
       }
     },
     {
       "utt_id": "sw02024_A_15",
       "en": "And, _uh_, _oh_, I guess I like a variety of things, _uh_, lots of fiction, _uh_, type books. _Uh_, right now I'm occasionally reading on a book about, _uh_, the Mardi Gras in New Orleans and its history.",
       "translations": {
-        "T4": "而且，_呃_，_哦_，我想我喜歡各種各樣的東西，_呃_，很多小說，_呃_，型別的書。_呃_，现在我偶尔会读一本关于_呃_的新奥尔良狂欢节及其历史的书。"
+        "T4": "而且，呃，哦，我想我喜歡各種各樣的東西，呃，很多小說，呃，型別的書。呃，现在我偶尔会读一本关于呃的新奥尔良狂欢节及其历史的书。"
       }
     },
     {
       "utt_id": "sw02024_A_35",
       "en": "_Well_, I don't know, _um_, I, _uh_, have attended some seminars that had some tapes that went with them, but, _uh_ _, _ _I_ _guess_ not so much books although they sometimes have manuals and things, but, _uh_, they would be things on _like_ how to be successful and sort of talking to yourself _. _ _You_ _know_ _ge-_ _, _ getting _your_ _, _ yourself in gear to, _uh_, sort of pull yourself up by your boot straps and do what you really want to do. Convincing you that you need to get on with it.",
       "translations": {
-        "T4": "嗯_，我不知道，_嗯_，我，_呃_，参加过一些研讨会，有一些磁带与他们一起，但是，_呃_ _，_ _我_猜_没有那么多书，尽管他们有时有手册之类的东西，但是，_呃_，它们会是关于_如何成功和自言自语_的东西。_ _你_ _知道__-_ 得_，_得到_你的__，_自己准备好，_呃_，用你的力量带把自己拉起来，做你真正想做的事情。说服你，你需要继续下去。"
+        "T4": "嗯，我不知道，嗯，我，呃，参加过一些研讨会，有一些磁带与他们一起，但是，呃 ， 我猜没有那么多书，尽管他们有时有手册之类的东西，但是，呃，它们会是关于如何成功和自言自语的东西。 你 知道- 得，得到你的，自己准备好，呃，用你的力量带把自己拉起来，做你真正想做的事情。说服你，你需要继续下去。"
       }
     },
     {
       "utt_id": "sw02024_B_18",
       "en": "I bet that would be, rather interesting. _Uh_, that's, _uh_, self improvement, _that_ _'s_ _, _ _that_ _'s_ _alwa-_ _, _ _well_, that's kind of a hobby but it is self improvement from the standpoint of probably relaxing, _uh_.",
       "translations": {
-        "T4": "我敢赌那会很有趣。_呃_，那是，_呃_，自我改善，_那个__的__，_那个__的__的___通_，_实际上这是一种爱好，但从大概是放松的角度来看，是自我改善，_呃_。"
+        "T4": "我敢赌那会很有趣。呃，那是，呃，自我改善，那个的，那个的的通，实际上这是一种爱好，但从大概是放松的角度来看，是自我改善，呃。"
       }
     },
     {
       "utt_id": "sw02024_B_4",
       "en": "_Uh_, _have_ _n't_ _, _ _have_ _, _ I have a wide variety _of_ _, _ of hobbies, therefore, _my_ _, _ my reading pleasures are quite wide. _Um_, I get a charge out of, _uh_, TEXAS HIGHWAY, which is, _uh_, very colorful, and, _uh_, not being a native of Texas, but being here eleven years have a tendency to, _uh_, find out _the_ _, _ _uh_, about the different areas _of_ _the_ _co-_ _, _ _of_ _the_ _, _ of the state by reading it.",
       "translations": {
-        "T4": "_呃_，_没_有___，__有__，_我有各种各样的___，_的爱好，因此，_我的__，_我的阅读相当广泛。_嗯_，我从_呃_，德克萨斯高速公路中得到了活力，它是，_呃_，非常丰富多彩，而且，_呃_，当你不是德克萨斯州的人，但在这里待了11年，你会倾向，_呃_，通过阅读它发现___，_呃__在一个州里面不同的区域。"
+        "T4": "呃，没有，有，我有各种各样的，的爱好，因此，我的，我的阅读相当广泛。嗯，我从呃，德克萨斯高速公路中得到了活力，它是，呃，非常丰富多彩，而且，呃，当你不是德克萨斯州的人，但在这里待了11年，你会倾向，呃，通过阅读它发现，呃在一个州里面不同的区域。"
       }
     },
     {
       "utt_id": "sw02024_B_8",
       "en": "_Oh_ _yeah_ _, _ _it_ _'s_ _, _ _it_ _'s_ _, _ _uh_, absolutely, it's great the way that it's broken out and you can, _uh_, set up little trips and day trips and things. It's _pretty_ _, _ pretty neat. _Um_, _oh_, I like photography, _um_, magazines. I don't take a subscription or anything like that. _Um_, things, _oh_, being an engineer in facilities I do read _a_ _lot_ _of_ _, _ a lot of, _uh_, building magazines _and_ _, _ _and_ _, _ and plant engineering magazines and, read up on different ways to do things and energy management type of magazines _and_ _, _ and, _uh_, kind of strange because _I_ _, _ it's not unusual to, _uh_, see, _uh_, an engineering manual or something laying around the house",
       "translations": {
-        "T4": "_呃_ 是的_，__它__它_当然，它分离的方式很棒，你可以，_呃_，安排小旅行和一日游等等。 它_太有_ _，_太有趣了。 _嗯_，_哦_，我喜欢摄影，_嗯_，杂志。 我不接受订阅或类似的东西。 _嗯_，_哦_，作为一名设施工程师，我确实读了_很_ _多_的_，_很多的，_呃_，建筑杂志_和___，_和_和工厂工程师的杂志，和阅读了不同的做事方式和能源管理类型的杂志_和_ _，_，_和，_呃_，有点奇怪，因为_我_，_，_，_通常这不算稀奇，_呃，_看，呃，_一本工程手册或类似的东西在房子周围"
+        "T4": "呃 是的，它它当然，它分离的方式很棒，你可以，呃，安排小旅行和一日游等等。 它太有 ，太有趣了。 嗯，哦，我喜欢摄影，嗯，杂志。 我不接受订阅或类似的东西。 嗯，哦，作为一名设施工程师，我确实读了很 多的，很多的，呃，建筑杂志和，和和工厂工程师的杂志，和阅读了不同的做事方式和能源管理类型的杂志和 ，，和，呃，有点奇怪，因为我，，，通常这不算稀奇，呃，看，呃，一本工程手册或类似的东西在房子周围"
       }
     },
     {
       "utt_id": "sw02027_A_31",
       "en": "And these weren't even really full ones. _I_ _mean_ they had a problem out here with it last summer, wearing these shorts that were _, _ _you_ _know_ _, _ the real wide full ones _, _ _you_ _know_, and _becau-_ _, _ these weren't even those. These were _like_ pretty short, black, and they were very dressy, the were black velvet shorts and she had on black hose and black heels and she looked very, very nice.",
       "translations": {
-        "T4": "这些甚至不是真正的满的。_我__意思是_他们去年夏天在这里遇到了问题，穿着这些短裤是_，__你___知道_，_真正宽大的_，_你__知道_和_因_，_这些甚至不是那些。这些_是_很短的，黑色的，并且因为它们非常优雅，是黑色天鹅绒的短裤，她穿着黑色裤袜和黑色高跟鞋，她看起来非常，非常漂亮。"
+        "T4": "这些甚至不是真正的满的。我意思是他们去年夏天在这里遇到了问题，穿着这些短裤是，你知道，真正宽大的，你知道和因，这些甚至不是那些。这些是很短的，黑色的，并且因为它们非常优雅，是黑色天鹅绒的短裤，她穿着黑色裤袜和黑色高跟鞋，她看起来非常，非常漂亮。"
       }
     },
     {
       "utt_id": "sw02027_A_65",
       "en": "_I_ _, _ I am. I work faster, I get things done faster, than when I'm in a dress and heels _, _ _you_ _know_, I, and it's weird but _I_ _, _ _it_ _'s_ _I_ _do_ _, _ _I_ _can_ _, _ I can get so much more done if I'm dressed comfortable _, _ _you_ _know_.",
       "translations": {
-        "T4": "_我_ _，_我是。我完成更快，比当我穿着连衣裙和高跟鞋，我可以完成事情更快_，_ _你___知道_，我，这很奇怪，但_我__，_它__的_我__做___，_我____可以_，_如果我穿得舒服我可以完成更多的事情_，__你___知道_。"
+        "T4": "我 ，我是。我完成更快，比当我穿着连衣裙和高跟鞋，我可以完成事情更快， 你知道，我，这很奇怪，但我，它的我做，我可以，如果我穿得舒服我可以完成更多的事情，你知道。"
       }
     },
     {
       "utt_id": "sw02027_A_7",
       "en": "_Yeah_ _, _ _you_ _know_ _, _ we're kind of that way too. I try to, I'm the same way you are, I kind of try to judge from day to day. I know _, _ _you_ _know_ _, _ where I am we work a lot with the customers and we have a lot of government folks come in all the time _and_ _, _ and, _you_ _know_ _, _ if I know that they're going to be there _, _ _you_ _know_ _, _ _you_ _, _ I try to really watch it and like you say _, _ _you_ _know_ _, _ really dress up",
       "translations": {
-        "T4": "_是的_ _，_ _你_ _知道_ _，_我們也是那样的。我努力了，我和你一样，我每天都在努力判断。我知道_，__你__知道__，_我所在的地方，我们经常和客户一起工作，我们有很多政府人员一直_和_ _，_和，_你___知道_，_如果我知道他们会在那里_，__你__知道_，__你_，_我试着真正观察它，就像你说的_，___你__知道_，_真的打扮"
+        "T4": "是的 ， 你 知道 ，我們也是那样的。我努力了，我和你一样，我每天都在努力判断。我知道，你知道，我所在的地方，我们经常和客户一起工作，我们有很多政府人员一直和 ，和，你知道，如果我知道他们会在那里，你知道，你，我试着真正观察它，就像你说的，你知道，真的打扮"
       }
     },
     {
       "utt_id": "sw02027_A_79",
       "en": "_Well_ I don't know, I just figure _, _ _you_ _know_ _, _ _yeah_, sometimes I worry about _, _ _you_ _know_ _, _ if I go in in pants, and _I_ _never_ _, _ I never ever, ever, ever go in in a pair of jeans _, _ _you_ _know_. But I'll go in in pants. _I_ _mean_ today I had on a pair of _, _ _you_ _know_ _, _ navy blue dress slacks _and_ _, _ and, _uh_, _like_ a peach colored top and _, _ _you_ _know_ _, _ not cruddy, but not a dress either. And sometimes I wonder if stuff like that _would_ _, _ will hold you back _, _ _you_ _know_ _, _ if you don't dress in _, _ _you_ _know_ _, _ your dress for success business suits everyday _if_ _, _ _you_ _know_ _, _ if upper management doesn't notice that and remember that later on, but _, _ _you_ _know_ _, _ I don't know if they do or not. _You_ _know_ _, _ I see a lot of the managers and they're in jeans, so _, _ _you_ _know_.",
       "translations": {
-        "T4": "_嗯_我不知道，我只是认为_，__你___知道__，_是的_，有时我担心_，__你___知道_，_如果我穿裤子进去，_我__从来_，_我从来没有，我从来从来从来没有穿牛仔裤_，__你__知道_。但我会穿着裤子进去。_我__我的意思是今天我穿了一条_，__你___知道__，_海军蓝长裤_和__，_和，_呃_，_类似于_桃色的上衣和_，__你____知道_，_不粗糙，但也不正式。有时我想知道这样的事情是否_会_，_会阻止你_，__你___知道_，_如果你不穿_，__你___知道_，_你每天的西装_如果__，__你_知道_，_如果高层管理人员没有注意到这一点，以后会记住这一点，但_，___你____知道_，_我不知道他们是否知道。_你__知道__，_我看到很多经理，他们穿著牛仔裤，所以_，__你___知道"
+        "T4": "嗯我不知道，我只是认为，你知道，是的，有时我担心，你知道，如果我穿裤子进去，我从来，我从来没有，我从来从来从来没有穿牛仔裤，你知道。但我会穿着裤子进去。我我的意思是今天我穿了一条，你知道，海军蓝长裤和，和，呃，类似于桃色的上衣和，你知道，不粗糙，但也不正式。有时我想知道这样的事情是否会，会阻止你，你知道，如果你不穿，你知道，你每天的西装如果，你知道，如果高层管理人员没有注意到这一点，以后会记住这一点，但，你知道，我不知道他们是否知道。你知道，我看到很多经理，他们穿著牛仔裤，所以，你知道"
       }
     },
     {
       "utt_id": "sw02027_B_16",
       "en": "and at that point, _it_ _, _ the warehouse was over across the road and it wasn't air conditioned, and, _it_ _, _ we were there _like_ in the middle of the summer, it's unair-conditioned, it was dusty and dirty, _uh_, there was _like_ a fan at the very end of the row and that was it. And so, we didn't really know we weren't supposed to, we thought T I dress code was just dress appropriate to your job,",
       "translations": {
-        "T4": "那时，_它_ _，_仓库在马路对面，没有空调，而且，_它_ _，_我们在那里_就像_在盛夏，没有空调，尘土飞扬，脏兮兮的，_呃_，在一排的尽头有一个风扇，就是这样。所以，我们真的不知道我们不应该，我们认为T I的着装要求只只需要是适合你的工作，"
+        "T4": "那时，它 ，仓库在马路对面，没有空调，而且，它 ，我们在那里就像在盛夏，没有空调，尘土飞扬，脏兮兮的，呃，在一排的尽头有一个风扇，就是这样。所以，我们真的不知道我们不应该，我们认为T I的着装要求只只需要是适合你的工作，"
       }
     },
     {
       "utt_id": "sw02028_A_125",
       "en": "_Taking_ _, _ taking care of _uh_, I'm actually in the air division, and we monitor, _um_, anything that comes out of a stack, or out of a building, or, _um_, we do have customers that, _um_, their concerns are in the work place and we take care of that, but, within our department. We take care of everything. Waste water, _uh_, solid waste, and recycling, _and_ _, _ and air and,",
       "translations": {
-        "T4": "管__，_管理_呃_，我實際上在航空部门里面我們監控，_嗯_，任何從堆中或建築物中出來的東西，或者，_嗯_，我們確實有客户，_嗯_，他們的擔憂是在工作場所，我们会处理的，但是仅有在我們的部門。 我们将处理一切。 废水，_呃_，废物，和回收，_和_ _，_和空气和，"
+        "T4": "管，管理呃，我實際上在航空部门里面我們監控，嗯，任何從堆中或建築物中出來的東西，或者，嗯，我們確實有客户，嗯，他們的擔憂是在工作場所，我们会处理的，但是仅有在我們的部門。 我们将处理一切。 废水，呃，废物，和回收，和 ，和空气和，"
       }
     },
     {
       "utt_id": "sw02028_A_147",
       "en": "And, _uh_, _our_ _, _ our chemical data base, so that we know every chemical on site _and_ _, _ and, _um_, its concentration, and _if_ _, _ if anything ever happened _, _ _God_ _forbid_ _, _ _you_ _know_ _, _ a building explosion or something _tha-_ _, _ we'd be able to track chemicals from that building with our weather station.",
       "translations": {
-        "T4": "而且，_呃_，_我们的__，_我们的化学数据库，这样我们就可以知道在那个地方的每一种化学物质_和_和_，_嗯_，其浓度，以及_如果__，_如果发生任何事情_，__上帝_真的希望不会__，_你___知道_，_建筑物爆炸或__，_我们将能够用我们的气象站去测量那栋建筑中的化学物质。"
+        "T4": "而且，呃，我们的，我们的化学数据库，这样我们就可以知道在那个地方的每一种化学物质和和，嗯，其浓度，以及如果，如果发生任何事情，上帝真的希望不会，你知道，建筑物爆炸或，我们将能够用我们的气象站去测量那栋建筑中的化学物质。"
       }
     },
     {
       "utt_id": "sw02032_A_135",
       "en": "So, it's like, nothing happened during the seventies. Everything happened during the sixties, the seventies I don't know what they're called _, _ _you_ _know_, it's _like_ _, _ like _the_ _, _ the eighties are called, _like_ the progressive years, _or_ _the_ _, _ or _, _ _you_ _know_ _, _ _like_ the technology years, because of all the computers and stuff.",
       "translations": {
-        "T4": "所以，就像，七十年代什么都没发生。一切都发生在六十年代，七十年代我不知道它们叫什麼_，_ _你___知道_，它_像__，_像___，_八十年代被称为，_像_进步年，_或____或_，_你___知道_，___像_科技年代，因为所有的电脑东西。"
+        "T4": "所以，就像，七十年代什么都没发生。一切都发生在六十年代，七十年代我不知道它们叫什麼， 你知道，它像，像，八十年代被称为，像进步年，或或，你知道，像科技年代，因为所有的电脑东西。"
       }
     },
     {
       "utt_id": "sw02032_A_39",
       "en": "But, _see_, for example, they have, _see_ what, but other bands consider it _like_ really hard rock. It's like brash metal, which all they do is _like_, they have this guitar and they just bang at the guitar, and the guitar is set _like_, really low,",
       "translations": {
-        "T4": "但是，_看_，例如，他们有，_看_什么，但其他乐队认为它_像_真正的硬摇滚。这就像重金属音乐，他们所做的只是_相似_，他们有这把吉他，他们只是敲打吉他，吉他是__，真设置的很低，"
+        "T4": "但是，看，例如，他们有，看什么，但其他乐队认为它像真正的硬摇滚。这就像重金属音乐，他们所做的只是相似，他们有这把吉他，他们只是敲打吉他，吉他是，真设置的很低，"
       }
     },
     {
       "utt_id": "sw02032_A_77",
       "en": "_Yeah_ _, _ _they_ _'re_ _, _ they're still around, they've got a _ne-_ _, _ new C D out, but _I_ _, _ I wouldn't buy it. Because _see_, what happens is, the old, _see_ whe-, _I_ _like_ _, _ I like the old Rolling Stones. I don't like the new stuff.",
       "translations": {
-        "T4": "_是的_ _，__他们__是__，_他们还在，他们有一个_，_新的光碟出来了，但_我__，_我不会买它。因為_实际上_，發生的事情是，那个以前的，_实际上，_我__喜歡__，_我喜歡以前的的滾石樂隊。我不喜欢新的东西。"
+        "T4": "是的 ，他们是，他们还在，他们有一个，新的光碟出来了，但我，我不会买它。因為实际上，發生的事情是，那个以前的，实际上，我喜歡，我喜歡以前的的滾石樂隊。我不喜欢新的东西。"
       }
     }
   ]

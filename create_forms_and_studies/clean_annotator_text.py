@@ -73,7 +73,7 @@ def collapse_cjk_period_separator(text: str) -> str:
     return re.sub(r"_ *。 *_", "_。_", text)
 
 
-# Why no "unstick" cleanup here:
+# Why no fancy "unstick glued separator" cleanup:
 #
 # Earlier versions of this script tried to insert spaces before glued
 # separators (e.g. turn "Cioè_,_" into "Cioè _,_") on the theory that the
@@ -82,17 +82,124 @@ def collapse_cjk_period_separator(text: str) -> str:
 # `_diciamo_` (closed span) followed by `_,_` (separator), and inserting
 # a space turns it into "_diciamo _,_" — an UNCLOSED `_diciamo` span.
 #
-# The runtime tokenizer in docs/annotate.html has its own (more careful)
-# unstick rule that handles "Cioè_,_" via a regex with proper anchoring,
-# so we let that handle the live parse. This script focuses only on the
-# safe normalizations that the worker's separator-spacing inconsistencies
-# call for.
+# Instead, we have a fallback below: if the tokenizer would produce
+# anomalies on a translation, strip ALL underscores from it so every
+# individual token becomes cleanly clickable. The worker loses the
+# default-highlight markup from the source but keeps a usable UI.
+
+
+def strip_all_underscores_if_broken(text: str) -> str:
+    """Last-resort fallback: if tokenize(text) would produce a literal "_"
+    in any token (or a runaway span >25 chars), strip ALL underscores from
+    the text. The translation then tokenizes into N clean plain-word
+    tokens, each individually clickable but unhighlighted by default. The
+    worker loses the source's default-highlight markup but the UI works.
+
+    This handles the residual cases the four collapse_* functions can't
+    fix:
+      - "_word_" spans glued to a preceding letter (e.g. Czech
+        "Celá_třída_", Arabic "لي_انا_", Mandarin "得_，_")
+      - Unclosed spans like "_word " with no closing "_"
+      - Trailing dangling "_" from a worker's last separator with no more
+        "_"s after
+
+    Detection runs the same logic as the live tokenizer in
+    docs/annotate.html so we strip exactly the cases the worker would
+    have seen broken.
+    """
+    if not _tokenizes_cleanly(text):
+        return re.sub(r"_", "", text)
+    return text
+
+
+# ── Tokenizer mirror, used only by strip_all_underscores_if_broken ──
+#
+# Mirrors the JS tokenize() function in docs/annotate.html. KEEP IN
+# SYNC if you change the JS one. We don't need the full token list —
+# just enough to detect "would this parse with literal _ or runaway
+# spans" — but it's easier to port the whole thing than maintain a
+# heuristic that diverges from reality.
+
+_NORMALIZE_PASSES = [
+    (re.compile(r"_ *, *_"),         "_,_"),
+    (re.compile(r"_ *\. *_"),        "_._"),
+    (re.compile(r"(\w)(_[,.]_)", re.UNICODE),  r"\1 \2"),
+]
+
+def _normalize_for_tokenize(s: str) -> str:
+    for pat, repl in _NORMALIZE_PASSES:
+        s = pat.sub(repl, s)
+    return s
+
+
+def _tokenizes_cleanly(raw: str) -> bool:
+    """Return False if the live tokenizer would produce any literal-underscore
+    token or any span longer than 25 chars. Same detection rule used by
+    debug_tokenize.js."""
+    s = _normalize_for_tokenize(str(raw or ""))
+    n = len(s)
+    i = 0
+    while i < n:
+        # canStartSpan(pos): pos==0 OR previous char is non-letter
+        def can_start(p):
+            if p == 0:
+                return True
+            return not re.match(r"\w", s[p-1], flags=re.UNICODE)
+
+        # Double-underscore span "__token__"
+        if i + 1 < n and s[i] == "_" and s[i+1] == "_" and can_start(i):
+            end = s.find("__", i + 2)
+            if end != -1:
+                content = s[i+2:end]
+                if "_" in content or len(content) > 25:
+                    return False
+                i = end + 2
+                continue
+
+        # Single-underscore span "_token_"
+        if s[i] == "_" and can_start(i):
+            end = s.find("_", i + 1)
+            if end != -1:
+                content = s[i+1:end]
+                # Multi-word span splits on whitespace; otherwise one token
+                if content.strip() and " " in content.strip():
+                    for part in re.split(r"(\s+)", content):
+                        if part == "" or part.isspace():
+                            continue
+                        if "_" in part or len(part) > 25:
+                            return False
+                else:
+                    if "_" in content or len(content) > 25:
+                        return False
+                i = end + 1
+                continue
+
+        # Plain text — scan to next span-starting underscore (or EOS)
+        j = i + 1
+        while j < n:
+            if s[j] == "_" and can_start(j):
+                break
+            j += 1
+        chunk = s[i:j]
+        for part in re.split(r"(\s+)", chunk):
+            if part == "" or part.isspace():
+                continue
+            for sub in re.split(r"([,!?;:.]+)", part):
+                if sub == "":
+                    continue
+                if "_" in sub:
+                    return False
+        i = j
+
+    return True
+
 
 CLEANUPS = [
     collapse_comma_separator,
     collapse_period_separator,
     collapse_cjk_comma_separator,
     collapse_cjk_period_separator,
+    strip_all_underscores_if_broken,
 ]
 
 
