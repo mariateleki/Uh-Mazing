@@ -133,9 +133,20 @@ def _normalize_for_tokenize(s: str) -> str:
 
 
 def _tokenizes_cleanly(raw: str) -> bool:
-    """Return False if the live tokenizer would produce any literal-underscore
-    token or any span longer than 25 chars. Same detection rule used by
-    debug_tokenize.js."""
+    """Return False if the live tokenizer would produce any of:
+      - a token containing a literal "_"  (unclosed span / glued underscore)
+      - a span longer than 25 characters  (runaway span swallowing words)
+      - a span whose text is only whitespace  (e.g. "_ _" in source —
+        worker forgot to put content between the underscores; renders as
+        a yellow-highlighted blank that the worker can't unhighlight by
+        clicking on text since there's no text)
+    """
+    def _bad(text: str, is_span: bool) -> bool:
+        if "_" in text: return True
+        if is_span and len(text) > 25: return True
+        if is_span and text and text.strip() == "": return True
+        return False
+
     s = _normalize_for_tokenize(str(raw or ""))
     n = len(s)
     i = 0
@@ -151,7 +162,7 @@ def _tokenizes_cleanly(raw: str) -> bool:
             end = s.find("__", i + 2)
             if end != -1:
                 content = s[i+2:end]
-                if "_" in content or len(content) > 25:
+                if _bad(content, True):
                     return False
                 i = end + 2
                 continue
@@ -166,10 +177,10 @@ def _tokenizes_cleanly(raw: str) -> bool:
                     for part in re.split(r"(\s+)", content):
                         if part == "" or part.isspace():
                             continue
-                        if "_" in part or len(part) > 25:
+                        if _bad(part, True):
                             return False
                 else:
-                    if "_" in content or len(content) > 25:
+                    if _bad(content, True):
                         return False
                 i = end + 1
                 continue
